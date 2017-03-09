@@ -12,6 +12,7 @@ using WatermentWebSCADA.Models;
 
 namespace WatermentWebSCADA.Controllers
 {
+    //FAEN
     //Jon Arne Was here
     [Authorize]
     public class AccountController : Controller
