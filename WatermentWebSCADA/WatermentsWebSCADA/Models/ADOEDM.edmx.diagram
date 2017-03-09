@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="14d352e2b4e644e5b079935e697b7ae3" Name="Diagram1">
+        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.country" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.equipment" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.facilities" Width="2.625" PointX="6.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.location" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="2.125" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.measurement" Width="1.5" PointX="12" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="watermentdbModel.useraccounts" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="watermentdbModel.fk_Alarms_Equipment1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_Location_Country1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_Measurement_Equipment1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_Facilities_Location1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_Facilities_UserAccounts1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_UserAccounts_Location1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.fk_Sessions_UserAccounts1" ManuallyRouted="false" />
+        <AssociationConnector Association="watermentdbModel.facilitiesequipment" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
