@@ -17,6 +17,7 @@ namespace WatermentWebSCADA.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        //hei
 
         public AccountController()
         {
