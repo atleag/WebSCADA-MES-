@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WatermentsWebSCADA")]
+[assembly: AssemblyTitle("WatermentWebSCADA")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WatermentsWebSCADA")]
+[assembly: AssemblyProduct("WatermentWebSCADA")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("854cd68a-fe2e-4a64-9f64-dee9238dae79")]
+[assembly: Guid("e39d56a6-77f5-440b-ae7e-ce709c86686d")]
 
 // Version information for an assembly consists of the following four values:
 //

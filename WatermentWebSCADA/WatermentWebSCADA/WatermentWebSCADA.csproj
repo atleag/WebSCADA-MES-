@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{854CD68A-FE2E-4A64-9F64-DEE9238DAE79}</ProjectGuid>
+    <ProjectGuid>{E39D56A6-77F5-440B-AE7E-CE709C86686D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WatermentsWebSCADA</RootNamespace>
-    <AssemblyName>WatermentsWebSCADA</AssemblyName>
+    <RootNamespace>WatermentWebSCADA</RootNamespace>
+    <AssemblyName>WatermentWebSCADA</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -24,7 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <ApplicationInsightsResourceId>/subscriptions/afc6d121-4a5c-481d-aff0-5b0572f5ea9a/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WatermentsWebSCADA</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/afc6d121-4a5c-481d-aff0-5b0572f5ea9a/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WatermentWebSCADA</ApplicationInsightsResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -77,9 +85,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Web.6.9.9\lib\net45\MySql.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,16 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\ADOEDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ADOEDM.edmx</DependentUpon>
-      <LastGenOutput>ADOEDM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ADOEDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ADOEDM.edmx</DependentUpon>
-      <LastGenOutput>ADOEDM.cs</LastGenOutput>
-    </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config" />
@@ -140,48 +147,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ADOEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ADOEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ADOEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ADOEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ADOEDM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\alarms.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\country.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\equipment.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\facilities.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\location.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\maintenance.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\measurement.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sessions.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\useraccounts.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -192,13 +157,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <EntityDeploy Include="Models\ADOEDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ADOEDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ADOEDM.edmx.diagram">
-      <DependentUpon>ADOEDM.edmx</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -209,13 +167,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\myDb\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -230,9 +185,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5496</DevelopmentServerPort>
+          <DevelopmentServerPort>2320</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5496/</IISUrl>
+          <IISUrl>http://localhost:5045/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
