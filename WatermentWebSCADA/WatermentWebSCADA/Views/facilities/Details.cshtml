@@ -1,0 +1,42 @@
+﻿@model WatermentWebSCADA.Models.facilities
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>facilities</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.useraccounts.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.useraccounts.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Name }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

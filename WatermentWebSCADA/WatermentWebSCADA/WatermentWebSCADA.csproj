@@ -97,6 +97,8 @@
       <HintPath>..\packages\MySql.Web.6.9.9\lib\net45\MySql.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -138,15 +140,86 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\ADOEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+      <LastGenOutput>ADOEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ADOEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+      <LastGenOutput>ADOEDM.cs</LastGenOutput>
+    </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\facilitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADOEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADOEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADOEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADOEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\alarms.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\country.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\equipment.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\facilities.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\location.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\maintenance.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\measurement.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sessions.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\useraccounts.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +230,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <EntityDeploy Include="Models\ADOEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ADOEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ADOEDM.edmx.diagram">
+      <DependentUpon>ADOEDM.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\facilities\Create.cshtml" />
+    <Content Include="Views\facilities\Delete.cshtml" />
+    <Content Include="Views\facilities\Details.cshtml" />
+    <Content Include="Views\facilities\Edit.cshtml" />
+    <Content Include="Views\facilities\Index.cshtml" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -166,11 +254,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
