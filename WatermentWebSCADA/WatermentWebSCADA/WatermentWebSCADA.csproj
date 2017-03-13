@@ -136,6 +136,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\ADOEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -149,10 +153,29 @@
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\countriesController.cs" />
+    <Compile Include="Controllers\facilitiesController.cs" />
+    <Compile Include="Controllers\locationsController.cs" />
+    <Compile Include="Controllers\sessionsController.cs" />
+    <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +237,34 @@
     <Content Include="Models\ADOEDM.edmx.diagram">
       <DependentUpon>ADOEDM.edmx</DependentUpon>
     </Content>
+    <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\users\Create.cshtml" />
+    <Content Include="Views\users\Delete.cshtml" />
+    <Content Include="Views\users\Details.cshtml" />
+    <Content Include="Views\users\Edit.cshtml" />
+    <Content Include="Views\users\Index.cshtml" />
+    <Content Include="Views\facilities\Create.cshtml" />
+    <Content Include="Views\facilities\Delete.cshtml" />
+    <Content Include="Views\facilities\Details.cshtml" />
+    <Content Include="Views\facilities\Edit.cshtml" />
+    <Content Include="Views\facilities\Index.cshtml" />
+    <Content Include="Views\sessions\Create.cshtml" />
+    <Content Include="Views\sessions\Delete.cshtml" />
+    <Content Include="Views\sessions\Details.cshtml" />
+    <Content Include="Views\sessions\Edit.cshtml" />
+    <Content Include="Views\sessions\Index.cshtml" />
+    <Content Include="Views\locations\Create.cshtml" />
+    <Content Include="Views\locations\Delete.cshtml" />
+    <Content Include="Views\locations\Details.cshtml" />
+    <Content Include="Views\locations\Edit.cshtml" />
+    <Content Include="Views\locations\Index.cshtml" />
+    <Content Include="Views\countries\Create.cshtml" />
+    <Content Include="Views\countries\Delete.cshtml" />
+    <Content Include="Views\countries\Details.cshtml" />
+    <Content Include="Views\countries\Edit.cshtml" />
+    <Content Include="Views\countries\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -223,7 +274,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
