@@ -1,0 +1,721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="watermentdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alarms">
+          <Key>
+            <PropertyRef Name="AlarmOccured" />
+            <PropertyRef Name="Equipment_Tag" />
+            <PropertyRef Name="Equipment_Facilities_Name" />
+          </Key>
+          <Property Name="AlarmOccured" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="Status" Type="int" />
+          <Property Name="ProcessValue" Type="float" />
+          <Property Name="Description" Type="varchar" MaxLength="45" />
+          <Property Name="Equipment_Tag" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Equipment_Facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="equipment">
+          <Key>
+            <PropertyRef Name="Tag" />
+            <PropertyRef Name="Facilities_Name" />
+          </Key>
+          <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="SIUnits" Type="varchar" MaxLength="45" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="LastCalibrated" Type="timestamp" Precision="0" />
+          <Property Name="Facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facilities">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="45" />
+          <Property Name="Location_Address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Location_Postcode" Type="int" Nullable="false" />
+          <Property Name="Location_Country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="facilities_has_users">
+          <Key>
+            <PropertyRef Name="facilities_Name" />
+            <PropertyRef Name="users_Email" />
+          </Key>
+          <Property Name="facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="users_Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Postcode" />
+            <PropertyRef Name="Country_CountryName" />
+          </Key>
+          <Property Name="Address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="County" Type="varchar" MaxLength="45" />
+          <Property Name="Country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maintenance">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="Facilities_Name" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="Person" Type="varchar" MaxLength="45" />
+          <Property Name="Facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="measurement">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="Equipment_Tag" />
+            <PropertyRef Name="Equipment_Facilities_Name" />
+          </Key>
+          <Property Name="Timestamp" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="ProcessValue" Type="float" />
+          <Property Name="Equipment_Tag" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Equipment_Facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sessions">
+          <Key>
+            <PropertyRef Name="LoggedIn" />
+            <PropertyRef Name="users_Email" />
+          </Key>
+          <Property Name="LoggedIn" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="LoggedOut" Type="timestamp" Precision="0" />
+          <Property Name="users_Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="bit" />
+          <Property Name="PasswordHash" Type="varchar" MaxLength="300" />
+          <Property Name="SecurityStamp" Type="varchar" MaxLength="300" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" />
+          <Property Name="TwoFactorEnabled" Type="bit" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
+          <Property Name="LockoutEnabled" Type="bit" />
+          <Property Name="AccessFailedCount" Type="int" />
+          <Property Name="Username" Type="varchar" MaxLength="256" />
+          <Property Name="location_Address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="location_Postcode" Type="int" Nullable="false" />
+          <Property Name="location_Country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Alarms_Equipment1">
+          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
+          <End Role="alarms" Type="Self.alarms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipment">
+              <PropertyRef Name="Tag" />
+              <PropertyRef Name="Facilities_Name" />
+            </Principal>
+            <Dependent Role="alarms">
+              <PropertyRef Name="Equipment_Tag" />
+              <PropertyRef Name="Equipment_Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Equipment_Facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="equipment">
+              <PropertyRef Name="Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_facilities_has_users_facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="facilities_has_users" Type="Self.facilities_has_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="facilities_has_users">
+              <PropertyRef Name="facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_facilities_has_users_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="facilities_has_users" Type="Self.facilities_has_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="facilities_has_users">
+              <PropertyRef Name="users_Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Facilities_Location1">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="Address" />
+              <PropertyRef Name="Postcode" />
+              <PropertyRef Name="Country_CountryName" />
+            </Principal>
+            <Dependent Role="facilities">
+              <PropertyRef Name="Location_Address" />
+              <PropertyRef Name="Location_Postcode" />
+              <PropertyRef Name="Location_Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Location_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="location" Type="Self.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="CountryName" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Maintenance_Facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="maintenance" Type="Self.maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="maintenance">
+              <PropertyRef Name="Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_measurement_Equipment1">
+          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
+          <End Role="measurement" Type="Self.measurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipment">
+              <PropertyRef Name="Tag" />
+              <PropertyRef Name="Facilities_Name" />
+            </Principal>
+            <Dependent Role="measurement">
+              <PropertyRef Name="Equipment_Tag" />
+              <PropertyRef Name="Equipment_Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_sessions_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="users_Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_location1">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="Address" />
+              <PropertyRef Name="Postcode" />
+              <PropertyRef Name="Country_CountryName" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="location_Address" />
+              <PropertyRef Name="location_Postcode" />
+              <PropertyRef Name="location_Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="watermentdbModelStoreContainer">
+          <EntitySet Name="alarms" EntityType="Self.alarms" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="equipment" EntityType="Self.equipment" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="facilities" EntityType="Self.facilities" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="facilities_has_users" EntityType="Self.facilities_has_users" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="location" EntityType="Self.location" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="measurement" EntityType="Self.measurement" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="watermentdb" store:Type="Tables" />
+          <AssociationSet Name="fk_Alarms_Equipment1" Association="Self.fk_Alarms_Equipment1">
+            <End Role="equipment" EntitySet="equipment" />
+            <End Role="alarms" EntitySet="alarms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Equipment_Facilities1" Association="Self.fk_Equipment_Facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="equipment" EntitySet="equipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_facilities_has_users_facilities1" Association="Self.fk_facilities_has_users_facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="facilities_has_users" EntitySet="facilities_has_users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_facilities_has_users_users1" Association="Self.fk_facilities_has_users_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="facilities_has_users" EntitySet="facilities_has_users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Facilities_Location1" Association="Self.fk_Facilities_Location1">
+            <End Role="location" EntitySet="location" />
+            <End Role="facilities" EntitySet="facilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Location_Country1" Association="Self.fk_Location_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Maintenance_Facilities1" Association="Self.fk_Maintenance_Facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="maintenance" EntitySet="maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_measurement_Equipment1" Association="Self.fk_measurement_Equipment1">
+            <End Role="equipment" EntitySet="equipment" />
+            <End Role="measurement" EntitySet="measurement" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sessions_users1" Association="Self.fk_sessions_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_location1" Association="Self.fk_users_location1">
+            <End Role="location" EntitySet="location" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="watermentdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="alarms">
+          <Key>
+            <PropertyRef Name="AlarmOccured" />
+            <PropertyRef Name="Equipment_Tag" />
+            <PropertyRef Name="Equipment_Facilities_Name" />
+          </Key>
+          <Property Name="AlarmOccured" Type="DateTime" Nullable="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="ProcessValue" Type="Single" />
+          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Equipment_Tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Equipment_Facilities_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="equipment" Relationship="Self.fk_Alarms_Equipment1" FromRole="alarms" ToRole="equipment" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="CountryName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="location" Relationship="Self.fk_Location_Country1" FromRole="country" ToRole="location" />
+        </EntityType>
+        <EntityType Name="equipment">
+          <Key>
+            <PropertyRef Name="Tag" />
+            <PropertyRef Name="Facilities_Name" />
+          </Key>
+          <Property Name="Tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SIUnits" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastCalibrated" Type="DateTime" />
+          <Property Name="Facilities_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="alarms" Relationship="Self.fk_Alarms_Equipment1" FromRole="equipment" ToRole="alarms" />
+          <NavigationProperty Name="facilities" Relationship="Self.fk_Equipment_Facilities1" FromRole="equipment" ToRole="facilities" />
+          <NavigationProperty Name="measurement" Relationship="Self.fk_measurement_Equipment1" FromRole="equipment" ToRole="measurement" />
+        </EntityType>
+        <EntityType Name="facilities">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Location_Address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location_Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Location_Country_CountryName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="equipment" Relationship="Self.fk_Equipment_Facilities1" FromRole="facilities" ToRole="equipment" />
+          <NavigationProperty Name="location" Relationship="Self.fk_Facilities_Location1" FromRole="facilities" ToRole="location" />
+          <NavigationProperty Name="maintenance" Relationship="Self.fk_Maintenance_Facilities1" FromRole="facilities" ToRole="maintenance" />
+          <NavigationProperty Name="users" Relationship="Self.facilities_has_users" FromRole="facilities" ToRole="users" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="Postcode" />
+            <PropertyRef Name="Country_CountryName" />
+          </Key>
+          <Property Name="Address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="County" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Country_CountryName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.fk_Location_Country1" FromRole="location" ToRole="country" />
+          <NavigationProperty Name="facilities" Relationship="Self.fk_Facilities_Location1" FromRole="location" ToRole="facilities" />
+          <NavigationProperty Name="users" Relationship="Self.fk_users_location1" FromRole="location" ToRole="users" />
+        </EntityType>
+        <EntityType Name="maintenance">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="Facilities_Name" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Facilities_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="facilities" Relationship="Self.fk_Maintenance_Facilities1" FromRole="maintenance" ToRole="facilities" />
+        </EntityType>
+        <EntityType Name="measurement">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+            <PropertyRef Name="Equipment_Tag" />
+            <PropertyRef Name="Equipment_Facilities_Name" />
+          </Key>
+          <Property Name="Timestamp" Type="DateTime" Nullable="false" />
+          <Property Name="ProcessValue" Type="Single" />
+          <Property Name="Equipment_Tag" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Equipment_Facilities_Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="equipment" Relationship="Self.fk_measurement_Equipment1" FromRole="measurement" ToRole="equipment" />
+        </EntityType>
+        <EntityType Name="sessions">
+          <Key>
+            <PropertyRef Name="LoggedIn" />
+            <PropertyRef Name="users_Email" />
+          </Key>
+          <Property Name="LoggedIn" Type="DateTime" Nullable="false" />
+          <Property Name="LoggedOut" Type="DateTime" />
+          <Property Name="users_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_sessions_users1" FromRole="sessions" ToRole="users" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" />
+          <Property Name="PasswordHash" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" />
+          <Property Name="LockoutEnabled" Type="Boolean" />
+          <Property Name="AccessFailedCount" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="location_Address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="location_Postcode" Type="Int32" Nullable="false" />
+          <Property Name="location_Country_CountryName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="location" Relationship="Self.fk_users_location1" FromRole="users" ToRole="location" />
+          <NavigationProperty Name="facilities" Relationship="Self.facilities_has_users" FromRole="users" ToRole="facilities" />
+          <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="users" ToRole="sessions" />
+        </EntityType>
+        <Association Name="fk_Alarms_Equipment1">
+          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
+          <End Role="alarms" Type="Self.alarms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipment">
+              <PropertyRef Name="Tag" />
+              <PropertyRef Name="Facilities_Name" />
+            </Principal>
+            <Dependent Role="alarms">
+              <PropertyRef Name="Equipment_Tag" />
+              <PropertyRef Name="Equipment_Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Location_Country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="location" Type="Self.location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="CountryName" />
+            </Principal>
+            <Dependent Role="location">
+              <PropertyRef Name="Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Equipment_Facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="equipment">
+              <PropertyRef Name="Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_measurement_Equipment1">
+          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
+          <End Role="measurement" Type="Self.measurement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipment">
+              <PropertyRef Name="Tag" />
+              <PropertyRef Name="Facilities_Name" />
+            </Principal>
+            <Dependent Role="measurement">
+              <PropertyRef Name="Equipment_Tag" />
+              <PropertyRef Name="Equipment_Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Facilities_Location1">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="Address" />
+              <PropertyRef Name="Postcode" />
+              <PropertyRef Name="Country_CountryName" />
+            </Principal>
+            <Dependent Role="facilities">
+              <PropertyRef Name="Location_Address" />
+              <PropertyRef Name="Location_Postcode" />
+              <PropertyRef Name="Location_Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Maintenance_Facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="maintenance" Type="Self.maintenance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="maintenance">
+              <PropertyRef Name="Facilities_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_location1">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="Address" />
+              <PropertyRef Name="Postcode" />
+              <PropertyRef Name="Country_CountryName" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="location_Address" />
+              <PropertyRef Name="location_Postcode" />
+              <PropertyRef Name="location_Country_CountryName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="facilities_has_users">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="watermentdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alarms" EntityType="Self.alarms" />
+          <EntitySet Name="country" EntityType="Self.country" />
+          <EntitySet Name="equipment" EntityType="Self.equipment" />
+          <EntitySet Name="facilities" EntityType="Self.facilities" />
+          <EntitySet Name="location" EntityType="Self.location" />
+          <EntitySet Name="maintenance" EntityType="Self.maintenance" />
+          <EntitySet Name="measurement" EntityType="Self.measurement" />
+          <EntitySet Name="sessions" EntityType="Self.sessions" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="fk_Alarms_Equipment1" Association="Self.fk_Alarms_Equipment1">
+            <End Role="equipment" EntitySet="equipment" />
+            <End Role="alarms" EntitySet="alarms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Location_Country1" Association="Self.fk_Location_Country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="location" EntitySet="location" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Equipment_Facilities1" Association="Self.fk_Equipment_Facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="equipment" EntitySet="equipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_measurement_Equipment1" Association="Self.fk_measurement_Equipment1">
+            <End Role="equipment" EntitySet="equipment" />
+            <End Role="measurement" EntitySet="measurement" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Facilities_Location1" Association="Self.fk_Facilities_Location1">
+            <End Role="location" EntitySet="location" />
+            <End Role="facilities" EntitySet="facilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Maintenance_Facilities1" Association="Self.fk_Maintenance_Facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="maintenance" EntitySet="maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_location1" Association="Self.fk_users_location1">
+            <End Role="location" EntitySet="location" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="facilities_has_users" Association="Self.facilities_has_users">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_sessions_users1" Association="watermentdbModel.fk_sessions_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="sessions" EntitySet="sessions" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="fk_sessions_users1">
+          <End Type="watermentdbModel.users" Role="users" Multiplicity="1" />
+          <End Type="watermentdbModel.sessions" Role="sessions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="sessions">
+              <PropertyRef Name="users_Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="watermentdbModelStoreContainer" CdmEntityContainer="watermentdbEntities">
+          <EntitySetMapping Name="alarms">
+            <EntityTypeMapping TypeName="watermentdbModel.alarms">
+              <MappingFragment StoreEntitySet="alarms">
+                <ScalarProperty Name="AlarmOccured" ColumnName="AlarmOccured" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Equipment_Tag" ColumnName="Equipment_Tag" />
+                <ScalarProperty Name="Equipment_Facilities_Name" ColumnName="Equipment_Facilities_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="watermentdbModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipment">
+            <EntityTypeMapping TypeName="watermentdbModel.equipment">
+              <MappingFragment StoreEntitySet="equipment">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="SIUnits" ColumnName="SIUnits" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastCalibrated" ColumnName="LastCalibrated" />
+                <ScalarProperty Name="Facilities_Name" ColumnName="Facilities_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facilities">
+            <EntityTypeMapping TypeName="watermentdbModel.facilities">
+              <MappingFragment StoreEntitySet="facilities">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Location_Address" ColumnName="Location_Address" />
+                <ScalarProperty Name="Location_Postcode" ColumnName="Location_Postcode" />
+                <ScalarProperty Name="Location_Country_CountryName" ColumnName="Location_Country_CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="location">
+            <EntityTypeMapping TypeName="watermentdbModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Country_CountryName" ColumnName="Country_CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maintenance">
+            <EntityTypeMapping TypeName="watermentdbModel.maintenance">
+              <MappingFragment StoreEntitySet="maintenance">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Person" ColumnName="Person" />
+                <ScalarProperty Name="Facilities_Name" ColumnName="Facilities_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measurement">
+            <EntityTypeMapping TypeName="watermentdbModel.measurement">
+              <MappingFragment StoreEntitySet="measurement">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
+                <ScalarProperty Name="Equipment_Tag" ColumnName="Equipment_Tag" />
+                <ScalarProperty Name="Equipment_Facilities_Name" ColumnName="Equipment_Facilities_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sessions">
+            <EntityTypeMapping TypeName="watermentdbModel.sessions">
+              <MappingFragment StoreEntitySet="sessions">
+                <ScalarProperty Name="users_Email" ColumnName="users_Email" />
+                <ScalarProperty Name="LoggedIn" ColumnName="LoggedIn" />
+                <ScalarProperty Name="LoggedOut" ColumnName="LoggedOut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="watermentdbModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="location_Address" ColumnName="location_Address" />
+                <ScalarProperty Name="location_Postcode" ColumnName="location_Postcode" />
+                <ScalarProperty Name="location_Country_CountryName" ColumnName="location_Country_CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="facilities_has_users" TypeName="watermentdbModel.facilities_has_users" StoreEntitySet="facilities_has_users">
+            <EndProperty Name="facilities">
+              <ScalarProperty Name="Name" ColumnName="facilities_Name" />
+            </EndProperty>
+            <EndProperty Name="users">
+              <ScalarProperty Name="Email" ColumnName="users_Email" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
