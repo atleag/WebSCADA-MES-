@@ -163,6 +163,10 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\jquery-1.10.2.js" />
+    <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery-1.10.2.min.map" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -180,9 +184,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\alarmsController.cs" />
     <Compile Include="Controllers\countriesController.cs" />
+    <Compile Include="Controllers\equipmentsController.cs" />
     <Compile Include="Controllers\facilitiesController.cs" />
     <Compile Include="Controllers\locationsController.cs" />
+    <Compile Include="Controllers\maintenancesController.cs" />
+    <Compile Include="Controllers\measurementsController.cs" />
     <Compile Include="Controllers\sessionsController.cs" />
     <Compile Include="Controllers\usersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,6 +283,26 @@
     <Content Include="Views\countries\Index.cshtml" />
     <Content Include="scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\equipments\Create.cshtml" />
+    <Content Include="Views\equipments\Delete.cshtml" />
+    <Content Include="Views\equipments\Details.cshtml" />
+    <Content Include="Views\equipments\Edit.cshtml" />
+    <Content Include="Views\equipments\Index.cshtml" />
+    <Content Include="Views\alarms\Create.cshtml" />
+    <Content Include="Views\alarms\Delete.cshtml" />
+    <Content Include="Views\alarms\Details.cshtml" />
+    <Content Include="Views\alarms\Edit.cshtml" />
+    <Content Include="Views\alarms\Index.cshtml" />
+    <Content Include="Views\maintenances\Create.cshtml" />
+    <Content Include="Views\maintenances\Delete.cshtml" />
+    <Content Include="Views\maintenances\Details.cshtml" />
+    <Content Include="Views\maintenances\Edit.cshtml" />
+    <Content Include="Views\maintenances\Index.cshtml" />
+    <Content Include="Views\measurements\Create.cshtml" />
+    <Content Include="Views\measurements\Delete.cshtml" />
+    <Content Include="Views\measurements\Details.cshtml" />
+    <Content Include="Views\measurements\Edit.cshtml" />
+    <Content Include="Views\measurements\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

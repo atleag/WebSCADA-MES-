@@ -130,7 +130,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.location_Address, "location_Address", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("location_Address", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.location_Address, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.location_Address, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -138,7 +138,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.location_Postcode, "location_Postcode", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("location_Postcode", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.location_Postcode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.location_Postcode, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -146,7 +146,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.location_Country_CountryName, "location_Country_CountryName", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("location_Country_CountryName", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.location_Country_CountryName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.location_Country_CountryName, "", new { @class = "text-danger" })
             </div>
         </div>
