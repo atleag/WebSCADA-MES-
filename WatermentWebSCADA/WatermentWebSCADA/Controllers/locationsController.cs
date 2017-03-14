@@ -57,7 +57,7 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.Country_CountryName);
+            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.country_CountryName);
             return View(location);
         }
 
@@ -73,7 +73,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.Country_CountryName);
+            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.country_CountryName);
             return View(location);
         }
 
@@ -90,7 +90,7 @@ namespace WatermentWebSCADA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.Country_CountryName);
+            ViewBag.Country_CountryName = new SelectList(db.country, "CountryName", "CountryName", location.country_CountryName);
             return View(location);
         }
 

@@ -58,7 +58,7 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.Location_Address);
+            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.location_Address);
             return View(facilities);
         }
 
@@ -74,7 +74,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.Location_Address);
+            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.location_Address);
             return View(facilities);
         }
 
@@ -91,7 +91,7 @@ namespace WatermentWebSCADA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.Location_Address);
+            ViewBag.Location_Address = new SelectList(db.location, "Address", "County", facilities.location_Address);
             return View(facilities);
         }
 

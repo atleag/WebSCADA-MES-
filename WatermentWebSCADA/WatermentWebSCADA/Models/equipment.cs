@@ -25,7 +25,7 @@ namespace WatermentWebSCADA.Models
         public string SIUnits { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> LastCalibrated { get; set; }
-        public string Facilities_Name { get; set; }
+        public string facilities_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<alarms> alarms { get; set; }

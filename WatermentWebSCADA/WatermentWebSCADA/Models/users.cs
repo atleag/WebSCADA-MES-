@@ -17,8 +17,8 @@ namespace WatermentWebSCADA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public users()
         {
-            this.facilities = new HashSet<facilities>();
             this.sessions = new HashSet<sessions>();
+            this.facilities = new HashSet<facilities>();
         }
     
         public string Email { get; set; }
@@ -36,12 +36,12 @@ namespace WatermentWebSCADA.Models
         public string Username { get; set; }
         public string location_Address { get; set; }
         public int location_Postcode { get; set; }
-        public string location_Country_CountryName { get; set; }
+        public string location_country_CountryName { get; set; }
     
         public virtual location location { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<facilities> facilities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facilities> facilities { get; set; }
     }
 }

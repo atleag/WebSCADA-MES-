@@ -24,7 +24,7 @@ namespace WatermentWebSCADA.Models
         public string Address { get; set; }
         public int Postcode { get; set; }
         public string County { get; set; }
-        public string Country_CountryName { get; set; }
+        public string country_CountryName { get; set; }
     
         public virtual country country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

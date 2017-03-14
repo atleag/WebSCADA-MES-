@@ -57,7 +57,7 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.equipment_Tag);
             return View(measurement);
         }
 
@@ -73,7 +73,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.equipment_Tag);
             return View(measurement);
         }
 
@@ -90,7 +90,7 @@ namespace WatermentWebSCADA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", measurement.equipment_Tag);
             return View(measurement);
         }
 
