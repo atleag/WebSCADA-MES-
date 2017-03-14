@@ -189,6 +189,7 @@
     <Compile Include="Controllers\equipmentsController.cs" />
     <Compile Include="Controllers\facilitiesController.cs" />
     <Compile Include="Controllers\locationsController.cs" />
+    <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\maintenancesController.cs" />
     <Compile Include="Controllers\measurementsController.cs" />
     <Compile Include="Controllers\sessionsController.cs" />
@@ -303,6 +304,7 @@
     <Content Include="Views\measurements\Details.cshtml" />
     <Content Include="Views\measurements\Edit.cshtml" />
     <Content Include="Views\measurements\Index.cshtml" />
+    <Content Include="Views\login\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
