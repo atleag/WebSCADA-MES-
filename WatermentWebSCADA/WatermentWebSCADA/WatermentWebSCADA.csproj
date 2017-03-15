@@ -304,6 +304,7 @@
     <Content Include="Views\measurements\Edit.cshtml" />
     <Content Include="Views\measurements\Index.cshtml" />
     <Content Include="Views\login\Login.cshtml" />
+    <Content Include="Views\MainIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
