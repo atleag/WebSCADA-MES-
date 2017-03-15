@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Jon Arne\Desktop\WebSCADA\WebSCADA\WatermentWebSCADA\WatermentWebSCADA\Models\ADOEDM.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\W840S\Source\Repos\WebSCADA\WatermentWebSCADA\WatermentWebSCADA\Models\ADOEDM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

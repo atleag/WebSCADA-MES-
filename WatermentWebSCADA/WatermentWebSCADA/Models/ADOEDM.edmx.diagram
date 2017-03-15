@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="9.75" PointY="12.125" />
+        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="9.75" PointY="6.875" />
         <EntityTypeShape EntityType="watermentdbModel.country" Width="1.5" PointX="0.75" PointY="7.25" />
-        <EntityTypeShape EntityType="watermentdbModel.equipment" Width="1.5" PointX="7.5" PointY="13.375" />
+        <EntityTypeShape EntityType="watermentdbModel.equipment" Width="1.5" PointX="7.5" PointY="5.5" />
         <EntityTypeShape EntityType="watermentdbModel.facilities" Width="1.5" PointX="5.25" PointY="6.5" />
         <EntityTypeShape EntityType="watermentdbModel.location" Width="1.5" PointX="3" PointY="6.875" />
-        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="7.5" PointY="9.625" />
-        <EntityTypeShape EntityType="watermentdbModel.measurement" Width="1.5" PointX="9.75" PointY="15.25" />
-        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="9.75" PointY="5.125" />
-        <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="7.5" PointY="3.625" />
+        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="7.5" PointY="15.5" />
+        <EntityTypeShape EntityType="watermentdbModel.measurement" Width="1.5" PointX="9.75" PointY="4.25" />
+        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="9.75" PointY="11.125" />
+        <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="7.5" PointY="9.625" />
         <AssociationConnector Association="watermentdbModel.fk_alarms_equipment1" />
         <AssociationConnector Association="watermentdbModel.fk_location_country1" />
         <AssociationConnector Association="watermentdbModel.fk_equipment_facilities1" />
