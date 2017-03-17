@@ -314,6 +314,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Multiview\" />
+    <Folder Include="Views\multi\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

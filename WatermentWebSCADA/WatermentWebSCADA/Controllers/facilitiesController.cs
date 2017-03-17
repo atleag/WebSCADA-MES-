@@ -17,6 +17,7 @@ namespace WatermentWebSCADA.Controllers
         // GET: facilities
         public ActionResult Index()
         {
+            
             var facilities = db.facilities.Include(f => f.location);
             return View(facilities.ToList());
         }
