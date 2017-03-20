@@ -17,6 +17,7 @@ namespace WatermentWebSCADA.Controllers
         // GET: users
         public ActionResult Index()
         {
+
             var users = db.users.Include(u => u.location);
             return View(users.ToList());
         }
