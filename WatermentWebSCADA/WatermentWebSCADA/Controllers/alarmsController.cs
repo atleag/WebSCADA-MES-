@@ -10,6 +10,7 @@ using WatermentWebSCADA.Models;
 
 namespace WatermentWebSCADA.Controllers
 {
+    //adwwadwadawdawd
     public class alarmsController : Controller
     {
         private watermentdbEntities db = new watermentdbEntities();
@@ -58,7 +59,7 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.equipment_Tag);
             return View(alarms);
         }
 
@@ -74,7 +75,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.equipment_Tag);
             return View(alarms);
         }
 
@@ -91,7 +92,7 @@ namespace WatermentWebSCADA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.Equipment_Tag);
+            ViewBag.Equipment_Tag = new SelectList(db.equipment, "Tag", "SIUnits", alarms.equipment_Tag);
             return View(alarms);
         }
 

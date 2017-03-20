@@ -16,8 +16,8 @@ namespace WatermentWebSCADA.Models
     {
         public System.DateTime Timestamp { get; set; }
         public Nullable<float> ProcessValue { get; set; }
-        public string Equipment_Tag { get; set; }
-        public string Equipment_Facilities_Name { get; set; }
+        public string equipment_Tag { get; set; }
+        public string equipment_facilities_Name { get; set; }
     
         public virtual equipment equipment { get; set; }
     }

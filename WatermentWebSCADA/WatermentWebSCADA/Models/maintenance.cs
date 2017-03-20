@@ -16,7 +16,7 @@ namespace WatermentWebSCADA.Models
     {
         public int OrderID { get; set; }
         public string Person { get; set; }
-        public string Facilities_Name { get; set; }
+        public string facilities_Name { get; set; }
     
         public virtual facilities facilities { get; set; }
     }

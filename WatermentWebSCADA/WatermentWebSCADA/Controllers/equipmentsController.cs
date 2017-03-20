@@ -57,7 +57,7 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.Facilities_Name);
+            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.facilities_Name);
             return View(equipment);
         }
 
@@ -73,7 +73,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.Facilities_Name);
+            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.facilities_Name);
             return View(equipment);
         }
 
@@ -90,7 +90,7 @@ namespace WatermentWebSCADA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.Facilities_Name);
+            ViewBag.Facilities_Name = new SelectList(db.facilities, "Name", "IP", equipment.facilities_Name);
             return View(equipment);
         }
 
