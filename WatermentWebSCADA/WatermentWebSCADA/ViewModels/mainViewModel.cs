@@ -17,10 +17,10 @@ namespace WatermentWebSCADA.ViewModels
         public string IP { get; set; }
         public string Domain { get; set; }
         //locations model
-        public string Address { get; set; }
+        public string Country { get; set; }
         public int Postcode { get; set; }
         public string County { get; set; }
-
+        public string LastCalibted { get; set; }
 
     }
 }
