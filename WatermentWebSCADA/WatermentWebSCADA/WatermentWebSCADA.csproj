@@ -189,6 +189,7 @@
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="ViewModels\AddUserViewModel.cs" />
     <Compile Include="ViewModels\FacilityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Controllers\MaintenancesController.cs" />
