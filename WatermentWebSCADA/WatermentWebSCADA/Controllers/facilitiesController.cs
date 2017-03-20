@@ -20,6 +20,8 @@ namespace WatermentWebSCADA.Controllers
             
             var facilities = db.facilities.Include(f => f.location);
             return View(facilities.ToList());
+
+
         }
 
         // GET: facilities/Details/5

@@ -314,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewMo\" />
     <Folder Include="Views\Multiview\" />
     <Folder Include="Views\multi\" />
   </ItemGroup>
