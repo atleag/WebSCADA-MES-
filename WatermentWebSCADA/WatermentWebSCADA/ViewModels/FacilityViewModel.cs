@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WatermentWebSCADA.ViewModels
 {
-    public class MainViewModel
+    public class FacilityViewModel
     {
     }
 }
