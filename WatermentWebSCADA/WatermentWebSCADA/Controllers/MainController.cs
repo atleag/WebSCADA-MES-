@@ -18,7 +18,7 @@ namespace WatermentWebSCADA.Controllers
             var data = new mainViewModel {
                 IP = db.facilities.Select(x => x.IP).FirstOrDefault(),
                 Name = db.facilities.Select(x => x.Name).FirstOrDefault(),
-                Address = db.country.Select(x => x.CountryName).FirstOrDefault()
+                Address = db.country.Select(x => x.CountryName).FirstOrDefault(),
             };
             
             return View(data);
