@@ -10,7 +10,7 @@ using WatermentWebSCADA.Models;
 
 namespace WatermentWebSCADA.Controllers
 {
-    public class countriesController : Controller
+    public class CountriesController : Controller
     {
         private watermentdbEntities db = new watermentdbEntities();
 
