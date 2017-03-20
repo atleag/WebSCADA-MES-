@@ -262,11 +262,11 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\facilities\Create.cshtml" />
-    <Content Include="Views\facilities\Delete.cshtml" />
-    <Content Include="Views\facilities\Details.cshtml" />
-    <Content Include="Views\facilities\Edit.cshtml" />
-    <Content Include="Views\facilities\Index.cshtml" />
+    <Content Include="Views\Facilities\Create.cshtml" />
+    <Content Include="Views\Facilities\Delete.cshtml" />
+    <Content Include="Views\Facilities\Details.cshtml" />
+    <Content Include="Views\Facilities\Edit.cshtml" />
+    <Content Include="Views\Facilities\Index.cshtml" />
     <Content Include="Views\Sessions\Create.cshtml" />
     <Content Include="Views\Sessions\Delete.cshtml" />
     <Content Include="Views\Sessions\Details.cshtml" />
