@@ -9,7 +9,7 @@ namespace WatermentWebSCADA.ViewModels
     public class mainViewModel
     {
 
-        public facilities facilitiess { get; set; }
+        //public facilities facilitiess { get; set; }
         
         
         //facilities
