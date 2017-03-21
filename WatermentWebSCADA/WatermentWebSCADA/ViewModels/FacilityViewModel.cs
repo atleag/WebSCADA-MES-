@@ -7,5 +7,6 @@ namespace WatermentWebSCADA.ViewModels
 {
     public class FacilityViewModel
     {
+
     }
 }
