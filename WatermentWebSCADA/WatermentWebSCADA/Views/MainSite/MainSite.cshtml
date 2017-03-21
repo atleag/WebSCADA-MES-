@@ -6,6 +6,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>Min ip er @Model.IP</p> Og min adresse er @Model.Address
+<p>Min ip er @Model.IP</p>
+<p>Og min adresse er @Model.Address</p>
+@foreach (var item in Model.Name)
+{
+    <p>@item</p>
+}
+
+
+
 
 <h2>Index</h2>
