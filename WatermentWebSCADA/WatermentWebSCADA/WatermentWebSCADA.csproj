@@ -311,6 +311,7 @@
     <Content Include="Views\Measurements\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
+    <Content Include="Views\MainSite\MainSite.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -320,7 +321,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MainSite\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

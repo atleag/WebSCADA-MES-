@@ -13,7 +13,7 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult Index(int? id)
         {
 
-            var data = new mainViewModel
+            var data = new mai
             {
                 IP = db.facilities.Select(x => x.IP).FirstOrDefault(),
                 Name = db.facilities.Select(x => x.Name).FirstOrDefault(),
