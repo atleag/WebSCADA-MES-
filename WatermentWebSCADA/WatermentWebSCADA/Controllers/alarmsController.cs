@@ -16,6 +16,7 @@ namespace WatermentWebSCADA.Controllers
         private watermentdbEntities db = new watermentdbEntities();
 
         // GET: alarms
+        //test
         public ActionResult Index()
         {
             var alarms = db.alarms.Include(a => a.equipment);

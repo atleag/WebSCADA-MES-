@@ -6,7 +6,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>Min ip er @Model.IP</p> Og min adresse er @Model.Address
+<p>Min ip er @Model.IP</p> Og min adresse er @Model.Country, PostCode er @Model.Postcode, og county er @Model.County <p></p>
+
+@foreach (var CountryName in Model.Country)
+{
+    <td>
+        @Model.Country "d"
+    </td>
+}
 
 <h2>Index</h2>
 
