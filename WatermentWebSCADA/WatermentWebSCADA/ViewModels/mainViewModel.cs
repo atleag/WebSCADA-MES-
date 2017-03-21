@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using WatermentWebSCADA;
 
 namespace WatermentWebSCADA.ViewModels
 {
     public class MainViewModel
     {
-        public facilities facilitiess { get; set; }
+      //  public FacilityViewModel facilitiess { get; set; }
 
 
         //facilities
