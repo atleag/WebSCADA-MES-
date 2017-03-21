@@ -8,7 +8,7 @@ using WatermentWebSCADA.ViewModels;
 
 namespace WatermentWebSCADA.Controllers
 {
-    public class MainController : Controller
+    public class MainSiteController : Controller
     {
         private watermentdbEntities db = new watermentdbEntities();
         // GET: Main
