@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.Controllers
     {
         private watermentdbEntities db = new watermentdbEntities();
         // GET: Main
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
 
             var data = new MainViewModel
