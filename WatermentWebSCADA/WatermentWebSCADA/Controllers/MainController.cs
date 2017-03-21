@@ -8,19 +8,20 @@ using WatermentWebSCADA.ViewModels;
 
 namespace WatermentWebSCADA.Controllers
 {
-    public class mainController : Controller
+    public class MainController : Controller
     {
         private watermentdbEntities db = new watermentdbEntities();
         // GET: Main
         public ActionResult Index(int? id)
         {
 
-            var data = new mainViewModel {
+            var data = new MainViewModel
+            {
                 IP = db.facilities.Select(x => x.IP).FirstOrDefault(),
-                Name = db.facilities.Select(x => x.Name).FirstOrDefault(),
+                Name = db.facilities.Select(x => x.Name).ToList(),
                 Address = db.country.Select(x => x.CountryName).FirstOrDefault(),
             };
-            
+
             return View(data);
         }
     }
