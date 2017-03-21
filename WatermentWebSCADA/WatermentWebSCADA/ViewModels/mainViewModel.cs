@@ -10,10 +10,10 @@ namespace WatermentWebSCADA.ViewModels
     {
 
         public facilities facilitiess { get; set; }
-        
-        
+
+
         //facilities
-        public string Name { get; set; }
+        public List<string> Name { get; set; }
         public string IP { get; set; }
         public string Domain { get; set; }
         //locations model
