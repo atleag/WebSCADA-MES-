@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WatermentWebSCADA;
+using WatermentWebSCADA.Models;
+using WatermentWebSCADA.ViewModels;
 
 namespace WatermentWebSCADA.ViewModels
 {
     public class MainViewModel
     {
-      //  public FacilityViewModel facilitiess { get; set; }
+       public FacilityViewModel facilitiess { get; set; }
 
 
         //facilities
-        public string Name { get; set; }
+        public List<string> Name { get; set; }
         public string IP { get; set; }
         public string Domain { get; set; }
         //locations model
