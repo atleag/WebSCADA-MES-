@@ -8,54 +8,48 @@
 
 
 
-<h2>Waterment Biogass</h2>
+<div class="jumbotron text-center">
+    <h1>Waterment Biogass</h1>
+    
+</div>
 
-<head>
-    <style>
-        p.solid {border-style: solid;}
-        th.solid{border-style: solid;}
-    </style>
-</head>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <h3>Facilities</h3>
+            <p>@Model.Address</p>
+       
+        </div>
+        <div class="col-sm-2">
+            <h3>Not Started</h3>
+            <p>@Model.County</p>
 
-
-
-    <table class="table">
-        <tr>
-            <th>
-                <h4 class="solid">Facilities</h4>
-            </th>
-            <th>
-                <h4>Land</h4>
-            </th>
-            <th>
-                <h4>Status</h4>
-            </th>
-
-        </tr>
-        <tr>
-            <td class="solid">
-                @foreach (var item in Model.Name)
-            {
-                    <p>@item</p>
-                
-                }
-            </td>
-
-            <td>
-                <p class="solid">@Model.Address</p>
-        </td>
-        <td>
+        </div>
+        <div class="col-sm-2">
+            <h3>High Alarm</h3>
             <p>@Model.IP</p>
-        </td>
-    </tr>
-
-</table>
-
-
-
-
-
-
-
-
-<h2>Index</h2>
+            
+        </div>
+        <div class="col-sm-2">
+            <h3>Mantanace due</h3>
+            @foreach (var item in Model.CountryName)
+            {
+                <p>@item</p>
+            }s
+     
+        </div>
+        <div class="col-sm-2">
+            <h3>Planed maintanace</h3>
+            @foreach (var item in Model.Name)
+            {
+               <p>@item</p> 
+            }
+         
+        </div>
+        <div class="col-sm-2">
+            <h3>Column 3</h3>
+            <p>Atle</p>
+   
+        </div>
+    </div>
+</div>
