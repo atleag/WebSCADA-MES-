@@ -25,5 +25,18 @@ namespace WatermentWebSCADA.ViewModels
         //Countrie model
 
         public List<string> CountryName { get; set; }
+
+   
+        //locations model
+ 
+        public List<string> FirstName { get; set; }
+        public List<string> LastName { get; set; }
+        public List<int?> Phone { get; set; }
+        public List<string> Email { get; set; }
+        public List<float?> ProcessValue { get; set; }
+        public List<string> Tag { get; set; }
+        public List<System.DateTime> Timestamp { get; set; }
+        public List<String> Description { get; set; }
+        public List<System.DateTime> Alarmsoccured { get; set; }
     }
 }

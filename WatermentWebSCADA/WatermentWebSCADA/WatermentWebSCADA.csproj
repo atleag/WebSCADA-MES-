@@ -309,8 +309,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
-    <Content Include="Views\Facility\Index.cshtml" />
-    <Content Include="Views\Facility\Details.cshtml" />
+    <Content Include="Views\MainSite\Details.cshtml" />
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\facilities\Create.cshtml" />
     <Content Include="Views\facilities\Delete.cshtml" />
@@ -326,7 +325,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MainSite\Facilities\" />
+    <Folder Include="Views\Facility\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
