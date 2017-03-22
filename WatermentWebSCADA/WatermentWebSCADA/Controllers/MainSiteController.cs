@@ -25,5 +25,6 @@ namespace WatermentWebSCADA.Controllers
 
             return View(data);
         }
+        public ActionResult 
     }
 }
