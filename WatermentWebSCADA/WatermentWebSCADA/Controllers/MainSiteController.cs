@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.Controllers
     {
         private watermentdbEntities db = new watermentdbEntities();
         // GET: Main
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
 
             var data = new MainViewModel
@@ -20,6 +20,7 @@ namespace WatermentWebSCADA.Controllers
                 IP = db.facilities.Select(x => x.IP).FirstOrDefault(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
                 Address = db.country.Select(x => x.CountryName).FirstOrDefault(),
+                CountryName = db.country.Select(x => x.CountryName).ToList(),
             };
 
             return View(data);

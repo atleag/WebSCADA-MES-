@@ -6,16 +6,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>Min ip er @Model.IP</p>
-
-<p>Og min adresse er @Model.Address</p>
-
-@foreach (var item in Model.Name )
-{
-    <p>@item</p>
-}
 
 
+<div class="jumbotron text-left">
+    <h1>Waterment Biogass</h1>
+    
+</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2">
+            <h3>Facilities</h3>
+            <p>@Model.Address</p>
+       
+        </div>
+        <div class="col-sm-2">
+            <h3>Not Started</h3>
+            <p>@Model.County</p>
 
-<h2>Index</h2>
+        </div>
+        <div class="col-sm-2">
+            <h3>High Alarm</h3>
+            <p>@Model.IP</p>
+            
+        </div>
+        <div class="col-sm-2">
+            <h3>Mantanace due</h3>
+            @foreach (var item in Model.CountryName)
+            {
+                <p>@item</p>
+            }s
+     
+        </div>
+        <div class="col-sm-2">
+            <h3>Planed maintanace</h3>
+            @foreach (var item in Model.Name)
+            {
+               <p>@item</p> 
+            }
+         
+        </div>
+        <div class="col-sm-2">
+            <h3>Oversikt</h3>
+            <p>Atle</p>
+   
+        </div>
+    </div>
+</div>

@@ -191,7 +191,7 @@
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
-    <Compile Include="ViewModels\AddUserViewModel.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="ViewModels\FacilityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Controllers\MaintenancesController.cs" />
@@ -245,6 +245,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\UserManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -315,6 +316,7 @@
     <Content Include="Views\MainSite\Index.cshtml" />
     <Content Include="Views\Facility\Index.cshtml" />
     <Content Include="Views\Facility\Details.cshtml" />
+    <Content Include="Views\UserManagement\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
