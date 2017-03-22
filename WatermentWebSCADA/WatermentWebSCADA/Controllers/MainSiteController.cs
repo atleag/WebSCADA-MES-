@@ -20,7 +20,7 @@ namespace WatermentWebSCADA.Controllers
                 IP = db.facilities.Select(x => x.IP).ToList(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
                 Address = db.location.Select(x => x.Address).ToList(),
-                CountryName = db.country.Select(x => x.Name).ToList(),
+                CountryName = db.country.OrderBy(y => y.Name).Select(x => x.Name).ToList(),
             };
 
             return View(data);
