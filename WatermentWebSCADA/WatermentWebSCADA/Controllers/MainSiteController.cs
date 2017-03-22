@@ -17,19 +17,19 @@ namespace WatermentWebSCADA.Controllers
 
             var data = new MainViewModel
             {
-                IP = db.facilities.Select(x => x.IP).FirstOrDefault(),
+                IP = db.facilities.Select(x => x.IP).ToList(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
-                Address = db.country.Select(x => x.CountryName).FirstOrDefault(),
+                Address = db.country.Select(x => x.CountryName).ToList(),
                 CountryName = db.country.Select(x => x.CountryName).ToList(),
             };
 
             return View(data);
         }
-       
-            public ActionResult Details(int? id)
+
+        public ActionResult Details(int? id)
         {
 
-            var data = new FacilityViewModel
+            var data = new MainViewModel
             {
                 IP = db.facilities.Select(x => x.IP).ToList(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
@@ -50,4 +50,5 @@ namespace WatermentWebSCADA.Controllers
             };
             return View(data);
         }
+    }
 }

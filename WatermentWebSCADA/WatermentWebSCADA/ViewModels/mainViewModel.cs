@@ -14,13 +14,13 @@ namespace WatermentWebSCADA.ViewModels
 
         //facilities
         public List<string> Name { get; set; }
-        public string IP { get; set; }
-        public string Domain { get; set; }
+        public List<string> IP { get; set; }
+        public List<string> Domain { get; set; }
 
         //locations model
-        public string Address { get; set; }
-        public int Postcode { get; set; }
-        public string County { get; set; }
+        public List<string> Address { get; set; }
+        public List<int> Postcode { get; set; }
+        public List<string> County { get; set; }
 
         //Countrie model
 
