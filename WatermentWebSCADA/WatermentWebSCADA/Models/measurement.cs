@@ -14,10 +14,11 @@ namespace WatermentWebSCADA.Models
     
     public partial class measurement
     {
-        public System.DateTime Timestamp { get; set; }
+        public int Id { get; set; }
+        public DateTime Timestamp { get; set; }
         public Nullable<float> ProcessValue { get; set; }
-        public string equipment_Tag { get; set; }
-        public string equipment_facilities_Name { get; set; }
+        public int equipment_Id { get; set; }
+        public int equipment_facilities_Id { get; set; }
     
         public virtual equipment equipment { get; set; }
     }

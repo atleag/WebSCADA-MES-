@@ -7,125 +7,177 @@
     <Schema Namespace="watermentdbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="alarms">
           <Key>
-            <PropertyRef Name="AlarmOccured" />
-            <PropertyRef Name="equipment_Tag" />
-            <PropertyRef Name="equipment_facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="equipment_Id" />
+            <PropertyRef Name="equipment_facilities_Id" />
           </Key>
-          <Property Name="AlarmOccured" Type="timestamp" Precision="0" Nullable="false" />
-          <Property Name="Status" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlarmOccured" Type="timestamp" Precision="0" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="ProcessValue" Type="float" />
-          <Property Name="Description" Type="varchar" MaxLength="45" />
-          <Property Name="equipment_Tag" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="equipment_facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="equipment_Id" Type="int" Nullable="false" />
+          <Property Name="equipment_facilities_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="continent_has_country">
+          <Key>
+            <PropertyRef Name="continent_Code" />
+            <PropertyRef Name="country_CountryCode" />
+          </Key>
+          <Property Name="continent_Code" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="country">
           <Key>
-            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="CountryCode" />
           </Key>
-          <Property Name="CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CountryCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="equipment">
           <Key>
-            <PropertyRef Name="Tag" />
-            <PropertyRef Name="facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="facilities_Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="SIUnits" Type="varchar" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
           <Property Name="LastCalibrated" Type="timestamp" Precision="0" />
-          <Property Name="facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="facilities">
           <Key>
-            <PropertyRef Name="Name" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
-          <Property Name="Domain" Type="varchar" MaxLength="45" />
-          <Property Name="location_Address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="location_Postcode" Type="int" Nullable="false" />
-          <Property Name="location_country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="facilities_has_users">
-          <Key>
-            <PropertyRef Name="facilities_Name" />
-            <PropertyRef Name="users_Email" />
-          </Key>
-          <Property Name="facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="users_Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Domain" Type="varchar" MaxLength="80" />
+          <Property Name="location_country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="location_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="location">
           <Key>
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="Postcode" />
-            <PropertyRef Name="country_CountryName" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="country_CountryCode" />
           </Key>
-          <Property Name="Address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Postcode" Type="mediumint" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="County" Type="varchar" MaxLength="45" />
-          <Property Name="country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
-            <PropertyRef Name="OrderID" />
-            <PropertyRef Name="facilities_Name" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="facilities_Id" />
           </Key>
-          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="mediumint" Nullable="false" />
           <Property Name="Person" Type="varchar" MaxLength="45" />
-          <Property Name="facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="measurement">
           <Key>
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="equipment_Tag" />
-            <PropertyRef Name="equipment_facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="equipment_Id" />
+            <PropertyRef Name="equipment_facilities_Id" />
           </Key>
-          <Property Name="Timestamp" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Timestamp" Type="timestamp" Precision="0" />
           <Property Name="ProcessValue" Type="float" />
-          <Property Name="equipment_Tag" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="equipment_facilities_Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="equipment_Id" Type="int" Nullable="false" />
+          <Property Name="equipment_facilities_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
-            <PropertyRef Name="LoggedIn" />
-            <PropertyRef Name="users_Email" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="users_Id" />
           </Key>
-          <Property Name="LoggedIn" Type="timestamp" Precision="0" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoggedIn" Type="timestamp" Precision="0" />
           <Property Name="LoggedOut" Type="timestamp" Precision="0" />
-          <Property Name="users_Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="users_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="EmailConfirmed" Type="bit" />
           <Property Name="PasswordHash" Type="varchar" MaxLength="300" />
           <Property Name="SecurityStamp" Type="varchar" MaxLength="300" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="int" />
           <Property Name="PhoneNumberConfirmed" Type="bit" />
           <Property Name="TwoFactorEnabled" Type="bit" />
-          <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
+          <Property Name="LockoutEndDateUtc" Type="timestamp" Precision="0" />
           <Property Name="LockoutEnabled" Type="bit" />
-          <Property Name="AccessFailedCount" Type="int" />
-          <Property Name="Username" Type="varchar" MaxLength="256" />
-          <Property Name="location_Address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="location_Postcode" Type="int" Nullable="false" />
-          <Property Name="location_country_CountryName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="tinyint" />
+          <Property Name="roles_Id" Type="tinyint" Nullable="false" />
+          <Property Name="location_country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="location_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_has_facilities">
+          <Key>
+            <PropertyRef Name="users_Id" />
+            <PropertyRef Name="facilities_Id" />
+          </Key>
+          <Property Name="users_Id" Type="int" Nullable="false" />
+          <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="fk_alarms_equipment1">
           <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
           <End Role="alarms" Type="Self.alarms" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="equipment">
-              <PropertyRef Name="Tag" />
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="alarms">
-              <PropertyRef Name="equipment_Tag" />
-              <PropertyRef Name="equipment_facilities_Name" />
+              <PropertyRef Name="equipment_Id" />
+              <PropertyRef Name="equipment_facilities_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_continent_has_country_continent1">
+          <End Role="continent" Type="Self.continent" Multiplicity="1" />
+          <End Role="continent_has_country" Type="Self.continent_has_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continent">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="continent_has_country">
+              <PropertyRef Name="continent_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_continent_has_country_country1">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="continent_has_country" Type="Self.continent_has_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="continent_has_country">
+              <PropertyRef Name="country_CountryCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,34 +186,10 @@
           <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="equipment">
-              <PropertyRef Name="facilities_Name" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_facilities_has_users_facilities1">
-          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
-          <End Role="facilities_has_users" Type="Self.facilities_has_users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="facilities">
-              <PropertyRef Name="Name" />
-            </Principal>
-            <Dependent Role="facilities_has_users">
-              <PropertyRef Name="facilities_Name" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_facilities_has_users_users1">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
-          <End Role="facilities_has_users" Type="Self.facilities_has_users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="facilities_has_users">
-              <PropertyRef Name="users_Email" />
+              <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -170,14 +198,12 @@
           <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="location">
-              <PropertyRef Name="Address" />
-              <PropertyRef Name="Postcode" />
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="facilities">
-              <PropertyRef Name="location_Address" />
-              <PropertyRef Name="location_Postcode" />
-              <PropertyRef Name="location_country_CountryName" />
+              <PropertyRef Name="location_country_CountryCode" />
+              <PropertyRef Name="location_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -186,10 +212,10 @@
           <End Role="location" Type="Self.location" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="country">
-              <PropertyRef Name="CountryName" />
+              <PropertyRef Name="CountryCode" />
             </Principal>
             <Dependent Role="location">
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,10 +224,10 @@
           <End Role="maintenance" Type="Self.maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="maintenance">
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,12 +236,12 @@
           <End Role="measurement" Type="Self.measurement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="equipment">
-              <PropertyRef Name="Tag" />
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="measurement">
-              <PropertyRef Name="equipment_Tag" />
-              <PropertyRef Name="equipment_facilities_Name" />
+              <PropertyRef Name="equipment_Id" />
+              <PropertyRef Name="equipment_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -224,10 +250,34 @@
           <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
-              <PropertyRef Name="Email" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="sessions">
-              <PropertyRef Name="users_Email" />
+              <PropertyRef Name="users_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_has_facilities_facilities1">
+          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
+          <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users_has_facilities">
+              <PropertyRef Name="facilities_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_has_facilities_users1">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users_has_facilities">
+              <PropertyRef Name="users_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -236,43 +286,56 @@
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="location">
-              <PropertyRef Name="Address" />
-              <PropertyRef Name="Postcode" />
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="users">
-              <PropertyRef Name="location_Address" />
-              <PropertyRef Name="location_Postcode" />
-              <PropertyRef Name="location_country_CountryName" />
+              <PropertyRef Name="location_country_CountryCode" />
+              <PropertyRef Name="location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_roles1">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="roles_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="watermentdbModelStoreContainer">
           <EntitySet Name="alarms" EntityType="Self.alarms" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="continent" EntityType="Self.continent" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="continent_has_country" EntityType="Self.continent_has_country" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="country" EntityType="Self.country" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="equipment" EntityType="Self.equipment" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="facilities" EntityType="Self.facilities" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="facilities_has_users" EntityType="Self.facilities_has_users" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="location" EntityType="Self.location" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="measurement" EntityType="Self.measurement" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb" store:Type="Tables" />
           <AssociationSet Name="fk_alarms_equipment1" Association="Self.fk_alarms_equipment1">
             <End Role="equipment" EntitySet="equipment" />
             <End Role="alarms" EntitySet="alarms" />
           </AssociationSet>
+          <AssociationSet Name="fk_continent_has_country_continent1" Association="Self.fk_continent_has_country_continent1">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="continent_has_country" EntitySet="continent_has_country" />
+          </AssociationSet>
+          <AssociationSet Name="fk_continent_has_country_country1" Association="Self.fk_continent_has_country_country1">
+            <End Role="country" EntitySet="country" />
+            <End Role="continent_has_country" EntitySet="continent_has_country" />
+          </AssociationSet>
           <AssociationSet Name="fk_equipment_facilities1" Association="Self.fk_equipment_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="equipment" EntitySet="equipment" />
-          </AssociationSet>
-          <AssociationSet Name="fk_facilities_has_users_facilities1" Association="Self.fk_facilities_has_users_facilities1">
-            <End Role="facilities" EntitySet="facilities" />
-            <End Role="facilities_has_users" EntitySet="facilities_has_users" />
-          </AssociationSet>
-          <AssociationSet Name="fk_facilities_has_users_users1" Association="Self.fk_facilities_has_users_users1">
-            <End Role="users" EntitySet="users" />
-            <End Role="facilities_has_users" EntitySet="facilities_has_users" />
           </AssociationSet>
           <AssociationSet Name="fk_facilities_location1" Association="Self.fk_facilities_location1">
             <End Role="location" EntitySet="location" />
@@ -294,8 +357,20 @@
             <End Role="users" EntitySet="users" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
+          <AssociationSet Name="fk_users_has_facilities_facilities1" Association="Self.fk_users_has_facilities_facilities1">
+            <End Role="facilities" EntitySet="facilities" />
+            <End Role="users_has_facilities" EntitySet="users_has_facilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_has_facilities_users1" Association="Self.fk_users_has_facilities_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_has_facilities" EntitySet="users_has_facilities" />
+          </AssociationSet>
           <AssociationSet Name="fk_users_location1" Association="Self.fk_users_location1">
             <End Role="location" EntitySet="location" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_roles1" Association="Self.fk_users_roles1">
+            <End Role="roles" EntitySet="roles" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
@@ -305,12 +380,14 @@
       <Schema Namespace="watermentdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="watermentdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="alarms" EntityType="watermentdbModel.alarms" />
+          <EntitySet Name="continent" EntityType="watermentdbModel.continent" />
           <EntitySet Name="country" EntityType="watermentdbModel.country" />
           <EntitySet Name="equipment" EntityType="watermentdbModel.equipment" />
           <EntitySet Name="facilities" EntityType="watermentdbModel.facilities" />
           <EntitySet Name="location" EntityType="watermentdbModel.location" />
           <EntitySet Name="maintenance" EntityType="watermentdbModel.maintenance" />
           <EntitySet Name="measurement" EntityType="watermentdbModel.measurement" />
+          <EntitySet Name="roles" EntityType="watermentdbModel.roles" />
           <EntitySet Name="sessions" EntityType="watermentdbModel.sessions" />
           <EntitySet Name="users" EntityType="watermentdbModel.users" />
           <AssociationSet Name="fk_alarms_equipment1" Association="watermentdbModel.fk_alarms_equipment1">
@@ -341,146 +418,178 @@
             <End Role="location" EntitySet="location" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <AssociationSet Name="fk_users_roles1" Association="watermentdbModel.fk_users_roles1">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
           <AssociationSet Name="fk_sessions_users1" Association="watermentdbModel.fk_sessions_users1">
             <End Role="users" EntitySet="users" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
-          <AssociationSet Name="facilities_has_users" Association="watermentdbModel.facilities_has_users">
+          <AssociationSet Name="continent_has_country" Association="watermentdbModel.continent_has_country">
+            <End Role="continent" EntitySet="continent" />
+            <End Role="country" EntitySet="country" />
+          </AssociationSet>
+          <AssociationSet Name="users_has_facilities" Association="watermentdbModel.users_has_facilities">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="alarms">
           <Key>
-            <PropertyRef Name="AlarmOccured" />
-            <PropertyRef Name="equipment_Tag" />
-            <PropertyRef Name="equipment_facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="equipment_Id" />
+            <PropertyRef Name="equipment_facilities_Id" />
           </Key>
-          <Property Name="AlarmOccured" Type="DateTime" Nullable="false" />
-          <Property Name="Status" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlarmOccured" Type="DateTime" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProcessValue" Type="Single" />
-          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="equipment_Tag" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="equipment_facilities_Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="equipment_Id" Type="Int32" Nullable="false" />
+          <Property Name="equipment_facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_alarms_equipment1" FromRole="alarms" ToRole="equipment" />
+        </EntityType>
+        <EntityType Name="continent">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="country" Relationship="watermentdbModel.continent_has_country" FromRole="continent" ToRole="country" />
         </EntityType>
         <EntityType Name="country">
           <Key>
-            <PropertyRef Name="CountryName" />
+            <PropertyRef Name="CountryCode" />
           </Key>
-          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="location" Relationship="watermentdbModel.fk_location_country1" FromRole="country" ToRole="location" />
+          <NavigationProperty Name="continent" Relationship="watermentdbModel.continent_has_country" FromRole="country" ToRole="continent" />
         </EntityType>
         <EntityType Name="equipment">
           <Key>
-            <PropertyRef Name="Tag" />
-            <PropertyRef Name="facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="facilities_Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tag" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="SIUnits" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastCalibrated" Type="DateTime" />
-          <Property Name="facilities_Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="alarms" Relationship="watermentdbModel.fk_alarms_equipment1" FromRole="equipment" ToRole="alarms" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_equipment_facilities1" FromRole="equipment" ToRole="facilities" />
           <NavigationProperty Name="measurement" Relationship="watermentdbModel.fk_measurement_equipment1" FromRole="equipment" ToRole="measurement" />
         </EntityType>
         <EntityType Name="facilities">
           <Key>
-            <PropertyRef Name="Name" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Domain" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="location_Address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="location_Postcode" Type="Int32" Nullable="false" />
-          <Property Name="location_country_CountryName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Domain" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="location_country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="location_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_equipment_facilities1" FromRole="facilities" ToRole="equipment" />
           <NavigationProperty Name="location" Relationship="watermentdbModel.fk_facilities_location1" FromRole="facilities" ToRole="location" />
           <NavigationProperty Name="maintenance" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="facilities" ToRole="maintenance" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.facilities_has_users" FromRole="facilities" ToRole="users" />
+          <NavigationProperty Name="users" Relationship="watermentdbModel.users_has_facilities" FromRole="facilities" ToRole="users" />
         </EntityType>
         <EntityType Name="location">
           <Key>
-            <PropertyRef Name="Address" />
-            <PropertyRef Name="Postcode" />
-            <PropertyRef Name="country_CountryName" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="country_CountryCode" />
           </Key>
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="country_CountryName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="country" Relationship="watermentdbModel.fk_location_country1" FromRole="location" ToRole="country" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_location1" FromRole="location" ToRole="facilities" />
           <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_location1" FromRole="location" ToRole="users" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
-            <PropertyRef Name="OrderID" />
-            <PropertyRef Name="facilities_Name" />
+            <PropertyRef Name="OrderId" />
+            <PropertyRef Name="facilities_Id" />
           </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="facilities_Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
         </EntityType>
         <EntityType Name="measurement">
           <Key>
-            <PropertyRef Name="Timestamp" />
-            <PropertyRef Name="equipment_Tag" />
-            <PropertyRef Name="equipment_facilities_Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="equipment_Id" />
+            <PropertyRef Name="equipment_facilities_Id" />
           </Key>
-          <Property Name="Timestamp" Type="DateTime" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Timestamp" Type="DateTime" />
           <Property Name="ProcessValue" Type="Single" />
-          <Property Name="equipment_Tag" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="equipment_facilities_Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="equipment_Id" Type="Int32" Nullable="false" />
+          <Property Name="equipment_facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_measurement_equipment1" FromRole="measurement" ToRole="equipment" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="SByte" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_roles1" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
-            <PropertyRef Name="LoggedIn" />
-            <PropertyRef Name="users_Email" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="users_Id" />
           </Key>
-          <Property Name="LoggedIn" Type="DateTime" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoggedIn" Type="DateTime" />
           <Property Name="LoggedOut" Type="DateTime" />
-          <Property Name="users_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="users_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="users" Relationship="watermentdbModel.fk_sessions_users1" FromRole="sessions" ToRole="users" />
         </EntityType>
         <EntityType Name="users">
           <Key>
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="EmailConfirmed" Type="Boolean" />
           <Property Name="PasswordHash" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="SecurityStamp" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="Int32" />
           <Property Name="PhoneNumberConfirmed" Type="Boolean" />
           <Property Name="TwoFactorEnabled" Type="Boolean" />
           <Property Name="LockoutEndDateUtc" Type="DateTime" />
           <Property Name="LockoutEnabled" Type="Boolean" />
-          <Property Name="AccessFailedCount" Type="Int32" />
-          <Property Name="Username" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="location_Address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="location_Postcode" Type="Int32" Nullable="false" />
-          <Property Name="location_country_CountryName" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="AccessFailedCount" Type="SByte" />
+          <Property Name="roles_Id" Type="SByte" Nullable="false" />
+          <Property Name="location_country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="location_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="location" Relationship="watermentdbModel.fk_users_location1" FromRole="users" ToRole="location" />
+          <NavigationProperty Name="roles" Relationship="watermentdbModel.fk_users_roles1" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="users" ToRole="sessions" />
-          <NavigationProperty Name="facilities" Relationship="watermentdbModel.facilities_has_users" FromRole="users" ToRole="facilities" />
+          <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="users" ToRole="facilities" />
         </EntityType>
         <Association Name="fk_alarms_equipment1">
           <End Type="watermentdbModel.equipment" Role="equipment" Multiplicity="1" />
           <End Type="watermentdbModel.alarms" Role="alarms" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="equipment">
-              <PropertyRef Name="Tag" />
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="alarms">
-              <PropertyRef Name="equipment_Tag" />
-              <PropertyRef Name="equipment_facilities_Name" />
+              <PropertyRef Name="equipment_Id" />
+              <PropertyRef Name="equipment_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -489,10 +598,10 @@
           <End Type="watermentdbModel.location" Role="location" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="country">
-              <PropertyRef Name="CountryName" />
+              <PropertyRef Name="CountryCode" />
             </Principal>
             <Dependent Role="location">
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -501,10 +610,10 @@
           <End Type="watermentdbModel.equipment" Role="equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="equipment">
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,12 +622,12 @@
           <End Type="watermentdbModel.measurement" Role="measurement" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="equipment">
-              <PropertyRef Name="Tag" />
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="measurement">
-              <PropertyRef Name="equipment_Tag" />
-              <PropertyRef Name="equipment_facilities_Name" />
+              <PropertyRef Name="equipment_Id" />
+              <PropertyRef Name="equipment_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -527,14 +636,12 @@
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="location">
-              <PropertyRef Name="Address" />
-              <PropertyRef Name="Postcode" />
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="facilities">
-              <PropertyRef Name="location_Address" />
-              <PropertyRef Name="location_Postcode" />
-              <PropertyRef Name="location_country_CountryName" />
+              <PropertyRef Name="location_country_CountryCode" />
+              <PropertyRef Name="location_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -543,10 +650,10 @@
           <End Type="watermentdbModel.maintenance" Role="maintenance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
-              <PropertyRef Name="Name" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="maintenance">
-              <PropertyRef Name="facilities_Name" />
+              <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -555,14 +662,24 @@
           <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="location">
-              <PropertyRef Name="Address" />
-              <PropertyRef Name="Postcode" />
-              <PropertyRef Name="country_CountryName" />
+              <PropertyRef Name="country_CountryCode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="users">
-              <PropertyRef Name="location_Address" />
-              <PropertyRef Name="location_Postcode" />
-              <PropertyRef Name="location_country_CountryName" />
+              <PropertyRef Name="location_country_CountryCode" />
+              <PropertyRef Name="location_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_roles1">
+          <End Type="watermentdbModel.roles" Role="roles" Multiplicity="1" />
+          <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="roles_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -571,14 +688,18 @@
           <End Type="watermentdbModel.sessions" Role="sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
-              <PropertyRef Name="Email" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="sessions">
-              <PropertyRef Name="users_Email" />
+              <PropertyRef Name="users_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="facilities_has_users">
+        <Association Name="continent_has_country">
+          <End Type="watermentdbModel.continent" Role="continent" Multiplicity="*" />
+          <End Type="watermentdbModel.country" Role="country" Multiplicity="*" />
+        </Association>
+        <Association Name="users_has_facilities">
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
           <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
         </Association>
@@ -591,90 +712,111 @@
           <EntitySetMapping Name="alarms">
             <EntityTypeMapping TypeName="watermentdbModel.alarms">
               <MappingFragment StoreEntitySet="alarms">
-                <ScalarProperty Name="equipment_facilities_Name" ColumnName="equipment_facilities_Name" />
-                <ScalarProperty Name="equipment_Tag" ColumnName="equipment_Tag" />
+                <ScalarProperty Name="equipment_facilities_Id" ColumnName="equipment_facilities_Id" />
+                <ScalarProperty Name="equipment_Id" ColumnName="equipment_Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="AlarmOccured" ColumnName="AlarmOccured" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="continent">
+            <EntityTypeMapping TypeName="watermentdbModel.continent">
+              <MappingFragment StoreEntitySet="continent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="country">
             <EntityTypeMapping TypeName="watermentdbModel.country">
               <MappingFragment StoreEntitySet="country">
-                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="equipment">
             <EntityTypeMapping TypeName="watermentdbModel.equipment">
               <MappingFragment StoreEntitySet="equipment">
-                <ScalarProperty Name="facilities_Name" ColumnName="facilities_Name" />
+                <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
                 <ScalarProperty Name="LastCalibrated" ColumnName="LastCalibrated" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="SIUnits" ColumnName="SIUnits" />
                 <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="facilities">
             <EntityTypeMapping TypeName="watermentdbModel.facilities">
               <MappingFragment StoreEntitySet="facilities">
-                <ScalarProperty Name="location_country_CountryName" ColumnName="location_country_CountryName" />
-                <ScalarProperty Name="location_Postcode" ColumnName="location_Postcode" />
-                <ScalarProperty Name="location_Address" ColumnName="location_Address" />
+                <ScalarProperty Name="location_Id" ColumnName="location_Id" />
+                <ScalarProperty Name="location_country_CountryCode" ColumnName="location_country_CountryCode" />
                 <ScalarProperty Name="Domain" ColumnName="Domain" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="location">
             <EntityTypeMapping TypeName="watermentdbModel.location">
               <MappingFragment StoreEntitySet="location">
-                <ScalarProperty Name="country_CountryName" ColumnName="country_CountryName" />
+                <ScalarProperty Name="country_CountryCode" ColumnName="country_CountryCode" />
                 <ScalarProperty Name="County" ColumnName="County" />
-                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="maintenance">
             <EntityTypeMapping TypeName="watermentdbModel.maintenance">
               <MappingFragment StoreEntitySet="maintenance">
-                <ScalarProperty Name="facilities_Name" ColumnName="facilities_Name" />
+                <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
                 <ScalarProperty Name="Person" ColumnName="Person" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="measurement">
             <EntityTypeMapping TypeName="watermentdbModel.measurement">
               <MappingFragment StoreEntitySet="measurement">
-                <ScalarProperty Name="equipment_facilities_Name" ColumnName="equipment_facilities_Name" />
-                <ScalarProperty Name="equipment_Tag" ColumnName="equipment_Tag" />
+                <ScalarProperty Name="equipment_facilities_Id" ColumnName="equipment_facilities_Id" />
+                <ScalarProperty Name="equipment_Id" ColumnName="equipment_Id" />
                 <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="watermentdbModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sessions">
             <EntityTypeMapping TypeName="watermentdbModel.sessions">
               <MappingFragment StoreEntitySet="sessions">
-                <ScalarProperty Name="users_Email" ColumnName="users_Email" />
+                <ScalarProperty Name="users_Id" ColumnName="users_Id" />
                 <ScalarProperty Name="LoggedOut" ColumnName="LoggedOut" />
                 <ScalarProperty Name="LoggedIn" ColumnName="LoggedIn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="watermentdbModel.users">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="location_country_CountryName" ColumnName="location_country_CountryName" />
-                <ScalarProperty Name="location_Postcode" ColumnName="location_Postcode" />
-                <ScalarProperty Name="location_Address" ColumnName="location_Address" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="location_Id" ColumnName="location_Id" />
+                <ScalarProperty Name="location_country_CountryCode" ColumnName="location_country_CountryCode" />
+                <ScalarProperty Name="roles_Id" ColumnName="roles_Id" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
@@ -687,15 +829,25 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="facilities_has_users" TypeName="watermentdbModel.facilities_has_users" StoreEntitySet="facilities_has_users">
+          <AssociationSetMapping Name="continent_has_country" TypeName="watermentdbModel.continent_has_country" StoreEntitySet="continent_has_country">
+            <EndProperty Name="country">
+              <ScalarProperty Name="CountryCode" ColumnName="country_CountryCode" />
+            </EndProperty>
+            <EndProperty Name="continent">
+              <ScalarProperty Name="Code" ColumnName="continent_Code" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="users_has_facilities" TypeName="watermentdbModel.users_has_facilities" StoreEntitySet="users_has_facilities">
             <EndProperty Name="users">
-              <ScalarProperty Name="Email" ColumnName="users_Email" />
+              <ScalarProperty Name="Id" ColumnName="users_Id" />
             </EndProperty>
             <EndProperty Name="facilities">
-              <ScalarProperty Name="Name" ColumnName="facilities_Name" />
+              <ScalarProperty Name="Id" ColumnName="facilities_Id" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -18,7 +18,9 @@
             <h3>Facilities</h3>
             @foreach (var item in Model.Address)
             {
-                <p>@item</p>
+
+                @Html.ActionLink(item, "Index", item);
+                <a>@item</a>
             }
        </div>
         </div>

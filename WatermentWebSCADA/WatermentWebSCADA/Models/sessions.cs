@@ -14,9 +14,10 @@ namespace WatermentWebSCADA.Models
     
     public partial class sessions
     {
-        public System.DateTime LoggedIn { get; set; }
+        public int Id { get; set; }
+        public Nullable<System.DateTime> LoggedIn { get; set; }
         public Nullable<System.DateTime> LoggedOut { get; set; }
-        public string users_Email { get; set; }
+        public int users_Id { get; set; }
     
         public virtual users users { get; set; }
     }

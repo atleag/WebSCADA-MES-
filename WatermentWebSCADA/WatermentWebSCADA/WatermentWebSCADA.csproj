@@ -183,21 +183,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlarmsController.cs" />
-    <Compile Include="Controllers\CountriesController.cs" />
-    <Compile Include="Controllers\EquipmentsController.cs" />
-    <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
-    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Models\continent.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\roles.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\FacilityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="Controllers\MaintenancesController.cs" />
-    <Compile Include="Controllers\MeasurementsController.cs" />
-    <Compile Include="Controllers\SessionsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

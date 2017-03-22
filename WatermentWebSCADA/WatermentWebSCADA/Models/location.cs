@@ -21,10 +21,11 @@ namespace WatermentWebSCADA.Models
             this.users = new HashSet<users>();
         }
     
-        public string Address { get; set; }
+        public int Id { get; set; }
         public int Postcode { get; set; }
+        public string Address { get; set; }
         public string County { get; set; }
-        public string country_CountryName { get; set; }
+        public string country_CountryCode { get; set; }
     
         public virtual country country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

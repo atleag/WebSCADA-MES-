@@ -26,12 +26,14 @@ namespace WatermentWebSCADA.Models
         }
     
         public virtual DbSet<alarms> alarms { get; set; }
+        public virtual DbSet<continent> continent { get; set; }
         public virtual DbSet<country> country { get; set; }
         public virtual DbSet<equipment> equipment { get; set; }
         public virtual DbSet<facilities> facilities { get; set; }
         public virtual DbSet<location> location { get; set; }
         public virtual DbSet<maintenance> maintenance { get; set; }
         public virtual DbSet<measurement> measurement { get; set; }
+        public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<sessions> sessions { get; set; }
         public virtual DbSet<users> users { get; set; }
     }

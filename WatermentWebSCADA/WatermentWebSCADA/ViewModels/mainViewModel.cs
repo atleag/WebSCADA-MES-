@@ -21,6 +21,7 @@ namespace WatermentWebSCADA.ViewModels
         public List<string> Address { get; set; }
         public List<int> Postcode { get; set; }
         public List<string> County { get; set; }
+        
 
         //Countrie model
 
@@ -35,7 +36,7 @@ namespace WatermentWebSCADA.ViewModels
         public List<string> Email { get; set; }
         public List<float?> ProcessValue { get; set; }
         public List<string> Tag { get; set; }
-        public List<System.DateTime> Timestamp { get; set; }
+        public  List<System.DateTime> Timestamp { get; set; }
         public List<String> Description { get; set; }
         public List<System.DateTime> Alarmsoccured { get; set; }
     }

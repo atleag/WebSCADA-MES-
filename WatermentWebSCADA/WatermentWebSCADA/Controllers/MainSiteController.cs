@@ -19,23 +19,23 @@ namespace WatermentWebSCADA.Controllers
             {
                 IP = db.facilities.Select(x => x.IP).ToList(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
-                Address = db.country.Select(x => x.CountryName).ToList(),
-                CountryName = db.country.Select(x => x.CountryName).ToList(),
+                Address = db.location.Select(x => x.Address).ToList(),
+                CountryName = db.country.Select(x => x.Name).ToList(),
             };
 
             return View(data);
         }
-
+        [HttpPost]
         public ActionResult Details(int? id)
         {
 
             var data = new MainViewModel
             {
-                IP = db.facilities.Select(x => x.IP).ToList(),
+                IP = db.facilities.Where(c => c.Id == id).Select(x => x.IP).ToList(),
                 Name = db.facilities.Select(x => x.Name).ToList(),
-                Address = db.facilities.Select(x => x.location_Address).ToList(),
+                Address = db.location.Select(x => x.Address).ToList(),
                 County = db.location.Select(x => x.County).ToList(),
-                CountryName = db.location.Select(x => x.country_CountryName).ToList(),
+                CountryName = db.country.Select(x => x.Name).ToList(),
                 Postcode = db.location.Select(x => x.Postcode).ToList(),
                 FirstName = db.users.Select(x => x.FirstName).ToList(),
                 LastName = db.users.Select(x => x.LastName).ToList(),
