@@ -124,38 +124,48 @@
                 <script type="text/javascript">
 
 
-                    window.onload = function() {
+                    window.onload = function () {
                         var ctx = document.getElementById("chart").getContext("2d");
 
                         var myChart = new Chart(ctx, {
                             responsive: true,
 
-                        type: "line",
+                            type: "line",
 
 
-                    data: {
-                    "labels": [
-                    "@Html.DisplayFor(model=>model.Timestamp[1])",
-                    "@Html.DisplayFor(model=>model.Timestamp[2])",
-                     "@Html.DisplayFor(model=>model.Timestamp[3])",
-                      "@Html.DisplayFor(model=>model.Timestamp[4])",
-                     "@Html.DisplayFor(model=>model.Timestamp[5])",
-                      "@Html.DisplayFor(model=>model.Timestamp[6])",
-                      "@Html.DisplayFor(model=>model.Timestamp[7])",
-                      "@Html.DisplayFor(model=>model.Timestamp[8])",
-                      "@Html.DisplayFor(model=>model.Timestamp[9])",
+                            data: {
+                                "labels": [
+                                "@Html.DisplayFor(model=>model.Timestamp[1])",
+                                "@Html.DisplayFor(model=>model.Timestamp[2])",
+                                 "@Html.DisplayFor(model=>model.Timestamp[3])",
+                                  "@Html.DisplayFor(model=>model.Timestamp[4])",
+                                 "@Html.DisplayFor(model=>model.Timestamp[5])",
+                                  "@Html.DisplayFor(model=>model.Timestamp[6])",
+                                  "@Html.DisplayFor(model=>model.Timestamp[7])",
+                                  "@Html.DisplayFor(model=>model.Timestamp[8])",
+                                  "@Html.DisplayFor(model=>model.Timestamp[9])",
 
-                     "@Html.DisplayFor(model=>model.Timestamp[10])"
-                    ],
-                    datasets: [{
-                    label: "Reactor Core Temperature",
-                    "fill": "true",
-                    backgroundColor: "rgba(60, 47, 238, 0.2)",
+                                 "@Html.DisplayFor(model=>model.Timestamp[10])"
+                                ],
+                                datasets: [{
+                                    label: "Reactor Core Temperature",
+                                    "fill": "true",
+                                    backgroundColor: "rgba(60, 47, 238, 0.2)",
 
-                        yAxisID: "y-axis-0",
-                        "data": [
+                                    yAxisID: "y-axis-0",
+                                    "data": [
 
-                    @Html.DisplayFor(model=>model.ProcessValue[1]),
+                                @*@for (int i = 0; i <= 9; i++)
+                    {
+                        @Html.DisplayFor(model => model.ProcessValue[i])
+                    }*@
+
+
+                                @{ int q =0;}
+                                  @foreach (var item in Model.IP)
+            {
+                @q++            ; }
+
                      @Html.DisplayFor(model => model.ProcessValue[0]),
                      @Html.DisplayFor(model => model.ProcessValue[1]),
                      @Html.DisplayFor(model => model.ProcessValue[2]),
@@ -163,43 +173,44 @@
                      @Html.DisplayFor(model => model.ProcessValue[4]),
                      @Html.DisplayFor(model => model.ProcessValue[5]),
                      @Html.DisplayFor(model => model.ProcessValue[6]),
-                     @Html.DisplayFor(model => model.ProcessValue[7]),
-                     @Html.DisplayFor(model => model.ProcessValue[8])
-                    ]
-                    },  {
-                        "label": "Reactor Core  Pressure",
-                        "fill": "true",
-                        backgroundColor: "rgba(125, 109, 109,0.2)",
-                    yAxisID: "y-axis-1",
-                    "data": [
-                    1.9588,
-                    2.1226,
-                    2.1392,
-                    2.223,
-                    1.9048,
-                      1.9588,
-                    2.1226,
-                    2.1392,
-                    2.223,
-                    1.9048
-                    ]
-                    }]
-                    },
+                     @Html.DisplayFor(model => model.ProcessValue[q-2]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-1]),
+                      @Html.DisplayFor(model => model.ProcessValue[q])
+                                    ]
+                                }, {
+                                    "label": "Reactor Core  Pressure",
+                                    "fill": "true",
+                                    backgroundColor: "rgba(125, 109, 109,0.2)",
+                                    yAxisID: "y-axis-1",
+                                    "data": [
+                                    1.9588,
+                                    2.1226,
+                                    2.1392,
+                                    2.223,
+                                    1.9048,
+                                      1.9588,
+                                    2.1226,
+                                    2.1392,
+                                    2.223,
+                                    1.9048
+                                    ]
+                                }]
+                            },
 
-                    options: {
+                            options: {
 
-                        scales: {
-                            yAxes: [{
+                                scales: {
+                                    yAxes: [{
 
-                                position: "left",
+                                        position: "left",
 
-                                "id": "y-axis-0"
-                            }, {
-                                position: "right",
-                                "id": "y-axis-1"
-                            }]
-                        }
-                    }
+                                        "id": "y-axis-0"
+                                    }, {
+                                        position: "right",
+                                        "id": "y-axis-1"
+                                    }]
+                                }
+                            }
 
                         });
                         Chart.defaults.global.animationSteps = 50;
