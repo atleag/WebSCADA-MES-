@@ -26,6 +26,7 @@ namespace WatermentWebSCADA.ViewModels
         //Countrie model
 
         public List<string> CountryName { get; set; }
+        public List<string> continent { get; set; }
 
    
         //locations model

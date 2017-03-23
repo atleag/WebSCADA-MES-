@@ -13,14 +13,14 @@
    
 
 <div class="container">
-    <div class="table-bordered">
+    <div>
                 <div class="col-sm-2">
-            <h3>Facilities</h3>
-            @foreach (var item in Model.Address)
+            <h3>Område</h3>
+            @foreach (var item in Model.County)
             {
 
-                @Html.ActionLink(item, "Index", item);
-                <a>@item</a>
+               <p>@Html.ActionLink(item, "Details", item)</p>
+        
             }
        </div>
         </div>
@@ -53,8 +53,8 @@
             }
          
         </div>
-      
-        </div>
+      </div>
+       
 
 
 

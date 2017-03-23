@@ -99,8 +99,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="tinyint" Nullable="false" />
-          <Property Name="Role" Type="varchar" MaxLength="10" />
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="11" />
+          <Property Name="Description" Type="varchar" MaxLength="400" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
@@ -537,6 +538,7 @@
           <Property Name="Id" Type="SByte" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_roles1" FromRole="roles" ToRole="users" />
+          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
@@ -812,6 +814,7 @@
           <EntitySetMapping Name="roles">
             <EntityTypeMapping TypeName="watermentdbModel.roles">
               <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
