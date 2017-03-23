@@ -16,29 +16,49 @@
     <div>
                 <div class="col-sm-2">
             <h3>Område</h3>
+                    @*@foreach(var item in Model)
+                    {
+
+                        item.County
+                            item.CountryName
+                    }*@
             @foreach (var item in Model.County)
             {
-               <p>@Html.ActionLink(item,"DetailView", "MainSite", new { area = "" }, new { @class = "brand"})</p>
+               <p>@Html.ActionLink(item,"1", "MainSite/Index", new { area = "" }, new { @class = "brand"})</p>
               
             }
        </div>
         </div>
         <div class="col-sm-2">
-            <h3>Not Started</h3>
-         <p>telemarlk</p>
+            <h3>Land</h3>
+            @foreach (var item in Model.CountryName)
+            {
+                <p>@Html.ActionLink(item, "167", "MainSite/Index/1", new { area = "" }, new { @class = "brand" })</p>
+                
+            }
 
         </div>
-        <div class="col-sm-2">
-            <h3>High Alarm</h3>
-            @foreach (var item in Model.IP)
+    <div class="col-sm-2">
+        <h3>Anlegg</h3>
+        @foreach (var item in Model.Name)
             {
-                <p>@item</p>
-            }
+            <p>@Html.ActionLink(item, "167", "MainSite/Index/1", new { area = "" }, new { @class = "brand" })</p>
+        }
+
+    </div>
+
+
+
+        <div class="col-sm-2">
+            <h3>Status</h3>
+           <p>@Model.Description</p>
+
+           
             
         </div>
         <div class="col-sm-2">
-            <h3>Mantanace due</h3>
-            @foreach (var item in Model.CountryName)
+            <h3>IP</h3>
+            @foreach (var item in Model.IP)
             {
                 <p>@item</p>
             }

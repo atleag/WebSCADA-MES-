@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
+using System.Data.Entity;
 
 namespace WatermentWebSCADA.ViewModels
 {
     public class MainViewModel
     {
        //public FacilityViewModel facilitiess { get; set; }
-
+       public int ID { get; set; }
 
         //facilities
         public List<string> Name { get; set; }
