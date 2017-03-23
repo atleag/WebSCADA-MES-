@@ -4,28 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="15.625" />
-        <EntityTypeShape EntityType="watermentdbModel.continent" Width="1.5" PointX="0.75" PointY="7.625" />
-        <EntityTypeShape EntityType="watermentdbModel.country" Width="1.5" PointX="3" PointY="7.5" />
-        <EntityTypeShape EntityType="watermentdbModel.equipment" Width="1.5" PointX="9.75" PointY="14.125" />
+      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="54">
+        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="13.5" />
+        <EntityTypeShape EntityType="watermentdbModel.continents" Width="1.5" PointX="0.75" PointY="7.625" />
+        <EntityTypeShape EntityType="watermentdbModel.countries" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="watermentdbModel.equipments" Width="1.5" PointX="9.75" PointY="11.875" />
         <EntityTypeShape EntityType="watermentdbModel.facilities" Width="1.5" PointX="7.5" PointY="7" />
-        <EntityTypeShape EntityType="watermentdbModel.location" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="9.75" PointY="10.25" />
-        <EntityTypeShape EntityType="watermentdbModel.measurement" Width="1.5" PointX="12" PointY="12.75" />
-        <EntityTypeShape EntityType="watermentdbModel.roles" Width="1.5" PointX="7.5" PointY="3.625" />
-        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="5.5" />
-        <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="9.75" PointY="3.875" />
-        <AssociationConnector Association="watermentdbModel.fk_alarms_equipment1" />
-        <AssociationConnector Association="watermentdbModel.fk_location_country1" />
-        <AssociationConnector Association="watermentdbModel.fk_equipment_facilities1" />
-        <AssociationConnector Association="watermentdbModel.fk_measurement_equipment1" />
-        <AssociationConnector Association="watermentdbModel.fk_facilities_location1" />
+        <EntityTypeShape EntityType="watermentdbModel.locations" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="9.75" PointY="16.75" />
+        <EntityTypeShape EntityType="watermentdbModel.measurements" Width="1.5" PointX="12" PointY="10.5" />
+        <EntityTypeShape EntityType="watermentdbModel.roles" Width="1.5" PointX="7.5" PointY="3.75" />
+        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="7.5" />
+        <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="9.75" PointY="5.875" />
+        <AssociationConnector Association="watermentdbModel.fk_alarms_equipments1" />
+        <AssociationConnector Association="watermentdbModel.fk_countries_continents1" />
+        <AssociationConnector Association="watermentdbModel.fk_locations_countries1" />
+        <AssociationConnector Association="watermentdbModel.fk_equipments_facilities1" />
+        <AssociationConnector Association="watermentdbModel.fk_measurements_equipments1" />
+        <AssociationConnector Association="watermentdbModel.fk_facilities_locations1" />
         <AssociationConnector Association="watermentdbModel.fk_maintenance_facilities1" />
-        <AssociationConnector Association="watermentdbModel.fk_users_location1" />
+        <AssociationConnector Association="watermentdbModel.fk_users_locations1" />
         <AssociationConnector Association="watermentdbModel.fk_users_roles1" />
         <AssociationConnector Association="watermentdbModel.fk_sessions_users1" />
-        <AssociationConnector Association="watermentdbModel.continent_has_country" />
         <AssociationConnector Association="watermentdbModel.users_has_facilities" />
       </Diagram>
     </edmx:Diagrams>

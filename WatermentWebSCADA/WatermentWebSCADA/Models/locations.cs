@@ -12,26 +12,26 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class equipment
+    public partial class locations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public equipment()
+        public locations()
         {
-            this.alarms = new HashSet<alarms>();
-            this.measurement = new HashSet<measurement>();
+            this.facilities = new HashSet<facilities>();
+            this.users = new HashSet<users>();
         }
     
         public int Id { get; set; }
-        public string Tag { get; set; }
-        public string SIUnits { get; set; }
-        public string Description { get; set; }
-        public Nullable<System.DateTime> LastCalibrated { get; set; }
-        public int facilities_Id { get; set; }
+        public Nullable<int> Postcode { get; set; }
+        public string Address { get; set; }
+        public string County { get; set; }
+        public int countries_Id { get; set; }
+        public int countries_continents_Id { get; set; }
     
+        public virtual countries countries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<alarms> alarms { get; set; }
-        public virtual facilities facilities { get; set; }
+        public virtual ICollection<facilities> facilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<measurement> measurement { get; set; }
+        public virtual ICollection<users> users { get; set; }
     }
 }

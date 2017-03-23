@@ -183,17 +183,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
-    <Compile Include="Models\continent.cs">
+    <Compile Include="Models\continents.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\countries.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\equipments.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\locations.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\measurements.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\roles.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\FacilityViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,22 +226,10 @@
     <Compile Include="Models\alarms.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\country.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\equipment.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\facilities.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\location.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\maintenance.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\measurement.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sessions.cs">

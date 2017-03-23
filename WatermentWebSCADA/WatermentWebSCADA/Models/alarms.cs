@@ -15,13 +15,13 @@ namespace WatermentWebSCADA.Models
     public partial class alarms
     {
         public int Id { get; set; }
-        public DateTime AlarmOccured { get; set; }
+        public Nullable<System.DateTime> AlarmOccured { get; set; }
         public string Status { get; set; }
         public Nullable<float> ProcessValue { get; set; }
         public string Description { get; set; }
-        public int equipment_Id { get; set; }
-        public int equipment_facilities_Id { get; set; }
+        public int equipments_Id { get; set; }
+        public int equipments_facilities_Id { get; set; }
     
-        public virtual equipment equipment { get; set; }
+        public virtual equipments equipments { get; set; }
     }
 }

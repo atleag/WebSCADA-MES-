@@ -36,10 +36,11 @@ namespace WatermentWebSCADA.Models
         public Nullable<bool> LockoutEnabled { get; set; }
         public Nullable<sbyte> AccessFailedCount { get; set; }
         public sbyte roles_Id { get; set; }
-        public string location_country_CountryCode { get; set; }
-        public int location_Id { get; set; }
+        public int locations_Id { get; set; }
+        public int locations_countries_Id { get; set; }
+        public int locations_countries_continents_Id { get; set; }
     
-        public virtual location location { get; set; }
+        public virtual locations locations { get; set; }
         public virtual roles roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }

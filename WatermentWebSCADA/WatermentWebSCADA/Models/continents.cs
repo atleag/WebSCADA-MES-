@@ -12,14 +12,19 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class measurement
+    public partial class continents
     {
-        public int Id { get; set; }
-        public DateTime Timestamp { get; set; }
-        public Nullable<float> ProcessValue { get; set; }
-        public int equipment_Id { get; set; }
-        public int equipment_facilities_Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public continents()
+        {
+            this.countries = new HashSet<countries>();
+        }
     
-        public virtual equipment equipment { get; set; }
+        public int Id { get; set; }
+        public string Code { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<countries> countries { get; set; }
     }
 }

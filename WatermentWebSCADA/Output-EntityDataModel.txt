@@ -1,0 +1,12 @@
+﻿Generated model file: ADOEDM.edmx.
+Loading metadata from the database took 00:00:00.8908866.
+Generating the model took 00:00:01.2793705.
+The model was generated with warnings or errors.ADOEDM.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.9881998.
+Generating the model took 00:00:00.9246073.
+The model was generated with warnings or errors.ADOEDM.edmxPlease see the Error List for more details. These issues must be fixed before running your application.
+Loading metadata from the database took 00:00:00.8041128.
+Generating the model took 00:00:00.9459220.
+Generated model file: ADOEDM.edmx.
+Loading metadata from the database took 00:00:00.8008277.
+Generating the model took 00:00:01.0487933.

@@ -8,40 +8,36 @@
         <EntityType Name="alarms">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="equipment_Id" />
-            <PropertyRef Name="equipment_facilities_Id" />
+            <PropertyRef Name="equipments_Id" />
+            <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AlarmOccured" Type="timestamp" Precision="0" />
+          <Property Name="AlarmOccured" Type="datetime" Precision="0" />
           <Property Name="Status" Type="varchar" MaxLength="50" />
           <Property Name="ProcessValue" Type="float" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
-          <Property Name="equipment_Id" Type="int" Nullable="false" />
-          <Property Name="equipment_facilities_Id" Type="int" Nullable="false" />
+          <Property Name="equipments_Id" Type="int" Nullable="false" />
+          <Property Name="equipments_facilities_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="continent">
+        <EntityType Name="continents">
           <Key>
-            <PropertyRef Name="Code" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <EntityType Name="continent_has_country">
+        <EntityType Name="countries">
           <Key>
-            <PropertyRef Name="continent_Code" />
-            <PropertyRef Name="country_CountryCode" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="continents_Id" />
           </Key>
-          <Property Name="continent_Code" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="country">
-          <Key>
-            <PropertyRef Name="CountryCode" />
-          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryCode" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="continents_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="equipment">
+        <EntityType Name="equipments">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="facilities_Id" />
@@ -50,7 +46,7 @@
           <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="SIUnits" Type="varchar" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
-          <Property Name="LastCalibrated" Type="timestamp" Precision="0" />
+          <Property Name="LastCalibrated" Type="datetime" Precision="0" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="facilities">
@@ -61,19 +57,22 @@
           <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
           <Property Name="Domain" Type="varchar" MaxLength="80" />
-          <Property Name="location_country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="location_Id" Type="int" Nullable="false" />
+          <Property Name="locations_Id" Type="int" Nullable="false" />
+          <Property Name="locations_countries_Id" Type="int" Nullable="false" />
+          <Property Name="locations_countries_continents_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="location">
+        <EntityType Name="locations">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="country_CountryCode" />
+            <PropertyRef Name="countries_Id" />
+            <PropertyRef Name="countries_continents_Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Postcode" Type="mediumint" />
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="County" Type="varchar" MaxLength="45" />
-          <Property Name="country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="countries_Id" Type="int" Nullable="false" />
+          <Property Name="countries_continents_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -84,17 +83,17 @@
           <Property Name="Person" Type="varchar" MaxLength="45" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="measurement">
+        <EntityType Name="measurements">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="equipment_Id" />
-            <PropertyRef Name="equipment_facilities_Id" />
+            <PropertyRef Name="equipments_Id" />
+            <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Timestamp" Type="timestamp" Precision="0" />
+          <Property Name="Timestamp" Type="datetime" Precision="0" />
           <Property Name="ProcessValue" Type="float" />
-          <Property Name="equipment_Id" Type="int" Nullable="false" />
-          <Property Name="equipment_facilities_Id" Type="int" Nullable="false" />
+          <Property Name="equipments_Id" Type="int" Nullable="false" />
+          <Property Name="equipments_facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -109,8 +108,8 @@
             <PropertyRef Name="users_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LoggedIn" Type="timestamp" Precision="0" />
-          <Property Name="LoggedOut" Type="timestamp" Precision="0" />
+          <Property Name="LoggedIn" Type="datetime" Precision="0" />
+          <Property Name="LoggedOut" Type="datetime" Precision="0" />
           <Property Name="users_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
@@ -132,8 +131,9 @@
           <Property Name="LockoutEnabled" Type="bit" />
           <Property Name="AccessFailedCount" Type="tinyint" />
           <Property Name="roles_Id" Type="tinyint" Nullable="false" />
-          <Property Name="location_country_CountryCode" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="location_Id" Type="int" Nullable="false" />
+          <Property Name="locations_Id" Type="int" Nullable="false" />
+          <Property Name="locations_countries_Id" Type="int" Nullable="false" />
+          <Property Name="locations_countries_continents_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="users_has_facilities">
           <Key>
@@ -143,79 +143,71 @@
           <Property Name="users_Id" Type="int" Nullable="false" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="fk_alarms_equipment1">
-          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
+        <Association Name="fk_alarms_equipments1">
+          <End Role="equipments" Type="Self.equipments" Multiplicity="1" />
           <End Role="alarms" Type="Self.alarms" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="equipment">
+            <Principal Role="equipments">
               <PropertyRef Name="Id" />
               <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="alarms">
-              <PropertyRef Name="equipment_Id" />
-              <PropertyRef Name="equipment_facilities_Id" />
+              <PropertyRef Name="equipments_Id" />
+              <PropertyRef Name="equipments_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_continent_has_country_continent1">
-          <End Role="continent" Type="Self.continent" Multiplicity="1" />
-          <End Role="continent_has_country" Type="Self.continent_has_country" Multiplicity="*" />
+        <Association Name="fk_countries_continents1">
+          <End Role="continents" Type="Self.continents" Multiplicity="1" />
+          <End Role="countries" Type="Self.countries" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="continent">
-              <PropertyRef Name="Code" />
+            <Principal Role="continents">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="continent_has_country">
-              <PropertyRef Name="continent_Code" />
+            <Dependent Role="countries">
+              <PropertyRef Name="continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_continent_has_country_country1">
-          <End Role="country" Type="Self.country" Multiplicity="1" />
-          <End Role="continent_has_country" Type="Self.continent_has_country" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="country">
-              <PropertyRef Name="CountryCode" />
-            </Principal>
-            <Dependent Role="continent_has_country">
-              <PropertyRef Name="country_CountryCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_equipment_facilities1">
+        <Association Name="fk_equipments_facilities1">
           <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
-          <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+          <End Role="equipments" Type="Self.equipments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="equipment">
+            <Dependent Role="equipments">
               <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_facilities_location1">
-          <End Role="location" Type="Self.location" Multiplicity="1" />
+        <Association Name="fk_facilities_locations1">
+          <End Role="locations" Type="Self.locations" Multiplicity="1" />
           <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Principal Role="locations">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
             </Principal>
             <Dependent Role="facilities">
-              <PropertyRef Name="location_country_CountryCode" />
-              <PropertyRef Name="location_Id" />
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_location_country1">
-          <End Role="country" Type="Self.country" Multiplicity="1" />
-          <End Role="location" Type="Self.location" Multiplicity="*" />
+        <Association Name="fk_locations_countries1">
+          <End Role="countries" Type="Self.countries" Multiplicity="1" />
+          <End Role="locations" Type="Self.locations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="country">
-              <PropertyRef Name="CountryCode" />
+            <Principal Role="countries">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="continents_Id" />
             </Principal>
-            <Dependent Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Dependent Role="locations">
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -231,17 +223,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_measurement_equipment1">
-          <End Role="equipment" Type="Self.equipment" Multiplicity="1" />
-          <End Role="measurement" Type="Self.measurement" Multiplicity="*" />
+        <Association Name="fk_measurements_equipments1">
+          <End Role="equipments" Type="Self.equipments" Multiplicity="1" />
+          <End Role="measurements" Type="Self.measurements" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="equipment">
+            <Principal Role="equipments">
               <PropertyRef Name="Id" />
               <PropertyRef Name="facilities_Id" />
             </Principal>
-            <Dependent Role="measurement">
-              <PropertyRef Name="equipment_Id" />
-              <PropertyRef Name="equipment_facilities_Id" />
+            <Dependent Role="measurements">
+              <PropertyRef Name="equipments_Id" />
+              <PropertyRef Name="equipments_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -281,17 +273,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_location1">
-          <End Role="location" Type="Self.location" Multiplicity="1" />
+        <Association Name="fk_users_locations1">
+          <End Role="locations" Type="Self.locations" Multiplicity="1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Principal Role="locations">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
             </Principal>
             <Dependent Role="users">
-              <PropertyRef Name="location_country_CountryCode" />
-              <PropertyRef Name="location_Id" />
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -309,49 +303,44 @@
         </Association>
         <EntityContainer Name="watermentdbModelStoreContainer">
           <EntitySet Name="alarms" EntityType="Self.alarms" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="continent" EntityType="Self.continent" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="continent_has_country" EntityType="Self.continent_has_country" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="country" EntityType="Self.country" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="equipment" EntityType="Self.equipment" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="continents" EntityType="Self.continents" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="equipments" EntityType="Self.equipments" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="facilities" EntityType="Self.facilities" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="location" EntityType="Self.location" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="measurement" EntityType="Self.measurement" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="measurements" EntityType="Self.measurements" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb" store:Type="Tables" />
-          <AssociationSet Name="fk_alarms_equipment1" Association="Self.fk_alarms_equipment1">
-            <End Role="equipment" EntitySet="equipment" />
+          <AssociationSet Name="fk_alarms_equipments1" Association="Self.fk_alarms_equipments1">
+            <End Role="equipments" EntitySet="equipments" />
             <End Role="alarms" EntitySet="alarms" />
           </AssociationSet>
-          <AssociationSet Name="fk_continent_has_country_continent1" Association="Self.fk_continent_has_country_continent1">
-            <End Role="continent" EntitySet="continent" />
-            <End Role="continent_has_country" EntitySet="continent_has_country" />
+          <AssociationSet Name="fk_countries_continents1" Association="Self.fk_countries_continents1">
+            <End Role="continents" EntitySet="continents" />
+            <End Role="countries" EntitySet="countries" />
           </AssociationSet>
-          <AssociationSet Name="fk_continent_has_country_country1" Association="Self.fk_continent_has_country_country1">
-            <End Role="country" EntitySet="country" />
-            <End Role="continent_has_country" EntitySet="continent_has_country" />
-          </AssociationSet>
-          <AssociationSet Name="fk_equipment_facilities1" Association="Self.fk_equipment_facilities1">
+          <AssociationSet Name="fk_equipments_facilities1" Association="Self.fk_equipments_facilities1">
             <End Role="facilities" EntitySet="facilities" />
-            <End Role="equipment" EntitySet="equipment" />
+            <End Role="equipments" EntitySet="equipments" />
           </AssociationSet>
-          <AssociationSet Name="fk_facilities_location1" Association="Self.fk_facilities_location1">
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_facilities_locations1" Association="Self.fk_facilities_locations1">
+            <End Role="locations" EntitySet="locations" />
             <End Role="facilities" EntitySet="facilities" />
           </AssociationSet>
-          <AssociationSet Name="fk_location_country1" Association="Self.fk_location_country1">
-            <End Role="country" EntitySet="country" />
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_locations_countries1" Association="Self.fk_locations_countries1">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="locations" EntitySet="locations" />
           </AssociationSet>
           <AssociationSet Name="fk_maintenance_facilities1" Association="Self.fk_maintenance_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="maintenance" EntitySet="maintenance" />
           </AssociationSet>
-          <AssociationSet Name="fk_measurement_equipment1" Association="Self.fk_measurement_equipment1">
-            <End Role="equipment" EntitySet="equipment" />
-            <End Role="measurement" EntitySet="measurement" />
+          <AssociationSet Name="fk_measurements_equipments1" Association="Self.fk_measurements_equipments1">
+            <End Role="equipments" EntitySet="equipments" />
+            <End Role="measurements" EntitySet="measurements" />
           </AssociationSet>
           <AssociationSet Name="fk_sessions_users1" Association="Self.fk_sessions_users1">
             <End Role="users" EntitySet="users" />
@@ -365,8 +354,8 @@
             <End Role="users" EntitySet="users" />
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_location1" Association="Self.fk_users_location1">
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_users_locations1" Association="Self.fk_users_locations1">
+            <End Role="locations" EntitySet="locations" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="fk_users_roles1" Association="Self.fk_users_roles1">
@@ -380,42 +369,46 @@
       <Schema Namespace="watermentdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="watermentdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="alarms" EntityType="watermentdbModel.alarms" />
-          <EntitySet Name="continent" EntityType="watermentdbModel.continent" />
-          <EntitySet Name="country" EntityType="watermentdbModel.country" />
-          <EntitySet Name="equipment" EntityType="watermentdbModel.equipment" />
+          <EntitySet Name="continents" EntityType="watermentdbModel.continents" />
+          <EntitySet Name="countries" EntityType="watermentdbModel.countries" />
+          <EntitySet Name="equipments" EntityType="watermentdbModel.equipments" />
           <EntitySet Name="facilities" EntityType="watermentdbModel.facilities" />
-          <EntitySet Name="location" EntityType="watermentdbModel.location" />
+          <EntitySet Name="locations" EntityType="watermentdbModel.locations" />
           <EntitySet Name="maintenance" EntityType="watermentdbModel.maintenance" />
-          <EntitySet Name="measurement" EntityType="watermentdbModel.measurement" />
+          <EntitySet Name="measurements" EntityType="watermentdbModel.measurements" />
           <EntitySet Name="roles" EntityType="watermentdbModel.roles" />
           <EntitySet Name="sessions" EntityType="watermentdbModel.sessions" />
           <EntitySet Name="users" EntityType="watermentdbModel.users" />
-          <AssociationSet Name="fk_alarms_equipment1" Association="watermentdbModel.fk_alarms_equipment1">
-            <End Role="equipment" EntitySet="equipment" />
+          <AssociationSet Name="fk_alarms_equipments1" Association="watermentdbModel.fk_alarms_equipments1">
+            <End Role="equipments" EntitySet="equipments" />
             <End Role="alarms" EntitySet="alarms" />
           </AssociationSet>
-          <AssociationSet Name="fk_location_country1" Association="watermentdbModel.fk_location_country1">
-            <End Role="country" EntitySet="country" />
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_countries_continents1" Association="watermentdbModel.fk_countries_continents1">
+            <End Role="continents" EntitySet="continents" />
+            <End Role="countries" EntitySet="countries" />
           </AssociationSet>
-          <AssociationSet Name="fk_equipment_facilities1" Association="watermentdbModel.fk_equipment_facilities1">
+          <AssociationSet Name="fk_locations_countries1" Association="watermentdbModel.fk_locations_countries1">
+            <End Role="countries" EntitySet="countries" />
+            <End Role="locations" EntitySet="locations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipments_facilities1" Association="watermentdbModel.fk_equipments_facilities1">
             <End Role="facilities" EntitySet="facilities" />
-            <End Role="equipment" EntitySet="equipment" />
+            <End Role="equipments" EntitySet="equipments" />
           </AssociationSet>
-          <AssociationSet Name="fk_measurement_equipment1" Association="watermentdbModel.fk_measurement_equipment1">
-            <End Role="equipment" EntitySet="equipment" />
-            <End Role="measurement" EntitySet="measurement" />
+          <AssociationSet Name="fk_measurements_equipments1" Association="watermentdbModel.fk_measurements_equipments1">
+            <End Role="equipments" EntitySet="equipments" />
+            <End Role="measurements" EntitySet="measurements" />
           </AssociationSet>
-          <AssociationSet Name="fk_facilities_location1" Association="watermentdbModel.fk_facilities_location1">
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_facilities_locations1" Association="watermentdbModel.fk_facilities_locations1">
+            <End Role="locations" EntitySet="locations" />
             <End Role="facilities" EntitySet="facilities" />
           </AssociationSet>
           <AssociationSet Name="fk_maintenance_facilities1" Association="watermentdbModel.fk_maintenance_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="maintenance" EntitySet="maintenance" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_location1" Association="watermentdbModel.fk_users_location1">
-            <End Role="location" EntitySet="location" />
+          <AssociationSet Name="fk_users_locations1" Association="watermentdbModel.fk_users_locations1">
+            <End Role="locations" EntitySet="locations" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
           <AssociationSet Name="fk_users_roles1" Association="watermentdbModel.fk_users_roles1">
@@ -426,10 +419,6 @@
             <End Role="users" EntitySet="users" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
-          <AssociationSet Name="continent_has_country" Association="watermentdbModel.continent_has_country">
-            <End Role="continent" EntitySet="continent" />
-            <End Role="country" EntitySet="country" />
-          </AssociationSet>
           <AssociationSet Name="users_has_facilities" Association="watermentdbModel.users_has_facilities">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="users" EntitySet="users" />
@@ -438,36 +427,40 @@
         <EntityType Name="alarms">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="equipment_Id" />
-            <PropertyRef Name="equipment_facilities_Id" />
+            <PropertyRef Name="equipments_Id" />
+            <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AlarmOccured" Type="DateTime" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ProcessValue" Type="Single" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="equipment_Id" Type="Int32" Nullable="false" />
-          <Property Name="equipment_facilities_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_alarms_equipment1" FromRole="alarms" ToRole="equipment" />
+          <Property Name="equipments_Id" Type="Int32" Nullable="false" />
+          <Property Name="equipments_facilities_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_alarms_equipments1" FromRole="alarms" ToRole="equipments" />
         </EntityType>
-        <EntityType Name="continent">
+        <EntityType Name="continents">
           <Key>
-            <PropertyRef Name="Code" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="country" Relationship="watermentdbModel.continent_has_country" FromRole="continent" ToRole="country" />
+          <NavigationProperty Name="countries" Relationship="watermentdbModel.fk_countries_continents1" FromRole="continents" ToRole="countries" />
         </EntityType>
-        <EntityType Name="country">
+        <EntityType Name="countries">
           <Key>
-            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="continents_Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="location" Relationship="watermentdbModel.fk_location_country1" FromRole="country" ToRole="location" />
-          <NavigationProperty Name="continent" Relationship="watermentdbModel.continent_has_country" FromRole="country" ToRole="continent" />
+          <Property Name="continents_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="continents" Relationship="watermentdbModel.fk_countries_continents1" FromRole="countries" ToRole="continents" />
+          <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_locations_countries1" FromRole="countries" ToRole="locations" />
         </EntityType>
-        <EntityType Name="equipment">
+        <EntityType Name="equipments">
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="facilities_Id" />
@@ -478,9 +471,9 @@
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastCalibrated" Type="DateTime" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="alarms" Relationship="watermentdbModel.fk_alarms_equipment1" FromRole="equipment" ToRole="alarms" />
-          <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_equipment_facilities1" FromRole="equipment" ToRole="facilities" />
-          <NavigationProperty Name="measurement" Relationship="watermentdbModel.fk_measurement_equipment1" FromRole="equipment" ToRole="measurement" />
+          <NavigationProperty Name="alarms" Relationship="watermentdbModel.fk_alarms_equipments1" FromRole="equipments" ToRole="alarms" />
+          <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="equipments" ToRole="facilities" />
+          <NavigationProperty Name="measurements" Relationship="watermentdbModel.fk_measurements_equipments1" FromRole="equipments" ToRole="measurements" />
         </EntityType>
         <EntityType Name="facilities">
           <Key>
@@ -490,26 +483,29 @@
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Domain" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="location_country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="location_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_equipment_facilities1" FromRole="facilities" ToRole="equipment" />
-          <NavigationProperty Name="location" Relationship="watermentdbModel.fk_facilities_location1" FromRole="facilities" ToRole="location" />
+          <Property Name="locations_Id" Type="Int32" Nullable="false" />
+          <Property Name="locations_countries_Id" Type="Int32" Nullable="false" />
+          <Property Name="locations_countries_continents_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="facilities" ToRole="equipments" />
+          <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="facilities" ToRole="locations" />
           <NavigationProperty Name="maintenance" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="facilities" ToRole="maintenance" />
           <NavigationProperty Name="users" Relationship="watermentdbModel.users_has_facilities" FromRole="facilities" ToRole="users" />
         </EntityType>
-        <EntityType Name="location">
+        <EntityType Name="locations">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="country_CountryCode" />
+            <PropertyRef Name="countries_Id" />
+            <PropertyRef Name="countries_continents_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Postcode" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="country" Relationship="watermentdbModel.fk_location_country1" FromRole="location" ToRole="country" />
-          <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_location1" FromRole="location" ToRole="facilities" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_location1" FromRole="location" ToRole="users" />
+          <Property Name="countries_Id" Type="Int32" Nullable="false" />
+          <Property Name="countries_continents_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="countries" Relationship="watermentdbModel.fk_locations_countries1" FromRole="locations" ToRole="countries" />
+          <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="locations" ToRole="facilities" />
+          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_locations1" FromRole="locations" ToRole="users" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -521,18 +517,18 @@
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
         </EntityType>
-        <EntityType Name="measurement">
+        <EntityType Name="measurements">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="equipment_Id" />
-            <PropertyRef Name="equipment_facilities_Id" />
+            <PropertyRef Name="equipments_Id" />
+            <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Timestamp" Type="DateTime" />
           <Property Name="ProcessValue" Type="Single" />
-          <Property Name="equipment_Id" Type="Int32" Nullable="false" />
-          <Property Name="equipment_facilities_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="equipment" Relationship="watermentdbModel.fk_measurement_equipment1" FromRole="measurement" ToRole="equipment" />
+          <Property Name="equipments_Id" Type="Int32" Nullable="false" />
+          <Property Name="equipments_facilities_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_measurements_equipments1" FromRole="measurements" ToRole="equipments" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -572,76 +568,93 @@
           <Property Name="LockoutEnabled" Type="Boolean" />
           <Property Name="AccessFailedCount" Type="SByte" />
           <Property Name="roles_Id" Type="SByte" Nullable="false" />
-          <Property Name="location_country_CountryCode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="location_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="location" Relationship="watermentdbModel.fk_users_location1" FromRole="users" ToRole="location" />
+          <Property Name="locations_Id" Type="Int32" Nullable="false" />
+          <Property Name="locations_countries_Id" Type="Int32" Nullable="false" />
+          <Property Name="locations_countries_continents_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_users_locations1" FromRole="users" ToRole="locations" />
           <NavigationProperty Name="roles" Relationship="watermentdbModel.fk_users_roles1" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="users" ToRole="sessions" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="users" ToRole="facilities" />
         </EntityType>
-        <Association Name="fk_alarms_equipment1">
-          <End Type="watermentdbModel.equipment" Role="equipment" Multiplicity="1" />
+        <Association Name="fk_alarms_equipments1">
+          <End Type="watermentdbModel.equipments" Role="equipments" Multiplicity="1" />
           <End Type="watermentdbModel.alarms" Role="alarms" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="equipment">
+            <Principal Role="equipments">
               <PropertyRef Name="Id" />
               <PropertyRef Name="facilities_Id" />
             </Principal>
             <Dependent Role="alarms">
-              <PropertyRef Name="equipment_Id" />
-              <PropertyRef Name="equipment_facilities_Id" />
+              <PropertyRef Name="equipments_Id" />
+              <PropertyRef Name="equipments_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_location_country1">
-          <End Type="watermentdbModel.country" Role="country" Multiplicity="1" />
-          <End Type="watermentdbModel.location" Role="location" Multiplicity="*" />
+        <Association Name="fk_countries_continents1">
+          <End Type="watermentdbModel.continents" Role="continents" Multiplicity="1" />
+          <End Type="watermentdbModel.countries" Role="countries" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="country">
-              <PropertyRef Name="CountryCode" />
+            <Principal Role="continents">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Dependent Role="countries">
+              <PropertyRef Name="continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_equipment_facilities1">
+        <Association Name="fk_locations_countries1">
+          <End Type="watermentdbModel.countries" Role="countries" Multiplicity="1" />
+          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="continents_Id" />
+            </Principal>
+            <Dependent Role="locations">
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipments_facilities1">
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="1" />
-          <End Type="watermentdbModel.equipment" Role="equipment" Multiplicity="*" />
+          <End Type="watermentdbModel.equipments" Role="equipments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="facilities">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="equipment">
+            <Dependent Role="equipments">
               <PropertyRef Name="facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_measurement_equipment1">
-          <End Type="watermentdbModel.equipment" Role="equipment" Multiplicity="1" />
-          <End Type="watermentdbModel.measurement" Role="measurement" Multiplicity="*" />
+        <Association Name="fk_measurements_equipments1">
+          <End Type="watermentdbModel.equipments" Role="equipments" Multiplicity="1" />
+          <End Type="watermentdbModel.measurements" Role="measurements" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="equipment">
+            <Principal Role="equipments">
               <PropertyRef Name="Id" />
               <PropertyRef Name="facilities_Id" />
             </Principal>
-            <Dependent Role="measurement">
-              <PropertyRef Name="equipment_Id" />
-              <PropertyRef Name="equipment_facilities_Id" />
+            <Dependent Role="measurements">
+              <PropertyRef Name="equipments_Id" />
+              <PropertyRef Name="equipments_facilities_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_facilities_location1">
-          <End Type="watermentdbModel.location" Role="location" Multiplicity="1" />
+        <Association Name="fk_facilities_locations1">
+          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="1" />
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Principal Role="locations">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
             </Principal>
             <Dependent Role="facilities">
-              <PropertyRef Name="location_country_CountryCode" />
-              <PropertyRef Name="location_Id" />
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -657,17 +670,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_location1">
-          <End Type="watermentdbModel.location" Role="location" Multiplicity="1" />
+        <Association Name="fk_users_locations1">
+          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="1" />
           <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="location">
-              <PropertyRef Name="country_CountryCode" />
+            <Principal Role="locations">
               <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
             </Principal>
             <Dependent Role="users">
-              <PropertyRef Name="location_country_CountryCode" />
-              <PropertyRef Name="location_Id" />
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -695,10 +710,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="continent_has_country">
-          <End Type="watermentdbModel.continent" Role="continent" Multiplicity="*" />
-          <End Type="watermentdbModel.country" Role="country" Multiplicity="*" />
-        </Association>
         <Association Name="users_has_facilities">
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
           <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
@@ -712,8 +723,8 @@
           <EntitySetMapping Name="alarms">
             <EntityTypeMapping TypeName="watermentdbModel.alarms">
               <MappingFragment StoreEntitySet="alarms">
-                <ScalarProperty Name="equipment_facilities_Id" ColumnName="equipment_facilities_Id" />
-                <ScalarProperty Name="equipment_Id" ColumnName="equipment_Id" />
+                <ScalarProperty Name="equipments_facilities_Id" ColumnName="equipments_facilities_Id" />
+                <ScalarProperty Name="equipments_Id" ColumnName="equipments_Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -722,25 +733,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="continent">
-            <EntityTypeMapping TypeName="watermentdbModel.continent">
-              <MappingFragment StoreEntitySet="continent">
+          <EntitySetMapping Name="continents">
+            <EntityTypeMapping TypeName="watermentdbModel.continents">
+              <MappingFragment StoreEntitySet="continents">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="country">
-            <EntityTypeMapping TypeName="watermentdbModel.country">
-              <MappingFragment StoreEntitySet="country">
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="watermentdbModel.countries">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="continents_Id" ColumnName="continents_Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="equipment">
-            <EntityTypeMapping TypeName="watermentdbModel.equipment">
-              <MappingFragment StoreEntitySet="equipment">
+          <EntitySetMapping Name="equipments">
+            <EntityTypeMapping TypeName="watermentdbModel.equipments">
+              <MappingFragment StoreEntitySet="equipments">
                 <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
                 <ScalarProperty Name="LastCalibrated" ColumnName="LastCalibrated" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -753,8 +767,9 @@
           <EntitySetMapping Name="facilities">
             <EntityTypeMapping TypeName="watermentdbModel.facilities">
               <MappingFragment StoreEntitySet="facilities">
-                <ScalarProperty Name="location_Id" ColumnName="location_Id" />
-                <ScalarProperty Name="location_country_CountryCode" ColumnName="location_country_CountryCode" />
+                <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
+                <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
+                <ScalarProperty Name="locations_Id" ColumnName="locations_Id" />
                 <ScalarProperty Name="Domain" ColumnName="Domain" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -762,10 +777,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="location">
-            <EntityTypeMapping TypeName="watermentdbModel.location">
-              <MappingFragment StoreEntitySet="location">
-                <ScalarProperty Name="country_CountryCode" ColumnName="country_CountryCode" />
+          <EntitySetMapping Name="locations">
+            <EntityTypeMapping TypeName="watermentdbModel.locations">
+              <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="countries_continents_Id" ColumnName="countries_continents_Id" />
+                <ScalarProperty Name="countries_Id" ColumnName="countries_Id" />
                 <ScalarProperty Name="County" ColumnName="County" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
@@ -782,11 +798,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="measurement">
-            <EntityTypeMapping TypeName="watermentdbModel.measurement">
-              <MappingFragment StoreEntitySet="measurement">
-                <ScalarProperty Name="equipment_facilities_Id" ColumnName="equipment_facilities_Id" />
-                <ScalarProperty Name="equipment_Id" ColumnName="equipment_Id" />
+          <EntitySetMapping Name="measurements">
+            <EntityTypeMapping TypeName="watermentdbModel.measurements">
+              <MappingFragment StoreEntitySet="measurements">
+                <ScalarProperty Name="equipments_facilities_Id" ColumnName="equipments_facilities_Id" />
+                <ScalarProperty Name="equipments_Id" ColumnName="equipments_Id" />
                 <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
                 <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -814,8 +830,9 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="watermentdbModel.users">
               <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="location_Id" ColumnName="location_Id" />
-                <ScalarProperty Name="location_country_CountryCode" ColumnName="location_country_CountryCode" />
+                <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
+                <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
+                <ScalarProperty Name="locations_Id" ColumnName="locations_Id" />
                 <ScalarProperty Name="roles_Id" ColumnName="roles_Id" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -834,14 +851,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="continent_has_country" TypeName="watermentdbModel.continent_has_country" StoreEntitySet="continent_has_country">
-            <EndProperty Name="country">
-              <ScalarProperty Name="CountryCode" ColumnName="country_CountryCode" />
-            </EndProperty>
-            <EndProperty Name="continent">
-              <ScalarProperty Name="Code" ColumnName="continent_Code" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="users_has_facilities" TypeName="watermentdbModel.users_has_facilities" StoreEntitySet="users_has_facilities">
             <EndProperty Name="users">
               <ScalarProperty Name="Id" ColumnName="users_Id" />
