@@ -161,10 +161,10 @@
                     }*@
 
 
-                                @{ int q =0;}
+                                @*@{ int q =0;}
                                   @foreach (var item in Model.IP)
             {
-                @q++            ; }
+                @q++            ; }*@
 
                      @Html.DisplayFor(model => model.ProcessValue[0]),
                      @Html.DisplayFor(model => model.ProcessValue[1]),
@@ -173,9 +173,9 @@
                      @Html.DisplayFor(model => model.ProcessValue[4]),
                      @Html.DisplayFor(model => model.ProcessValue[5]),
                      @Html.DisplayFor(model => model.ProcessValue[6]),
-                     @Html.DisplayFor(model => model.ProcessValue[q-2]),
-                     @Html.DisplayFor(model => model.ProcessValue[q-1]),
-                      @Html.DisplayFor(model => model.ProcessValue[q])
+                     @Html.DisplayFor(model => model.ProcessValue[7]),
+                     @Html.DisplayFor(model => model.ProcessValue[8]),
+                      @Html.DisplayFor(model => model.ProcessValue[9])
                                     ]
                                 }, {
                                     "label": "Reactor Core  Pressure",
