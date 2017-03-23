@@ -162,20 +162,20 @@
 
 
                                 @{ int q =0;}
-                                  @foreach (var item in Model.IP)
+                                  @foreach (var item in Model.ProcessValue)
             {
-                @q++            ; }
+                q++; }
 
-                     @Html.DisplayFor(model => model.ProcessValue[0]),
-                     @Html.DisplayFor(model => model.ProcessValue[1]),
-                     @Html.DisplayFor(model => model.ProcessValue[2]),
-                     @Html.DisplayFor(model => model.ProcessValue[3]),
-                     @Html.DisplayFor(model => model.ProcessValue[4]),
-                     @Html.DisplayFor(model => model.ProcessValue[5]),
-                     @Html.DisplayFor(model => model.ProcessValue[6]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-10]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-9]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-8]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-7]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-6]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-5]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-4]),
+                     @Html.DisplayFor(model => model.ProcessValue[q-3]),
                      @Html.DisplayFor(model => model.ProcessValue[q-2]),
-                     @Html.DisplayFor(model => model.ProcessValue[q-1]),
-                      @Html.DisplayFor(model => model.ProcessValue[q])
+                      @Html.DisplayFor(model => model.ProcessValue[q-1])
                                     ]
                                 }, {
                                     "label": "Reactor Core  Pressure",
@@ -255,7 +255,13 @@
         <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[0]), @Html.DisplayFor(model => model.ProcessValue[0])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[0])</b></p>
         <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[0]), @Html.DisplayFor(model => model.ProcessValue[0])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[0])</b></p>
 
-
+        @*@{ int q = 0;}
+        @foreach (var item in Model.ProcessValue)
+            {
+            <p> @Html.DisplayFor(model => model.ProcessValue[7]);</p>
+            q++;
+            @q;*@
+        }
 
     </div>
 
