@@ -18,10 +18,8 @@
             <h3>Område</h3>
             @foreach (var item in Model.County)
             {
-
-               @*<p>@Html.ActionLink(item,"Login/login", item)</p>*@
-     
                <p>@Html.ActionLink(item,"DetailView", "MainSite", new { area = "" }, new { @class = "brand"})</p>
+              
             }
        </div>
         </div>
