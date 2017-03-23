@@ -40,5 +40,6 @@ namespace WatermentWebSCADA.ViewModels
         public  List<System.DateTime?> Timestamp { get; set; }
         public List<String> Description { get; set; }
         public List<System.DateTime?> Alarmsoccured { get; set; }
+        public List<float?> AlarmProcessValue { get; set; }
     }
 }

@@ -72,6 +72,8 @@ namespace WatermentWebSCADA.Controllers
                 Timestamp = db.measurements.Select(x => x.Timestamp).ToList(),
                 Description = db.alarms.Select(x => x.Description).ToList(),
                 Alarmsoccured = db.alarms.Select(x => x.AlarmOccured).ToList(),
+                AlarmProcessValue = db.alarms.Select(x => x.ProcessValue).ToList(),
+
 
             };
             return View(data);

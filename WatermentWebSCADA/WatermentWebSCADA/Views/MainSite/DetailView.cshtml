@@ -251,17 +251,15 @@
     <div id="jumbotron-header">
         <h4><b>Alarms</b></h4>
 
-        <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[0]), @Html.DisplayFor(model => model.ProcessValue[0])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[0])</b></p>
-        <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[0]), @Html.DisplayFor(model => model.ProcessValue[0])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[0])</b></p>
-        <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[0]), @Html.DisplayFor(model => model.ProcessValue[0])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[0])</b></p>
-
-        @*@{ int q = 0;}
-        @foreach (var item in Model.ProcessValue)
-            {
-            <p> @Html.DisplayFor(model => model.ProcessValue[7]);</p>
-            q++;
-            @q;*@
+        @{ int alarmInt = 0;}
+        @foreach (var item in Model.Alarmsoccured)
+        {
+            <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
+            alarmInt++;
         }
+
+       
+        
 
     </div>
 
