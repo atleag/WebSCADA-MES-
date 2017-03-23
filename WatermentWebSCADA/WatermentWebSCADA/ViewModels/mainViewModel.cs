@@ -14,33 +14,43 @@ namespace WatermentWebSCADA.ViewModels
        public int ID { get; set; }
 
         //facilities
-        public List<string> Name { get; set; }
-        public List<string> IP { get; set; }
-        public List<string> Domain { get; set; }
+        public string Name { get; set; }
+        public string IP { get; set; }
+        public string Domain { get; set; }
 
         //locations model
-        public List<string> Address { get; set; }
-        public List<int?> Postcode { get; set; }
-        public List<string> County { get; set; }
+        public string Address { get; set; }
+        public int? Postcode { get; set; }
+        public string County { get; set; }
         
 
         //Countrie model
 
-        public List<string> CountryName { get; set; }
-        public List<string> continent { get; set; }
+        public string CountryName { get; set; }
+        public string continent { get; set; }
 
    
         //locations model
  
-        public List<string> FirstName { get; set; }
-        public List<string> LastName { get; set; }
-        public List<int?> Phone { get; set; }
-        public List<string> Email { get; set; }
-        public List<float?> ProcessValue { get; set; }
-        public List<string> Tag { get; set; }
-        public  List<System.DateTime?> Timestamp { get; set; }
-        public List<String> Description { get; set; }
-        public List<System.DateTime?> Alarmsoccured { get; set; }
-        public List<float?> AlarmProcessValue { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int? Phone { get; set; }
+        public string Email { get; set; }
+        public float? ProcessValue { get; set; }
+        public string Tag { get; set; }
+        public  System.DateTime? Timestamp { get; set; }
+        public String Description { get; set; }
+        public System.DateTime? Alarmsoccured { get; set; }
+        public float? AlarmProcessValue { get; set; }
+    }
+
+    public class FacilityDBContext : DbContext
+    {
+        public DbSet<MainViewModel> Facility
+        {
+            get;
+            set;
+
+        }
     }
 }

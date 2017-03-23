@@ -1,11 +1,11 @@
-﻿@model WatermentWebSCADA.ViewModels.MainViewModel
+﻿
+    @model IEnumerable<WatermentWebSCADA.ViewModels.MainViewModel> 
 
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 
 
@@ -22,27 +22,29 @@
                         item.County
                             item.CountryName
                     }*@
-            @foreach (var item in Model.County)
+            @foreach (var item in Model)
             {
-               <p>@Html.ActionLink(item,"1", "MainSite/Index", new { area = "" }, new { @class = "brand"})</p>
+              
+                
+                     @*<p>@Html.ActionLink(item,"1", "MainSite/Index", new { area = "" }, new { @class = "brand"})</p>*@
               
             }
        </div>
         </div>
         <div class="col-sm-2">
             <h3>Land</h3>
-            @foreach (var item in Model.CountryName)
+            @foreach (var item in Model)
             {
-                <p>@Html.ActionLink(item, "167", "MainSite/Index/1", new { area = "" }, new { @class = "brand" })</p>
-                
+                @Html.DisplayFor(model => model.Name)
+
             }
 
         </div>
     <div class="col-sm-2">
         <h3>Anlegg</h3>
-        @foreach (var item in Model.Name)
+        @foreach (var item in Model)
             {
-            <p>@Html.ActionLink(item, "167", "MainSite/Index/1", new { area = "" }, new { @class = "brand" })</p>
+            @Html.DisplayNameFor(model => model.Name)
         }
 
     </div>
@@ -51,25 +53,19 @@
 
         <div class="col-sm-2">
             <h3>Status</h3>
-           <p>@Model.Description</p>
+           <p>@Html.DisplayNameFor(model => model.Name)</p>
 
            
             
         </div>
         <div class="col-sm-2">
             <h3>IP</h3>
-            @foreach (var item in Model.IP)
-            {
-                <p>@item</p>
-            }
+           @Html.DisplayNameFor(model => model.Name)
      
         </div>
         <div class="col-sm-2">
             <h3>Planed maintanace</h3>
-            @foreach (var item in Model.Name)
-            {
-               <p>@item</p> 
-            }
+           @Html.DisplayNameFor(model => model.Name)
          
         </div>
       </div>
