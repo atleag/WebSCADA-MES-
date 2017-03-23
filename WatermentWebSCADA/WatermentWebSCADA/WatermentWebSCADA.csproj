@@ -304,7 +304,6 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
-    <Content Include="Views\MainSite\Details.cshtml" />
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\facilities\Create.cshtml" />
     <Content Include="Views\facilities\Delete.cshtml" />

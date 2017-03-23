@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.Controllers
     {
         private watermentdbEntities db = new watermentdbEntities();
         // GET: Main
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
 
             var data = new MainViewModel
@@ -22,6 +22,7 @@ namespace WatermentWebSCADA.Controllers
                 Address = db.locations.Select(x => x.Address).ToList(),
                 CountryName = db.countries.OrderBy(y => y.Name).Select(x => x.Name).ToList(),
                 County = db.continents.Select(x => x.Name).ToList(),
+                
             };
 
             return View(data);
