@@ -5,6 +5,14 @@ using System.Web;
 using System.Web.Mvc;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using MySql.Data.MySqlClient;
+using MySql.Data.Entity;
+using System.Data.Common;
+using System.Web.Helpers;
+
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -12,7 +20,7 @@ namespace WatermentWebSCADA.Controllers
     {
         private FacilityDBContext db = new FacilityDBContext();
         // GET: Main
-        public ActionResult Index(int? id,int? id2)
+        public ActionResult Index()
         {
 
             //var data = new MainViewModel
@@ -24,7 +32,7 @@ namespace WatermentWebSCADA.Controllers
             //    //County = db.continents.Select(x => x.Name).ToList(),
 
 
-                
+            
                 
             //};
 
