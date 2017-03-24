@@ -16,12 +16,12 @@
     <div>
                 <div class="col-sm-2">
             <h3>Område</h3>
-                    @*@foreach(var item in Model)
+                    @foreach(var item in Model)
                     {
 
-                        item.County
-                            item.CountryName
-                    }*@
+
+                        @*@Html.Display(model => model.Name)*@
+                    }
             @foreach (var item in Model)
             {
               
@@ -65,7 +65,7 @@
         </div>
         <div class="col-sm-2">
             <h3>Planed maintanace</h3>
-           @Html.DisplayNameFor(model => model.Name)
+           @Html.DisplayNameFor(model => model.CountryName)
          
         </div>
       </div>
