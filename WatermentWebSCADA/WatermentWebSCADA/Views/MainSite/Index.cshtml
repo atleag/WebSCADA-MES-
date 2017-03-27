@@ -10,18 +10,54 @@
 
     <h1>Waterment Biogass</h1>
    
-@foreach (var d in Model.Alarmer)
-{
-    
-}
-@foreach (var c in Model.Anlegg)
-{
-    <h3>@c.Name</h3>
-    <h2>@c.IP</h2>
-}
-@foreach (var c in Model.Roller)
-{
-    <h3>@c.Description</h3>
-    <h2>@c.Role</h2>
-}
+<div class="container">
+    <div>
+        <div class="col-sm-2">
+            <h3>Område</h3>
+         
+            @foreach (var item in Model.Kontinenter)
+            {
+                <p>@item.Name</p>
+
+            }
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <h3>Land</h3>
+       
+        @foreach (var item in Model.Land)
+            {
+            <p>@item.Name</p>
+
+        }
+        
+
+    </div>
+    <div class="col-sm-2">
+        <h3>Anlegg</h3>
+       
+        
+
+    </div>
+
+
+
+    <div class="col-sm-2">
+        <h3>Status</h3>
+       
+
+
+
+    </div>
+    <div class="col-sm-2">
+        <h3>IP</h3>
+       
+
+    </div>
+    <div class="col-sm-2">
+        <h3>Planed maintanace</h3>
+       
+
+    </div>
+</div>
 
