@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WatermentWebSCADA.Controllers
 {
+
     public class LoginController : Controller
     {
         // GET: login

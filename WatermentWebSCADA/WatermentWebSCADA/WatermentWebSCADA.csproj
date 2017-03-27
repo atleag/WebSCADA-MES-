@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AlarmsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\facilities\Details.cshtml" />
     <Content Include="Views\facilities\Edit.cshtml" />
     <Content Include="Views\facilities\Index.cshtml" />
+    <Content Include="Views\Alarms\Alarmindex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
