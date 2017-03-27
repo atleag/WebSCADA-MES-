@@ -23,19 +23,23 @@ namespace WatermentWebSCADA.Controllers
         // GET: Main
         public ActionResult Index()
         {
-
-
-            //List<facilities> Anlegg = db.facilities.ToList();
-
-        
-        
             using (var db1 = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
                     Alarmer = db.alarms.ToList(),
-                    Anlegg = db.facilities.ToList()
-                };
+                    Anlegg = db.facilities.ToList(),
+                    Kontinenter = db.continents.ToList(),
+                    Land = db.countries.ToList(),
+                    Utstyr = db.equipments.ToList(),
+                    Lokasjoner = db.locations.ToList(),
+                    Vedlikehold = db.maintenance.ToList(),
+                    Roller = db.roles.ToList(),
+                    Brukere = db.users.ToList(),
+                    Sesjoner = db.sessions.ToList(),
+                    
+    
+    };
 
                 return View(model);
             
