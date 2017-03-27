@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<WatermentWebSCADA.Models.alarms>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Alarmindex";
 }
 
-<h2>Index</h2>
+<h2>Alarmindex</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AlarmOccured)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
@@ -21,13 +24,24 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.equipment.SIUnits)
+            @Html.DisplayNameFor(model => model.equipments.Tag)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.equipments.SIUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.equipments.Id)
+        </th>
+      
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlarmOccured)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
@@ -38,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.equipment.SIUnits)
+            @Html.DisplayFor(modelItem => item.equipments.Tag)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

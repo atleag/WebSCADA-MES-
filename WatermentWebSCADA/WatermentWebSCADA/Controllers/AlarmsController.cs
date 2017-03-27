@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.Controllers
         // GET: Alarms
         public ActionResult Index()
         {
-            var data
+            //var data
 
             return View(db.alarms.ToList());
         }

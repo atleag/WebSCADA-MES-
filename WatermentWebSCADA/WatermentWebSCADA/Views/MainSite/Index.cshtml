@@ -1,4 +1,4 @@
-﻿ @model IEnumerable<WatermentWebSCADA.ViewModels.MainViewModel> 
+﻿ @model WatermentWebSCADA.ViewModels.MainViewModel
 
 
 @{
@@ -10,50 +10,13 @@
 
     <h1>Waterment Biogass</h1>
    
-
-<div class="container">
-    <div>
-                <div class="col-sm-2">
-            <h3>Område</h3>
-              
-       </div>
-        </div>
-        <div class="col-sm-2">
-            <h3>Land</h3>
-            @foreach (var item in Model)
-            {
-                @Html.DisplayNameFor(model => model.Name)
-
-            }
-
-        </div>
-    <div class="col-sm-2">
-        <h3>Anlegg</h3>
-   
-
-    </div>
-
-
-
-        <div class="col-sm-2">
-            <h3>Status</h3>
-           <p>@Html.DisplayNameFor(model => model.Name)</p>
-
-           
-            
-        </div>
-        <div class="col-sm-2">
-            <h3>IP</h3>
-           @Html.DisplayNameFor(model => model.Name)
-     
-        </div>
-        <div class="col-sm-2">
-            <h3>Planed maintanace</h3>
-           @Html.DisplayNameFor(model => model.CountryName)
-         
-        </div>
-      </div>
-       
-
-
-
+@foreach (var d in Model.Alarmer)
+{
+    <h3>@d.AlarmOccured</h3>
+    <h2>@d.Description</h2>
+}
+@foreach (var c in Model.Anlegg)
+{
+    <h3>@c.Name</h3>
+    <h2>@c.IP</h2>
+}
