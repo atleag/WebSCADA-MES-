@@ -3,7 +3,7 @@
 
 @{
     ViewBag.Title = "Index";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -12,8 +12,7 @@
    
 @foreach (var d in Model.Alarmer)
 {
-    <h3>@d.AlarmOccured</h3>
-    <h2>@d.Description</h2>
+    
 }
 @foreach (var c in Model.Anlegg)
 {

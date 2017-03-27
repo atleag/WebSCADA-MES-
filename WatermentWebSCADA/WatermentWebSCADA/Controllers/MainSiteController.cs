@@ -39,24 +39,12 @@ namespace WatermentWebSCADA.Controllers
                     Sesjoner = db.sessions.ToList(),
                     
     
-    };
+                 };
 
                 return View(model);
             
-        }
-
-        
-
-
-           
-        }
-
-           
-
-           
-        }
-     
-       
-
+              }   
+           }
       
+        } 
     }

@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.ViewModels
     {
        //public FacilityViewModel facilitiess { get; set; }
        public int ID { get; set; }
-        public string Name { get; set; }
+       
 
       
 
