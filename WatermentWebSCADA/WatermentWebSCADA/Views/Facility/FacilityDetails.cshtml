@@ -1,0 +1,305 @@
+﻿
+@model WatermentWebSCADA.ViewModels.MainViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body style="background-color:lavender;">
+</body>
+</html>
+
+@*<p>Min ip er @Model.IP[1]</p>
+
+    <p>Og min adresse er @Model.Address</p>
+
+    @foreach (var item in Model.Name)
+    {
+        <p>@item</p>
+    }*@
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+
+@{ int x = 0; }
+
+<div>
+    @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
+
+
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <p>  Facility Information</p>
+
+
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Anlegg)
+
+                    </dt>
+
+
+
+
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
+                            @skill.Name
+                        }
+                    </dd>
+
+                    <dt>
+                        "IP"
+                    </dt>
+
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
+                            @skill.IP
+                        }
+                    </dd>
+
+
+                    <dt>
+                        "Land"
+                    </dt>
+
+                    <dd>
+                        @*@foreach (var item in Model.Anlegg)
+                            {
+
+                                int LandId = item.locations_countries_Id;
+
+
+
+                                      foreach (var o in Model.Land.Where(xe=>xe.Id==LandId))
+                                             {
+                                                     @o.Name
+                                }
+                            }*@
+
+                        @foreach (var item in Model.Land)
+                        {
+                            @item.Name
+                        }
+
+                    </dd>
+
+
+
+                    <dt>
+                        "Lokasjon"
+                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
+                    </dt>
+
+                    <dd>
+
+
+                        @*@Html.DisplayFor(model => model.Address[x])*@
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Brukere)
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Postcode[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.FirstName)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.FirstName[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.LastName)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.LastName[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Phone)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Phone[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Email)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Email[x])*@
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.IP)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.IP[x])*@
+                    </dd>
+
+
+
+
+                </dl>
+
+            </th>
+            <th>
+                <script type="text/javascript">
+
+
+                    window.onload = function () {
+                        var ctx = document.getElementById("chart").getContext("2d");
+
+                        var myChart = new Chart(ctx, {
+                            responsive: true,
+
+                            type: "line",
+
+
+                            data: {
+                                "labels": [
+
+                                "19:00",
+                                "20:00",
+                                "21:00",
+                                "22:00",
+                                "23:00",
+                                "00:00",
+                                "01:00",
+                                "02:00",
+                                "03:00",
+
+                                "04:00"
+                                ],
+                                datasets: [{
+                                    label: "Reactor Core Temperature",
+                                    "fill": "true",
+                                    backgroundColor: "rgba(60, 47, 238, 0.2)",
+
+                                    yAxisID: "y-axis-0",
+                                    "data": [
+
+                                @*@for (int i = 0; i <= 9; i++)
+                    {
+                        @Html.DisplayFor(model => model.ProcessValue[i])
+                    }*@
+
+
+                                @*@{ int q =0;}
+                                  @foreach (var item in Model.ProcessValue)
+            {
+                q++; }*@
+
+                     @*@Html.DisplayFor(model => model.ProcessValue[q-10]),*@
+                31.7913,
+                    32.6985,
+                    37.7914,
+                    37.7948,
+                    37.7913,
+                    38.6985,
+                    37.7914,
+                    37.7948,
+                    35.7882,
+                    35.7882
+                                    ]
+                                }, {
+                                    "label": "Reactor Core  Pressure",
+                                    "fill": "true",
+                                    backgroundColor: "rgba(125, 109, 109,0.2)",
+                                    yAxisID: "y-axis-1",
+                                    "data": [
+                                    1.9588,
+                                    2.1226,
+                                    2.1392,
+                                    2.223,
+                                    1.9048,
+                                      1.9588,
+                                    2.1226,
+                                    2.1392,
+                                    2.223,
+                                    1.9048
+                                    ]
+                                }]
+                            },
+
+                            options: {
+
+                                scales: {
+                                    yAxes: [{
+
+                                        position: "left",
+
+                                        "id": "y-axis-0"
+                                    }, {
+                                        position: "right",
+                                        "id": "y-axis-1"
+                                    }]
+                                }
+                            }
+
+                        });
+                        Chart.defaults.global.animationSteps = 50;
+                        Chart.defaults.global.tooltipYPadding = 16;
+                        Chart.defaults.global.tooltipCornerRadius = 0;
+                        Chart.defaults.global.tooltipTitleFontStyle = "normal";
+                        Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+                        Chart.defaults.global.animationEasing = "easeOutBounce";
+                        Chart.defaults.global.responsive = true;
+                        Chart.defaults.global.scaleLineColor = "black";
+                        Chart.defaults.global.scaleFontSize = 16;
+                    };
+                </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+                <canvas id="chart" width="920" height="350"></canvas>
+
+            </th>
+            <th>
+
+
+            </th>
+
+
+
+            <th></th>
+
+
+
+            </th>
+        </tr>
+    </table>
+
+
+
+
+</div>
+<div class="jumbotron text-center img-responsive" id="jumbotron">
+    <div id="jumbotron-header">
+        <h4><b>Alarms</b></h4>
+
+        @*@{ int alarmInt = 0;}
+            @foreach (var item in Model.Alarmsoccured)
+            {
+                <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
+                alarmInt++;
+            }*@
+
+
+
+
+    </div>
+
+</div>

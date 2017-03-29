@@ -1,28 +1,155 @@
-﻿@model WatermentWebSCADA.ViewModels.MainViewModel
+﻿
 @{
-    ViewBag.Title = "FacilityDetails";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<html>
+<body style="background-color:lavender;">
+</body>
+</html>
+
+@*<p>Min ip er @Model.IP[1]</p>
+
+    <p>Og min adresse er @Model.Address</p>
+
+    @foreach (var item in Model.Name)
+    {
+        <p>@item</p>
+    }*@
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+
+@{ int x = 0; }
+
+<div>
+    @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
+
+
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <p>  Facility Information</p>
+
+
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Anlegg)
+                   
+                    </dt>
+
+                   
+                  
+                   
+<dd>    
+    @foreach (var skill in Model.Anlegg)
+    {
+        @skill.Name 
+    }
+                    </dd>
+
+                    <dt>
+                       "IP"
+                    </dt>
+
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
+                            @skill.IP
+                        }
+                    </dd>
+
+
+                    <dt>
+                       "Land"
+                    </dt>
+
+                    <dd>
+                        @*@foreach (var item in Model.Anlegg)
+                        {
+
+                            int LandId = item.locations_countries_Id;
+                          
+
+
+                                  foreach (var o in Model.Land.Where(xe=>xe.Id==LandId))
+                                         {
+                                                 @o.Name
+                            }
+                        }*@
+
+                       @foreach(var item in Model.Land)
+                       {
+                           @item.Name
+                       }
+
+                    </dd>
+
+
+
+                    <dt>
+                        "Lokasjon"
+                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
+                    </dt>
+
+                    <dd>
+
+
+                        @*@Html.DisplayFor(model => model.Address[x])*@
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Brukere)
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Postcode[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.FirstName)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.FirstName[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.LastName)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.LastName[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Phone)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Phone[x])*@
+                    </dd>
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Email)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Email[x])*@
+                    </dd>
+
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.IP)*@
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.IP[x])*@
+                    </dd>
+
+
 
 <h2>FacilityDetails</h2>
-
-<ul>
-    <li><div>Level 1</div></li>
-    <li>
-        <div>Level 1</div>
-        <ul>
-            <li><div>Level 2</div></li>
-            <li>
-                <div>Level 2</div>
-                <ul>
-                    <li><div>Level 3</div></li>
-                    <li><div>Level 3</div></li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li><div>Level 1</div></li>
-</ul>
-
 
