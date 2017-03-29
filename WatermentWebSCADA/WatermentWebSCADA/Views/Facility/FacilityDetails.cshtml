@@ -58,6 +58,95 @@
                         }
                     </dd>
 
+             
+
+
+                    <dt>
+                        "Land"
+                    </dt>
+
+                    <dd>
+                     
+                        @foreach (var item in Model.Land)
+                        {
+                            @item.Name
+                        }
+
+                    </dd>
+
+
+                    <dt>
+                        "Fylke"
+                        
+                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
+                    </dt>
+
+                    <dd>
+                  
+                        @foreach (var item in Model.Lokasjoner)
+                        {
+                            @item.County
+                        }
+                    </dd>
+                    <dt>
+                       "Postnr"
+                    </dt>
+                    <dd>
+                        @foreach (var item in Model.Lokasjoner)
+                        {
+                            @item.Postcode
+                        }
+                    </dd>
+                    <dt>
+                        "Adresse"
+                    </dt>
+
+                    <dd>
+                        @foreach (var item in Model.Lokasjoner)
+                        {
+                            @item.Address   
+                        }
+                    </dd>
+                    <dt>
+                       "Bruker"
+                    </dt>
+
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
+                            <p> @item.FirstName  @item.LastName</p>
+                        }
+                    </dd>
+                    <dt>
+                      "Telefon"
+                    </dt>
+
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
+                           @item.Phone
+                        }
+                    </dd>
+                    <dt>
+                      "E-post"
+                    </dt>
+
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
+                            @item.Email
+                        }
+                    </dd>
+                    <dt>
+                       "Domene"
+                    </dt>
+
+                    <dd>
+                        @foreach (var item in Model.Anlegg)
+                        {
+                            @item.Domain
+                        }
+                    </dd>
                     <dt>
                         "IP"
                     </dt>
@@ -69,87 +158,24 @@
                         }
                     </dd>
 
-
-                    <dt>
-                        "Land"
-                    </dt>
-
-                    <dd>
-                        @*@foreach (var item in Model.Anlegg)
-                            {
-
-                                int LandId = item.locations_countries_Id;
-
-
-
-                                      foreach (var o in Model.Land.Where(xe=>xe.Id==LandId))
-                                             {
-                                                     @o.Name
-                                }
-                            }*@
-
-                        @foreach (var item in Model.Land)
-                        {
-                            @item.Name
-                        }
-
-                    </dd>
-
-
-
-                    <dt>
-                        "Lokasjon"
-                        
-                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
-                    </dt>
-
-                    <dd>
-                  
-                        @*@Html.DisplayFor(model => model.Address[x])*@
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Brukere)
-                    </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.Postcode[x])*@
-                    </dd>
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.FirstName)*@
-                    </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.FirstName[x])*@
-                    </dd>
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.LastName)*@
-                    </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.LastName[x])*@
-                    </dd>
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.Phone)*@
-                    </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.Phone[x])*@
-                    </dd>
-                    <dt>
-                        @*@Html.DisplayNameFor(model => model.Email)*@
+                       <dt>
+                       @*"Domene"*@
+          
                     </dt>
 
                     <dd>
                         @*@Html.DisplayFor(model => model.Email[x])*@
                     </dd>
-
                     <dt>
-                        @*@Html.DisplayNameFor(model => model.IP)*@
+                        <button type="button" class="btn btn-info">Remote Connect</button>
+                      
+                      
                     </dt>
 
                     <dd>
-                        @*@Html.DisplayFor(model => model.IP[x])*@
+                     
                     </dd>
+
 
 
 
@@ -296,6 +322,11 @@
                 <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
                 alarmInt++;
             }*@
+
+        @foreach (var skill in Model.Alarmer)
+        {
+            <p>@skill.Description @skill.AlarmOccured @skill.Status</p>
+        }
 
 
 
