@@ -283,8 +283,8 @@
     <Content Include="Views\MainSite\Index.cshtml" />
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\Alarms\Alarmindex.cshtml" />
-    <Content Include="Views\MainSite\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
+    <Content Include="Views\Facility\FacilityOverview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
