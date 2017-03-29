@@ -17,47 +17,34 @@
          
             @foreach (var item in Model.Kontinenter)
             {
-                <p>@item.Name</p>
-
+               <p> @Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
             }
         </div>
     </div>
-    <div class="col-sm-2">
-        <h3>Land</h3>
-       
+<div class="col-sm-2">
+        <h3>Land</h3>      
         @foreach (var item in Model.Land)
             {
             <p>@item.Name</p>
-
-        }
-        
-
+            }      
+</div>
+    <div class="col-sm-2">
+        <h3>Anlegg</h3>       
+        @foreach (var item in Model.Anlegg)
+            {
+            <p>@Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
+            }
+    </div>
+<div class="col-sm-2">
+        <h3>Status</h3>     
     </div>
     <div class="col-sm-2">
-        <h3>Anlegg</h3>
-       
-        
-
-    </div>
-
-
-
-    <div class="col-sm-2">
-        <h3>Status</h3>
-       
-
-
-
+        <h3>IP</h3>      
     </div>
     <div class="col-sm-2">
-        <h3>IP</h3>
-       
-
-    </div>
-    <div class="col-sm-2">
-        <h3>Planed maintanace</h3>
-       
-
+        <h3>Planed maintanace</h3>      
     </div>
 </div>
+
+
 

@@ -21,14 +21,14 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
         
         // GET: Main
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, int? id2)
         {
             using (var db1 = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
                     Kontinenter = db.continents.ToList(),
-                    Land = db.countries.Where(c => c.continents.Id == id).Where(x => ).ToList(),
+                    Land = db.countries.Where(c => c.continents.Id == id).ToList(),
                     Alarmer = db.alarms.ToList(),
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.ToList(),
@@ -36,12 +36,35 @@ namespace WatermentWebSCADA.Controllers
                     Roller = db.roles.ToList(),
                     Brukere = db.users.ToList(),
                     Sesjoner = db.sessions.ToList(),
+                    Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
                  };
 
                 return View(model);
             
               }   
            }
+        public ActionResult FacilityDetails(int? id)
+        {
+            using (var db1 = new Models.watermentdbEntities())
+            {
+                var model = new MainViewModel
+                {
+                    Kontinenter = db.continents.ToList(),
+                    Land = db.countries.Where(c => c.continents.Id == id).ToList(),
+                    Alarmer = db.alarms.ToList(),
+                    Utstyr = db.equipments.ToList(),
+                    Lokasjoner = db.locations.ToList(),
+                    Vedlikehold = db.maintenance.ToList(),
+                    Roller = db.roles.ToList(),
+                    Brukere = db.users.ToList(),
+                    Sesjoner = db.sessions.ToList(),
+                    Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
+                };
+                return View(model);
+            }
+        }
       
         } 
+
+
     }
