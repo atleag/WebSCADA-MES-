@@ -21,6 +21,7 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
        
         int LandId1;
+        int active_countries;
         int LokasjonsID;
         int BrukerID;
         // GET: Facility
@@ -59,5 +60,10 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
+
+        //public ActionResult(int? id)
+        //{
+        //    foreach (var item db.facilities.s))
+        //}
     }
 }
