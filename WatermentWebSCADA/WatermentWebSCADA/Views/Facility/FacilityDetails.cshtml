@@ -44,7 +44,7 @@
                 <dl class="dl-horizontal">
 
                     <dt>
-                        @Html.DisplayNameFor(model =>)
+                        @Html.DisplayNameFor(model =>model.Anlegg)
 
                     </dt>
 
@@ -170,7 +170,7 @@
                     <dt>
                         @foreach (var skill in Model.Anlegg)
                         {
-                            <a href="http://@skill.IP/webvisu/webvisu.htm" class="btn btn-info">Remote Connect &raquo;</a>
+                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
                         }
                       
                     </dt>
