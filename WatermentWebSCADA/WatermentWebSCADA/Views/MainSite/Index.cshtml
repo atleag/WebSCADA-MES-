@@ -13,9 +13,9 @@
 <div class="container">
     <div>
         <div class="col-sm-2">
-            <h3>Område</h3>
+            <h3>Aktive anlegg</h3>
          
-            @foreach (var item in Model.Kontinenter)
+            @foreach (var item in Model.Anlegg)
             {
                <p> @Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
             }

@@ -36,7 +36,7 @@ namespace WatermentWebSCADA.Controllers
                     Roller = db.roles.ToList(),
                     Brukere = db.users.ToList(),
                     Sesjoner = db.sessions.ToList(),
-                    Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
+                    Anlegg = db.facilities.ToList(),
                  };
 
                 return View(model);
