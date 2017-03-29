@@ -26,8 +26,6 @@ namespace WatermentWebSCADA.Controllers
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
-           
-
             foreach (var item in db.facilities.Where(c=>c.Id==id))
             {
                 LandId1 = item.locations_countries_Id;
