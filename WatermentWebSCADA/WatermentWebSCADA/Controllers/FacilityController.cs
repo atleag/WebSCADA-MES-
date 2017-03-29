@@ -19,12 +19,23 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
+        public string landnavnKim;
+        int LandId1;
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
-            int landid = 167;
+            var landid = db.facilities.Where(b => b.Id == id);
 
-            using (var db1 = new Models.watermentdbEntities())
+            foreach (var item in db.facilities.Where(c=>c.Id==id))
+            {
+
+                LandId1 = item.locations_countries_Id;
+
+
+
+            }
+
+            using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
@@ -35,7 +46,8 @@ namespace WatermentWebSCADA.Controllers
 
                     Kontinenter = db.continents.ToList(),
 
-                    Land = db.countries.Where(x => x.Id == landid).ToList(),
+                    Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
+                    //Land = db.countries.ToList(),
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.ToList(),
                     Vedlikehold = db.maintenance.ToList(),
