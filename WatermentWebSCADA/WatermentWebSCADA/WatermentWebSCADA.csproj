@@ -184,6 +184,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AlarmsController.cs" />
+    <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
@@ -313,6 +314,7 @@
     <Content Include="Views\facilities\Index.cshtml" />
     <Content Include="Views\Alarms\Alarmindex.cshtml" />
     <Content Include="Views\MainSite\FacilityDetails.cshtml" />
+    <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -322,7 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Facility\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

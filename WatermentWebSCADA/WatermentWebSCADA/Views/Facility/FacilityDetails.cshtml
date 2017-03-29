@@ -45,21 +45,21 @@
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Anlegg)
-                   
+
                     </dt>
 
-                   
-                  
-                   
-<dd>    
-    @foreach (var skill in Model.Anlegg)
-    {
-        @skill.Name 
-    }
+
+
+
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
+                            @skill.Name
+                        }
                     </dd>
 
                     <dt>
-                       "IP"
+                        "IP"
                     </dt>
 
                     <dd>
@@ -71,27 +71,27 @@
 
 
                     <dt>
-                       "Land"
+                        "Land"
                     </dt>
 
                     <dd>
                         @*@foreach (var item in Model.Anlegg)
+                            {
+
+                                int LandId = item.locations_countries_Id;
+
+
+
+                                      foreach (var o in Model.Land.Where(xe=>xe.Id==LandId))
+                                             {
+                                                     @o.Name
+                                }
+                            }*@
+
+                        @foreach (var item in Model.Land)
                         {
-
-                            int LandId = item.locations_countries_Id;
-                          
-
-
-                                  foreach (var o in Model.Land.Where(xe=>xe.Id==LandId))
-                                         {
-                                                 @o.Name
-                            }
-                        }*@
-
-                       @foreach(var item in Model.Land)
-                       {
-                           @item.Name
-                       }
+                            @item.Name
+                        }
 
                     </dd>
 
@@ -291,11 +291,11 @@
         <h4><b>Alarms</b></h4>
 
         @*@{ int alarmInt = 0;}
-        @foreach (var item in Model.Alarmsoccured)
-        {
-            <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
-            alarmInt++;
-        }*@
+            @foreach (var item in Model.Alarmsoccured)
+            {
+                <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
+                alarmInt++;
+            }*@
 
 
 
