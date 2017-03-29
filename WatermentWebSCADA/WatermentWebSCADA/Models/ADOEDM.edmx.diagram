@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="2.625" PointX="12.75" PointY="13.375" />
+      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="31">
+        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="2.625" PointX="19.5" PointY="7.375" />
         <EntityTypeShape EntityType="watermentdbModel.continents" Width="1.5" PointX="0.75" PointY="7.625" />
         <EntityTypeShape EntityType="watermentdbModel.countries" Width="1.5" PointX="3" PointY="7.5" />
         <EntityTypeShape EntityType="watermentdbModel.equipments" Width="1.5" PointX="9.75" PointY="11.875" />
         <EntityTypeShape EntityType="watermentdbModel.facilities" Width="1.5" PointX="7.5" PointY="7" />
         <EntityTypeShape EntityType="watermentdbModel.locations" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="9.75" PointY="16.75" />
+        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="24.125" PointY="7.5" />
         <EntityTypeShape EntityType="watermentdbModel.measurements" Width="1.5" PointX="12" PointY="10.5" />
         <EntityTypeShape EntityType="watermentdbModel.roles" Width="1.5" PointX="7.5" PointY="3.75" />
         <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="7.5" />
