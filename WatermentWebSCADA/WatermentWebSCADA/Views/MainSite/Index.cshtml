@@ -17,8 +17,8 @@
          
             @foreach (var item in Model.Anlegg)
             {
-               <p> @Html.ActionLink(item.Name, "FacilityDetails", "Facility")</p>
-                
+               <p>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p>
+
                  
             }
         </div>
