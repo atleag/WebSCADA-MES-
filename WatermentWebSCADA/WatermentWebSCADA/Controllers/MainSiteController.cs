@@ -27,7 +27,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 var model = new MainViewModel
                 {
-                    Kontinenter = db.continents.ToList(),
+                   
                     Land = db.countries.Where(c => c.continents.Id == id).ToList(),
                     Alarmer = db.alarms.ToList(),
                     Utstyr = db.equipments.ToList(),
@@ -37,6 +37,8 @@ namespace WatermentWebSCADA.Controllers
                     Brukere = db.users.ToList(),
                     Sesjoner = db.sessions.ToList(),
                     Anlegg = db.facilities.ToList(),
+
+             
                  };
 
                 return View(model);

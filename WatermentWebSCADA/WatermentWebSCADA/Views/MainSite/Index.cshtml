@@ -5,48 +5,62 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
+<head>
+    <style>
+        .intro {
+                background-color: lightgray;
+    color: black;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+        }
+    </style>
+</head>
 
     <h1>Waterment Biogass</h1>
    
 <div class="container">
-    <div>
+    
         <div class="col-sm-2">
-            <h3>Aktive anlegg</h3>
-         
+           <div class="intro">
+             <h3>Aktive anlegg</h3>
+
             @foreach (var item in Model.Anlegg)
             {
-               <p>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p>
-
-                 
+                <p> @Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p>
             }
+               </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="intro">
+            <h3>Aktive alarmer</h3>
+            @foreach (var item in Model.Land)
+            {
+                <p>@item.Name</p>
+            }
+                </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div class="intro">
+            <h3>Planlagt vedlikehold</h3>
+            @foreach (var item in Model.Anlegg)
+            {
+                <p>@Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
+            }
+                </div>
+        </div>
+        <div class="col-sm-2">
+            <h3>Status</h3>
+        </div>
+        <div class="col-sm-2">
+            <h3>IP</h3>
+        </div>
+        <div class="col-sm-2">
+            <h3>Planed maintanace</h3>
         </div>
     </div>
-<div class="col-sm-2">
-        <h3>Land</h3>      
-        @foreach (var item in Model.Land)
-            {
-            <p>@item.Name</p>
-            }      
-</div>
-    <div class="col-sm-2">
-        <h3>Anlegg</h3>       
-        @foreach (var item in Model.Anlegg)
-            {
-            <p>@Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
-            }
-    </div>
-<div class="col-sm-2">
-        <h3>Status</h3>     
-    </div>
-    <div class="col-sm-2">
-        <h3>IP</h3>      
-    </div>
-    <div class="col-sm-2">
-        <h3>Planed maintanace</h3>      
-    </div>
-</div>
+
 
 
 
