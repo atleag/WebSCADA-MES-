@@ -37,16 +37,19 @@ namespace WatermentWebSCADA.Controllers
 
             using (var db = new Models.watermentdbEntities())
             {
-                var model = new MainViewModel
+                //var data = db.countries.Where(z => z.Id == db.facilities.Where(x => x.Id == z.Id).Select(c => c.Id).FirstOrDefault())
+               
+                    var model = new MainViewModel
                 {
-                    Alarmer = db.alarms.Where(x=>x.equipments_facilities_Id==id).Where(o=>o.Status=="Active").ToList(),
+                 
+                    Alarmer = db.alarms.Where(x=>x.equipments_facilities_Id == id && x.Status == "Active").ToList(),
                     Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
-
+                    
                     //Anlegg2=db.facilities.Where(x=>x.locations_countries_Id=landid),
 
                     Kontinenter = db.continents.ToList(),
 
-                    Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
+                    //Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
                     //Land = db.countries.ToList(),
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x=>x.Id==LokasjonsID).ToList(),
@@ -61,9 +64,22 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        //public ActionResult(int? id)
-        //{
-        //    foreach (var item db.facilities.s))
-        //}
+        public ActionResult FacilityOverview(int? id)
+        {
+
+
+            using (var db = new Models.watermentdbEntities())
+            {
+                var model = new MainViewModel
+                {
+
+                    countries = db.countries_with_facilites_view.ToList(),
+                    Anlegg = db.facilities.Where(x => x.locations_countries_Id == id).ToList(),
+                };
+
+           
+                return View(model);
+            }
+        }
     }
 }

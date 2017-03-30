@@ -12,14 +12,9 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class measurements
+    public partial class countries_with_facilites_view
     {
         public int Id { get; set; }
-        public Nullable<System.DateTime> Recorded { get; set; }
-        public Nullable<float> ProcessValue { get; set; }
-        public int equipments_Id { get; set; }
-        public int equipments_facilities_Id { get; set; }
-    
-        public virtual equipments equipments { get; set; }
+        public string Name { get; set; }
     }
 }

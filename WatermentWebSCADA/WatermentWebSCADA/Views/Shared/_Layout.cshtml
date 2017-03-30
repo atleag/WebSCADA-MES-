@@ -7,8 +7,9 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
 </head>
-<body>
+<body style="background-color:lavender;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -19,7 +20,7 @@
                 </button>
                 @Html.ActionLink("Waterment SCADA", "", "", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Owerview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Facilites", "DetailView", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Facilites", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
                
             </div>
             <div class="navbar-collapse collapse">
@@ -33,7 +34,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Waterment SCADA by Bachelor 1337 t34m</p>
+            <p>&copy; @DateTime.Now.Year - Waterment SCADA by Bachelors>
         </footer>
     </div>
 

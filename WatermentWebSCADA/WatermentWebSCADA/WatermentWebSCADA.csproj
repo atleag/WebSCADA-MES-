@@ -194,6 +194,9 @@
     <Compile Include="Models\countries.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\countries_with_facilites_view.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\equipments.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
