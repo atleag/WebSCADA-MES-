@@ -68,10 +68,10 @@
 
                     <dd>
                      
-                        @*@foreach (var item in Model.Land)
+                        @foreach (var item in Model.Land)
                         {
                             @item.Name
-                        }*@
+                        }
 
                     </dd>
 
@@ -354,23 +354,17 @@
         {
 
             Idinte++;
+            @*<p> @Model.Verdier[Idinte].ProcessValue</p>*@
             //values = Model.Verdier.ToArray();
             <p>@Idinte</p>
             <p>@value.ProcessValue,</p>
-            kimmy = value.ProcessValue;
-            <p>@kimmy</p>
 
 
 
-            @*foreach (var v in Model.Verdier)
-            {
-                @v.ProcessValue
-           
-
-
-            }*@
 
         }
+        <b>@Model.Verdier[Idinte - 1].ProcessValue</b>
+        <b>@Model.Verdier[1].ProcessValue</b>
       
 
 

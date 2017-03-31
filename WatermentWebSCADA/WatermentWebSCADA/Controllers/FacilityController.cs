@@ -53,11 +53,12 @@ namespace WatermentWebSCADA.Controllers
                     Roller = db.roles.ToList(),
                     Brukere = db.users.Where(x=>x.locations_Id==LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
-                    //Verdier = db.measurements.Where(x=>x.equipments_facilities_Id==id).ToList(),
+                
+                    Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).ToList(),
 
 
 
-            };
+                };
 
                 return View(model);
             }
