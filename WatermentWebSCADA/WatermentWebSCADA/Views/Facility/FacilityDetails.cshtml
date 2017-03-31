@@ -181,9 +181,6 @@
                     </dd>
 
 
-
-
-
                 </dl>
 
             </th>
@@ -203,21 +200,30 @@
                             data: {
                                 "labels": [
 
+                                       @{int Idinte2 = 0;}
+                           @{ float? verdi;}
+                        @foreach (var value in Model.Verdier)
+                    {
+                        verdi = Model.Verdier[Idinte2].ProcessValue;
+
+                        Idinte2++;
+                         @*@Model.Verdier[Idinte2-1].ProcessValue*@
+
+
+                         }
 
 
 
-
-                                           "19:00",
-                                "20:00",
-                                "21:00",
-                                "22:00",
-                                "23:00",
-                                "00:00",
-                                "01:00",
-                                "02:00",
-                                "03:00",
-
-                                "04:00"
+              "Time",
+                     "@Model.Verdier[Idinte2-8].Recorded",
+                   "@Model.Verdier[Idinte2-7].Recorded",
+                    "@Model.Verdier[Idinte2-6].Recorded",
+                 "@Model.Verdier[Idinte2-5].Recorded",
+                   "@Model.Verdier[Idinte2-4].Recorded",
+                    "@Model.Verdier[Idinte2-3].Recorded",
+                     "@Model.Verdier[Idinte2-2].Recorded",
+                   "@Model.Verdier[Idinte2-2].Recorded",
+                    "@Model.Verdier[Idinte2-1].Recorded",
                                 ],
                                 datasets: [{
                                     label: "Reactor Core Temperature",
@@ -227,50 +233,41 @@
                                     yAxisID: "y-axis-0",
                                     "data": [
 
-                           @*@{int Idinte2 = 0;}
-                           @{ float? atle = 0;}
-                           @{ float? atle1 = 0;}
-                                       @foreach (var value in Model.Verdier)
-                                       {
-
-                                           Idinte2++;
-                                           atle = value.ProcessValue;
-                                           atle1 = value.ProcessValue;
-
-          @atle
-                    }*@
 
 
 
-                31.7913,
-                    32.6,
-                    37.7914,
-                    37.7948,
-                    37.7913,
-                    38.6985,
-                    37.7914,
-                    37.7948,
-                    35.7882,
-                    35.7,
+              @Model.Verdier[Idinte2-9].ProcessValue,
+                     @Model.Verdier[Idinte2-8].ProcessValue,
+                   @Model.Verdier[Idinte2-7].ProcessValue,
+                    @Model.Verdier[Idinte2-6].ProcessValue,
+                 @Model.Verdier[Idinte2-5].ProcessValue,
+                   @Model.Verdier[Idinte2-4].ProcessValue,
+                    @Model.Verdier[Idinte2-3].ProcessValue,
+                     @Model.Verdier[Idinte2-2].ProcessValue,
+                   @Model.Verdier[Idinte2-2].ProcessValue,
+                    @Model.Verdier[Idinte2-1].ProcessValue,
                                     ]
-                                }, {
-                                    "label": "Reactor Core  Pressure",
-                                    "fill": "true",
-                                    backgroundColor: "rgba(125, 109, 109,0.2)",
-                                    yAxisID: "y-axis-1",
-                                    "data": [
-                                    1.9588,
-                                    2.1226,
-                                    2.1392,
-                                    2.223,
-                                    1.9048,
-                                      1.9588,
-                                    2.1226,
-                                    2.1392,
-                                    2.223,
-                                    1.9048
-                                    ]
-                                }]
+                                },
+
+                                //{
+                                //    "label": "Reactor Core  Pressure",
+                                //    "fill": "true",
+                                //    backgroundColor: "rgba(125, 109, 109,0.2)",
+                                //    yAxisID: "y-axis-1",
+                                //    "data": [
+                                //    1.9588,
+                                //    2.1226,
+                                //    2.1392,
+                                //    2.223,
+                                //    1.9048,
+                                //      1.9588,
+                                //    2.1226,
+                                //    2.1392,
+                                //    2.223,
+                                //    1.9048
+                                //    ]
+                                //}
+                                ]
                             },
 
                             options: {
@@ -279,12 +276,21 @@
                                     yAxes: [{
 
                                         position: "left",
-
-                                        "id": "y-axis-0"
-                                    }, {
-                                        position: "right",
-                                        "id": "y-axis-1"
-                                    }]
+                                        
+                                        "id": "y-axis-0",
+                                        display: true,
+                                        ticks: {
+                                            beginAtZero: true,
+                                            steps: 10,
+                                            stepValue: 5,
+                                            max: 50,
+                                        }
+                                    }
+                                    //, {
+                                    //    position: "right",
+                                    //    "id": "y-axis-1"
+                                    //}
+                                    ]
                                 }
                             }
 
@@ -333,7 +339,8 @@
                 <p><b> <font color="red"><font size="3"> @Html.DisplayFor(model => model.Description[alarmInt]), @Html.DisplayFor(model => model.AlarmProcessValue[alarmInt])ºC</font></b><font color="black"><font size="2"><b> @Html.DisplayFor(model => model.Alarmsoccured[alarmInt])</b></p>
                 alarmInt++;
             }*@
-
+            
+        
         @foreach (var skill in Model.Alarmer)
         {
             <p>@skill.Description @skill.AlarmOccured @skill.Status</p>
@@ -350,21 +357,21 @@
         @{Array values;}
         @{ float? kimmy;}
 
-        @foreach (var value in Model.Verdier)
+        @*@foreach (var value in Model.Verdier)
         {
 
             Idinte++;
-            @*<p> @Model.Verdier[Idinte].ProcessValue</p>*@
+            @*<p> @Model.Verdier[Idinte].ProcessValue</p>
             //values = Model.Verdier.ToArray();
             <p>@Idinte</p>
-            <p>@value.ProcessValue,</p>
+            <p>@value.ProcessValue,</p>*@
 
 
+@*
 
-
-        }
-        <b>@Model.Verdier[Idinte - 1].ProcessValue</b>
-        <b>@Model.Verdier[1].ProcessValue</b>
+    }
+    <b>@Model.Verdier[Idinte - 1].ProcessValue</b>
+    <b>@Model.Verdier[1].ProcessValue</b>*@
       
 
 
