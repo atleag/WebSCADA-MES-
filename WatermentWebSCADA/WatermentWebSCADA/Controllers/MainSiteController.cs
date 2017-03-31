@@ -37,9 +37,10 @@ namespace WatermentWebSCADA.Controllers
                     Brukere = db.users.ToList(),
                     Sesjoner = db.sessions.ToList(),
                     Anlegg = db.facilities.ToList(),
+                    
 
-             
-                 };
+
+                };
 
                 return View(model);
             

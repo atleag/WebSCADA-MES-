@@ -46,7 +46,7 @@
           <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="SIUnits" Type="varchar" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
-          <Property Name="LastCalibrated" Type="datetime" Precision="0" />
+          <Property Name="LastCalibrated" Type="date" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="facilities">
@@ -90,7 +90,7 @@
             <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Timestamp" Type="datetime" Precision="0" />
+          <Property Name="Recorded" Type="datetime" Precision="0" />
           <Property Name="ProcessValue" Type="float" />
           <Property Name="equipments_Id" Type="int" Nullable="false" />
           <Property Name="equipments_facilities_Id" Type="int" Nullable="false" />
@@ -128,7 +128,7 @@
           <Property Name="Phone" Type="int" />
           <Property Name="PhoneNumberConfirmed" Type="bit" />
           <Property Name="TwoFactorEnabled" Type="bit" />
-          <Property Name="LockoutEndDateUtc" Type="timestamp" Precision="0" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
           <Property Name="LockoutEnabled" Type="bit" />
           <Property Name="AccessFailedCount" Type="tinyint" />
           <Property Name="roles_Id" Type="tinyint" Nullable="false" />
@@ -525,7 +525,7 @@
             <PropertyRef Name="equipments_facilities_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Timestamp" Type="DateTime" />
+          <Property Name="Recorded" Type="DateTime" />
           <Property Name="ProcessValue" Type="Single" />
           <Property Name="equipments_Id" Type="Int32" Nullable="false" />
           <Property Name="equipments_facilities_Id" Type="Int32" Nullable="false" />
@@ -535,10 +535,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="SByte" Nullable="false" />
-          <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_roles1" FromRole="roles" ToRole="users" />
+          <Property Name="Id" Type="SByte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_roles1" FromRole="roles" ToRole="users" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
@@ -806,7 +806,7 @@
                 <ScalarProperty Name="equipments_facilities_Id" ColumnName="equipments_facilities_Id" />
                 <ScalarProperty Name="equipments_Id" ColumnName="equipments_Id" />
                 <ScalarProperty Name="ProcessValue" ColumnName="ProcessValue" />
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Recorded" ColumnName="Recorded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

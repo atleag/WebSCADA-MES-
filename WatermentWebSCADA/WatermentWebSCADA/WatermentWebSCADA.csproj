@@ -285,6 +285,7 @@
     <Content Include="Views\Alarms\Alarmindex.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
+    <Content Include="Views\Facility\chart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

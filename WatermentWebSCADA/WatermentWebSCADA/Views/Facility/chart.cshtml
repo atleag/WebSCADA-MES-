@@ -203,10 +203,6 @@
                             data: {
                                 "labels": [
 
-
-
-
-
                                            "19:00",
                                 "20:00",
                                 "21:00",
@@ -215,7 +211,8 @@
                                 "00:00",
                                 "01:00",
                                 "02:00",
-                                "03:00",
+                                "@Model.Verdier[0].Recorded",
+
 
                                 "04:00"
                                 ],
@@ -225,33 +222,34 @@
                                     backgroundColor: "rgba(60, 47, 238, 0.2)",
 
                                     yAxisID: "y-axis-0",
-                                    "data": [
+                                    data: [
 
-                           @*@{int Idinte2 = 0;}
-                           @{ float? atle = 0;}
-                           @{ float? atle1 = 0;}
-                                       @foreach (var value in Model.Verdier)
-                                       {
+                           @{int Idinte2 = 0;}
+                           @{ float? verdi;}
+                        @foreach (var value in Model.Verdier)
+                        {
+                            verdi = Model.Verdier[Idinte2].ProcessValue;
 
-                                           Idinte2++;
-                                           atle = value.ProcessValue;
-                                           atle1 = value.ProcessValue;
-
-          @atle
-                    }*@
+                            Idinte2++;
+                             @*@Model.Verdier[Idinte2-1].ProcessValue*@
 
 
+                        }
+                        //verdi,
 
-                31.7913,
-                    32.6,
-                    37.7914,
-                    37.7948,
-                    37.7913,
-                    38.6985,
-                    37.7914,
-                    37.7948,
-                    35.7882,
-                    35.7,
+
+
+                    @Model.Verdier[Idinte2-9].ProcessValue,
+                     @Model.Verdier[Idinte2-8].ProcessValue,
+                   @Model.Verdier[Idinte2-7].ProcessValue,
+                    @Model.Verdier[Idinte2-6].ProcessValue,
+                 @Model.Verdier[Idinte2-5].ProcessValue,
+                   @Model.Verdier[Idinte2-4].ProcessValue,
+                    @Model.Verdier[Idinte2-3].ProcessValue,
+                     @Model.Verdier[Idinte2-2].ProcessValue,
+                   @Model.Verdier[Idinte2-2].ProcessValue,
+                    @Model.Verdier[Idinte2-1].ProcessValue,
+              
                                     ]
                                 }, {
                                     "label": "Reactor Core  Pressure",
@@ -349,28 +347,27 @@
         @{int Idinte = 0;}
         @{Array values;}
         @{ float? kimmy;}
+        @Model.Verdier[0].ProcessValue
+        @Model.Verdier[1].ProcessValue
+        @*@Model.Verdier[2].ProcessValue*@
+        @*@Model.Verdier[3].ProcessValue
+        @Model.Verdier[4].ProcessValue*@
 
         @foreach (var value in Model.Verdier)
         {
 
             Idinte++;
+            @*<p> @Model.Verdier[Idinte].ProcessValue</p>*@
             //values = Model.Verdier.ToArray();
             <p>@Idinte</p>
             <p>@value.ProcessValue,</p>
-            kimmy = value.ProcessValue;
-            <p>@kimmy</p>
+            
 
 
-
-            @*foreach (var v in Model.Verdier)
-            {
-                @v.ProcessValue
-           
-
-
-            }*@
 
         }
+        <b>@Model.Verdier[Idinte-1].ProcessValue</b>
+        <b>@Model.Verdier[1].ProcessValue</b>
       
 
 
