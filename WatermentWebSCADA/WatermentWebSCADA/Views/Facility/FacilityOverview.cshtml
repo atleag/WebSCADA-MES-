@@ -1,7 +1,56 @@
 ﻿
+@model WatermentWebSCADA.ViewModels.MainViewModel
+
 @{
     ViewBag.Title = "FacilityOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<head>
+    <style>
+        .intro {
+            background-color: lightgreen;
+            color: black;
+            margin: 20px 0 20px 0;
+            padding: 20px;
+            border-radius: 25px;
+        }
+        .vv{
+              background-color: darkblue;
+            color: white;
+            margin: 20px 0 20px 0;
+            padding: 20px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
 
 <h2>FacilityOverview</h2>
 
+
+<table class="table">
+    <tr>
+        
+            @foreach (var item in Model.countries)
+            {
+
+
+                <th>
+                    @Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id })
+                </th>
+
+            }
+            </tr>
+    <tr>    
+        
+            @foreach (var ite in Model.Anlegg)
+            {
+                <td>
+                    <div class="vv"> @Html.ActionLink(ite.Name, "FacilityDetails", "Facility", new { id = ite.Id }, null)</div>
+                </td>
+            }
+               
+        <th></th>
+    </tr>
+
+    
+</table>

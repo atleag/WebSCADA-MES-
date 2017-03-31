@@ -26,6 +26,8 @@ namespace WatermentWebSCADA.ViewModels
         public IEnumerable<roles> Roller { get; set; }
         public IEnumerable<sessions> Sesjoner { get; set; }
         public IEnumerable<users> Brukere { get; set; }
+        public List<countries_with_facilites_view>  countries { get; set; }
+
         public List<measurements> Verdier { get; set; }
 
 
