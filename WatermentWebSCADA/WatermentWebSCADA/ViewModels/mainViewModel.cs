@@ -29,6 +29,7 @@ namespace WatermentWebSCADA.ViewModels
         public List<countries_with_facilites_view>  countries { get; set; }
 
         public List<measurements> Verdier { get; set; }
+        public List<measurements> Bar { get; set; }
 
 
     }
