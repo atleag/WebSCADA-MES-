@@ -35,7 +35,10 @@ namespace WatermentWebSCADA.Models
         public virtual DbSet<measurements> measurements { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<sessions> sessions { get; set; }
+        public virtual DbSet<userclaims> userclaims { get; set; }
+        public virtual DbSet<userlogins> userlogins { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<Client_Conection> Client_Conection { get; set; }
         public virtual DbSet<countries_with_facilites_view> countries_with_facilites_view { get; set; }
     }
 }

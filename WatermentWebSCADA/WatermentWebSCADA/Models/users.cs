@@ -18,32 +18,39 @@ namespace WatermentWebSCADA.Models
         public users()
         {
             this.sessions = new HashSet<sessions>();
+            this.userclaims = new HashSet<userclaims>();
+            this.userlogins = new HashSet<userlogins>();
+            this.roles = new HashSet<roles>();
             this.facilities = new HashSet<facilities>();
         }
     
         public int Id { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public Nullable<bool> EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Nullable<int> Phone { get; set; }
+        public Nullable<int> PhoneNumber { get; set; }
         public Nullable<bool> PhoneNumberConfirmed { get; set; }
         public Nullable<bool> TwoFactorEnabled { get; set; }
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
         public Nullable<bool> LockoutEnabled { get; set; }
         public Nullable<sbyte> AccessFailedCount { get; set; }
-        public sbyte roles_Id { get; set; }
         public int locations_Id { get; set; }
         public int locations_countries_Id { get; set; }
         public int locations_countries_continents_Id { get; set; }
     
         public virtual locations locations { get; set; }
-        public virtual roles roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userclaims> userclaims { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userlogins> userlogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<roles> roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<facilities> facilities { get; set; }
     }
