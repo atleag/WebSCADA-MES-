@@ -188,6 +188,9 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Models\Client_Conection.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\continents.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="117">
         <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="13.125" />
         <EntityTypeShape EntityType="watermentdbModel.continents" Width="1.5" PointX="0.75" PointY="7.625" />
         <EntityTypeShape EntityType="watermentdbModel.countries" Width="1.5" PointX="3" PointY="7.5" />
@@ -16,7 +16,8 @@
         <EntityTypeShape EntityType="watermentdbModel.roles" Width="1.5" PointX="7.5" PointY="11.625" />
         <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="9.5" />
         <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="9.75" PointY="7.875" />
-        <EntityTypeShape EntityType="watermentdbModel.countries_with_facilites_view" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="watermentdbModel.Client_Conection" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="watermentdbModel.countries_with_facilites_view" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="watermentdbModel.fk_alarms_equipments1" />
         <AssociationConnector Association="watermentdbModel.fk_countries_continents1" />
         <AssociationConnector Association="watermentdbModel.fk_locations_countries1" />

@@ -38,7 +38,10 @@
     <table class="table">
         <tr>
             <th>
-                <p>  Facility Information</p>
+                <p>@foreach (var item in Model.conection)
+                {
+                    @item.ip
+                })</p>
 
 
                 <dl class="dl-horizontal">
@@ -168,12 +171,16 @@
                         @*@Html.DisplayFor(model => model.Email[x])*@
                     </dd>
                     <dt>
-                        @foreach (var skill in Model.Anlegg)
-                        {
-                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
-                        }
                       
-                    </dt>
+     
+
+                            @foreach (var skill in Model.Anlegg)
+                            {
+                                <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
+                               
+                            }
+
+</dt>
 
                     <dd>
                        
@@ -378,3 +385,4 @@
     </div>
 
 </div>
+
