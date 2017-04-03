@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="9.5" />
         <EntityTypeShape EntityType="watermentdbModel.users" Width="1.5" PointX="9.75" PointY="7.875" />
         <EntityTypeShape EntityType="watermentdbModel.Client_Conection" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="watermentdbModel.countries_with_facilites_view" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="watermentdbModel.countries_with_facilites_view" Width="1.5" PointX="2.75" PointY="1.125" />
         <AssociationConnector Association="watermentdbModel.fk_alarms_equipments1" />
         <AssociationConnector Association="watermentdbModel.fk_countries_continents1" />
         <AssociationConnector Association="watermentdbModel.fk_locations_countries1" />
