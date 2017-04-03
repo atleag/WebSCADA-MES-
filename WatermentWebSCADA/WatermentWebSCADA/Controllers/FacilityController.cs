@@ -13,6 +13,7 @@ using MySql.Data.Entity;
 using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
+using Newtonsoft.Json;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -72,6 +73,7 @@ namespace WatermentWebSCADA.Controllers
 
             }
 
+          
 
             using (var db = new Models.watermentdbEntities())
             {
