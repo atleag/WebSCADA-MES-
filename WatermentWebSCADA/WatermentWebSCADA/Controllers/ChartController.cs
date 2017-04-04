@@ -12,7 +12,8 @@ namespace WatermentWebSCADA.Controllers
         // GET: Chart
         public ActionResult AxisZooming()
         {
-            return View(DateTimeXAxisChartData.GetRandom());
+            //return View(DateTimeXAxisChartData.GetRandom());
+            return View();
         }
     }
 }

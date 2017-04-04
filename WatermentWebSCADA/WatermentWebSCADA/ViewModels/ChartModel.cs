@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WatermentWebSCADA.ViewModels
+namespace WatermentWebSCADA.ViewModel
 {
     public class DateTimeXAxisChartData
     {
@@ -117,5 +117,4 @@ namespace WatermentWebSCADA.ViewModels
         public double? ValueY2 { get; set; }
         public double? ValueY3 { get; set; }
     }
-
 }
