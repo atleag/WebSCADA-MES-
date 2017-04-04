@@ -13,7 +13,7 @@ using MySql.Data.Entity;
 using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
-using Newtonsoft.Json;
+
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace WatermentWebSCADA.Controllers
