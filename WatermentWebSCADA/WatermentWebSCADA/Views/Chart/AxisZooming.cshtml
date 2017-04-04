@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Zooming & Panning";
+}
+
+<div id="chartContainer"></div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "theme2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            title: {
+            	text: "Try Zooming & Panning"
+            },
+            subtitles:[
+                {
+                	text: "Line Chart with 1000 Data Points"
+                }
+            ],
+            data: [
+            {
+                type: "line",
+
+                dataPoints: @Html.Raw(ViewBag.DataPoints),
+            }
+            ]
+        });
+        chart.render();
+    });
+</script>
