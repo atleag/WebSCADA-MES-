@@ -223,6 +223,7 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ChartModel.cs" />
+    <Compile Include="ViewModels\FacilityModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

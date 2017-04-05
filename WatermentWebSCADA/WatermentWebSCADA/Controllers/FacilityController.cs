@@ -43,6 +43,7 @@ namespace WatermentWebSCADA.Controllers
                 LokasjonsID = item.locations_Id;
                 item.IP = IpClient;
             }
+
             // Saves the changes to the DB
             db.SaveChanges();
             using (var db = new Models.watermentdbEntities())
@@ -64,7 +65,6 @@ namespace WatermentWebSCADA.Controllers
                     Roller = db.roles.ToList(),
                     Brukere = db.users.Where(x=>x.locations_Id==LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
-                
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i=>i.equipments.Description=="Temperature Reactor").ToList(),
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
 

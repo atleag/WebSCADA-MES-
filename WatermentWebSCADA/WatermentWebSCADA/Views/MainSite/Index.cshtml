@@ -31,7 +31,7 @@
   border-radius: 6px;
   background-color:rgb(242, 236, 247);
   box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;
-  padding:10px;
+  padding:30px;
   margin-top:30px;
   margin-bottom:45px;
   overflow-y:scroll;
@@ -40,6 +40,15 @@
 .frame {
 	background-size:100% 100px;
 	background-repeat:no-repeat;
+}
+.r1 {
+    width: 25%;
+    float: left    
+}
+.r2{
+    width: 25%;
+    float: right;
+
 }
 </style>
     
@@ -51,28 +60,36 @@
        <div class="col-lg-6">
            <div class="frame">
              <h3 align ="center">Status</h3>
-               <table width="100%">
-                   <tr>
-                       <th>Anlegg</th>
-                       <th>Sted</th>
-                       <th>Status</th>
+      
+               <div class="row">
+                   <table style="width:100%" >
+                       <tr>
+                           <th style="height:25px;">Annleggsnavn</th>
+                           <th style="height:25px;">Plasering</th>
+                           <th style="height:25px;">Status</th>
+                       </tr>
+                       @foreach (var item in Model.Anlegg)
+                       {
 
-                   </tr>
-                   <tr>
-                       
-                           @foreach (var item in Model.Anlegg)
-                           {
-                           <<td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td> 
+                           <tr>
+                               <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                               <td>@item.Domain</td> 
+                               <td>554</td> 
+                           </tr> 
 
-                             @*<td>@item.locations</td>*@
-                             @*<td>@item.IP</td>*@ 
-                            
-                           }
+                       }
+                   </table>
+           </div>
+
+
+
+
+
                    
-                   </tr>
+                   
                 
 
-               </table>
+               
                </div>
       
 
