@@ -12,15 +12,15 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class users
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public users()
+        public User()
         {
             this.sessions = new HashSet<sessions>();
-            this.userclaims = new HashSet<userclaims>();
-            this.userlogins = new HashSet<userlogins>();
-            this.roles = new HashSet<roles>();
+            this.UserClaim = new HashSet<UserClaim>();
+            this.UserLogin = new HashSet<UserLogin>();
+            this.Role = new HashSet<Role>();
             this.facilities = new HashSet<facilities>();
         }
     
@@ -33,24 +33,24 @@ namespace WatermentWebSCADA.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<int> PhoneNumber { get; set; }
-        public Nullable<bool> PhoneNumberConfirmed { get; set; }
-        public Nullable<bool> TwoFactorEnabled { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
-        public Nullable<bool> LockoutEnabled { get; set; }
-        public Nullable<sbyte> AccessFailedCount { get; set; }
-        public int locations_Id { get; set; }
-        public int locations_countries_Id { get; set; }
-        public int locations_countries_continents_Id { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string ActivationToken { get; set; }
+        public bool IsLocked { get; set; }
+        public string PasswordQuestion { get; set; }
+        public string PasswordAnswer { get; set; }
     
-        public virtual locations locations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userclaims> userclaims { get; set; }
+        public virtual ICollection<UserClaim> UserClaim { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<userlogins> userlogins { get; set; }
+        public virtual ICollection<UserLogin> UserLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<roles> roles { get; set; }
+        public virtual ICollection<Role> Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<facilities> facilities { get; set; }
     }

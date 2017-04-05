@@ -68,11 +68,13 @@
             <PropertyRef Name="countries_continents_Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="StreetAddress" Type="varchar" MaxLength="100" />
           <Property Name="Postcode" Type="mediumint" />
-          <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="County" Type="varchar" MaxLength="45" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
           <Property Name="countries_Id" Type="int" Nullable="false" />
           <Property Name="countries_continents_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -95,12 +97,12 @@
           <Property Name="equipments_Id" Type="int" Nullable="false" />
           <Property Name="equipments_facilities_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="roles">
+        <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Role" Type="varchar" MaxLength="256" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" />
           <Property Name="Description" Type="varchar" MaxLength="400" />
         </EntityType>
         <EntityType Name="sessions">
@@ -113,38 +115,11 @@
           <Property Name="LoggedOut" Type="datetime" Precision="0" />
           <Property Name="users_Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="userclaims">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="users_Id" Type="int" Nullable="false" />
-          <Property Name="ClaimType" Type="longtext" />
-          <Property Name="ClaimValue" Type="longtext" />
-        </EntityType>
-        <EntityType Name="userlogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="users_Id" />
-          </Key>
-          <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="users_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="userroles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="RoleId" Type="tinyint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="EmailConfirmed" Type="bit" />
@@ -153,14 +128,50 @@
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PhoneNumber" Type="int" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" />
-          <Property Name="TwoFactorEnabled" Type="bit" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
           <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
-          <Property Name="LockoutEnabled" Type="bit" />
-          <Property Name="AccessFailedCount" Type="tinyint" />
-          <Property Name="locations_Id" Type="int" Nullable="false" />
-          <Property Name="locations_countries_Id" Type="int" Nullable="false" />
-          <Property Name="locations_countries_continents_Id" Type="int" Nullable="false" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="ActivationToken" Type="varchar" MaxLength="100" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="PasswordQuestion" Type="varchar" MaxLength="500" />
+          <Property Name="PasswordAnswer" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClaimType" Type="longtext" />
+          <Property Name="ClaimValue" Type="longtext" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRegistrationToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Token" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="users_has_facilities">
           <Key>
@@ -191,43 +202,43 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <Association Name="ApplicationUser_Claims">
-          <End Role="users" Type="Self.users" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="userclaims" Type="Self.userclaims" Multiplicity="*" />
+          <End Role="UserClaim" Type="Self.UserClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userclaims">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="ApplicationUser_Logins">
-          <End Role="users" Type="Self.users" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="userlogins" Type="Self.userlogins" Multiplicity="*" />
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userlogins">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="ApplicationUser_Roles">
-          <End Role="users" Type="Self.users" Multiplicity="1">
+          <End Role="User" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="userroles" Type="Self.userroles" Multiplicity="*" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userroles">
+            <Dependent Role="UserRole">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -327,10 +338,10 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_sessions_users1">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="sessions">
@@ -351,10 +362,10 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_users_has_facilities_users1">
-          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="users_has_facilities">
@@ -362,32 +373,16 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_locations1">
-          <End Role="locations" Type="Self.locations" Multiplicity="1" />
-          <End Role="users" Type="Self.users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="locations">
-              <PropertyRef Name="Id" />
-              <PropertyRef Name="countries_Id" />
-              <PropertyRef Name="countries_continents_Id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="locations_Id" />
-              <PropertyRef Name="locations_countries_Id" />
-              <PropertyRef Name="locations_countries_continents_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="IdentityRole_Users">
-          <End Role="roles" Type="Self.roles" Multiplicity="1">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="userroles" Type="Self.userroles" Multiplicity="*" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="roles">
+            <Principal Role="Role">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userroles">
+            <Dependent Role="UserRole">
               <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
@@ -401,12 +396,13 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           <EntitySet Name="locations" EntityType="Self.locations" Schema="watermentdb_copy" store:Type="Tables" />
           <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb_copy" store:Type="Tables" />
           <EntitySet Name="measurements" EntityType="Self.measurements" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="roles" EntityType="Self.roles" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="watermentdb_copy" store:Type="Tables" />
           <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="userclaims" EntityType="Self.userclaims" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="userlogins" EntityType="Self.userlogins" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="userroles" EntityType="Self.userroles" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="UserRegistrationToken" EntityType="Self.UserRegistrationToken" Schema="watermentdb_copy" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="watermentdb_copy" store:Type="Tables" />
           <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb_copy" store:Type="Tables" />
           <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb_copy">
             <DefiningQuery>SELECT
@@ -421,16 +417,16 @@ FROM `Client_Conection` AS `Client_Conection`</DefiningQuery>
 FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="ApplicationUser_Claims" Association="Self.ApplicationUser_Claims">
-            <End Role="users" EntitySet="users" />
-            <End Role="userclaims" EntitySet="userclaims" />
+            <End Role="User" EntitySet="User" />
+            <End Role="UserClaim" EntitySet="UserClaim" />
           </AssociationSet>
           <AssociationSet Name="ApplicationUser_Logins" Association="Self.ApplicationUser_Logins">
-            <End Role="users" EntitySet="users" />
-            <End Role="userlogins" EntitySet="userlogins" />
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
           </AssociationSet>
           <AssociationSet Name="ApplicationUser_Roles" Association="Self.ApplicationUser_Roles">
-            <End Role="users" EntitySet="users" />
-            <End Role="userroles" EntitySet="userroles" />
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
           <AssociationSet Name="fk_alarms_equipments1" Association="Self.fk_alarms_equipments1">
             <End Role="equipments" EntitySet="equipments" />
@@ -461,7 +457,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="measurements" EntitySet="measurements" />
           </AssociationSet>
           <AssociationSet Name="fk_sessions_users1" Association="Self.fk_sessions_users1">
-            <End Role="users" EntitySet="users" />
+            <End Role="User" EntitySet="User" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
           <AssociationSet Name="fk_users_has_facilities_facilities1" Association="Self.fk_users_has_facilities_facilities1">
@@ -469,16 +465,12 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
           <AssociationSet Name="fk_users_has_facilities_users1" Association="Self.fk_users_has_facilities_users1">
-            <End Role="users" EntitySet="users" />
+            <End Role="User" EntitySet="User" />
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_locations1" Association="Self.fk_users_locations1">
-            <End Role="locations" EntitySet="locations" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
           <AssociationSet Name="IdentityRole_Users" Association="Self.IdentityRole_Users">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="userroles" EntitySet="userroles" />
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -494,11 +486,12 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySet Name="locations" EntityType="watermentdbModel.locations" />
           <EntitySet Name="maintenance" EntityType="watermentdbModel.maintenance" />
           <EntitySet Name="measurements" EntityType="watermentdbModel.measurements" />
-          <EntitySet Name="roles" EntityType="watermentdbModel.roles" />
+          <EntitySet Name="Role" EntityType="watermentdbModel.Role" />
           <EntitySet Name="sessions" EntityType="watermentdbModel.sessions" />
-          <EntitySet Name="userclaims" EntityType="watermentdbModel.userclaims" />
-          <EntitySet Name="userlogins" EntityType="watermentdbModel.userlogins" />
-          <EntitySet Name="users" EntityType="watermentdbModel.users" />
+          <EntitySet Name="User" EntityType="watermentdbModel.User" />
+          <EntitySet Name="UserClaim" EntityType="watermentdbModel.UserClaim" />
+          <EntitySet Name="UserLogin" EntityType="watermentdbModel.UserLogin" />
+          <EntitySet Name="UserRegistrationToken" EntityType="watermentdbModel.UserRegistrationToken" />
           <EntitySet Name="Client_Conection" EntityType="watermentdbModel.Client_Conection" />
           <EntitySet Name="countries_with_facilites_view" EntityType="watermentdbModel.countries_with_facilites_view" />
           <AssociationSet Name="fk_alarms_equipments1" Association="watermentdbModel.fk_alarms_equipments1">
@@ -529,29 +522,25 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="facilities" EntitySet="facilities" />
             <End Role="maintenance" EntitySet="maintenance" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_locations1" Association="watermentdbModel.fk_users_locations1">
-            <End Role="locations" EntitySet="locations" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
           <AssociationSet Name="fk_sessions_users1" Association="watermentdbModel.fk_sessions_users1">
-            <End Role="users" EntitySet="users" />
+            <End Role="User" EntitySet="User" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
           <AssociationSet Name="ApplicationUser_Claims" Association="watermentdbModel.ApplicationUser_Claims">
-            <End Role="users" EntitySet="users" />
-            <End Role="userclaims" EntitySet="userclaims" />
+            <End Role="User" EntitySet="User" />
+            <End Role="UserClaim" EntitySet="UserClaim" />
           </AssociationSet>
           <AssociationSet Name="ApplicationUser_Logins" Association="watermentdbModel.ApplicationUser_Logins">
-            <End Role="users" EntitySet="users" />
-            <End Role="userlogins" EntitySet="userlogins" />
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
           </AssociationSet>
-          <AssociationSet Name="userroles" Association="watermentdbModel.userroles">
-            <End Role="users" EntitySet="users" />
-            <End Role="roles" EntitySet="roles" />
+          <AssociationSet Name="UserRole" Association="watermentdbModel.UserRole">
+            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Role" />
           </AssociationSet>
           <AssociationSet Name="users_has_facilities" Association="watermentdbModel.users_has_facilities">
             <End Role="facilities" EntitySet="facilities" />
-            <End Role="users" EntitySet="users" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="alarms">
@@ -619,7 +608,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="facilities" ToRole="equipments" />
           <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="facilities" ToRole="locations" />
           <NavigationProperty Name="maintenance" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="facilities" ToRole="maintenance" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.users_has_facilities" FromRole="facilities" ToRole="users" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.users_has_facilities" FromRole="facilities" ToRole="User" />
         </EntityType>
         <EntityType Name="locations">
           <Key>
@@ -628,14 +617,15 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <PropertyRef Name="countries_continents_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Postcode" Type="Int32" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="County" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="countries_Id" Type="Int32" Nullable="false" />
           <Property Name="countries_continents_Id" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="countries" Relationship="watermentdbModel.fk_locations_countries1" FromRole="locations" ToRole="countries" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="locations" ToRole="facilities" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_users_locations1" FromRole="locations" ToRole="users" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -660,14 +650,14 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="equipments_facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_measurements_equipments1" FromRole="measurements" ToRole="equipments" />
         </EntityType>
-        <EntityType Name="roles">
+        <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="SByte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.userroles" FromRole="roles" ToRole="users" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.UserRole" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sessions">
           <Key>
@@ -678,34 +668,13 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="LoggedIn" Type="DateTime" />
           <Property Name="LoggedOut" Type="DateTime" />
           <Property Name="users_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.fk_sessions_users1" FromRole="sessions" ToRole="users" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.fk_sessions_users1" FromRole="sessions" ToRole="User" />
         </EntityType>
-        <EntityType Name="userclaims">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="users_Id" Type="Int32" Nullable="false" />
-          <Property Name="ClaimType" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ClaimValue" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="userclaims" ToRole="users" />
-        </EntityType>
-        <EntityType Name="userlogins">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="users_Id" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="users_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="users" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="userlogins" ToRole="users" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="EmailConfirmed" Type="Boolean" />
@@ -714,20 +683,49 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="Int32" />
-          <Property Name="PhoneNumberConfirmed" Type="Boolean" />
-          <Property Name="TwoFactorEnabled" Type="Boolean" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
           <Property Name="LockoutEndDateUtc" Type="DateTime" />
-          <Property Name="LockoutEnabled" Type="Boolean" />
-          <Property Name="AccessFailedCount" Type="SByte" />
-          <Property Name="locations_Id" Type="Int32" Nullable="false" />
-          <Property Name="locations_countries_Id" Type="Int32" Nullable="false" />
-          <Property Name="locations_countries_continents_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_users_locations1" FromRole="users" ToRole="locations" />
-          <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="users" ToRole="sessions" />
-          <NavigationProperty Name="userclaims" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="users" ToRole="userclaims" />
-          <NavigationProperty Name="userlogins" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="users" ToRole="userlogins" />
-          <NavigationProperty Name="roles" Relationship="watermentdbModel.userroles" FromRole="users" ToRole="roles" />
-          <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="users" ToRole="facilities" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="ActivationToken" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="User" ToRole="sessions" />
+          <NavigationProperty Name="UserClaim" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="User" ToRole="UserClaim" />
+          <NavigationProperty Name="UserLogin" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="User" ToRole="UserLogin" />
+          <NavigationProperty Name="Role" Relationship="watermentdbModel.UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="User" ToRole="facilities" />
+        </EntityType>
+        <EntityType Name="UserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimValue" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="UserClaim" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="UserLogin" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRegistrationToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Client_Conection">
           <Key>
@@ -839,27 +837,11 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_locations1">
-          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="1" />
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="locations">
-              <PropertyRef Name="Id" />
-              <PropertyRef Name="countries_Id" />
-              <PropertyRef Name="countries_continents_Id" />
-            </Principal>
-            <Dependent Role="users">
-              <PropertyRef Name="locations_Id" />
-              <PropertyRef Name="locations_countries_Id" />
-              <PropertyRef Name="locations_countries_continents_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_sessions_users1">
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="1" />
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="1" />
           <End Type="watermentdbModel.sessions" Role="sessions" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="sessions">
@@ -868,40 +850,40 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           </ReferentialConstraint>
         </Association>
         <Association Name="ApplicationUser_Claims">
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="1">
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="watermentdbModel.userclaims" Role="userclaims" Multiplicity="*" />
+          <End Type="watermentdbModel.UserClaim" Role="UserClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userclaims">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="UserClaim">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="ApplicationUser_Logins">
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="1">
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="watermentdbModel.userlogins" Role="userlogins" Multiplicity="*" />
+          <End Type="watermentdbModel.UserLogin" Role="UserLogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="userlogins">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="userroles">
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
-          <End Type="watermentdbModel.roles" Role="roles" Multiplicity="*" />
+        <Association Name="UserRole">
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="*" />
+          <End Type="watermentdbModel.Role" Role="Role" Multiplicity="*" />
         </Association>
         <Association Name="users_has_facilities">
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
-          <End Type="watermentdbModel.users" Role="users" Multiplicity="*" />
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -969,11 +951,13 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="locations">
             <EntityTypeMapping TypeName="watermentdbModel.locations">
               <MappingFragment StoreEntitySet="locations">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="countries_continents_Id" ColumnName="countries_continents_Id" />
                 <ScalarProperty Name="countries_Id" ColumnName="countries_Id" />
+                <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="County" ColumnName="County" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -998,11 +982,11 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="watermentdbModel.roles">
-              <MappingFragment StoreEntitySet="roles">
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="watermentdbModel.Role">
+              <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1017,31 +1001,13 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="userclaims">
-            <EntityTypeMapping TypeName="watermentdbModel.userclaims">
-              <MappingFragment StoreEntitySet="userclaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="users_Id" ColumnName="users_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="userlogins">
-            <EntityTypeMapping TypeName="watermentdbModel.userlogins">
-              <MappingFragment StoreEntitySet="userlogins">
-                <ScalarProperty Name="users_Id" ColumnName="users_Id" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="watermentdbModel.users">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
-                <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
-                <ScalarProperty Name="locations_Id" ColumnName="locations_Id" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="watermentdbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="ActivationToken" ColumnName="ActivationToken" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
@@ -1055,6 +1021,34 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserClaim">
+            <EntityTypeMapping TypeName="watermentdbModel.UserClaim">
+              <MappingFragment StoreEntitySet="UserClaim">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogin">
+            <EntityTypeMapping TypeName="watermentdbModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegistrationToken">
+            <EntityTypeMapping TypeName="watermentdbModel.UserRegistrationToken">
+              <MappingFragment StoreEntitySet="UserRegistrationToken">
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1075,16 +1069,16 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="userroles" TypeName="watermentdbModel.userroles" StoreEntitySet="userroles">
-            <EndProperty Name="roles">
+          <AssociationSetMapping Name="UserRole" TypeName="watermentdbModel.UserRole" StoreEntitySet="UserRole">
+            <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
-            <EndProperty Name="users">
+            <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="users_has_facilities" TypeName="watermentdbModel.users_has_facilities" StoreEntitySet="users_has_facilities">
-            <EndProperty Name="users">
+            <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="users_Id" />
             </EndProperty>
             <EndProperty Name="facilities">

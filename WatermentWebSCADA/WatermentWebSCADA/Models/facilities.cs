@@ -19,7 +19,7 @@ namespace WatermentWebSCADA.Models
         {
             this.equipments = new HashSet<equipments>();
             this.maintenance = new HashSet<maintenance>();
-            this.users = new HashSet<users>();
+            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
@@ -36,6 +36,6 @@ namespace WatermentWebSCADA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<maintenance> maintenance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users> users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -50,8 +50,8 @@ namespace WatermentWebSCADA.Controllers
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x=>x.Id==LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.roles.ToList(),
-                    Brukere = db.users.Where(x=>x.locations_Id==LokasjonsID).ToList(),
+                    Roller = db.Role.ToList(),
+      //              Brukere = db.User.Where(x=>x.locations_Id==LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
                 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i=>i.equipments.Description=="Temperature Reactor").ToList(),
@@ -89,8 +89,8 @@ namespace WatermentWebSCADA.Controllers
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.roles.ToList(),
-                    Brukere = db.users.Where(x => x.locations_Id == LokasjonsID).ToList(),
+                    Roller = db.Role.ToList(),
+                 //   Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),

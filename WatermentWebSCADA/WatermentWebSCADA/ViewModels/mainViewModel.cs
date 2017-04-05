@@ -23,9 +23,9 @@ namespace WatermentWebSCADA.ViewModels
         public IEnumerable<equipments> Utstyr { get; set; }
         public IEnumerable<locations> Lokasjoner { get; set; }
         public IEnumerable<maintenance> Vedlikehold { get; set; }
-        public IEnumerable<roles> Roller { get; set; }
+        public IEnumerable<Role> Roller { get; set; }
         public IEnumerable<sessions> Sesjoner { get; set; }
-        public IEnumerable<users> Brukere { get; set; }
+        public IEnumerable<User> Brukere { get; set; }
         public List<countries_with_facilites_view>  countries { get; set; }
 
         public List<measurements> Verdier { get; set; }

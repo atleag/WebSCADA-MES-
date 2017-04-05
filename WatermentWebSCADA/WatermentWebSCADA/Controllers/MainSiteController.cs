@@ -33,8 +33,8 @@ namespace WatermentWebSCADA.Controllers
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.roles.ToList(),
-                    Brukere = db.users.ToList(),
+                    Roller = db.Role.ToList(),
+                    Brukere = db.User.ToList(),
                     Sesjoner = db.sessions.ToList(),
                     Anlegg = db.facilities.ToList(),
                     

@@ -12,13 +12,12 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class userclaims
+    public partial class UserLogin
     {
-        public int Id { get; set; }
-        public int users_Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public int UserId { get; set; }
     
-        public virtual users users { get; set; }
+        public virtual User User { get; set; }
     }
 }
