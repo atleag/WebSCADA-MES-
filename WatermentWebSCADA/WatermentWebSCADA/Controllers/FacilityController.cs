@@ -35,7 +35,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 IpClient = item2.ip;
             }
-            // Fetches the current row id seleted in the table facilities and sets the IP facility IP to
+            // Fetches the current row id seleted in the table facilities and sets the facility IP to
             // the Client IP.
             foreach (var item in db.facilities.Where(c=>c.Id==id))
             {
