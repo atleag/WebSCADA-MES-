@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WatermentWebSCADA.ViewModels;
 
-namespace WatermentWebSCADA.ViewModel
+namespace WatermentWebSCADA.ViewModels
 {
     public class DateTimeXAxisChartData
     {
