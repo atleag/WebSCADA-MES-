@@ -38,7 +38,7 @@ namespace WatermentWebSCADA.Controllers
    
                     Anlegg = db.facilities.ToList(),
                     
-
+                   
 
                 };
 

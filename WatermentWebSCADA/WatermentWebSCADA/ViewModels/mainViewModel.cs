@@ -35,6 +35,7 @@ namespace WatermentWebSCADA.ViewModels
         public List<alarms> AlarmList { get; set; }
 
 
+
     }
 
 }
