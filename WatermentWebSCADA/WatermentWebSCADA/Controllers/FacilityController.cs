@@ -15,6 +15,7 @@ using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using Newtonsoft.Json;
 
+
 namespace WatermentWebSCADA.Controllers
 {
     public class FacilityController : Controller
@@ -23,18 +24,26 @@ namespace WatermentWebSCADA.Controllers
        
         int LandId1;
         int LokasjonsID;
-        int BrukerID;
+        string IpClient;
+
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
+            // Fetches the current row id selected in the table Client_Conection
+            foreach (var item2 in db.Client_Conection.Where(c => c.user == id.ToString()))
+            {
+                IpClient = item2.ip;
+            }
+            // Fetches the current row id seleted in the table facilities and sets the IP facility IP to
+            // the Client IP.
             foreach (var item in db.facilities.Where(c=>c.Id==id))
             {
                 LandId1 = item.locations_countries_Id;
                 LokasjonsID = item.locations_Id;
-             
+                item.IP = IpClient;
             }
-
-
+            // Saves the changes to the DB
+            db.SaveChanges();
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
@@ -57,7 +66,6 @@ namespace WatermentWebSCADA.Controllers
                 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i=>i.equipments.Description=="Temperature Reactor").ToList(),
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
-
 
                 };
 

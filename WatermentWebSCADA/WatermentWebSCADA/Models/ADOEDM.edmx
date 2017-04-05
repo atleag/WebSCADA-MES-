@@ -145,6 +145,16 @@
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'def.watermentdb.Client_Conection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Client_Conection">
+          <Key>
+            <PropertyRef Name="user" />
+            <PropertyRef Name="ip" />
+          </Key>
+          <Property Name="user" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="countries_with_facilites_view">
           <Key>
@@ -325,6 +335,12 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
           <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb">
+            <DefiningQuery>SELECT
+`Client_Conection`.`user`, 
+`Client_Conection`.`ip`
+FROM `Client_Conection` AS `Client_Conection`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="countries_with_facilites_view" EntityType="Self.countries_with_facilites_view" store:Type="Views" store:Schema="watermentdb">
             <DefiningQuery>SELECT
 `countries_with_facilites_view`.`Id`, 
@@ -396,6 +412,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySet Name="roles" EntityType="watermentdbModel.roles" />
           <EntitySet Name="sessions" EntityType="watermentdbModel.sessions" />
           <EntitySet Name="users" EntityType="watermentdbModel.users" />
+          <EntitySet Name="Client_Conection" EntityType="watermentdbModel.Client_Conection" />
           <EntitySet Name="countries_with_facilites_view" EntityType="watermentdbModel.countries_with_facilites_view" />
           <AssociationSet Name="fk_alarms_equipments1" Association="watermentdbModel.fk_alarms_equipments1">
             <End Role="equipments" EntitySet="equipments" />
@@ -594,6 +611,14 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <NavigationProperty Name="roles" Relationship="watermentdbModel.fk_users_roles1" FromRole="users" ToRole="roles" />
           <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="users" ToRole="sessions" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="users" ToRole="facilities" />
+        </EntityType>
+        <EntityType Name="Client_Conection">
+          <Key>
+            <PropertyRef Name="user" />
+            <PropertyRef Name="ip" />
+          </Key>
+          <Property Name="user" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="countries_with_facilites_view">
           <Key>
@@ -876,6 +901,14 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_Conection">
+            <EntityTypeMapping TypeName="watermentdbModel.Client_Conection">
+              <MappingFragment StoreEntitySet="Client_Conection">
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="user" ColumnName="user" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
