@@ -1,18 +1,24 @@
-﻿@model IEnumerable<WatermentWebSCADA.ViewModel.DateTimeXAxisChartData>
+﻿<script src="~/scripts/JQChart.js" type="text/javascript"></script> 
+@model IEnumerable<WatermentWebSCADA.ViewModel.DateTimeXAxisChartData>
 @using JQChart.Web.Mvc
 
 <!DOCTYPE html>
 <html>
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="~/Content/jquery.jqChart.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/jquery.jqRangeSlider.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/themes/le-frog/jquery-ui-1.8.20.css" />
-    <script src="@Url.Content("~/Scripts/jquery-1.11.1.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.mousewheel.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.jqChart.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/jquery.jqRangeSlider.min.js")" type="text/javascript"></script>
+    <script src="~/scripts/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="~/scripts/JQChart.js" type="text/javascript"></script>  
+    <script src="~/scripts/jquery-3.1.1.intellisense.js" type="text/javascript"></script>  
+    <script src="~/scripts/modernizr-2.8.3.js" type="text/javascript"></script>  
+    <script src="~/scripts/jquery-3.1.1.intellisense.js" type="text/javascript"></script>
+
     <!--[if IE]><script lang="javascript" type="text/javascript" src="@Url.Content("~/Scripts/excanvas.js")"></script><![endif]-->
+    @*<script src="~/scripts/jquery-3.1.1.js"></script>
+     
+    <script src="~/scripts/jquery-3.1.1.intellisense.js"></script>
+    
+    <script src="~/scripts/modernizr-2.8.3.js"></script>*@
+
 </head>
 <body>
     <div>
@@ -21,21 +27,22 @@
                 .ID("jqChart")
                 .Width(500)
                 .Height(300)
-                .Title("Chart Title")
-                .Legend(el => el.Title("Legend"))
+                .Title("Axis Zooming")
                 .Border(border => border.StrokeStyle("#6ba851"))
                 .Background(background => background.LinearGradient(0, 0, 0, 1).ColorStops(stop =>
                 {
                     stop.Add(0, "#d2e6c9");
                     stop.Add(1, "white");
                 }))
-                .Tooltips(tooltips => tooltips.TooltipsType(TooltipsType.Shared))
-                .Crosshairs(el => el.Enabled(true).VerticalLine(line => line.StrokeStyle("#cc0a0c")).HorizontalLine(false))
-                .Animation(TimeSpan.FromSeconds(2))
-                .Shadows(true)
+                .Animation(TimeSpan.FromSeconds(1))
                 .Axes(axis =>
                 {
                     axis.DateTimeAxis(Location.Bottom)
+                        .VisibleMinimum(new DateTime(2010, 2, 1))
+                        .VisibleMaximum(new DateTime(2010, 5, 1))
+                        .ZoomEnabled(true);
+
+                    axis.LinearAxis(Location.Left)
                         .ZoomEnabled(true);
                 }
                 )
@@ -57,32 +64,6 @@
                 .Render()
         )
     </div>
-    <script lang="javascript" type="text/javascript">
-        $(document).ready(function () {
-            $('#jqChart').bind('tooltipFormat', function (e, data) {
-
-                if ($.isArray(data) == false) {
-
-                    var date = data.chart.stringFormat(data.x, "ddd, mmm dS, yyyy");
-
-                    var tooltip = '<b>' + date + '</b><br />' +
-                          '<span style="color:' + data.series.fillStyle + '">' + data.series.title + ': </span>' +
-                          '<b>' + data.y + '</b><br />';
-
-                    return tooltip;
-                }
-
-                var date = data[0].chart.stringFormat(data[0].x, "ddd, mmm dS, yyyy");
-
-                var tooltip = '<b>' + date + '</b><br />' +
-                      '<span style="color:' + data[0].series.fillStyle + '">' + data[0].series.title + ': </span>' +
-                      '<b>' + data[0].y + '</b><br />' +
-                      '<span style="color:' + data[1].series.fillStyle + '">' + data[1].series.title + ': </span>' +
-                      '<b>' + data[1].y + '</b><br />';
-
-                return tooltip;
-            });
-        });
-    </script>
+    <h2>Chartforfaen</h2>
 </body>
 </html>

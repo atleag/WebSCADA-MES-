@@ -176,6 +176,7 @@
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\JQChart.js" />
+    <Content Include="Content\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
     <Content Include="scripts\jquery-3.1.1.slim.js" />
@@ -195,9 +196,11 @@
     <Compile Include="Controllers\AlarmsController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
+    <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
@@ -210,6 +213,8 @@
     <Compile Include="Models\countries_with_facilites_view.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DataPoint.cs" />
+    <Compile Include="ViewModels\DataService.cs" />
     <Compile Include="Models\equipments.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
@@ -222,7 +227,6 @@
     <Compile Include="Models\roles.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,6 +308,7 @@
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
     <Content Include="Views\Facility\chart.cshtml" />
     <Content Include="Views\Chart\AxisZooming.cshtml" />
+    <Content Include="Views\Feature\ZoomingPanning.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

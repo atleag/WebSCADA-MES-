@@ -13,6 +13,7 @@ using MySql.Data.Entity;
 using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
+using Newtonsoft.Json;
 
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -113,6 +114,10 @@ namespace WatermentWebSCADA.Controllers
 
 
                 };
+
+                JsonSerializerSettings jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+                ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetRandomDataForNumericAxis(1000), jsonSetting);
 
                 return View(model);
             }

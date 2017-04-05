@@ -15,7 +15,7 @@
             margin: 20px 0 20px 0;
             padding: 20px;
             border-radius: 25px;
-            height:370px;
+            height: 370px;
         }
     </style>
 </head>
@@ -23,250 +23,250 @@
 
 @*<div style='display: block; height: 500px'>left</div>*@
 
-    @*<p>Min ip er @Model.IP[1]</p>
+@*<p>Min ip er @Model.IP[1]</p>
 
-        <p>Og min adresse er @Model.Address</p>
+    <p>Og min adresse er @Model.Address</p>
 
-        @foreach (var item in Model.Name)
-        {
-            <p>@item</p>
-        }*@
+    @foreach (var item in Model.Name)
+    {
+        <p>@item</p>
+    }*@
 
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-    </head>
+</head>
 
-    @*@{ int x = 0; }*@
+@*@{ int x = 0; }*@
 
-    <div>
-        @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
-
-
-        <div class="container">
-
-            <div class="col-sm-4">
-                <div class="intro">
-                    <h3>Aktive anlegg</h3>
-
-                    <dl class="dl-horizontal">
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Anlegg)
-
-                        </dt>
+<div>
+    @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
 
 
+    <div class="container">
 
-                        <dd>
-                            @foreach (var skill in Model.Anlegg)
-                            {
+        <div class="col-sm-4">
+            <div class="intro">
+                <h3>Aktive anlegg</h3>
+
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Anlegg)
+
+                    </dt>
+
+
+
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
                             @skill.Name
-                            }
-                        </dd>
+                        }
+                    </dd>
 
 
 
 
-                        <dt>
+                    <dt>
 
-                            "Land"
-                        </dt>
+                        "Land"
+                    </dt>
 
-                        <dd>
+                    <dd>
 
-                            @foreach (var item in Model.Land)
-                            {
+                        @foreach (var item in Model.Land)
+                        {
                             @item.Name
-                            }
+                        }
 
-                        </dd>
+                    </dd>
 
 
-                        <dt>
-                            "Fylke"
+                    <dt>
+                        "Fylke"
 
-                            @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
-                        </dt>
+                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
+                    </dt>
 
-                        <dd>
+                    <dd>
 
-                            @foreach (var item in Model.Lokasjoner)
-                            {
+                        @foreach (var item in Model.Lokasjoner)
+                        {
                             @item.County
-                            }
-                        </dd>
-                        <dt>
-                            "Postnr"
-                        </dt>
-                        <dd>
-                            @foreach (var item in Model.Lokasjoner)
-                            {
+                        }
+                    </dd>
+                    <dt>
+                        "Postnr"
+                    </dt>
+                    <dd>
+                        @foreach (var item in Model.Lokasjoner)
+                        {
                             @item.Postcode
-                            }
-                        </dd>
-                        <dt>
-                            "Adresse"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "Adresse"
+                    </dt>
 
-                        <dd>
-                            @foreach (var item in Model.Lokasjoner)
-                            {
+                    <dd>
+                        @foreach (var item in Model.Lokasjoner)
+                        {
                             @item.Address
-                            }
-                        </dd>
-                        <dt>
-                            "Bruker"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "Bruker"
+                    </dt>
 
-                        <dd>
-                            @foreach (var item in Model.Brukere)
-                            {
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
                             <p> @item.FirstName  @item.LastName</p>
-                            }
-                        </dd>
-                        <dt>
-                            "Telefon"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "Telefon"
+                    </dt>
 
-                        <dd>
-                            @foreach (var item in Model.Brukere)
-                            {
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
                             @item.Phone
-                            }
-                        </dd>
-                        <dt>
-                            "E-post"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "E-post"
+                    </dt>
 
-                        <dd>
-                            @foreach (var item in Model.Brukere)
-                            {
+                    <dd>
+                        @foreach (var item in Model.Brukere)
+                        {
                             @item.Email
-                            }
-                        </dd>
-                        <dt>
-                            "Domene"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "Domene"
+                    </dt>
 
-                        <dd>
-                            @foreach (var item in Model.Anlegg)
-                            {
+                    <dd>
+                        @foreach (var item in Model.Anlegg)
+                        {
                             @item.Domain
-                            }
-                        </dd>
-                        <dt>
-                            "IP"
-                        </dt>
+                        }
+                    </dd>
+                    <dt>
+                        "IP"
+                    </dt>
 
-                        <dd>
-                            @foreach (var skill in Model.Anlegg)
-                            {
+                    <dd>
+                        @foreach (var skill in Model.Anlegg)
+                        {
                             @skill.IP
-                            }
-                        </dd>
+                        }
+                    </dd>
 
-                        <dt>
-                            @*"Domene"*@
+                    <dt>
+                        @*"Domene"*@
 
-                        </dt>
+                    </dt>
 
-                        <dd>
-                            @*@Html.DisplayFor(model => model.Email[x])*@
-                        </dd>
-                        <dt>
-                            @foreach (var skill in Model.Anlegg)
-                            {
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Email[x])*@
+                    </dd>
+                    <dt>
+                        @foreach (var skill in Model.Anlegg)
+                        {
                             <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
-                            }
+                        }
 
-                        </dt>
+                    </dt>
 
-                        <dd>
-
-
-                        </dd>
+                    <dd>
 
 
-                    </dl>
+                    </dd>
 
-                </div>
 
+                </dl>
 
             </div>
 
-
-
-            
-                <div class="col-sm-8">
-                    <div class="intro">
-
-                        <h4><b>Alarms</b></h4>
-                       
-                        @{int alarmnr = 0;}
-                       @foreach (var skill in Model.Alarmer)
-                       {
-                           alarmnr++;
-                      //Teller opp alle i alarmer i tabellen
-                       }
-
-                        @foreach (var skill in Model.Alarmer)
-                        {
-                            
-                            
-                            
-                            //if (alarmnr == 9) break;
-                            if (alarmnr < 10)
-                            {
-                                <p>@skill.Description @skill.AlarmOccured @skill.ProcessValue @skill.Status @skill.equipments.Tag</p>
-
-                                //Skriver ut her hvis det er mindre ennn 10 alarmer
-                            }
-                            if (alarmnr >= 10)
-                            {
-
-                            
-                               
-                                if (skill == Model.Alarmer.Last())
-                                {
-
-                                    //Skriver ut her hvis det er mer enn ti alarmer, for å få de ti siste. 
-                                            
-                                                    <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
-                                               <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
-                                                <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
-                                               <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
-                                                <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
-                                               <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
-                                                <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
-                                             <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
-                                              <p>@Model.AlarmList[alarmnr - 2].AlarmOccured @Model.AlarmList[alarmnr - 2].Description @Model.AlarmList[alarmnr - 2].Status @Model.AlarmList[alarmnr - 2].equipments.Tag @Model.AlarmList[alarmnr - 2].equipments.Description </p>
-                                            <p>@Model.AlarmList[alarmnr - 1].AlarmOccured@Model.AlarmList[alarmnr - 1].Description@Model.AlarmList[alarmnr - 1].Status@Model.AlarmList[alarmnr - 1].equipments.Tag@Model.AlarmList[alarmnr - 1].equipments.Description</p>
-                                       
-
-                                }
-                            }
-
-
-                        }
-
-
-                        @*>*@
-
-                     
-                        
-                    </div>
-
-                    </div>
 
         </div>
 
 
 
-                </th>
-                <th>
-                    <script type="text/javascript">
+
+        <div class="col-sm-8">
+            <div class="intro">
+
+                <h4><b>Alarms</b></h4>
+
+                @{int alarmnr = 0;}
+                @foreach (var skill in Model.Alarmer)
+                {
+                    alarmnr++;
+                    //Teller opp alle i alarmer i tabellen
+                }
+
+                @foreach (var skill in Model.Alarmer)
+                {
+
+
+
+                    //if (alarmnr == 9) break;
+                    if (alarmnr < 10)
+                    {
+                        <p>@skill.Description @skill.AlarmOccured @skill.ProcessValue @skill.Status @skill.equipments.Tag</p>
+
+                        //Skriver ut her hvis det er mindre ennn 10 alarmer
+                    }
+                    if (alarmnr >= 10)
+                    {
+
+
+
+                        if (skill == Model.Alarmer.Last())
+                        {
+
+                            //Skriver ut her hvis det er mer enn ti alarmer, for å få de ti siste.
+
+                            <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
+                            <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 2].AlarmOccured @Model.AlarmList[alarmnr - 2].Description @Model.AlarmList[alarmnr - 2].Status @Model.AlarmList[alarmnr - 2].equipments.Tag @Model.AlarmList[alarmnr - 2].equipments.Description </p>
+                                                    <p>@Model.AlarmList[alarmnr - 1].AlarmOccured@Model.AlarmList[alarmnr - 1].Description@Model.AlarmList[alarmnr - 1].Status@Model.AlarmList[alarmnr - 1].equipments.Tag@Model.AlarmList[alarmnr - 1].equipments.Description</p>
+
+
+                        }
+                    }
+
+
+                }
+
+
+                @*>*@
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    </th>
+    <th>
+        <script type="text/javascript">
 
 
                             window.onload = function () {
@@ -403,7 +403,7 @@
 
 
                                     );
-                                Chart.defaults.global.animationSteps = 100;
+                                Chart.defaults.global.animationSteps = 50;
                                 Chart.defaults.global.tooltipYPadding = 16;
                                 Chart.defaults.global.tooltipCornerRadius = 0;
                                 Chart.defaults.global.tooltipTitleFontStyle = "normal";
@@ -484,7 +484,7 @@
 
                                             zoomEnabled: true,
                                             animationEnabled: true,
-                                           
+
 
                                             yAxisID: "y-axis-0",
                                             "data": [
@@ -563,7 +563,7 @@
                                             ]
                                         }
                                     }
-                                   
+
                                 });
                                 Chart.defaults.global.animationSteps = 50;
                                 Chart.defaults.global.tooltipYPadding = 16;
@@ -579,47 +579,64 @@
 
 
                             };
-                    </script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
-                    <canvas id="chart" width="920" height="350"></canvas>
-
-
-                    };
-                    </script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
-                    <canvas id="chart2" width="920" height="350"></canvas>
-
-                </th>
-                <th></th>
-        <script type="text/javascript">
-
- 
-    });
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+        <canvas id="chart" width="920" height="350"></canvas>
 
 
-                <th></th>
+        };
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+        <canvas id="chart2" width="920" height="350"></canvas>
+
+    </th>
+    <th></th>
+    <script type="text/javascript">
+
+
+    ;
+    </script>
+
+
+    <th></th>
 
 
 
-                </th>
-                </tr>
-                </table>
+    </th>
+    </tr>
+    </table>
 
 
 
 
-            </div>
-    @*<div class="jumbotron text-center img-responsive" id="jumbotron">
-            <div id="jumbotron-header">
-                <h4><b>Alarms</b></h4>
+</div>
+<div id="chartContainer"></div>
 
+<script type="text/javascript">
 
-                @foreach (var skill in Model.Alarmer)
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "theme2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            title: {
+            	text: "Zooming graph, copied by:Kimmeh!"
+            },
+            subtitles:[
                 {
-                    <p>@skill.Description @skill.AlarmOccured @skill.Status @skill.equipments.Tag</p>
+                	text: "Line Chart with 1000 Data Points"
                 }
+            ],
+            data: [
+            {
+                type: "line",
 
-            </div>
+                dataPoints: @Html.Raw(ViewBag.DataPoints),
+            }
+            ]
+        });
+        chart.render();
+    });
+</script>
 
-        </div>*@
+    </div>

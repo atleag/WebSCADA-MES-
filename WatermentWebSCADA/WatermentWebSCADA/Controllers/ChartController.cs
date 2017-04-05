@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using WatermentWebSCADA.ViewModels;
 
 namespace WatermentWebSCADA.Controllers
@@ -12,8 +13,8 @@ namespace WatermentWebSCADA.Controllers
         // GET: Chart
         public ActionResult AxisZooming()
         {
-            //return View(DateTimeXAxisChartData.GetRandom());
-            return View();
+            return View(DateTimeXAxisChartData.GetRandom());
+            //return View();
         }
     }
 }
