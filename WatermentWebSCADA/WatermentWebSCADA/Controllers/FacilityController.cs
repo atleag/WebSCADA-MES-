@@ -13,7 +13,8 @@ using MySql.Data.Entity;
 using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
-using Newtonsoft.Json;
+
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 
 namespace WatermentWebSCADA.Controllers
@@ -106,6 +107,8 @@ namespace WatermentWebSCADA.Controllers
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
+                  
+                  
 
 
 
@@ -117,7 +120,7 @@ namespace WatermentWebSCADA.Controllers
 
         public ActionResult FacilityOverview(int? id)
         {
-
+           
 
             using (var db = new Models.watermentdbEntities())
             {
@@ -126,9 +129,31 @@ namespace WatermentWebSCADA.Controllers
 
                     countries = db.countries_with_facilites_view.ToList(),
                     Anlegg = db.facilities.Where(x => x.locations_countries_Id == id).ToList(),
+
                 };
 
            
+                return View(model);
+            }
+        }
+
+        public ActionResult Get(int id)
+        {
+           
+            using (var db = new Models.watermentdbEntities())
+            {
+                var model = new MainViewModel
+                {
+
+                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),
+                   
+                 
+
+                };
+
+
+
+               
                 return View(model);
             }
         }

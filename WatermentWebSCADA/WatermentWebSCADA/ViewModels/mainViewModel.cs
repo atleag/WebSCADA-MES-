@@ -27,6 +27,8 @@ namespace WatermentWebSCADA.ViewModels
         public IEnumerable<sessions> Sesjoner { get; set; }
         public IEnumerable<users> Brukere { get; set; }
         public List<countries_with_facilites_view>  countries { get; set; }
+        public Client_Conection conection { get; set; }
+
 
         public List<measurements> Verdier { get; set; }
         public List<measurements> Bar { get; set; }
