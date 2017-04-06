@@ -27,6 +27,7 @@ namespace WatermentWebSCADA.Controllers
         int LandId1;
         int LokasjonsID;
         string IpClient;
+        double[] arr;
 
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
@@ -47,6 +48,17 @@ namespace WatermentWebSCADA.Controllers
 
             // Saves the changes to the DB
             db.SaveChanges();
+
+            //foreach (var item in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor"))
+            //{
+            //    for (int i = 0; i < db.measurements.Select(x => x.ProcessValue).Max(); i++)
+            //    {
+            //        arr[i] = db.measurements.Select(x => x.ProcessValue).ToArray[i]
+            //    }
+            //}
+
+            
+            
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
@@ -66,8 +78,12 @@ namespace WatermentWebSCADA.Controllers
                     Roller = db.roles.ToList(),
                     Brukere = db.users.Where(x=>x.locations_Id==LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
-                    Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i=>i.equipments.Description=="Temperature Reactor").ToList(),
+                 
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+
+                    //Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
+
+                    Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
 
                 };
 

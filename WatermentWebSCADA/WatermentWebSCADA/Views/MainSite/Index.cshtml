@@ -88,7 +88,7 @@ h1{
 
                            <tr>
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                               <td>@item.Domain</td> 
+                               <td>@item.</td> 
                                <td>554</td> 
                            </tr> 
 
@@ -108,13 +108,13 @@ h1{
                         <th>Alarm tag</th>
                         <th>Prosessverdi</th>
                     </tr>
-                    @foreach (var item in Model.Anlegg)
+                    @foreach (var item in Model.Equipment)
                     {
 
                         <tr>
-                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                            <td>@item.Domain</td>
-                            <td>554</td>
+                            <td>@item.facilities</td>
+                            <td>@item.alarms</td>
+                            <td>@item.Description</td>
                         </tr>
 
                     }

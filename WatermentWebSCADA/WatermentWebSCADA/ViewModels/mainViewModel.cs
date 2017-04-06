@@ -29,10 +29,12 @@ namespace WatermentWebSCADA.ViewModels
         public List<countries_with_facilites_view>  countries { get; set; }
         public Client_Conection conection { get; set; }
 
+        public List<equipments> Equipment { get; set; }
 
         public List<measurements> Verdier { get; set; }
         public List<measurements> Bar { get; set; }
         public List<alarms> AlarmList { get; set; }
+  
 
 
 
