@@ -16,5 +16,7 @@ namespace WatermentWebSCADA.ViewModels
         public string location_Address { get; set; }
         public int location_Postcode { get; set; }
         public string location_country_CountryName { get; set; }
+      
     }
+  
 }

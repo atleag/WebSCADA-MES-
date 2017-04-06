@@ -193,7 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AlarmsController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
@@ -289,11 +288,6 @@
     <Content Include="Views\Equipments\Details.cshtml" />
     <Content Include="Views\Equipments\Edit.cshtml" />
     <Content Include="Views\Equipments\Index.cshtml" />
-    <Content Include="Views\Alarms\Create.cshtml" />
-    <Content Include="Views\Alarms\Delete.cshtml" />
-    <Content Include="Views\Alarms\Details.cshtml" />
-    <Content Include="Views\Alarms\Edit.cshtml" />
-    <Content Include="Views\Alarms\Index.cshtml" />
     <Content Include="Views\Measurements\Create.cshtml" />
     <Content Include="Views\Measurements\Delete.cshtml" />
     <Content Include="Views\Measurements\Details.cshtml" />
@@ -303,7 +297,6 @@
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
     <Content Include="Views\UserManagement\Create.cshtml" />
-    <Content Include="Views\Alarms\Alarmindex.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
     <Content Include="Views\Facility\chart.cshtml" />

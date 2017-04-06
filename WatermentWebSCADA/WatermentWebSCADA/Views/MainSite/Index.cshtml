@@ -29,11 +29,13 @@
   height: 350px;
   opacity: 1;
   border-radius: 6px;
-  background-color:rgb(242, 236, 247);
+  background-color:rgb(238, 237, 208);
   box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;
-  padding:10px;
-  margin-top:30px;
-  margin-bottom:45px;
+  padding:20px;
+  margin-top:25px;
+  margin-bottom:25px;
+  margin-right:25px;
+  margin-left:25px;
   overflow-y:scroll;
   position:relative;
 }
@@ -41,51 +43,83 @@
 	background-size:100% 100px;
 	background-repeat:no-repeat;
 }
+.r1 {
+    width: 25%;
+    float: left    
+}
+.r2{
+    width: 25%;
+    float: right;
+
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+h1{
+    font-weight:bolder;
+}
 </style>
     
 </head>
 
-    <h1 align ="center">Waterment Biogass</h1>
+    <h1 align ="center">Overvievw</h1>
    
 <div class="container">
        <div class="col-lg-6">
            <div class="frame">
-             <h3 align ="center">Status</h3>
-               <table width="100%">
-                   <tr>
-                       <th>Anlegg</th>
-                       <th>Sted</th>
-                       <th>Status</th>
+             <h3 align ="center" >Status</h3>
+      
+               <div class="row">
+                   <table>
+                       <tr>
+                           <th>Annleggsnavn</th>
+                           <th>Plasering</th>
+                           <th>Status</th>
+                       </tr>
+                       @foreach (var item in Model.Anlegg)
+                       {
 
-                   </tr>
-                   <tr>
-                       
-                           @foreach (var item in Model.Anlegg)
-                           {
-                           <<td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td> 
+                           <tr>
+                               <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                               <td>@item.Domain</td> 
+                               <td>554</td> 
+                           </tr> 
 
-                             @*<td>@item.locations</td>*@
-                             @*<td>@item.IP</td>*@ 
-                            
-                           }
-                   
-                   </tr>
-                
-
-               </table>
+                       }
+                   </table>
+           </div>
+               
                </div>
       
 
        
             <div class="frame">
             <h3 align =" center">Anlegg med høy alarm</h3>
-            @foreach (var item in Model.AlarmList)
-            {
-                
-                
-                    <p>@item.AlarmOccured</p>
-                
-            }
+                <table>
+                    <tr>
+                        <th>Annleggsnavn</th>
+                        <th>Alarm tag</th>
+                        <th>Prosessverdi</th>
+                    </tr>
+                    @foreach (var item in Model.Anlegg)
+                    {
+
+                        <tr>
+                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                            <td>@item.Domain</td>
+                            <td>554</td>
+                        </tr>
+
+                    }
+                </table>
+
                 </div>
        
     </div>
@@ -93,14 +127,45 @@
        <div class="col-lg-6">
             <div class="frame">
             <h3 align =" center">Dato vedlikeholdt</h3>
-            @foreach (var item in Model.Anlegg)
-            {
-                <p>@Html.ActionLink(item.Name, "Index", new { id = item.Id })</p>
-            }
+                <table>
+                    <tr>
+                        <th>Annleggsnavn</th>
+                        <th>Plasering</th>
+                        <th>Siste service</th>
+                    </tr>
+                    @foreach (var item in Model.Anlegg)
+                    {
+
+                        <tr>
+                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                            <td>@item.Domain</td>
+                            <td>554</td>
+                        </tr>
+
+                    }
+                </table>
+
                 </div>
     <div class="frame">
-        <h3 align ="center">Ord for dagen</h3>
-     
+        <h3 align ="center">Info</h3>
+        <table>
+            <tr>
+                <th>Annleggsnavn</th>
+                <th>Plasering</th>
+                <th>Status</th>
+            </tr>
+            @foreach (var item in Model.Anlegg)
+            {
+
+                <tr>
+                    <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                    <td>@item.Domain</td>
+                    <td>554</td>
+                </tr>
+
+            }
+        </table>
+
     </div>
     </div>
      
