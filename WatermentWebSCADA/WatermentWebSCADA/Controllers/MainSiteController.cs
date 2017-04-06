@@ -19,35 +19,32 @@ namespace WatermentWebSCADA.Controllers
     public class MainSiteController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-
-        string AlarmNavn;
         
         // GET: Main
         public ActionResult Index(int? id)
         {
             using (var db1 = new Models.watermentdbEntities())
-
             {
                 var model = new MainViewModel
                 {
 
                     Land = db.countries.Where(c => c.continents.Id == id).ToList(),
-                    AlarmList = db.alarms.Where(o => o.Status == "Active").ToList(),
-                    Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
+                    Alarmer = db.alarms.ToList(),
+                    Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-
+                    Roller = db.Role.ToList(),
                     Brukere = db.User.ToList(),
-
+                    Sesjoner = db.sessions.ToList(),
                     Anlegg = db.facilities.ToList(),
-
+                    
 
 
                 };
 
                 return View(model);
-
-            }   
+            
+              }   
            }      
       
         } 
