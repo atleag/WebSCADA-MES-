@@ -202,7 +202,9 @@
         <div class="col-sm-8">
             <div class="intro">
 
-                <h4><b>Alarms</b></h4>
+                <h4>
+                    <b>Alarms</b>
+                </h4>
 
                 @{int alarmnr = 0;}
                 @foreach (var skill in Model.Alarmer)
@@ -235,7 +237,7 @@
 
                             <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
                             <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
+                            <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
@@ -266,7 +268,7 @@
 
     </th>
     <th>
-  
+
 
 
 
@@ -274,72 +276,103 @@
 </div>
 
 
-    <div id="chartContainer"></div>
+<div id="chartContainer"></div>
 
-    <script type="text/javascript">
-        var result = @Html.Raw(ViewBag.DataPoints);
-        var dataPoints =[];
-        @*var dato = new Date();
+<script type="text/javascript">
+    var result = @Html.Raw(ViewBag.DataPoints);
+    var dataPoints =[];
+
+    @*var dato = new Date();
         dato = @Model.Verdier[1].Recorded;*@
 
 
-        //for(var i = 0; i < result.length; i++){
-        //    dataPoints.push({label:result[i].x, y:result[i].y});
-        //}
+    //for(var i = 0; i < result.length; i++){
+    //    dataPoints.push({label:result[i].x, y:result[i].y});
+    //}
 
-        $(function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
-                theme: "theme2",
-                zoomEnabled: true,
-                animationEnabled: true,
-                title: {
-                    text: "Line Chart with Data-Points from DataBase  @Model.Verdier[1].Recorded"
-                },
+    $(function () {
 
-                //axisX:{
-                //    intervalType: "hour",
-                //    interval: 1,
-                //    valueFormatString: "hh:mm:ss tt",
-                //},
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "theme2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            toolTip:{
+                backgroundColor: "#f4d5a6",
+            },
+      
+            title: {
+                text: "Line Chart with Data-Points from DataBase  @Model.Verdier[1].Recorded"
+            },
 
-                data: [
+            //axisX:{
+            //    intervalType: "hour",
+            //    interval: 1,
+            //    valueFormatString: "hh:mm:ss tt",
+            //},
+
+            data: [
+            {
+                type: "line",
+                //xValueFormatString: "Year ##/##/#### ##:##:##",
+                //xValueType:"dateTime",
+
+                @*@Model.Verdier[1].Recorded}*@
+                dataPoints:[
+
+
+                    @*@foreach (var item in Model.Verdier)
+            {
+                for (int i = 0; i < 20; i++)
                 {
-                    type: "line",
-                    //xValueFormatString: "Year ##/##/#### ##:##:##",
-                    //xValueType:"dateTime",
+                    label: item.Recorded, y: @Model.Verdier[2].ProcessValue
+                }
+                { label: "@Model.Verdier[1].Recorded}", y: @Model.Verdier[2].ProcessValue}
+            }*@
 
-                    @*@Model.Verdier[1].Recorded}*@
-                    dataPoints:[
+                    {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
+            {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
+      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[8].Recorded", y:@Model.Verdier[2].ProcessValue},
+      {label: "@Model.Verdier[9].Recorded", y:@Model.Verdier[3].ProcessValue},
+      {label: "@Model.Verdier[10].Recorded", y:@Model.Verdier[1].ProcessValue},
+      {label:"@Model.Verdier[11].Recorded", y:@Model.Verdier[2].ProcessValue},
+            {label: "@Model.Verdier[12].Recorded", y:@Model.Verdier[12].ProcessValue},
+      {label:"@Model.Verdier[13].Recorded", y:@Model.Verdier[13].ProcessValue},
+      {label: "@Model.Verdier[14].Recorded", y:@Model.Verdier[14].ProcessValue},
+      {label: "@Model.Verdier[15].Recorded", y:@Model.Verdier[15].ProcessValue},
+      {label:"@Model.Verdier[16].Recorded", y:@Model.Verdier[16].ProcessValue},
+      {label: "@Model.Verdier[17].Recorded", y:@Model.Verdier[17].ProcessValue},
+      {label: "@Model.Verdier[18].Recorded", y:@Model.Verdier[18].ProcessValue},
+      {label:"@Model.Verdier[19].Recorded", y:@Model.Verdier[19].ProcessValue},
+      {label: "@Model.Verdier[20].Recorded", y:@Model.Verdier[20].ProcessValue}
 
 
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
-          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue},
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
-          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue},
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
-          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
-          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue}
+            //
 
-
-                //
-
-                    ]
-               }
                 ]
+            }
+            ]
 
 
-                    @*{x:1, y:@Model.Verdier[1].ProcessValue, //dataPoint
+            @*{x:1, y:@Model.Verdier[1].ProcessValue, //dataPoint
                 {x:2, y:@Model.Verdier[2].ProcessValue}, //dataPoint
     {x:3, y:@Model.Verdier[3].ProcessValue} //dataPoint*@
 
 
 
-            });
-            chart.render();
         });
-    </script>
+        chart.render();
+    });
+</script>
 
 <h3>Hey på deg @Model.Verdier[1].Recorded</h3>
 

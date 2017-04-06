@@ -122,6 +122,11 @@ namespace WatermentWebSCADA.Controllers
 
                 ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetRandomDataForNumericAxis(1000), jsonSetting);
 
+
+
+
+                
+
                 return View(model);
             }
         }
