@@ -57,9 +57,9 @@
           <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
           <Property Name="Domain" Type="varchar" MaxLength="80" />
-          <Property Name="locations_Id" Type="int" Nullable="false" />
-          <Property Name="locations_countries_Id" Type="int" Nullable="false" />
-          <Property Name="locations_countries_continents_Id" Type="int" Nullable="false" />
+          <Property Name="locations_Id" Type="int" />
+          <Property Name="locations_countries_Id" Type="int" />
+          <Property Name="locations_countries_continents_Id" Type="int" />
         </EntityType>
         <EntityType Name="locations">
           <Key>
@@ -74,7 +74,6 @@
           <Property Name="City" Type="varchar" MaxLength="100" />
           <Property Name="countries_Id" Type="int" Nullable="false" />
           <Property Name="countries_continents_Id" Type="int" Nullable="false" />
-          <Property Name="User_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -119,7 +118,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="EmailConfirmed" Type="bit" />
@@ -137,6 +136,9 @@
           <Property Name="IsLocked" Type="bit" Nullable="false" />
           <Property Name="PasswordQuestion" Type="varchar" MaxLength="500" />
           <Property Name="PasswordAnswer" Type="varchar" MaxLength="500" />
+          <Property Name="locations_Id" Type="int" />
+          <Property Name="locations_countries_Id" Type="int" />
+          <Property Name="locations_countries_continents_Id" Type="int" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -182,7 +184,7 @@
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'def.watermentdb_copy.Client_Conection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'def.watermentdb.Client_Conection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Client_Conection">
           <Key>
             <PropertyRef Name="user" />
@@ -192,7 +194,7 @@ warning 6002: The table/view 'def.watermentdb_copy.Client_Conection' does not ha
           <Property Name="ip" Type="varchar" MaxLength="64" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="countries_with_facilites_view">
           <Key>
             <PropertyRef Name="Id" />
@@ -282,7 +284,7 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_facilities_locations1">
-          <End Role="locations" Type="Self.locations" Multiplicity="1" />
+          <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
           <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="locations">
@@ -373,6 +375,22 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_users_locations1">
+          <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="IdentityRole_Users">
           <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -388,29 +406,29 @@ warning 6002: The table/view 'def.watermentdb_copy.countries_with_facilites_view
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="watermentdbModelStoreContainer">
-          <EntitySet Name="alarms" EntityType="Self.alarms" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="continents" EntityType="Self.continents" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="countries" EntityType="Self.countries" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="equipments" EntityType="Self.equipments" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="facilities" EntityType="Self.facilities" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="locations" EntityType="Self.locations" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="measurements" EntityType="Self.measurements" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="UserRegistrationToken" EntityType="Self.UserRegistrationToken" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb_copy" store:Type="Tables" />
-          <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb_copy">
+          <EntitySet Name="alarms" EntityType="Self.alarms" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="continents" EntityType="Self.continents" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="equipments" EntityType="Self.equipments" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="facilities" EntityType="Self.facilities" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="locations" EntityType="Self.locations" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="measurements" EntityType="Self.measurements" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="UserRegistrationToken" EntityType="Self.UserRegistrationToken" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb">
             <DefiningQuery>SELECT
 `Client_Conection`.`user`, 
 `Client_Conection`.`ip`
 FROM `Client_Conection` AS `Client_Conection`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="countries_with_facilites_view" EntityType="Self.countries_with_facilites_view" store:Type="Views" store:Schema="watermentdb_copy">
+          <EntitySet Name="countries_with_facilites_view" EntityType="Self.countries_with_facilites_view" store:Type="Views" store:Schema="watermentdb">
             <DefiningQuery>SELECT
 `countries_with_facilites_view`.`Id`, 
 `countries_with_facilites_view`.`Name`
@@ -468,6 +486,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="User" EntitySet="User" />
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
+          <AssociationSet Name="fk_users_locations1" Association="Self.fk_users_locations1">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
           <AssociationSet Name="IdentityRole_Users" Association="Self.IdentityRole_Users">
             <End Role="Role" EntitySet="Role" />
             <End Role="UserRole" EntitySet="UserRole" />
@@ -521,6 +543,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <AssociationSet Name="fk_maintenance_facilities1" Association="watermentdbModel.fk_maintenance_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="maintenance" EntitySet="maintenance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_locations1" Association="watermentdbModel.fk_users_locations1">
+            <End Role="locations" EntitySet="locations" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="fk_sessions_users1" Association="watermentdbModel.fk_sessions_users1">
             <End Role="User" EntitySet="User" />
@@ -602,9 +628,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Domain" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="locations_Id" Type="Int32" Nullable="false" />
-          <Property Name="locations_countries_Id" Type="Int32" Nullable="false" />
-          <Property Name="locations_countries_continents_Id" Type="Int32" Nullable="false" />
+          <Property Name="locations_Id" Type="Int32" />
+          <Property Name="locations_countries_Id" Type="Int32" />
+          <Property Name="locations_countries_continents_Id" Type="Int32" />
           <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="facilities" ToRole="equipments" />
           <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="facilities" ToRole="locations" />
           <NavigationProperty Name="maintenance" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="facilities" ToRole="maintenance" />
@@ -623,9 +649,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="countries_Id" Type="Int32" Nullable="false" />
           <Property Name="countries_continents_Id" Type="Int32" Nullable="false" />
-          <Property Name="User_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="countries" Relationship="watermentdbModel.fk_locations_countries1" FromRole="locations" ToRole="countries" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="locations" ToRole="facilities" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.fk_users_locations1" FromRole="locations" ToRole="User" />
         </EntityType>
         <EntityType Name="maintenance">
           <Key>
@@ -674,7 +700,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
           <Property Name="EmailConfirmed" Type="Boolean" />
@@ -692,6 +718,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="IsLocked" Type="Boolean" Nullable="false" />
           <Property Name="PasswordQuestion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="PasswordAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="locations_Id" Type="Int32" />
+          <Property Name="locations_countries_Id" Type="Int32" />
+          <Property Name="locations_countries_continents_Id" Type="Int32" />
+          <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_users_locations1" FromRole="User" ToRole="locations" />
           <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="User" ToRole="sessions" />
           <NavigationProperty Name="UserClaim" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogin" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="User" ToRole="UserLogin" />
@@ -810,7 +840,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_facilities_locations1">
-          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="1" />
+          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="0..1" />
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="locations">
@@ -834,6 +864,22 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             </Principal>
             <Dependent Role="maintenance">
               <PropertyRef Name="facilities_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_locations1">
+          <End Type="watermentdbModel.locations" Role="locations" Multiplicity="0..1" />
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="locations">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="countries_Id" />
+              <PropertyRef Name="countries_continents_Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="locations_Id" />
+              <PropertyRef Name="locations_countries_Id" />
+              <PropertyRef Name="locations_countries_continents_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -951,7 +997,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="locations">
             <EntityTypeMapping TypeName="watermentdbModel.locations">
               <MappingFragment StoreEntitySet="locations">
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="countries_continents_Id" ColumnName="countries_continents_Id" />
                 <ScalarProperty Name="countries_Id" ColumnName="countries_Id" />
                 <ScalarProperty Name="City" ColumnName="City" />
@@ -1004,6 +1049,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="watermentdbModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
+                <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
+                <ScalarProperty Name="locations_Id" ColumnName="locations_Id" />
                 <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
                 <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
                 <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />

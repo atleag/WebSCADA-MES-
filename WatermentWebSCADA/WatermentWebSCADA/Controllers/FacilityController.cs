@@ -28,8 +28,8 @@ namespace WatermentWebSCADA.Controllers
         {
             foreach (var item in db.facilities.Where(c=>c.Id==id))
             {
-                LandId1 = item.locations_countries_Id;
-                LokasjonsID = item.locations_Id;
+                LandId1 = item.locations_countries_Id.GetValueOrDefault();
+                LokasjonsID = item.locations_Id.GetValueOrDefault();
              
             }
 
@@ -67,8 +67,8 @@ namespace WatermentWebSCADA.Controllers
         {
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
-                LandId1 = item.locations_countries_Id;
-                LokasjonsID = item.locations_Id;
+                LandId1 = item.locations_countries_Id.GetValueOrDefault();
+                LokasjonsID = item.locations_Id.GetValueOrDefault();
 
             }
 

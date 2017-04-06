@@ -42,7 +42,11 @@ namespace WatermentWebSCADA.Models
         public bool IsLocked { get; set; }
         public string PasswordQuestion { get; set; }
         public string PasswordAnswer { get; set; }
+        public Nullable<int> locations_Id { get; set; }
+        public Nullable<int> locations_countries_Id { get; set; }
+        public Nullable<int> locations_countries_continents_Id { get; set; }
     
+        public virtual locations locations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

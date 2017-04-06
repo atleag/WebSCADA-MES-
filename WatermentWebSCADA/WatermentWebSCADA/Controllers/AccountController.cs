@@ -318,7 +318,7 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "MainSite");
         }
 
         [AllowAnonymous]
@@ -543,7 +543,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "MainSite");
         }
 
         private void SendEmail(string email, string callbackUrl, string subject, string message)
