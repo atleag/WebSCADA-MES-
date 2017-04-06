@@ -199,6 +199,21 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserClaim.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserLogin.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRegistrationToken.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
@@ -221,9 +236,6 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\measurements.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\roles.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -255,9 +267,6 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sessions.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\users.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

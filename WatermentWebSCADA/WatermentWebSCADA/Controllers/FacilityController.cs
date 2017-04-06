@@ -41,8 +41,8 @@ namespace WatermentWebSCADA.Controllers
             // the Client IP.
             foreach (var item in db.facilities.Where(c=>c.Id==id))
             {
-                LandId1 = item.locations_countries_Id;
-                LokasjonsID = item.locations_Id;
+                LandId1 = item.locations_countries_Id.GetValueOrDefault();
+                LokasjonsID = item.locations_Id.GetValueOrDefault();
                 item.IP = IpClient;
             }
 
@@ -75,8 +75,8 @@ namespace WatermentWebSCADA.Controllers
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x=>x.Id==LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.roles.ToList(),
-                    Brukere = db.users.Where(x=>x.locations_Id==LokasjonsID).ToList(),
+                    Roller = db.Role.ToList(),
+                    Brukere = db.User.Where(x=>x.locations_Id==LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
                  
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
@@ -94,8 +94,8 @@ namespace WatermentWebSCADA.Controllers
         {
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
-                LandId1 = item.locations_countries_Id;
-                LokasjonsID = item.locations_Id;
+                LandId1 = item.locations_countries_Id.GetValueOrDefault();
+                LokasjonsID = item.locations_Id.GetValueOrDefault();
 
             }
 
@@ -117,8 +117,8 @@ namespace WatermentWebSCADA.Controllers
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.roles.ToList(),
-                    Brukere = db.users.Where(x => x.locations_Id == LokasjonsID).ToList(),
+                    Roller = db.Role.ToList(),
+                    Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),

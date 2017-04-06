@@ -18,13 +18,14 @@ namespace WatermentWebSCADA.Models
         public locations()
         {
             this.facilities = new HashSet<facilities>();
-            this.users = new HashSet<users>();
+            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
+        public string StreetAddress { get; set; }
         public Nullable<int> Postcode { get; set; }
-        public string Address { get; set; }
         public string County { get; set; }
+        public string City { get; set; }
         public int countries_Id { get; set; }
         public int countries_continents_Id { get; set; }
     
@@ -32,6 +33,6 @@ namespace WatermentWebSCADA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<facilities> facilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users> users { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }
