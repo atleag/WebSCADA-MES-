@@ -279,13 +279,9 @@
     <script type="text/javascript">
         var result = @Html.Raw(ViewBag.DataPoints);
         var dataPoints =[];
+        @*var dato = new Date();
+        dato = @Model.Verdier[1].Recorded;*@
 
-
-
-        @*for (@{int i = 0;} i < 10; i++)
-        {
-            dataPoints[i] = @Model.Verdier[i].ProcessValue,
-            };*@
 
         //for(var i = 0; i < result.length; i++){
         //    dataPoints.push({label:result[i].x, y:result[i].y});
@@ -300,38 +296,38 @@
                     text: "Line Chart with Data-Points from DataBase  @Model.Verdier[1].Recorded"
                 },
 
-                axisX:{
-                    intervalType: "hour",
-                    interval: 1,
-                    valueFormatString: "hh:mm:ss tt",
-                },
+                //axisX:{
+                //    intervalType: "hour",
+                //    interval: 1,
+                //    valueFormatString: "hh:mm:ss tt",
+                //},
 
                 data: [
                 {
                     type: "line",
-                    xValueFormatString: "Year ##/##/#### ##:##:##",
+                    //xValueFormatString: "Year ##/##/#### ##:##:##",
                     //xValueType:"dateTime",
 
                     @*@Model.Verdier[1].Recorded}*@
                     dataPoints:[
 
 
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
+          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue},
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
+          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue},
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[1].ProcessValue},
+          {label:"@Model.Verdier[1].Recorded}", y:@Model.Verdier[2].ProcessValue},
+          {label: "@Model.Verdier[1].Recorded}", y:@Model.Verdier[3].ProcessValue}
 
-       @*for (@{int ird = 0;} ird < 10; ird++)
-
-            {*@
-                @*{x:@Model.Verdier[i].ProcessValue, y:5}*@
-                //{x:ird, y:"i"}
-
-                //}             @*@Model.Verdier[1].Recorded*@
-
-                {x: new Date("2014/09/23 13:00:00"), y:@Model.Verdier[1].ProcessValue}, //dataPoint
-    @*{x:1104517800000, y:@Model.Verdier[2].ProcessValue}, //dataPoint*@
-    {x: new Date("2014/09/23 14:00:00"), y:@Model.Verdier[3].ProcessValue}
 
                 //
-                @Model.Verdier[1].Recorded
-                    ]}]
+
+                    ]
+               }
+                ]
 
 
                     @*{x:1, y:@Model.Verdier[1].ProcessValue, //dataPoint
