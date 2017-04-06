@@ -196,9 +196,7 @@
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
