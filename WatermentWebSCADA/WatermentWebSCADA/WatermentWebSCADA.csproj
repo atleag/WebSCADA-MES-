@@ -249,6 +249,7 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
