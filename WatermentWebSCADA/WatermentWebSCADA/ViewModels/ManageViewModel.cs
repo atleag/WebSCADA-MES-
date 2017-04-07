@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using WatermentWebSCADA.Models;
+using WatermentWebSCADA.ViewModels;
+using codingfreaks.samples.Identity;
+using codingfreaks.samples.Identity.Models;
 
 namespace WatermentWebSCADA.ViewModels
 {
@@ -84,4 +87,7 @@ namespace WatermentWebSCADA.ViewModels
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+       
+   
 }

@@ -445,6 +445,8 @@ namespace WatermentWebSCADA.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    //REMEMBER TO REPLACE THIS CODE WITH SOMETHING ELSE. 
                     await SignInAsync(user, false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -615,6 +617,7 @@ namespace WatermentWebSCADA.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+
 
             #endregion
         }
