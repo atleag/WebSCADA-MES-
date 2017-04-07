@@ -347,6 +347,7 @@
     <Content Include="Views\Facility\chart.cshtml" />
     <Content Include="Views\Chart\AxisZooming.cshtml" />
     <Content Include="Views\Feature\ZoomingPanning.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -356,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
