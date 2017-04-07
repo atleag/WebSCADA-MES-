@@ -279,27 +279,35 @@
 <div id="chartContainer"></div>
 
 <script type="text/javascript">
-    var result = @Html.Raw(ViewBag.DataPoints);
+  
+
+
+    @*var result = @Html.Raw(ViewBag.DataPoints);
     var dataPoints =[];
-
-    @*var dato = new Date();
-        dato = @Model.Verdier[1].Recorded;*@
-
-
-    //for(var i = 0; i < result.length; i++){
-    //    dataPoints.push({label:result[i].x, y:result[i].y});
-    //}
+    for(var i = 0; i < result.length; i++){
+        dataPoints.push({label:result[i].x, y:result[i].y});
+    }*@
+ 
+  
+   
 
     $(function () {
+
+
+
+        //$.getJSON("/Dashboard/GetData/", function (data) {
+        //    for (var i = 0; i <= data.length -1; i++) {
+        //        dataPoints.push({ label: data[i].Recorded, y: parseInt(data[i].ProcessValue) });
+        //    }
 
         var chart = new CanvasJS.Chart("chartContainer", {
             theme: "theme2",
             zoomEnabled: true,
             animationEnabled: true,
             toolTip:{
-                backgroundColor: "#f4d5a6",
+            backgroundColor: "#f4d5a6",
             },
-      
+
             title: {
                 text: "Line Chart with Data-Points from DataBase  @Model.Verdier[1].Recorded"
             },
@@ -317,19 +325,29 @@
                 //xValueType:"dateTime",
 
                 @*@Model.Verdier[1].Recorded}*@
-                dataPoints:[
+                dataPoints: @Html.Raw(ViewBag.DataPoints),
 
 
-                    @*@foreach (var item in Model.Verdier)
-            {
-                for (int i = 0; i < 20; i++)
+
+
+     @*{label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue}*@
+
+
+                      @*{label:"@Model.Verdie.Recorded", y:@Model.Verdier[2].ProcessValue}
+
+
+                @for (int i = 0; i < 20; i++)
                 {
-                    label: item.Recorded, y: @Model.Verdier[2].ProcessValue
-                }
-                { label: "@Model.Verdier[1].Recorded}", y: @Model.Verdier[2].ProcessValue}
-            }*@
 
-                    {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
+                    { label: "@Model.Verdier[1].Recorded", y: @Model.Verdier[2].ProcessValue}
+
+                }*@
+
+
+
+
+
+                    @*{label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
       {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
       {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
       {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
@@ -353,12 +371,12 @@
       {label: "@Model.Verdier[17].Recorded", y:@Model.Verdier[17].ProcessValue},
       {label: "@Model.Verdier[18].Recorded", y:@Model.Verdier[18].ProcessValue},
       {label:"@Model.Verdier[19].Recorded", y:@Model.Verdier[19].ProcessValue},
-      {label: "@Model.Verdier[20].Recorded", y:@Model.Verdier[20].ProcessValue}
+      {label: "@Model.Verdier[20].Recorded", y:@Model.Verdier[20].ProcessValue}*@
 
 
             //
 
-                ]
+                
             }
             ]
 
