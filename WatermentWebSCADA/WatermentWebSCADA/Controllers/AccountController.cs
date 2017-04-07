@@ -318,7 +318,7 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "MainSite");
+            return RedirectToAction("Login", "Account");
         }
 
         [AllowAnonymous]
