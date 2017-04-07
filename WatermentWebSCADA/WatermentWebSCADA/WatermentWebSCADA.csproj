@@ -231,7 +231,6 @@
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Models\Role.cs">
@@ -249,6 +248,7 @@
     <Compile Include="Models\UserRegistrationToken.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
