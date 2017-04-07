@@ -27,7 +27,7 @@ namespace WatermentWebSCADA.Controllers
         int LandId1;
         int LokasjonsID;
         string IpClient;
-        double[] arr;
+        string[] arr;
 
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
@@ -57,33 +57,26 @@ namespace WatermentWebSCADA.Controllers
             //    }
             //}
 
-            
-            
+
+
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
-                    Alarmer = db.alarms.Where(x=>x.equipments_facilities_Id==id).Where(o=>o.Status=="Active").ToList(),
+                    Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
                     Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
-
-                    //Anlegg2=db.facilities.Where(x=>x.locations_countries_Id=landid),
-
                     Kontinenter = db.continents.ToList(),
-
                     Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
-                    //Land = db.countries.ToList(),
                     Utstyr = db.equipments.ToList(),
-                    Lokasjoner = db.locations.Where(x=>x.Id==LokasjonsID).ToList(),
+                    Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
                     Roller = db.Role.ToList(),
-                    Brukere = db.User.Where(x=>x.locations_Id==LokasjonsID).ToList(),
+                    Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
                     Sesjoner = db.sessions.ToList(),
-                 
-                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
-
-                    //Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
+                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+                    AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
 
                 };
 
@@ -124,21 +117,35 @@ namespace WatermentWebSCADA.Controllers
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                  
-                  
+                 
 
 
 
                 };
 
+                //arr = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor".ToArray();
+            
+
                 JsonSerializerSettings jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
-                ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetRandomDataForNumericAxis(1000), jsonSetting);
+                ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetRandomDataForNumericAxis(10000), jsonSetting);
+
+                //Select(u => u.ProcessValue).
 
                 return View(model);
             }
         }
-
+        public ContentResult GetData()
+        {
+            using (var db = new watermentdbEntities())
+            {
+                var result = (from tags in db.measurements
+                              orderby tags.Recorded ascending
+                              select new { tags.ProcessValue}).ToList();
+                //return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
+                return Content(JsonConvert.SerializeObject(result), "application/json");
+            }
+        }
         public ActionResult FacilityOverview(int? id)
         {
            

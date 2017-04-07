@@ -16,7 +16,7 @@ namespace WatermentWebSCADA.ViewModels
             this.Label = label;
         }
 
-        public DataPoint(double x, double y)
+        public DataPoint(double x, double? y)
         {
             this.X = x;
             this.Y = y;
@@ -45,6 +45,12 @@ namespace WatermentWebSCADA.ViewModels
             this.Label = label;
         }
 
+        public DataPoint(int i, float? processVerdi)
+        {
+            this.i = i;
+            this.processVerdi = processVerdi;
+        }
+
 
         //Explicitly setting the name to be used while serializing to JSON. 
         [DataMember(Name = "label")]
@@ -61,5 +67,7 @@ namespace WatermentWebSCADA.ViewModels
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "z")]
         public Nullable<double> Z = null;
+        private int i;
+        private float? processVerdi;
     }
 }
