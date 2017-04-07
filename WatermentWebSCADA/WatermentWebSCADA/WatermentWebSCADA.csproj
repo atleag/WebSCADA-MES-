@@ -323,6 +323,7 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FacilityManagement.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
     <Compile Include="ViewModels\UserManagement.cs" />
