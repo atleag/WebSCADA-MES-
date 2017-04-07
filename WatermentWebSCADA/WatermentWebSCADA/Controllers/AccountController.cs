@@ -445,6 +445,7 @@ namespace WatermentWebSCADA.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    result = UserManager.AddToRole(user.Id, "User");
 
                     //REMEMBER TO REPLACE THIS CODE WITH SOMETHING ELSE. 
                     await SignInAsync(user, false);

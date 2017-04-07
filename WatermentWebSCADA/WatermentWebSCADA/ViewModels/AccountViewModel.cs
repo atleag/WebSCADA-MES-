@@ -109,5 +109,9 @@ namespace WatermentWebSCADA.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    public class UserManagementModel
+    {
+       // public IEnumerable<User> User { get; set; }
+    }
 
 }
