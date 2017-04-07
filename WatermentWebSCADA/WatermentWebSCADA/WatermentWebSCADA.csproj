@@ -348,6 +348,7 @@
     <Content Include="Views\Chart\AxisZooming.cshtml" />
     <Content Include="Views\Feature\ZoomingPanning.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
