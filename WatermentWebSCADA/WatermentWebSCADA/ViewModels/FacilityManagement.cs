@@ -13,4 +13,17 @@ namespace WatermentWebSCADA.ViewModels
 
         public IEnumerable<facilities> Anlegg { get; set; }
     }
+
+    public class AddFacility
+    {
+        public string StreetAddress { get; set; }
+        public int Postcode { get; set; }
+        public string County { get; set; }
+        public string City { get; set; }
+        public string Name { get; set; }
+        public string locations_id { get; set; }
+        public string locations_countries_Id { get; set; }
+        public string locations_countries_continents_Id { get; set; }
+
+    }
 }

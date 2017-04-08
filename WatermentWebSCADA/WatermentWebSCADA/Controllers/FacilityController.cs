@@ -64,7 +64,7 @@ namespace WatermentWebSCADA.Controllers
                 var model = new MainViewModel
                 {
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                    Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
+                    Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Kontinenter = db.continents.ToList(),
                     Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
                     Utstyr = db.equipments.ToList(),
@@ -99,7 +99,7 @@ namespace WatermentWebSCADA.Controllers
                 var model = new MainViewModel
                 {
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                    Anlegg = db.facilities.Where(c => c.Id == id).ToList(),
+                    Facilites = db.facilities.Where(c => c.Id == id).ToList(),
 
                     //Anlegg2=db.facilities.Where(x=>x.locations_countries_Id=landid),
 
@@ -156,7 +156,7 @@ namespace WatermentWebSCADA.Controllers
                 {
 
                     countries = db.countries_with_facilites_view.ToList(),
-                    Anlegg = db.facilities.Where(x => x.locations_countries_Id == id).ToList(),
+                    Facilites = db.facilities.Where(x => x.locations_countries_Id == id).ToList(),
 
                 };
 

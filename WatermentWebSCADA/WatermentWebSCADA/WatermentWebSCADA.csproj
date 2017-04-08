@@ -327,7 +327,7 @@
     <Compile Include="ViewModels\FacilityManagement.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
-    <Compile Include="ViewModels\UserManagement.cs" />
+    <Compile Include="ViewModels\UserManagementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

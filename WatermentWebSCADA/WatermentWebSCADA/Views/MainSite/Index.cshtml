@@ -79,16 +79,16 @@ h1{
                <div class="row">
                    <table>
                        <tr>
-                           <th>Annleggsnavn</th>
-                           <th>Plasering</th>
+                           <th>Facility</th>
+                           <th>Location</th>
                            <th>Status</th>
                        </tr>
-                       @foreach (var item in Model.Anlegg)
+                       @foreach (var item in Model.Facilites)
                        {
 
                            <tr>
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                               <td>@item.</td> 
+                               <td>@item.locations.City</td> 
                                <td>554</td> 
                            </tr> 
 
@@ -104,16 +104,16 @@ h1{
             <h3 align =" center">Anlegg med høy alarm</h3>
                 <table>
                     <tr>
-                        <th>Annleggsnavn</th>
+                        <th>Facility</th>
                         <th>Alarm tag</th>
-                        <th>Prosessverdi</th>
+                        <th>Process value</th>
                     </tr>
                     @foreach (var item in Model.Equipment)
                     {
 
                         <tr>
-                            <td>@item.facilities</td>
-                            <td>@item.alarms</td>
+                            <td>@item.facilities.Name</td>
+                            <td>@item.alarms.</td>
                             <td>@item.Description</td>
                         </tr>
 
@@ -129,11 +129,11 @@ h1{
             <h3 align =" center">Dato vedlikeholdt</h3>
                 <table>
                     <tr>
-                        <th>Annleggsnavn</th>
-                        <th>Plasering</th>
-                        <th>Siste service</th>
+                        <th>Facility</th>
+                        <th>Location</th>
+                        <th>Last maintenance</th>
                     </tr>
-                    @foreach (var item in Model.Anlegg)
+                    @foreach (var item in Model.Facilites)
                     {
 
                         <tr>
@@ -150,11 +150,11 @@ h1{
         <h3 align ="center">Info</h3>
         <table>
             <tr>
-                <th>Annleggsnavn</th>
-                <th>Plasering</th>
+                <th>Anleggsnavn</th>
+                <th>Plassering</th>
                 <th>Status</th>
             </tr>
-            @foreach (var item in Model.Anlegg)
+            @foreach (var item in Model.Facilites)
             {
 
                 <tr>

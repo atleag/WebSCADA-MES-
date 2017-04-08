@@ -16,7 +16,7 @@ namespace WatermentWebSCADA.ViewModels
 
       
 
-    public IEnumerable<facilities> Anlegg { get; set; }
+    public IEnumerable<facilities> Facilites { get; set; }
     public IEnumerable<alarms> Alarmer { get; set; }
         public IEnumerable<continents> Kontinenter { get; set; }
         public IEnumerable<countries> Land { get; set; }
@@ -34,10 +34,16 @@ namespace WatermentWebSCADA.ViewModels
         public List<measurements> Verdier { get; set; }
         public List<measurements> Bar { get; set; }
         public List<alarms> AlarmList { get; set; }
+
   
 
 
 
+    }
+
+    public class FacilitesAlarmModel
+    {
+        public string Name { get; set; }
     }
 
 }

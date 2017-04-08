@@ -39,8 +39,8 @@ namespace WatermentWebSCADA.Controllers
 
                     Brukere = db.User.ToList(),
 
-                    Anlegg = db.facilities.ToList(),
-
+                    Facilites = db.facilities.ToList(),
+                    
 
 
                 };

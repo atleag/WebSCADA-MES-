@@ -42,10 +42,10 @@
             </tr>
     <tr>    
         
-            @foreach (var ite in Model.Anlegg)
+            @foreach (var item in Model.Facilites)
             {
                 <td>
-                    <div class="vv"> @Html.ActionLink(ite.Name, "FacilityDetails", "Facility", new { id = ite.Id }, null)</div>
+                    <div class="vv"> @Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</div>
                 </td>
             }
                
