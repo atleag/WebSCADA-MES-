@@ -83,6 +83,7 @@
           <Property Name="OrderId" Type="mediumint" Nullable="false" />
           <Property Name="Person" Type="varchar" MaxLength="45" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
+          <Property Name="lastMaintenance" Type="date" />
         </EntityType>
         <EntityType Name="measurements">
           <Key>
@@ -661,6 +662,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="OrderId" Type="Int32" Nullable="false" />
           <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
+          <Property Name="lastMaintenance" Type="DateTime" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
         </EntityType>
         <EntityType Name="measurements">
@@ -1010,6 +1012,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="maintenance">
             <EntityTypeMapping TypeName="watermentdbModel.maintenance">
               <MappingFragment StoreEntitySet="maintenance">
+                <ScalarProperty Name="lastMaintenance" ColumnName="lastMaintenance" />
                 <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
                 <ScalarProperty Name="Person" ColumnName="Person" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />

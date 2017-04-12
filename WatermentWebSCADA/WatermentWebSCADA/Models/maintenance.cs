@@ -17,6 +17,7 @@ namespace WatermentWebSCADA.Models
         public int OrderId { get; set; }
         public string Person { get; set; }
         public int facilities_Id { get; set; }
+        public Nullable<System.DateTime> lastMaintenance { get; set; }
     
         public virtual facilities facilities { get; set; }
     }

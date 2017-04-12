@@ -88,8 +88,8 @@ h1{
 
                            <tr>
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                               <td>@item.locations.County</td> 
                                <td>@item.locations.City</td> 
-                               <td>554</td> 
                            </tr> 
 
                        }
@@ -105,19 +105,31 @@ h1{
                 <table>
                     <tr>
                         <th>Facility</th>
-                        <th>Alarm tag</th>
+                        <th>Alarm</th>
                         <th>Process value</th>
+                        <th>Description</th>
                     </tr>
-                    @foreach (var item in Model.Equipment)
+                  
+                    @foreach (var item in Model.AlarmList)
                     {
 
-                        <tr>
-                            <td>@item.facilities.Name</td>
-                            <td>@item.alarms.</td>
-                            <td>@item.Description</td>
-                        </tr>
+                        foreach (var item2 in Model.Facilites.Where(c => c.Id == item.equipments_facilities_Id))
+                        {
+                            <tr>
+                                <td>@item2.Name</td>
+                                <td>@item.Status</td>
+                                <td>@item.ProcessValue</td>
+                                <td>@item.Description</td>
+                            </tr>
+
+                        }
+
+
+
+
 
                     }
+                        
                 </table>
 
                 </div>
@@ -133,13 +145,13 @@ h1{
                         <th>Location</th>
                         <th>Last maintenance</th>
                     </tr>
-                    @foreach (var item in Model.Facilites)
+                    @foreach (var item in Model.Vedlikehold)
                     {
 
                         <tr>
-                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                            <td>@item.Domain</td>
-                            <td>554</td>
+                            <td>@item.facilities.Name</td>
+                            <td>@item.facilities.locations.City</td>
+                            <td>@item.lastMaintenance</td>
                         </tr>
 
                     }
