@@ -53,16 +53,18 @@
                 <dl class="dl-horizontal">
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Facilites)
+                        @*@Html.DisplayNameFor(model => model.Facilites)*@
+                        Facility
 
                     </dt>
 
 
 
                     <dd>
-                        @foreach (var skill in Model.Facilites)
+                        @foreach (var item in Model.Facilites)
                         {
-                            @skill.Name
+                            @item.Name  
+                           
                         }
                     </dd>
 
@@ -71,7 +73,7 @@
 
                     <dt>
 
-                        "Land"
+                       Country
                     </dt>
 
                     <dd>
@@ -85,7 +87,7 @@
 
 
                     <dt>
-                        "Fylke"
+                        County
 
                         @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
                     </dt>
@@ -98,7 +100,7 @@
                         }
                     </dd>
                     <dt>
-                        "Postnr"
+                       Postcode
                     </dt>
                     <dd>
                         @foreach (var item in Model.Lokasjoner)
@@ -107,7 +109,7 @@
                         }
                     </dd>
                     <dt>
-                        "Adresse"
+                        Adress
                     </dt>
 
                     <dd>
@@ -117,7 +119,7 @@
                         }
                     </dd>
                     <dt>
-                        "Bruker"
+                        User
                     </dt>
 
                     <dd>
@@ -127,7 +129,7 @@
                         }
                     </dd>
                     <dt>
-                        "Telefon"
+                        Phone number
                     </dt>
 
                     <dd>
@@ -137,7 +139,7 @@
                         }
                     </dd>
                     <dt>
-                        "E-post"
+                        E-mail
                     </dt>
 
                     <dd>
@@ -147,23 +149,24 @@
                         }
                     </dd>
                     <dt>
-                        "Domene"
+                        Domain
                     </dt>
 
                     <dd>
                         @foreach (var item in Model.Facilites)
                         {
-                            @item.Domain
+                            @item.Domain 
                         }
                     </dd>
                     <dt>
-                        "IP"
+                        IP
                     </dt>
 
                     <dd>
-                        @foreach (var skill in Model.Facilites)
+                        @foreach (var item in Model.Facilites)
                         {
-                            @skill.IP
+                            @item.IP
+                           
                         }
                     </dd>
 
@@ -242,7 +245,7 @@
                                                     <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 2].AlarmOccured @Model.AlarmList[alarmnr - 2].Description @Model.AlarmList[alarmnr - 2].Status @Model.AlarmList[alarmnr - 2].equipments.Tag @Model.AlarmList[alarmnr - 2].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 1].AlarmOccured@Model.AlarmList[alarmnr - 1].Description@Model.AlarmList[alarmnr - 1].Status@Model.AlarmList[alarmnr - 1].equipments.Tag@Model.AlarmList[alarmnr - 1].equipments.Description</p>
+                                                    <p>@Model.AlarmList[alarmnr - 1].AlarmOccured @Model.AlarmList[alarmnr - 1].Description @Model.AlarmList[alarmnr - 1].Status @Model.AlarmList[alarmnr - 1].equipments.Tag @Model.AlarmList[alarmnr - 1].equipments.Description</p>
 
 
                         }
@@ -292,13 +295,13 @@
 
                                               @{int barID = 0;}
 
-                                @foreach (var value in Model.Bar)
-                    {
-                        //verdi = Model.Verdier[Idinte2].ProcessValue;
+                                @foreach (var value in Model.BarValues)
+                                {
+                                    //verdi = Model.Verdier[Idinte2].ProcessValue;
 
-                        barID++;
+                                    barID++;
 
-                     }
+                                }
                      "Time",
 
 
@@ -441,11 +444,11 @@
 
                                               @{int barID3 = 0;}
 
-                                @foreach (var value in Model.Bar)
-                    {
-                                  barID3++;
+                                @foreach (var value in Model.BarValues)
+                                {
+                                    barID3++;
 
-                     }
+                                }
 
 
 
@@ -490,29 +493,29 @@
                                             "data": [
 
 
-                                                  @Model.Bar[barID3-20].ProcessValue,
-                                                    @Model.Bar[barID3-19].ProcessValue,
-  @Model.Bar[barID3-18].ProcessValue,
-    @Model.Bar[barID3-17].ProcessValue,
-                               @Model.Bar[barID3-16].ProcessValue,
-                             @Model.Bar[barID3-15].ProcessValue,
-                            @Model.Bar[barID3-14].ProcessValue,
-                               @Model.Bar[barID3-13].ProcessValue,
-                             @Model.Bar[barID3-12].ProcessValue,
-                            @Model.Bar[barID3-11].ProcessValue,
+                                                  @Model.BarValues[barID3-20].ProcessValue,
+                                                    @Model.BarValues[barID3-19].ProcessValue,
+  @Model.BarValues[barID3-18].ProcessValue,
+    @Model.BarValues[barID3-17].ProcessValue,
+                               @Model.BarValues[barID3-16].ProcessValue,
+                             @Model.BarValues[barID3-15].ProcessValue,
+                            @Model.BarValues[barID3-14].ProcessValue,
+                               @Model.BarValues[barID3-13].ProcessValue,
+                             @Model.BarValues[barID3-12].ProcessValue,
+                            @Model.BarValues[barID3-11].ProcessValue,
 
 
-           @Model.Bar[barID3-10].ProcessValue,
-                      @Model.Bar[barID3-9].ProcessValue,
-                             @Model.Bar[barID3-8].ProcessValue,
-                           @Model.Bar[barID3-7].ProcessValue,
-                            @Model.Bar[barID3-6].ProcessValue,
-                         @Model.Bar[barID3-5].ProcessValue,
-                           @Model.Bar[barID3-4].ProcessValue,
-                            @Model.Bar[barID3-3].ProcessValue,
+           @Model.BarValues[barID3-10].ProcessValue,
+                      @Model.BarValues[barID3-9].ProcessValue,
+                             @Model.BarValues[barID3-8].ProcessValue,
+                           @Model.BarValues[barID3-7].ProcessValue,
+                            @Model.BarValues[barID3-6].ProcessValue,
+                         @Model.BarValues[barID3-5].ProcessValue,
+                           @Model.BarValues[barID3-4].ProcessValue,
+                            @Model.BarValues[barID3-3].ProcessValue,
 
-                           @Model.Bar[barID3-2].ProcessValue,
-                            @Model.Bar[barID3-1].ProcessValue,
+                           @Model.BarValues[barID3-2].ProcessValue,
+                            @Model.BarValues[barID3-1].ProcessValue,
 
 
 

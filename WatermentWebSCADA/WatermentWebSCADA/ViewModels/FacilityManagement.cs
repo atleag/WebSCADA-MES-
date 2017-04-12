@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
+using System.Data.Entity;
 
 namespace WatermentWebSCADA.ViewModels
 {
@@ -26,4 +27,9 @@ namespace WatermentWebSCADA.ViewModels
         public string locations_countries_continents_Id { get; set; }
 
     }
+    public class ChartMeasurements : measurements
+    {
+
+    }
+
 }
