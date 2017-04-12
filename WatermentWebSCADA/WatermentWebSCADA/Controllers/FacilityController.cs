@@ -23,7 +23,7 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-       
+
         int LandId1;
         int LokasjonsID;
         string IpClient;
@@ -31,13 +31,7 @@ namespace WatermentWebSCADA.Controllers
 
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
-
         {
-            //int id = 0 handling
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             // Fetches the current row id selected in the table Client_Conection
             foreach (var item2 in db.Client_Conection.Where(c => c.user == id.ToString()))
             {
@@ -45,7 +39,7 @@ namespace WatermentWebSCADA.Controllers
             }
             // Fetches the current row id seleted in the table facilities and sets the facility IP to
             // the Client IP.
-            foreach (var item in db.facilities.Where(c=>c.Id==id))
+            foreach (var item in db.facilities.Where(c => c.Id == id))
             {
                 LandId1 = item.locations_countries_Id.GetValueOrDefault();
                 LokasjonsID = item.locations_Id.GetValueOrDefault();
@@ -81,7 +75,7 @@ namespace WatermentWebSCADA.Controllers
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
 
                 };
@@ -91,10 +85,6 @@ namespace WatermentWebSCADA.Controllers
         }
         public ActionResult chart(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
                 LandId1 = item.locations_countries_Id.GetValueOrDefault();
@@ -102,7 +92,7 @@ namespace WatermentWebSCADA.Controllers
 
             }
 
-          
+
 
             using (var db = new Models.watermentdbEntities())
             {
@@ -125,16 +115,16 @@ namespace WatermentWebSCADA.Controllers
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                 
+
 
 
 
                 };
 
                 //arr = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor".ToArray();
-            
+
 
                 JsonSerializerSettings jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
@@ -151,14 +141,14 @@ namespace WatermentWebSCADA.Controllers
             {
                 var result = (from tags in db.measurements
                               orderby tags.Recorded ascending
-                              select new { tags.ProcessValue}).ToList();
+                              select new { tags.ProcessValue }).ToList();
                 //return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
                 return Content(JsonConvert.SerializeObject(result), "application/json");
             }
         }
         public ActionResult FacilityOverview(int? id)
         {
-           
+
 
             using (var db = new Models.watermentdbEntities())
             {
@@ -170,33 +160,48 @@ namespace WatermentWebSCADA.Controllers
 
                 };
 
-           
+
                 return View(model);
             }
         }
 
         public ActionResult Get(int id)
         {
-           
+
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
 
                     //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),
-                   
-                 
+
+
 
                 };
 
 
 
-               
+
                 return View(model);
             }
         }
 
+        public ActionResult GetGoogleChart(int? id)
+        {
+            measurements mea = new measurements();
 
-       
+            return View(mea);
+
         }
-    }
+        public ActionResult GoogleChart(int id)
+        {
+            return Json(db.measurements
+                // you may add some query to your entitles 
+                //.Where()
+                .Select(p => new { p.Recorded, p.ProcessValue, p.equipments_Id }).Where(c => c.equipments_Id == id),
+                    JsonRequestBehavior.AllowGet);
+
+
+        }
+    }                                                
+}
