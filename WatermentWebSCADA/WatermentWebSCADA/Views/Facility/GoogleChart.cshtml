@@ -1,0 +1,44 @@
+﻿@model WatermentWebSCADA.ViewModels.ChartMeasurements
+@{
+    ViewBag.Title = "GoogleChart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GoogleChart</h2>
+
+<script type="text/javascript">
+
+  // Load the Visualization API and the piechart package.
+  google.load('visualization', '1.0', {'packages':['corechart']});
+
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'Time Recorded');
+      data.addColumn('number', 'Process Value');
+
+      // don't forget to add JQuery in your view.
+      $.getJSON("@Url.Action("GetChart")", null, function (chartData) {
+          $.each(chartData, function (i, item) {
+              data.addRow([@Model.Recorded, @Model.ProcessValue]);
+          });
+
+          var options = {
+              hAxis: {
+                  title: 'X-Axis Legend'
+              },
+              vAxis: {
+                  title: 'Y-Axis Legend'
+              }
+          };
+             
+              
+
+
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+      });
+  }
+</script>

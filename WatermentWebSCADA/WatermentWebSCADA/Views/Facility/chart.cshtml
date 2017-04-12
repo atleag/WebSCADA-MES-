@@ -48,19 +48,19 @@
 
         <div class="col-sm-4">
             <div class="intro">
-                <h3>Aktive anlegg</h3>
+                <h3>Aktive Facilites</h3>
 
                 <dl class="dl-horizontal">
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Anlegg)
+                        @Html.DisplayNameFor(model => model.Facilites)
 
                     </dt>
 
 
 
                     <dd>
-                        @foreach (var skill in Model.Anlegg)
+                        @foreach (var skill in Model.Facilites)
                         {
                             @skill.Name
                         }
@@ -151,7 +151,7 @@
                     </dt>
 
                     <dd>
-                        @foreach (var item in Model.Anlegg)
+                        @foreach (var item in Model.Facilites)
                         {
                             @item.Domain
                         }
@@ -161,7 +161,7 @@
                     </dt>
 
                     <dd>
-                        @foreach (var skill in Model.Anlegg)
+                        @foreach (var skill in Model.Facilites)
                         {
                             @skill.IP
                         }
@@ -176,7 +176,7 @@
                         @*@Html.DisplayFor(model => model.Email[x])*@
                     </dd>
                     <dt>
-                        @foreach (var skill in Model.Anlegg)
+                        @foreach (var skill in Model.Facilites)
                         {
                             <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
                         }

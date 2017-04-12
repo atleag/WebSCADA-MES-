@@ -32,8 +32,9 @@ namespace WatermentWebSCADA.ViewModels
         public List<equipments> Equipment { get; set; }
 
         public List<measurements> Verdier { get; set; }
-        public List<measurements> Bar { get; set; }
+        public List<measurements> BarValues { get; set; }
         public List<alarms> AlarmList { get; set; }
+    
 
   
 
