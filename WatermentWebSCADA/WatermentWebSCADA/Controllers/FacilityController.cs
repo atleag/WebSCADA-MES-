@@ -31,7 +31,13 @@ namespace WatermentWebSCADA.Controllers
 
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
+
         {
+            //int id = 0 handling
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             // Fetches the current row id selected in the table Client_Conection
             foreach (var item2 in db.Client_Conection.Where(c => c.user == id.ToString()))
             {
@@ -75,7 +81,7 @@ namespace WatermentWebSCADA.Controllers
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
 
                 };
@@ -85,6 +91,10 @@ namespace WatermentWebSCADA.Controllers
         }
         public ActionResult chart(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
                 LandId1 = item.locations_countries_Id.GetValueOrDefault();
@@ -115,7 +125,7 @@ namespace WatermentWebSCADA.Controllers
                     Sesjoner = db.sessions.ToList(),
 
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
+                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
                  
 
@@ -185,5 +195,8 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
+
+
+       
+        }
     }
-}
