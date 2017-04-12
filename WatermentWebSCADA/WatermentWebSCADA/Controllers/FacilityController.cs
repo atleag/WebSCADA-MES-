@@ -149,7 +149,6 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult FacilityOverview(int? id)
         {
 
-
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
@@ -167,41 +166,34 @@ namespace WatermentWebSCADA.Controllers
 
         public ActionResult Get(int id)
         {
-
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
-
-                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),
-
-
-
+                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),                  
                 };
-
-
-
-
                 return View(model);
             }
         }
 
-        public ActionResult GetGoogleChart(int? id)
+        public ActionResult AddFacility()
         {
-            measurements mea = new measurements();
-
-            return View(mea);
-
+            //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
+            return View();
         }
-        public ActionResult GoogleChart(int id)
+
+       /* [HttpPost]
+        public AddFacility() //Create([Bind(Include = "Id,CountryCode,Name,continents_Id")] countries countries)
         {
-            return Json(db.measurements
-                // you may add some query to your entitles 
-                //.Where()
-                .Select(p => new { p.Recorded, p.ProcessValue, p.equipments_Id }).Where(c => c.equipments_Id == id),
-                    JsonRequestBehavior.AllowGet);
+            if (ModelState.IsValid)
+            {
+                db.facilities.Add(facilities);
+                db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
 
-
-        }
-    }                                                
+            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code", countries.continents_Id);
+            return View();
+        }*/
+    }
 }
