@@ -183,21 +183,41 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-
-
-        /*[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] FacilityManagement Facility)
+        //public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] AddFacilityViewModel Facility)
+        //{
+        //    LocationViewModel LVM = new LocationViewModel();
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.facilities.Add(Facility);
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
+        //    return View();
+        //}
+        public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel, LocationViewModel lmodel)
         {
             if (ModelState.IsValid)
             {
-                db.facilities.Add(Facility);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+                using (var context = new watermentdbEntities())
+                {
+                    var facilites = new facilities();
+                    {
+                        facilites.Name = fmodel.Name;
+                        facilites.Domain = fmodel.Name;
+                        await context.SaveChangesAsync();
 
-            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
-            return View();
-        }*/
+                    };
+                }
+                return RedirectToAction("Login", "Account");
+
+            }
+            return View(lmodel);
+        }
     }
+                
+            
 }
