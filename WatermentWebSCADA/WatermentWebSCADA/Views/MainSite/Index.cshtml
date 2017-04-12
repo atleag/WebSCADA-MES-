@@ -88,7 +88,7 @@ h1{
 
                            <tr>
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                               <td>@item.locations.countries</td> 
+                               <td>@item.locations.County</td> 
                                <td>@item.locations.City</td> 
                            </tr> 
 
@@ -109,17 +109,27 @@ h1{
                         <th>Process value</th>
                         <th>Description</th>
                     </tr>
-                    @foreach (var item in Model.Facilites)
+                  
+                    @foreach (var item in Model.AlarmList)
                     {
 
-                        <tr>
-                            <td>@item.locations.facilities</td>
-                            <td>@item.equipments.</td>
-                            <td>@item</td>
-                            <td>@item.equipments</td>
-                        </tr>
+                        foreach (var item2 in Model.Facilites.Where(c => c.Id == item.equipments_facilities_Id))
+                        {
+                            <tr>
+                                <td>@item2.Name</td>
+                                <td>@item.Status</td>
+                                <td>@item.ProcessValue</td>
+                                <td>@item.Description</td>
+                            </tr>
+
+                        }
+
+
+
+
 
                     }
+                        
                 </table>
 
                 </div>
