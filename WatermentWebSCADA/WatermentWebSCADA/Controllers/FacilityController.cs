@@ -23,7 +23,7 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-       
+
         int LandId1;
         int LokasjonsID;
         string IpClient;
@@ -39,7 +39,7 @@ namespace WatermentWebSCADA.Controllers
             }
             // Fetches the current row id seleted in the table facilities and sets the facility IP to
             // the Client IP.
-            foreach (var item in db.facilities.Where(c=>c.Id==id))
+            foreach (var item in db.facilities.Where(c => c.Id == id))
             {
                 LandId1 = item.locations_countries_Id.GetValueOrDefault();
                 LokasjonsID = item.locations_Id.GetValueOrDefault();
@@ -92,7 +92,7 @@ namespace WatermentWebSCADA.Controllers
 
             }
 
-          
+
 
             using (var db = new Models.watermentdbEntities())
             {
@@ -117,14 +117,14 @@ namespace WatermentWebSCADA.Controllers
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
                     Bar = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                 
+
 
 
 
                 };
 
                 //arr = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor".ToArray();
-            
+
 
                 JsonSerializerSettings jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
@@ -141,14 +141,13 @@ namespace WatermentWebSCADA.Controllers
             {
                 var result = (from tags in db.measurements
                               orderby tags.Recorded ascending
-                              select new { tags.ProcessValue}).ToList();
+                              select new { tags.ProcessValue }).ToList();
                 //return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
                 return Content(JsonConvert.SerializeObject(result), "application/json");
             }
         }
         public ActionResult FacilityOverview(int? id)
         {
-           
 
             using (var db = new Models.watermentdbEntities())
             {
@@ -160,30 +159,41 @@ namespace WatermentWebSCADA.Controllers
 
                 };
 
-           
+
                 return View(model);
             }
         }
 
         public ActionResult Get(int id)
         {
-           
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
-
-                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),
-                   
-                 
-
+                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),                  
                 };
-
-
-
-               
                 return View(model);
             }
         }
+
+        public ActionResult AddFacility()
+        {
+            //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
+            return View();
+        }
+
+       /* [HttpPost]
+        public AddFacility() //Create([Bind(Include = "Id,CountryCode,Name,continents_Id")] countries countries)
+        {
+            if (ModelState.IsValid)
+            {
+                db.facilities.Add(facilities);
+                db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code", countries.continents_Id);
+            return View();
+        }*/
     }
 }
