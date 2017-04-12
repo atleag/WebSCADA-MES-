@@ -14,6 +14,7 @@ using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -182,17 +183,20 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-       /* [HttpPost]
-        public AddFacility() //Create([Bind(Include = "Id,CountryCode,Name,continents_Id")] countries countries)
+
+
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] FacilityManagement Facility)
         {
             if (ModelState.IsValid)
             {
-                db.facilities.Add(facilities);
-                db.SaveChangesAsync();
+                db.facilities.Add(Facility);
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code", countries.continents_Id);
+            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
             return View();
         }*/
     }

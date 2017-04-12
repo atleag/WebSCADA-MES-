@@ -5,6 +5,7 @@ using System.Web;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace WatermentWebSCADA.ViewModels
 {
@@ -17,7 +18,6 @@ namespace WatermentWebSCADA.ViewModels
 
     public class FacilityManagement
     {        
-        public Int16 Id { get; set; }
         public string StreetAddress { get; set; }
         public Int16 Postcode { get; set; }
         public string County { get; set; }
@@ -27,9 +27,9 @@ namespace WatermentWebSCADA.ViewModels
         public Int16 locations_countries_Id { get; set; }
         public Int16 locations_countries_continents_Id { get; set; }
     }
-    public class ChartMeasurements : measurements
+    /*public class ChartMeasurements : measurements
     {
 
-    }
+    }*/
 
 }
