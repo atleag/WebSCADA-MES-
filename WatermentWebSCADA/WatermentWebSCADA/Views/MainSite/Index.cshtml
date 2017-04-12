@@ -88,8 +88,8 @@ h1{
 
                            <tr>
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                               <td>@item.locations.countries</td> 
                                <td>@item.locations.City</td> 
-                               <td>554</td> 
                            </tr> 
 
                        }
@@ -105,16 +105,18 @@ h1{
                 <table>
                     <tr>
                         <th>Facility</th>
-                        <th>Alarm tag</th>
+                        <th>Alarm</th>
                         <th>Process value</th>
+                        <th>Description</th>
                     </tr>
-                    @foreach (var item in Model.Equipment)
+                    @foreach (var item in Model.Facilites)
                     {
 
                         <tr>
-                            <td>@item.facilities.Name</td>
-                            <td>@item.alarms.</td>
-                            <td>@item.Description</td>
+                            <td>@item.locations.facilities</td>
+                            <td>@item.equipments.</td>
+                            <td>@item</td>
+                            <td>@item.equipments</td>
                         </tr>
 
                     }
@@ -133,13 +135,13 @@ h1{
                         <th>Location</th>
                         <th>Last maintenance</th>
                     </tr>
-                    @foreach (var item in Model.Facilites)
+                    @foreach (var item in Model.Vedlikehold)
                     {
 
                         <tr>
-                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                            <td>@item.Domain</td>
-                            <td>554</td>
+                            <td>@item.facilities.Name</td>
+                            <td>@item.facilities.locations.City</td>
+                            <td>@item.lastMaintenance</td>
                         </tr>
 
                     }

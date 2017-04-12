@@ -19,7 +19,7 @@ namespace WatermentWebSCADA.ViewModels
     public IEnumerable<facilities> Facilites { get; set; }
     public IEnumerable<alarms> Alarmer { get; set; }
         public IEnumerable<continents> Kontinenter { get; set; }
-        public IEnumerable<countries> Land { get; set; }
+        public IEnumerable<countries> Countries { get; set; }
         public IEnumerable<equipments> Utstyr { get; set; }
         public IEnumerable<locations> Lokasjoner { get; set; }
         public IEnumerable<maintenance> Vedlikehold { get; set; }

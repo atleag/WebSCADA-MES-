@@ -353,11 +353,6 @@
     <Content Include="Views\Equipments\Details.cshtml" />
     <Content Include="Views\Equipments\Edit.cshtml" />
     <Content Include="Views\Equipments\Index.cshtml" />
-    <Content Include="Views\Measurements\Create.cshtml" />
-    <Content Include="Views\Measurements\Delete.cshtml" />
-    <Content Include="Views\Measurements\Details.cshtml" />
-    <Content Include="Views\Measurements\Edit.cshtml" />
-    <Content Include="Views\Measurements\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
