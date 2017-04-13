@@ -35,8 +35,7 @@ namespace WatermentWebSCADA.Controllers
                     AlarmList = db.alarms.Where(o => o.Status == "Active").ToList(),
                     Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
                     Lokasjoner = db.locations.ToList(),
-                    Vedlikehold = db.maintenance.OrderBy(x => x.lastMaintenance).ToList(),
-                    Brukere = db.User.ToList(),
+                    Vedlikehold = db.maintenance.OrderBy(x => x.lastMaintenance).Take(10).ToList(),
                     Facilites = db.facilities.ToList(),
 
                 
