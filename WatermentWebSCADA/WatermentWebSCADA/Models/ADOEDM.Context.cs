@@ -35,6 +35,12 @@ namespace WatermentWebSCADA.Models
         public virtual DbSet<measurements> measurements { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sessions> sessions { get; set; }
+
+        internal watermentdbEntities OrderByDescending(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
