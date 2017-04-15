@@ -38,7 +38,7 @@ namespace WatermentWebSCADA.Controllers
                     Vedlikehold = db.maintenance.OrderBy(x => x.lastMaintenance).Take(10).ToList(),
                     Facilites = db.facilities.ToList(),
 
-                
+                   
 
                 };
 
