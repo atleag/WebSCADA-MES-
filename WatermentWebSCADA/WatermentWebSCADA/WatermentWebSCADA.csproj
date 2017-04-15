@@ -267,6 +267,9 @@
     <Compile Include="Models\UserRegistrationToken.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\users_has_facilities.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ChartModel.cs" />
