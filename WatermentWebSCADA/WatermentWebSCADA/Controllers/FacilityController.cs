@@ -177,7 +177,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult AddFacility()
+        public ActionResult AddFacility2()
         {
             //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
             return View();
@@ -198,26 +198,26 @@ namespace WatermentWebSCADA.Controllers
         //    ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
         //    return View();
         //}
-        public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel, LocationViewModel lmodel)
-        {
-            if (ModelState.IsValid)
-            {
-                using (var context = new watermentdbEntities())
-                {
-                    var facilites = new facilities();
-                    {
-                        facilites.Name = fmodel.Name;
-                        facilites.Domain = fmodel.Name;
-                        await context.SaveChangesAsync();
+         public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel)
+         {
+             if (ModelState.IsValid)
+             {
+                 using (var context = new watermentdbEntities())
+                 {
+                     var facilites = new facilities();
+                     {
+                         facilites.Name = fmodel.Name;
+                         facilites.Domain = fmodel.Name;
+                         await context.SaveChangesAsync();
 
-                    };
-                }
-                return RedirectToAction("Login", "Account");
+                     };
+                 }
+                 return RedirectToAction("Login", "Account");
 
-            }
-            return View(lmodel);
-        }
+             }
+             return View(fmodel);
+         }
     }
-                
+              
             
 }

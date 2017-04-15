@@ -11,7 +11,7 @@ namespace WatermentWebSCADA.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class facilities
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +21,7 @@ namespace WatermentWebSCADA.Models
             this.maintenance = new HashSet<maintenance>();
             this.users_has_facilities = new HashSet<users_has_facilities>();
         }
-    
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string IP { get; set; }
