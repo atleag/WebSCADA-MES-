@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WatermentWebSCADA.ViewModels
 {
 
-   /* public class AddFacilityViewModel
+    public class AddFacilityViewModel
     {        
         //public string StreetAddress { get; set; }
         //public Int16 Postcode { get; set; }
@@ -42,7 +42,7 @@ namespace WatermentWebSCADA.ViewModels
         public string City { get; set; }
         public int countries_Id { get; set; }
         public int countries_continents_Id { get; set; }
-    }*/
+    }
 
     public class FacilityViewModel
     {
