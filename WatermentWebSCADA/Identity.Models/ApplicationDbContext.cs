@@ -48,10 +48,6 @@
             modelBuilder.Entity<MyUser>().Property(r => r.PasswordHash).HasColumnName("PasswordHash");
             modelBuilder.Entity<MyUser>().Property(r => r.FirstName).HasColumnName("FirstName");
             modelBuilder.Entity<MyUser>().Property(r => r.LastName).HasColumnName("LastName");
-
-
-
-
         }
 
         #endregion
