@@ -12,13 +12,13 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class maintenance
+    public partial class users_has_facilities
     {
-        public int OrderId { get; set; }
-        public string Person { get; set; }
+        public int Id { get; set; }
+        public int users_Id { get; set; }
         public int facilities_Id { get; set; }
-        public Nullable<System.DateTime> lastMaintenance { get; set; }
     
         public virtual facilities facilities { get; set; }
+        public virtual User User { get; set; }
     }
 }

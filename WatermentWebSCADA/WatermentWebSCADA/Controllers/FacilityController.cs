@@ -14,6 +14,7 @@ using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -66,7 +67,7 @@ namespace WatermentWebSCADA.Controllers
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Kontinenter = db.continents.ToList(),
-                    Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
+                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
@@ -105,7 +106,7 @@ namespace WatermentWebSCADA.Controllers
 
                     Kontinenter = db.continents.ToList(),
 
-                    Land = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
+                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
 
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
@@ -176,24 +177,47 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult AddFacility()
+        public ActionResult AddFacility2()
         {
             //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
             return View();
         }
 
-       /* [HttpPost]
-        public AddFacility() //Create([Bind(Include = "Id,CountryCode,Name,continents_Id")] countries countries)
-        {
-            if (ModelState.IsValid)
-            {
-                db.facilities.Add(facilities);
-                db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] AddFacilityViewModel Facility)
+        //{
+        //    LocationViewModel LVM = new LocationViewModel();
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.facilities.Add(Facility);
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code", countries.continents_Id);
-            return View();
-        }*/
+        //    ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
+        //    return View();
+        //}
+         public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel)
+         {
+             if (ModelState.IsValid)
+             {
+                 using (var context = new watermentdbEntities())
+                 {
+                     var facilites = new facilities();
+                     {
+                         facilites.Name = fmodel.Name;
+                         facilites.Domain = fmodel.Name;
+                         await context.SaveChangesAsync();
+
+                     };
+                 }
+                 return RedirectToAction("Login", "Account");
+
+             }
+             return View(fmodel);
+         }
     }
+              
+            
 }

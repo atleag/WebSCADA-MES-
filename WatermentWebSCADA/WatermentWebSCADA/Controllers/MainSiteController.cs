@@ -23,7 +23,7 @@ namespace WatermentWebSCADA.Controllers
         string AlarmNavn;
         
         // GET: Main
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string sortOrder)
         {
             using (var db1 = new Models.watermentdbEntities())
 
@@ -31,19 +31,17 @@ namespace WatermentWebSCADA.Controllers
                 var model = new MainViewModel
                 {
 
-                    Land = db.countries.Where(c => c.continents.Id == id).ToList(),
+                    Countries = db.countries.Where(c => c.continents.Id == id).ToList(),
                     AlarmList = db.alarms.Where(o => o.Status == "Active").ToList(),
                     Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
                     Lokasjoner = db.locations.ToList(),
-                    Vedlikehold = db.maintenance.ToList(),
-
-                    Brukere = db.User.ToList(),
-
+                    Vedlikehold = db.maintenance.OrderBy(x => x.lastMaintenance).Take(10).ToList(),
                     Facilites = db.facilities.ToList(),
-                    
 
+                   
 
                 };
+
 
                 return View(model);
 

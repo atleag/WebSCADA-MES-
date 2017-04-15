@@ -267,6 +267,9 @@
     <Compile Include="Models\UserRegistrationToken.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\users_has_facilities.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ChartModel.cs" />
@@ -324,7 +327,7 @@
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\FacilityManagement.cs" />
+    <Compile Include="ViewModels\FacilityManagementViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
     <Compile Include="ViewModels\UserManagementViewModel.cs" />
@@ -353,11 +356,6 @@
     <Content Include="Views\Equipments\Details.cshtml" />
     <Content Include="Views\Equipments\Edit.cshtml" />
     <Content Include="Views\Equipments\Index.cshtml" />
-    <Content Include="Views\Measurements\Create.cshtml" />
-    <Content Include="Views\Measurements\Delete.cshtml" />
-    <Content Include="Views\Measurements\Details.cshtml" />
-    <Content Include="Views\Measurements\Edit.cshtml" />
-    <Content Include="Views\Measurements\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
@@ -390,6 +388,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Facility\AddFacility.cshtml" />
+    <Content Include="Views\Facility\AddFacility2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
