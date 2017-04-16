@@ -171,7 +171,9 @@
                     </dd>
 
                     <dt>
-                        @*"Domene"*@
+                        @Html.ActionLink("Export to Excel", "ExportClientsListToExcel", "Export")
+
+                        @*<div class="vv"><p align="center">@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p> </div>*@
 
                     </dt>
 
