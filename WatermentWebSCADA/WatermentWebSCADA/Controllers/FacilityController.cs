@@ -33,6 +33,11 @@ namespace WatermentWebSCADA.Controllers
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
+            if (id == null) //int id = 0 handling. 
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             // Fetches the current row id selected in the table Client_Conection
             foreach (var item2 in db.Client_Conection.Where(c => c.user == id.ToString()))
             {
@@ -239,7 +244,28 @@ namespace WatermentWebSCADA.Controllers
             return View(facilities);
         }
 
+        public ActionResult AddLocation()
+        {
+            ViewBag.countries_Id = new SelectList(db.countries, "Id", "Name");
+            ViewBag.countries_continents_Id = new SelectList(db.continents, "Id", "Name");
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLocation([Bind(Include = "Id,StreetAddress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
+        {
+            if (ModelState.IsValid)
+            {
+                db.locations.Add(locations);
+                db.SaveChanges();
+                return RedirectToAction("AddFacility2");
+            }
+
+            ViewBag.locations_Id = new SelectList(db.countries, "Id", "Name", locations.countries_Id);
+            ViewBag.locations_continents_id = new SelectList(db.continents, "Id", "Name", locations.countries_continents_Id);
+            return View(locations);
+        }
 
 
     }
