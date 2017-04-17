@@ -175,25 +175,29 @@ h1{
                 </div>
     <div class="frame">
         <h3 align ="center">Info</h3>
-        <table>
-            <tr>
-                <th>Anleggsnavn</th>
-                <th>Plassering</th>
-                <th>Status</th>
-            </tr>
-            @foreach (var item in Model.Facilites)
-            {
+        <dl class="dl-horizontal">
+            
+                <dt>Antall anlegg</dt>
 
-                <tr>
-                    <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                    <td>@item.Domain</td>
-                    <td>554</td>
-                </tr>
+                 <dd>@Model.antallFacilities</dd>
 
-            }
-        </table>
+                <dt>Antal anlegg online</dt>
+                    <dd>@Model.antallOnline</dd>
+                <dt>Antall anlegg offline</dt>
+            
+            <dd>@Model.antallOffline</dd>
+            
 
-    </div>
+            
+                
+                
+              
+                
+
+                
+</dl>
+
+</div>
     </div>
      
     </div>
