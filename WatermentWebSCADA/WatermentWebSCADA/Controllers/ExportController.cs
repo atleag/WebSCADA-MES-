@@ -17,24 +17,10 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
 
-        
-
-        public ActionResult Index(int? id)
-        {
-
-            using (var db = new Models.watermentdbEntities())
-            {
-                var model = new MainViewModel
-                {
-
-                    AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-              };
-                return View(model);
-            }
-        }
+       
 
 
-        public ActionResult ExportClientsListToExcel()
+        public ActionResult ExportClientsListToExcel(int? id)
         {
 
             using (var db = new Models.watermentdbEntities())
@@ -51,7 +37,7 @@ namespace WatermentWebSCADA.Controllers
                 var grid = new System.Web.UI.WebControls.GridView();
 
                 grid.DataSource = 
-                                  from d in db.measurements.ToList()
+                                  from d in db.measurements.Where(x=> x.equipments_facilities_Id==id).ToList()
                                   select new
                                   {
                                       ID = d.Id,

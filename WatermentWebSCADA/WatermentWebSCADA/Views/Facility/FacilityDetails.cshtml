@@ -171,7 +171,11 @@
                     </dd>
 
                     <dt>
-                        @Html.ActionLink("Export to Excel", "ExportClientsListToExcel", "Export")
+                        @foreach (var item in Model.Facilites)
+                        {
+                            @Html.ActionLink("Export to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)
+                        }
+                       
 
                         @*<div class="vv"><p align="center">@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p> </div>*@
 
