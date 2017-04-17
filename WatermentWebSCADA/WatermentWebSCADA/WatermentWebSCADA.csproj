@@ -390,6 +390,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Facility\AddFacility2.cshtml" />
     <Content Include="Views\Export\Index.cshtml" />
+    <Content Include="Views\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
