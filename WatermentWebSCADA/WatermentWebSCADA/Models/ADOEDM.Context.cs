@@ -30,6 +30,7 @@ namespace WatermentWebSCADA.Models
         public virtual DbSet<countries> countries { get; set; }
         public virtual DbSet<equipments> equipments { get; set; }
         public virtual DbSet<facilities> facilities { get; set; }
+        public virtual DbSet<FacilityStatus> FacilityStatus { get; set; }
         public virtual DbSet<locations> locations { get; set; }
         public virtual DbSet<maintenance> maintenance { get; set; }
         public virtual DbSet<measurements> measurements { get; set; }
@@ -39,7 +40,6 @@ namespace WatermentWebSCADA.Models
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
         public virtual DbSet<UserRegistrationToken> UserRegistrationToken { get; set; }
-        public virtual DbSet<users_has_facilities> users_has_facilities { get; set; }
         public virtual DbSet<Client_Conection> Client_Conection { get; set; }
         public virtual DbSet<countries_with_facilites_view> countries_with_facilites_view { get; set; }
     }

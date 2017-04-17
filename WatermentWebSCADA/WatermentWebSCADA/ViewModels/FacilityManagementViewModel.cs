@@ -10,22 +10,16 @@ using System.ComponentModel.DataAnnotations;
 namespace WatermentWebSCADA.ViewModels
 {
 
-    public class AddFacilityViewModel
-    {        
-        //public string StreetAddress { get; set; }
-        //public Int16 Postcode { get; set; }
-        //public string County { get; set; }
-        //public string City { get; set; }
-        //public string Name { get; set; }
-        //public Int16 locations_id { get; set; }
-        //public Int16 locations_countries_Id { get; set; }
-        //public Int16 locations_countries_continents_Id { get; set; }
+    /*public class AddFacilityViewModel
+    {
+
     }
 
     public class ContinentsViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
     }
     public class CountriesViewModel
     {
@@ -42,7 +36,7 @@ namespace WatermentWebSCADA.ViewModels
         public string City { get; set; }
         public int countries_Id { get; set; }
         public int countries_continents_Id { get; set; }
-    }
+    }*/
 
     public class FacilityViewModel
     {
@@ -54,6 +48,7 @@ namespace WatermentWebSCADA.ViewModels
         public Nullable<int> locations_Id { get; set; }
         public Nullable<int> locations_countries_Id { get; set; }
         public Nullable<int> locations_countries_continents_Id { get; set; }
+
     }
 
 }
