@@ -242,21 +242,23 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult AddLocation()
         {
             ViewBag.countries_Id = new SelectList(db.countries, "Id", "Name");
+            ViewBag.countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddLocation([Bind(Include = "Id,StreetAdress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
+        public ActionResult AddLocation([Bind(Include = "Id,StreetAddress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
         {
             if (ModelState.IsValid)
             {
                 db.locations.Add(locations);
                 db.SaveChanges();
-                return RedirectToAction("FacilityOverview");
+                return RedirectToAction("AddFacility2");
             }
 
             ViewBag.locations_Id = new SelectList(db.countries, "Id", "Name", locations.countries_Id);
+            ViewBag.locations_continents_id = new SelectList(db.continents, "Id", "Name", locations.countries_continents_Id);
             return View(locations);
         }
 
