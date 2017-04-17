@@ -14,6 +14,7 @@ namespace WatermentWebSCADA.Models
     
     public partial class measurements
     {
+        
         public int Id { get; set; }
         public Nullable<System.DateTime> Recorded { get; set; }
         public Nullable<float> ProcessValue { get; set; }
