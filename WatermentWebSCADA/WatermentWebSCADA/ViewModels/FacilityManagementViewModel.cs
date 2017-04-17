@@ -50,5 +50,13 @@ namespace WatermentWebSCADA.ViewModels
         public Nullable<int> locations_countries_continents_Id { get; set; }
 
     }
+    public class FacilityEquipmentVM
+    {
+        public string Tag { get; set; } //Equipment
+        public string SIUnits { get; set; }//Equipment
+        public string Description { get; set; }//Equipment
+        public Nullable<System.DateTime> LastCalibrated { get; set; } //Equipment
+        
+    }
 
 }

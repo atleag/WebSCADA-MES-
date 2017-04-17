@@ -247,6 +247,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
+    <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\facilities2Controller.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
@@ -398,6 +399,7 @@
     <Content Include="Views\facilities2\Edit.cshtml" />
     <Content Include="Views\facilities2\Index.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
+    <Content Include="Views\Equipment\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
