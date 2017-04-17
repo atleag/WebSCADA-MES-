@@ -12,13 +12,19 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class users_has_facilities
+    public partial class FacilityStatus
     {
-        public int Id { get; set; }
-        public int users_Id { get; set; }
-        public int facilities_Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FacilityStatus()
+        {
+            this.facilities = new HashSet<facilities>();
+        }
     
-        public virtual facilities facilities { get; set; }
-        public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facilities> facilities { get; set; }
     }
 }
