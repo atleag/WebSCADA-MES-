@@ -177,14 +177,14 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult AddFacility2()
-        {
-            //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
-            return View();
-        }
+        //public ActionResult AddFacility2()
+        //{
+        //    //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         //public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] AddFacilityViewModel Facility)
         //{
         //    LocationViewModel LVM = new LocationViewModel();
@@ -198,25 +198,50 @@ namespace WatermentWebSCADA.Controllers
         //    ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
         //    return View();
         //}
-         public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel)
-         {
-             if (ModelState.IsValid)
-             {
-                 using (var context = new watermentdbEntities())
-                 {
-                     var facilites = new facilities();
-                     {
-                         facilites.Name = fmodel.Name;
-                         facilites.Domain = fmodel.Name;
-                         await context.SaveChangesAsync();
+        //public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (var context = new watermentdbEntities())
+        //        {
+        //            var facilites = new facilities();
+        //            {
+        //                facilites.Name = fmodel.Name;
+        //                facilites.Domain = fmodel.Name;
+        //                await context.SaveChangesAsync();
 
-                     };
-                 }
-                 return RedirectToAction("Login", "Account");
+        //            };
+        //        }
+        //        return RedirectToAction("Login", "Account");
 
-             }
-             return View(fmodel);
-         }
+        //    }
+        //    return View(fmodel);
+        //}
+
+        public ActionResult AddFacility2()
+        {
+            ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        {
+            if (ModelState.IsValid)
+            {
+                db.facilities.Add(facilities);
+                db.SaveChanges();
+                return RedirectToAction("FacilityOverview");
+            }
+
+            ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
+            return View(facilities);
+        }
+
+
+
+
     }
               
             

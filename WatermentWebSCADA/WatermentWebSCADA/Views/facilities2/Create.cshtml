@@ -1,11 +1,11 @@
 ﻿@model WatermentWebSCADA.Models.facilities
 
 @{
-    ViewBag.Title = "AddFacility2";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddFacility2</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.locations_Id, "locations_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.locations_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("locations_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.locations_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.locations_countries_Id, "locations_countries_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.locations_countries_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("locations_countries_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.locations_countries_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.locations_countries_continents_Id, "locations_countries_continents_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.locations_countries_continents_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("locations_countries_continents_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.locations_countries_continents_Id, "", new { @class = "text-danger" })
             </div>
         </div>
