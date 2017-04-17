@@ -27,10 +27,12 @@ namespace WatermentWebSCADA.Models
         public string IP { get; set; }
         public string Domain { get; set; }
         public Nullable<int> locations_Id { get; set; }
+        public IEnumerable<facilities> Facilites { get; set; }
         public Nullable<int> locations_countries_Id { get; set; }
         public Nullable<int> locations_countries_continents_Id { get; set; }
         public Nullable<int> FacilityStatus_Id { get; set; }
-    
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<equipments> equipments { get; set; }
         public virtual FacilityStatus FacilityStatus { get; set; }

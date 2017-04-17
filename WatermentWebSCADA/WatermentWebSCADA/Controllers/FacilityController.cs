@@ -239,7 +239,26 @@ namespace WatermentWebSCADA.Controllers
             return View(facilities);
         }
 
+        public ActionResult AddLocation()
+        {
+            ViewBag.countries_Id = new SelectList(db.countries, "Id", "Name");
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLocation([Bind(Include = "Id,StreetAdress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
+        {
+            if (ModelState.IsValid)
+            {
+                db.locations.Add(locations);
+                db.SaveChanges();
+                return RedirectToAction("FacilityOverview");
+            }
+
+            ViewBag.locations_Id = new SelectList(db.countries, "Id", "Name", locations.countries_Id);
+            return View(locations);
+        }
 
 
     }
