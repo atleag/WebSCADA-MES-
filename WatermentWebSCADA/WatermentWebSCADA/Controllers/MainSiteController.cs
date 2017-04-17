@@ -20,7 +20,7 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
-        string AlarmNavn;
+        
         
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
@@ -38,9 +38,12 @@ namespace WatermentWebSCADA.Controllers
                     Vedlikehold = db.maintenance.OrderBy(x => x.lastMaintenance).Take(10).ToList(),
                     Facilites = db.facilities.ToList(),
 
-                   
-
+                    antallFacilities = db.facilities.Count(),
+                    antallOnline = db.facilities.Where(x=> x.FacilityStatus_Id == 1).Count(),
+                    antallOffline = db.facilities.Where(x => x.FacilityStatus_Id == 2).Count(),
                 };
+
+                   
 
 
                 return View(model);
