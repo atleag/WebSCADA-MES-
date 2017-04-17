@@ -34,12 +34,9 @@ namespace WatermentWebSCADA.ViewModels
         public List<measurements> Verdier { get; set; }
         public List<measurements> BarValues { get; set; }
         public List<alarms> AlarmList { get; set; }
-    
-
-  
-
-
-
+        public int antallFacilities { get; internal set; }
+        public int antallOnline { get; internal set; }
+        public int antallOffline { get; internal set; }
     }
 
     public class FacilitesAlarmModel
