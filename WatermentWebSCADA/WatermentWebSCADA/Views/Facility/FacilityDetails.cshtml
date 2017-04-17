@@ -283,9 +283,13 @@
             {
                 ErrorHandling++;
             }
-        @if (ErrorHandling > 20)
+        @if (ErrorHandling < 20)
         {
             <h3> Not enough recorded values </h3>
+        }
+        @if (ErrorHandling > 20)
+        {
+           
 
 
 
