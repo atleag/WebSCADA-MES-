@@ -28,7 +28,7 @@ namespace WatermentWebSCADA.Controllers
         int LandId1;
         int LokasjonsID;
         string IpClient;
-        string[] arr;
+
 
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
