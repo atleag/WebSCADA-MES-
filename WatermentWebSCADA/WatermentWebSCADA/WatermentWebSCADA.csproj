@@ -393,11 +393,6 @@
     <Content Include="Views\Facility\AddFacility2.cshtml" />
     <Content Include="Views\Export\Index.cshtml" />
     <Content Include="Views\View.cshtml" />
-    <Content Include="Views\facilities2\Create.cshtml" />
-    <Content Include="Views\facilities2\Delete.cshtml" />
-    <Content Include="Views\facilities2\Details.cshtml" />
-    <Content Include="Views\facilities2\Edit.cshtml" />
-    <Content Include="Views\facilities2\Index.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
     <None Include="Web.Debug.config">
