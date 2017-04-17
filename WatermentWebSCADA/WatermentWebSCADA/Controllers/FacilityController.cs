@@ -33,6 +33,11 @@ namespace WatermentWebSCADA.Controllers
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
+            if (id == null) //int id = 0 handling. 
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             // Fetches the current row id selected in the table Client_Conection
             foreach (var item2 in db.Client_Conection.Where(c => c.user == id.ToString()))
             {
