@@ -182,46 +182,6 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        //public ActionResult AddFacility2()
-        //{
-        //    //ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> AddFacility([Bind(Include = "Id,CountryCode,Name,continents_Id")] AddFacilityViewModel Facility)
-        //{
-        //    LocationViewModel LVM = new LocationViewModel();
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.facilities.Add(Facility);
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.continents_Id = new SelectList(db.continents, "Id", "Code");
-        //    return View();
-        //}
-        //public async Task<ActionResult> AddFacilityVersionTwo(FacilityViewModel fmodel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var context = new watermentdbEntities())
-        //        {
-        //            var facilites = new facilities();
-        //            {
-        //                facilites.Name = fmodel.Name;
-        //                facilites.Domain = fmodel.Name;
-        //                await context.SaveChangesAsync();
-
-        //            };
-        //        }
-        //        return RedirectToAction("Login", "Account");
-
-        //    }
-        //    return View(fmodel);
-        //}
 
         public ActionResult AddFacility2()
         {
@@ -230,7 +190,6 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
@@ -255,7 +214,6 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddLocation([Bind(Include = "Id,StreetAddress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
@@ -271,6 +229,41 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.locations_continents_id = new SelectList(db.continents, "Id", "Name", locations.countries_continents_Id);
             return View(locations);
         }
+
+        public ActionResult EditFacilities(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            facilities facilities = db.facilities.Find(id);
+            if (facilities == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
+            return View(facilities);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(facilities).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("FacilityOverview");
+            }
+            ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);
+            return View(facilities);
+        }
+
+
 
 
     }
