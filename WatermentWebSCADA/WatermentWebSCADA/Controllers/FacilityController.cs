@@ -263,7 +263,31 @@ namespace WatermentWebSCADA.Controllers
             return View(facilities);
         }
 
+        // GET: facilities2/Delete/5
+        public ActionResult DeleteFacility(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            facilities facilities = db.facilities.Find(id);
+            if (facilities == null)
+            {
+                return HttpNotFound();
+            }
+            return View(facilities);
+        }
 
+        // POST: facilities2/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            facilities facilities = db.facilities.Find(id);
+            db.facilities.Remove(facilities);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
     }

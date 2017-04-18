@@ -117,7 +117,7 @@ namespace WatermentWebSCADA.Controllers
             facilities facilities = db.facilities.Find(id);
             db.facilities.Remove(facilities);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("FacilityOverview");
         }
 
         protected override void Dispose(bool disposing)
