@@ -16,8 +16,8 @@
     <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </head>
-<body style="background-color:rgb(117, 157, 103);" >
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(34, 77, 32)">
+<body style="background-color:rgb(171,194,122)">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(94,110,60)">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,6 +30,7 @@
                 @Html.ActionLink("Waterment SCADA", "", "", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Owerview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Facilites", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
               
             </div>
             <div class="navbar-collapse collapse">
@@ -43,8 +44,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Waterment Web SCADA by people who should not be even touching anything remotely related to programming>
+        <footer style="position:relative">
+            <p style="color:white">&copy; @DateTime.Now.Year - Waterment Web SCADA by awsome people. </p>
         </footer>
     </div>
 
