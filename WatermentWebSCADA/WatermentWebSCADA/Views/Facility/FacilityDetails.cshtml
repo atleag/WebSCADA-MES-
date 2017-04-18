@@ -18,19 +18,59 @@
             height: 370px;
         }
     </style>
+    <style>
+        .intro2 {
+            background-color: lightgreen;
+            color: black;
+            margin: 20px 0 20px 0;
+            padding: 20px;
+            border-radius: 25px;
+            height: 40px;
+        }
+        .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightgreen;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}*/
+    </style>
 </head>
 </html>
 
-@*<div style='display: block; height: 500px'>left</div>*@
 
-@*<p>Min ip er @Model.IP[1]</p>
-
-    <p>Og min adresse er @Model.Address</p>
-
-    @foreach (var item in Model.Name)
-    {
-        <p>@item</p>
-    }*@
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -63,8 +103,8 @@
                     <dd>
                         @foreach (var item in Model.Facilites)
                         {
-                            @item.Name  
-                           
+                            @item.Name
+
                         }
                     </dd>
 
@@ -73,7 +113,7 @@
 
                     <dt>
 
-                       Country
+                        Country
                     </dt>
 
                     <dd>
@@ -100,7 +140,7 @@
                         }
                     </dd>
                     <dt>
-                       Postcode
+                        Postcode
                     </dt>
                     <dd>
                         @foreach (var item in Model.Lokasjoner)
@@ -155,7 +195,7 @@
                     <dd>
                         @foreach (var item in Model.Facilites)
                         {
-                            @item.Domain 
+                            @item.Domain
                         }
                     </dd>
                     <dt>
@@ -166,38 +206,59 @@
                         @foreach (var item in Model.Facilites)
                         {
                             @item.IP
-                           
+
                         }
                     </dd>
 
                     <dt>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @Html.ActionLink("Export to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)
-                        }
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)
-                        }
                        
+                        @*@foreach (var item in Model.Facilites)
+                        {
+                            @Html.ActionLink("Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)
+                        }*@
+
+
 
                         @*<div class="vv"><p align="center">@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p> </div>*@
 
                     </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.Email[x])*@
-                    </dd>
                     <dt>
-                        @foreach (var skill in Model.Facilites)
+                        @*@foreach (var item in Model.Facilites)
                         {
-                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
-                        }
-
+                            @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)
+                        }*@
                     </dt>
 
                     <dd>
+                        @*@Html.DisplayFor(model => model.Email[x])*@
+                        @*@foreach (var skill in Model.Facilites)
+                        {
+                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
+                        }*@
+                    </dd>
+                    <dt>
+                        @foreach (var skill in Model.Facilites)
+                            {
+                                <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
+                            }
+                        
+                    </dt>
 
+                    <dd>
+                        <div class="dropdown">
+                            <button class="btn btn-success">Export to Excel</button>
+                            <div class="dropdown-content">
+                                @foreach (var item in Model.Facilites)
+            {
+                                    <b>  @Html.ActionLink("Export Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)</b>
+                                }
+                                @foreach (var item in Model.Facilites)
+            {
+                                    <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
+                                }
+
+                            </div>
+                        </div>
 
                     </dd>
 
@@ -224,7 +285,7 @@
                     //Teller opp alle i alarmer i tabellen
                 }
 
-               @foreach (var skill in Model.Alarmer)
+                @foreach (var skill in Model.Alarmer)
                 {
 
 
@@ -249,8 +310,8 @@
                             <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
                             <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
                             <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
+                            <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
+                            <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
                                                     <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
@@ -273,173 +334,171 @@
 
         </div>
 
+
+       
     </div>
 
-   
+            </th>
+            <th>
 
-    </th>
-    <th>
-        
-      
-            @{ int ErrorHandling = 0;}
 
-            @foreach (var value in Model.Verdier)
+                @{ int ErrorHandling = 0;}
+
+                @foreach (var value in Model.Verdier)
             {
                 ErrorHandling++;
             }
-        @if (ErrorHandling < 20)
-        {
-            <h3> Not enough recorded values </h3>
-        }
-        @if (ErrorHandling > 20)
-        {
-           
-
-
-
-
-
-   
-        <script type="text/javascript">
-
-
-            
+                @if (ErrorHandling < 20)
+                {
+                    <h3> Not enough recorded values </h3>
+                }
+                @if (ErrorHandling > 20)
+                {
 
 
 
 
 
 
-              window.onload = function () {
+
+                    <script type="text/javascript">
 
 
-                  var ctx = document.getElementById("chart").getContext("2d");
-
-                  var myChart = new Chart(ctx, {
-                      responsive: true,
-
-                      type: "line",
 
 
-                      data: {
-                          "labels":
-                          [
 
-                             @{int Idinte2 = 0;}
 
-              @foreach (var value in Model.Verdier)
+
+
+
+                        window.onload = function () {
+
+
+                            var ctx = document.getElementById("chart").getContext("2d");
+
+                            var myChart = new Chart(ctx, {
+                                responsive: true,
+
+                                type: "line",
+
+
+                                data: {
+                                    "labels":
+                                    [
+
+                                       @{int Idinte2 = 0;}
+
+                        @foreach (var value in Model.Verdier)
             {
                 Idinte2++;
             }
 
 
-                            @{int barID = 0;}
+                                      @{int barID = 0;}
 
-              @foreach (var value in Model.BarValues)
+                        @foreach (var value in Model.BarValues)
         {
             //verdi = Model.Verdier[Idinte2].ProcessValue;
 
             barID++;
 
         }
-   "Time",
+             "Time",
 
 
 
 
 
-                "@Model.Verdier[Idinte2-19].Recorded",
-          "@Model.Verdier[Idinte2-18].Recorded",
-           "@Model.Verdier[Idinte2-17].Recorded",
-         "@Model.Verdier[Idinte2-16].Recorded",
-          "@Model.Verdier[Idinte2-15].Recorded",
-            "@Model.Verdier[Idinte2-14].Recorded",
-         "@Model.Verdier[Idinte2-13].Recorded",
-          "@Model.Verdier[Idinte2-12].Recorded",
-                "@Model.Verdier[Idinte2-11].Recorded",
-          "@Model.Verdier[Idinte2-10].Recorded",
+                          "@Model.Verdier[Idinte2-19].Recorded",
+                    "@Model.Verdier[Idinte2-18].Recorded",
+                     "@Model.Verdier[Idinte2-17].Recorded",
+                   "@Model.Verdier[Idinte2-16].Recorded",
+                    "@Model.Verdier[Idinte2-15].Recorded",
+                      "@Model.Verdier[Idinte2-14].Recorded",
+                   "@Model.Verdier[Idinte2-13].Recorded",
+                    "@Model.Verdier[Idinte2-12].Recorded",
+                          "@Model.Verdier[Idinte2-11].Recorded",
+                    "@Model.Verdier[Idinte2-10].Recorded",
 
-            "@Model.Verdier[Idinte2-9].Recorded",
-           "@Model.Verdier[Idinte2-8].Recorded",
-         "@Model.Verdier[Idinte2-7].Recorded",
-          "@Model.Verdier[Idinte2-6].Recorded",
-       "@Model.Verdier[Idinte2-5].Recorded",
-         "@Model.Verdier[Idinte2-4].Recorded",
-          "@Model.Verdier[Idinte2-3].Recorded",
-             "@Model.Verdier[Idinte2-2].Recorded",
-          "@Model.Verdier[Idinte2-1].Recorded",
-
-
-                          ],
-                          datasets: [{
-                              label: "Reactor Core Temperature",
-                              "fill": false,
-                              backgroundColor: "rgba(0, 0, 0, 1)",
-                              borderColor: "rgba(0,0,0,1)",
-                              pointHitRadius: 50,
-                              lineTension: 0,
-                              borderJoinStyle: 'miter',
-                              yAxisID: "y-axis-0",
-                              "data": [
+                      "@Model.Verdier[Idinte2-9].Recorded",
+                     "@Model.Verdier[Idinte2-8].Recorded",
+                   "@Model.Verdier[Idinte2-7].Recorded",
+                    "@Model.Verdier[Idinte2-6].Recorded",
+                 "@Model.Verdier[Idinte2-5].Recorded",
+                   "@Model.Verdier[Idinte2-4].Recorded",
+                    "@Model.Verdier[Idinte2-3].Recorded",
+                       "@Model.Verdier[Idinte2-2].Recorded",
+                    "@Model.Verdier[Idinte2-1].Recorded",
 
 
-                                   @Model.Verdier[Idinte2-20].ProcessValue,
-              @Model.Verdier[Idinte2-19].ProcessValue,
-               @Model.Verdier[Idinte2-18].ProcessValue,
-             @Model.Verdier[Idinte2-17].ProcessValue,
-              @Model.Verdier[Idinte2-16].ProcessValue,
-                  @Model.Verdier[Idinte2-15].ProcessValue,
-              @Model.Verdier[Idinte2-14].ProcessValue,
-               @Model.Verdier[Idinte2-13].ProcessValue,
-             @Model.Verdier[Idinte2-12].ProcessValue,
-              @Model.Verdier[Idinte2-11].ProcessValue,
+                                    ],
+                                    datasets: [{
+                                        label: "Reactor Core Temperature",
+                                        "fill": false,
+                                        backgroundColor: "rgba(0, 0, 0, 1)",
+                                        borderColor: "rgba(0,0,0,1)",
+                                        pointHitRadius: 50,
+                                        lineTension: 0,
+                                        borderJoinStyle: 'miter',
+                                        yAxisID: "y-axis-0",
+                                        "data": [
 
 
-                @Model.Verdier[Idinte2-10].ProcessValue,
-          @Model.Verdier[Idinte2-9].ProcessValue,
-               @Model.Verdier[Idinte2-8].ProcessValue,
-             @Model.Verdier[Idinte2-7].ProcessValue,
-              @Model.Verdier[Idinte2-6].ProcessValue,
-           @Model.Verdier[Idinte2-5].ProcessValue,
-             @Model.Verdier[Idinte2-4].ProcessValue,
-              @Model.Verdier[Idinte2-3].ProcessValue,
-             @Model.Verdier[Idinte2-2].ProcessValue,
-              @Model.Verdier[Idinte2-1].ProcessValue,
+                                             @Model.Verdier[Idinte2-20].ProcessValue,
+                        @Model.Verdier[Idinte2-19].ProcessValue,
+                         @Model.Verdier[Idinte2-18].ProcessValue,
+                       @Model.Verdier[Idinte2-17].ProcessValue,
+                        @Model.Verdier[Idinte2-16].ProcessValue,
+                            @Model.Verdier[Idinte2-15].ProcessValue,
+                        @Model.Verdier[Idinte2-14].ProcessValue,
+                         @Model.Verdier[Idinte2-13].ProcessValue,
+                       @Model.Verdier[Idinte2-12].ProcessValue,
+                        @Model.Verdier[Idinte2-11].ProcessValue,
 
 
-                              ]
-                          },
-
-                          ]
-                      },
-
-                      options: {
-
-                          scales: {
-                              yAxes: [{
-
-                                  position: "left",
-
-                                  "id": "y-axis-0",
-                                  display: true,
-                                  ticks: {
-                                      beginAtZero: true,
-                                      steps: 10,
-                                      stepValue: 5,
-                                      max: 50,
-                                  }
-                              }
-                              //, {
-                              //    position: "right",
-                              //    "id": "y-axis-1"
-                              //}
-                              ]
-                          }
-                      }
-
-                  }
+                          @Model.Verdier[Idinte2-10].ProcessValue,
+                    @Model.Verdier[Idinte2-9].ProcessValue,
+                         @Model.Verdier[Idinte2-8].ProcessValue,
+                       @Model.Verdier[Idinte2-7].ProcessValue,
+                        @Model.Verdier[Idinte2-6].ProcessValue,
+                     @Model.Verdier[Idinte2-5].ProcessValue,
+                       @Model.Verdier[Idinte2-4].ProcessValue,
+                        @Model.Verdier[Idinte2-3].ProcessValue,
+                       @Model.Verdier[Idinte2-2].ProcessValue,
+                        @Model.Verdier[Idinte2-1].ProcessValue,
 
 
+                                        ]
+                                    },
+
+                                    ]
+                                },
+
+                                options: {
+
+                                    scales: {
+                                        yAxes: [{
+
+                                            position: "left",
+
+                                            "id": "y-axis-0",
+                                            display: true,
+                                            ticks: {
+                                                beginAtZero: true,
+                                                steps: 10,
+                                                stepValue: 5,
+                                                max: 50,
+                                            }
+                                        }
+                                        //, {
+                                        //    position: "right",
+                                        //    "id": "y-axis-1"
+                                        //}
+                                        ]
+                                    }
+                                }
+
+                            }
 
 
 
@@ -447,35 +506,37 @@
 
 
 
-          );
-                  Chart.defaults.global.animationSteps = 50;
-                  Chart.defaults.global.tooltipYPadding = 16;
-                  Chart.defaults.global.tooltipCornerRadius = 0;
-                  Chart.defaults.global.tooltipTitleFontStyle = "normal";
-                  Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
-                  Chart.defaults.global.animationEasing = "easeOutBounce";
-                  Chart.defaults.global.responsive = true;
-                  Chart.defaults.global.scaleLineColor = "black";
-                  Chart.defaults.global.scaleFontSize = 16;
-
-                  //START PÅ BAR GRAFEN HER///
-
-                  var ctx2 = document.getElementById("chart2").getContext("2d");
-
-                  var myChart2 = new Chart(ctx2, {
-
-                      responsive: true,
-
-                      type: "line",
 
 
-                      data: {
+                    );
+                            Chart.defaults.global.animationSteps = 50;
+                            Chart.defaults.global.tooltipYPadding = 16;
+                            Chart.defaults.global.tooltipCornerRadius = 0;
+                            Chart.defaults.global.tooltipTitleFontStyle = "normal";
+                            Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+                            Chart.defaults.global.animationEasing = "easeOutBounce";
+                            Chart.defaults.global.responsive = true;
+                            Chart.defaults.global.scaleLineColor = "black";
+                            Chart.defaults.global.scaleFontSize = 16;
 
-                          "labels": [
+                            //START PÅ BAR GRAFEN HER///
 
-                                                     @{int Idinte3 = 0;}
+                            var ctx2 = document.getElementById("chart2").getContext("2d");
 
-                                      @foreach (var value in Model.Verdier)
+                            var myChart2 = new Chart(ctx2, {
+
+                                responsive: true,
+
+                                type: "line",
+
+
+                                data: {
+
+                                    "labels": [
+
+                                                               @{int Idinte3 = 0;}
+
+                                                @foreach (var value in Model.Verdier)
         {
 
 
@@ -486,9 +547,9 @@
         }
 
 
-                                                    @{int barID3 = 0;}
+                                                              @{int barID3 = 0;}
 
-                                      @foreach (var value in Model.BarValues)
+                                                @foreach (var value in Model.BarValues)
         {
             barID3++;
 
@@ -496,183 +557,183 @@
 
 
 
-                            "Time",
-                              "@Model.Verdier[Idinte3-19].Recorded",
-                              "@Model.Verdier[Idinte3-18].Recorded",
-                              "@Model.Verdier[Idinte3-17].Recorded",
-                              "@Model.Verdier[Idinte3-16].Recorded",
-                                 "@Model.Verdier[Idinte3-15].Recorded",
-                                   "@Model.Verdier[Idinte3-14].Recorded",
-                                  "@Model.Verdier[Idinte3-13].Recorded",
-                                                     "@Model.Verdier[Idinte3-12].Recorded",
-                                 "@Model.Verdier[Idinte3-11].Recorded",
-                                  "@Model.Verdier[Idinte3-10].Recorded",
+                                      "Time",
+                                        "@Model.Verdier[Idinte3-19].Recorded",
+                                        "@Model.Verdier[Idinte3-18].Recorded",
+                                        "@Model.Verdier[Idinte3-17].Recorded",
+                                        "@Model.Verdier[Idinte3-16].Recorded",
+                                           "@Model.Verdier[Idinte3-15].Recorded",
+                                             "@Model.Verdier[Idinte3-14].Recorded",
+                                            "@Model.Verdier[Idinte3-13].Recorded",
+                                                               "@Model.Verdier[Idinte3-12].Recorded",
+                                           "@Model.Verdier[Idinte3-11].Recorded",
+                                            "@Model.Verdier[Idinte3-10].Recorded",
 
-                                   "@Model.Verdier[Idinte3-9].Recorded",
-                                   "@Model.Verdier[Idinte3-8].Recorded",
-                                 "@Model.Verdier[Idinte3-7].Recorded",
-                                  "@Model.Verdier[Idinte3-6].Recorded",
-                               "@Model.Verdier[Idinte3-5].Recorded",
-                                 "@Model.Verdier[Idinte3-4].Recorded",
-                                  "@Model.Verdier[Idinte3-3].Recorded",
-                                   "@Model.Verdier[Idinte3-2].Recorded",
-                                    "@Model.Verdier[Idinte3-1].Recorded",
-
-
-                          ],
-                          datasets: [{
-                              label: "Reactor Core Pressure",
-                              "fill": false,
-                              backgroundColor: "rgba(0, 0, 0, 1)",
-                              borderColor: "rgba(0,0,0,1)",
-                              pointHitRadius: 50,
-                              lineTension: 0,
+                                             "@Model.Verdier[Idinte3-9].Recorded",
+                                             "@Model.Verdier[Idinte3-8].Recorded",
+                                           "@Model.Verdier[Idinte3-7].Recorded",
+                                            "@Model.Verdier[Idinte3-6].Recorded",
+                                         "@Model.Verdier[Idinte3-5].Recorded",
+                                           "@Model.Verdier[Idinte3-4].Recorded",
+                                            "@Model.Verdier[Idinte3-3].Recorded",
+                                             "@Model.Verdier[Idinte3-2].Recorded",
+                                              "@Model.Verdier[Idinte3-1].Recorded",
 
 
-                              zoomEnabled: true,
-                              animationEnabled: true,
+                                    ],
+                                    datasets: [{
+                                        label: "Reactor Core Pressure",
+                                        "fill": false,
+                                        backgroundColor: "rgba(0, 0, 0, 1)",
+                                        borderColor: "rgba(0,0,0,1)",
+                                        pointHitRadius: 50,
+                                        lineTension: 0,
 
 
-                              yAxisID: "y-axis-0",
-                              "data": [
+                                        zoomEnabled: true,
+                                        animationEnabled: true,
 
 
-                                    @Model.BarValues[barID3-20].ProcessValue,
-                                      @Model.BarValues[barID3-19].ProcessValue,
-          @Model.BarValues[barID3-18].ProcessValue,
-          @Model.BarValues[barID3-17].ProcessValue,
-                 @Model.BarValues[barID3-16].ProcessValue,
-               @Model.BarValues[barID3-15].ProcessValue,
-              @Model.BarValues[barID3-14].ProcessValue,
-                 @Model.BarValues[barID3-13].ProcessValue,
-               @Model.BarValues[barID3-12].ProcessValue,
-              @Model.BarValues[barID3-11].ProcessValue,
+                                        yAxisID: "y-axis-0",
+                                        "data": [
 
 
-          @Model.BarValues[barID3-10].ProcessValue,
-          @Model.BarValues[barID3-9].ProcessValue,
-               @Model.BarValues[barID3-8].ProcessValue,
-             @Model.BarValues[barID3-7].ProcessValue,
-              @Model.BarValues[barID3-6].ProcessValue,
-           @Model.BarValues[barID3-5].ProcessValue,
-             @Model.BarValues[barID3-4].ProcessValue,
-              @Model.BarValues[barID3-3].ProcessValue,
-
-             @Model.BarValues[barID3-2].ProcessValue,
-              @Model.BarValues[barID3-1].ProcessValue,
-
+                                              @Model.BarValues[barID3-20].ProcessValue,
+                                                @Model.BarValues[barID3-19].ProcessValue,
+                    @Model.BarValues[barID3-18].ProcessValue,
+                    @Model.BarValues[barID3-17].ProcessValue,
+                           @Model.BarValues[barID3-16].ProcessValue,
+                         @Model.BarValues[barID3-15].ProcessValue,
+                        @Model.BarValues[barID3-14].ProcessValue,
+                           @Model.BarValues[barID3-13].ProcessValue,
+                         @Model.BarValues[barID3-12].ProcessValue,
+                        @Model.BarValues[barID3-11].ProcessValue,
 
 
-                              ]
-                          },
+                    @Model.BarValues[barID3-10].ProcessValue,
+                    @Model.BarValues[barID3-9].ProcessValue,
+                         @Model.BarValues[barID3-8].ProcessValue,
+                       @Model.BarValues[barID3-7].ProcessValue,
+                        @Model.BarValues[barID3-6].ProcessValue,
+                     @Model.BarValues[barID3-5].ProcessValue,
+                       @Model.BarValues[barID3-4].ProcessValue,
+                        @Model.BarValues[barID3-3].ProcessValue,
 
-                          //{
-                          //    "label": "Reactor Core  Pressure",
-                          //    "fill": "true",
-                          //    backgroundColor: "rgba(125, 109, 109,0.2)",
-                          //    yAxisID: "y-axis-1",
-                          //    "data": [
-                          //    1.9588,
-                          //    2.1226,
-                          //    2.1392,
-                          //    2.223,
-                          //    1.9048,
-                          //      1.9588,
-                          //    2.1226,
-                          //    2.1392,
-                          //    2.223,
-                          //    1.9048
-                          //    ]
-                          //}
-                          ]
-                      },
-
-                      options: {
-
-                          scales: {
-                              yAxes: [{
-
-                                  position: "left",
-
-                                  "id": "y-axis-0",
-                                  display: true,
-                                  ticks: {
-                                      beginAtZero: true,
-                                      steps: 10,
-                                      stepValue: 5,
-                                      max: 50,
-                                  }
-                              }
-                              //, {
-                              //    position: "right",
-                              //    "id": "y-axis-1"
-                              //}
-                              ]
-                          }
-                      }
-
-                  });
-                  Chart.defaults.global.animationSteps = 50;
-                  Chart.defaults.global.tooltipYPadding = 16;
-                  Chart.defaults.global.tooltipCornerRadius = 0;
-                  Chart.defaults.global.tooltipTitleFontStyle = "normal";
-                  Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
-                  Chart.defaults.global.animationEasing = "easeOutBounce";
-                  Chart.defaults.global.responsive = true;
-                  Chart.defaults.global.scaleLineColor = "black";
-                  Chart.defaults.global.scaleFontSize = 16;
-
-                  myChart2.render();
+                       @Model.BarValues[barID3-2].ProcessValue,
+                        @Model.BarValues[barID3-1].ProcessValue,
 
 
-              };
-        </script>
+
+                                        ]
+                                    },
+
+                                    //{
+                                    //    "label": "Reactor Core  Pressure",
+                                    //    "fill": "true",
+                                    //    backgroundColor: "rgba(125, 109, 109,0.2)",
+                                    //    yAxisID: "y-axis-1",
+                                    //    "data": [
+                                    //    1.9588,
+                                    //    2.1226,
+                                    //    2.1392,
+                                    //    2.223,
+                                    //    1.9048,
+                                    //      1.9588,
+                                    //    2.1226,
+                                    //    2.1392,
+                                    //    2.223,
+                                    //    1.9048
+                                    //    ]
+                                    //}
+                                    ]
+                                },
+
+                                options: {
+
+                                    scales: {
+                                        yAxes: [{
+
+                                            position: "left",
+
+                                            "id": "y-axis-0",
+                                            display: true,
+                                            ticks: {
+                                                beginAtZero: true,
+                                                steps: 10,
+                                                stepValue: 5,
+                                                max: 50,
+                                            }
+                                        }
+                                        //, {
+                                        //    position: "right",
+                                        //    "id": "y-axis-1"
+                                        //}
+                                        ]
+                                    }
+                                }
+
+                            });
+                            Chart.defaults.global.animationSteps = 50;
+                            Chart.defaults.global.tooltipYPadding = 16;
+                            Chart.defaults.global.tooltipCornerRadius = 0;
+                            Chart.defaults.global.tooltipTitleFontStyle = "normal";
+                            Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+                            Chart.defaults.global.animationEasing = "easeOutBounce";
+                            Chart.defaults.global.responsive = true;
+                            Chart.defaults.global.scaleLineColor = "black";
+                            Chart.defaults.global.scaleFontSize = 16;
+
+                            myChart2.render();
 
 
+                        };
+                    </script>
 
 
 
 
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
-        <canvas id="chart" width="920" height="350"></canvas>
 
 
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
-        <canvas id="chart2" width="920" height="350"></canvas>
-
-  
- 
-    <script type="text/javascript">
-
-
-    ;
-    </script>
-
-                                                        }
-   </th>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+                    <canvas id="chart" width="920" height="350"></canvas>
 
 
 
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.min.js"></script>
+                    <canvas id="chart2" width="920" height="350"></canvas>
 
-  
-   
+
+
+                    <script type="text/javascript">
+
+
+                        ;
+                    </script>
+
+    }
+            </th>
 
 
 
 
-</div>
-@*<div class="jumbotron text-center img-responsive" id="jumbotron">
-        <div id="jumbotron-header">
-            <h4><b>Alarms</b></h4>
 
 
-            @foreach (var skill in Model.Alarmer)
-            {
-                <p>@skill.Description @skill.AlarmOccured @skill.Status @skill.equipments.Tag</p>
-            }
+
+
+
 
         </div>
+        @*<div class="jumbotron text-center img-responsive" id="jumbotron">
+                <div id="jumbotron-header">
+                    <h4><b>Alarms</b></h4>
 
-    </div>*@
+
+                    @foreach (var skill in Model.Alarmer)
+                    {
+                        <p>@skill.Description @skill.AlarmOccured @skill.Status @skill.equipments.Tag</p>
+                    }
+
+                </div>
+
+            </div>*@
