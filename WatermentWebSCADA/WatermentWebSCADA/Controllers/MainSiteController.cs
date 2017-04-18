@@ -35,6 +35,10 @@ namespace WatermentWebSCADA.Controllers
             {
              
             }
+            catch (Exception)
+            {
+
+            }
             return pingable;
         }
 
