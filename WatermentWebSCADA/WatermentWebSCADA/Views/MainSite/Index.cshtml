@@ -171,24 +171,27 @@ h1{
 
                 </div>
     <div class="frame">
+
         <h3 align ="center">General info</h3>
-        <dl class="dl-horizontal" style="align-self">
-            
-                <dt>Nr. of facilities</dt>
 
-                 <dd>@Model.antallFacilities</dd>
-
-                <dt>Nr. of facilities online</dt>
-
-                    <dd>@Model.antallOnline</dd>
-
-                <dt>Nr. of facilities offline</dt>
-            
-            <dd>@Model.antallOffline</dd>
-            
-
-            
-                
+            <table>
+                <tr>
+                    <td class="title" style=""><b>Nr. of facilities</b> </td>
+                    <td class="text">@Model.antallFacilities</td>
+                </tr>
+                <tr>
+                    <td class="title"><b>Nr. of facilities online</b> </td>
+                    <td class="text">@Model.antallOnline</td>
+                </tr>
+                <tr>
+                    <td class="title"><b>Nr. of facilities offline</b> </td>
+                    <td class="text">@Model.antallOffline</td>
+                </tr>
+                <tr>
+                    <td class="title"><b>Nr. of active alarms</b></td>
+                    <td class="text">@Model.noAlarms</td>
+                </tr>
+            </table> 
                 
               
                 
