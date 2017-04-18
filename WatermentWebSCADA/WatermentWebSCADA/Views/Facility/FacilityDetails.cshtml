@@ -212,10 +212,7 @@
 
                     <dt>
                        
-                        @*@foreach (var item in Model.Facilites)
-                        {
-                            @Html.ActionLink("Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)
-                        }*@
+                      
                         @foreach (var item in Model.Facilites)
                         {
                         <dt class="form-group">                          
@@ -224,46 +221,23 @@
                         }
 
 
-                        @*<div class="vv"><p align="center">@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p> </div>*@
+                      
 
-                    </dt>
+                  
                     <dt>
-                        @*@foreach (var item in Model.Facilites)
-                        {
-                            @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)
-                        }*@
+                      
                     </dt>
 
                     <dd>
-                        @*@Html.DisplayFor(model => model.Email[x])*@
-                        @*@foreach (var skill in Model.Facilites)
-                        {
-                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
-                        }*@
+                      
                     </dd>
                     <dt>
-                        @foreach (var skill in Model.Facilites)
-                            {
-                                <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
-                            }
+                      
                         
                     </dt>
 
                     <dd>
-                        <div class="dropdown">
-                            <button class="btn btn-success">Export to Excel</button>
-                            <div class="dropdown-content">
-                                @foreach (var item in Model.Facilites)
-            {
-                                    <b>  @Html.ActionLink("Export Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)</b>
-                                }
-                                @foreach (var item in Model.Facilites)
-            {
-                                    <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
-                                }
-
-                            </div>
-                        </div>
+                        
 
                     </dd>
 
@@ -338,10 +312,29 @@
             </div>
 
         </div>
-
+        &emsp;
+        @foreach (var skill in Model.Facilites)
+        {
+            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
+        }
 
        
-    </div>
+            <div class="dropdown">
+                <button class="btn btn-success">Export to Excel</button>
+                <div class="dropdown-content">
+                    @foreach (var item in Model.Facilites)
+            {
+                        <b>  @Html.ActionLink("Export Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)</b>
+                    }
+                    @foreach (var item in Model.Facilites)
+            {
+                        <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
+                    }
+
+                </div>
+            </div>
+
+</div>
 
             </th>
             <th>
