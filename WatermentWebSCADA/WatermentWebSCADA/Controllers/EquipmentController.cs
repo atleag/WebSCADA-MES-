@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
+using System.Threading.Tasks;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -30,7 +31,7 @@ namespace WatermentWebSCADA.Controllers
             //Using foreach loop fill data from custmerlist to List<CustomerVM>.
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
-        // GET: Equipment
+        // GET: Equipment. Not used
         public ActionResult IndexBACKUP()
         {
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
@@ -52,5 +53,65 @@ namespace WatermentWebSCADA.Controllers
             //Using foreach loop fill data from custmerlist to List<CustomerVM>.
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
+        
+        public ActionResult Create()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.IsUpdate = false;
+                return View("_CreateEquipment");
+            }
+            else
+
+                return View();
+        }
+        //[ChildActionOnly]
+        //public ActionResult Create(FacilityAddEquipmentVM model, int id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var db = new watermentdbEntities(); 
+        //                    db.equipments.Add(new equipments
+        //                     {
+        //                    Tag = model.Tag,
+        //                    SIUnits = model.SIUnits,
+        //                    Description = model.Description,
+        //                    facilities_Id = id
+
+        //                });
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View(model);
+        //}
+        [HttpPost]
+        public ActionResult CreateEquipment(FacilityAddEquipmentVM model, string Command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_CreateEquipment", model);
+            }
+            else
+            {
+
+                var db = new watermentdbEntities();
+                db.equipments.Add(new equipments
+                {
+                    Tag = model.Tag,
+                    SIUnits = model.SIUnits,
+                    Description = model.Description,
+                    facilities_Id = model.facilities_Id
+
+                });
+                //Need to create some error handling here.
+                db.SaveChanges();
+                TempData["OperStatus"] = "Equipment added succeessfully";
+                ModelState.Clear();
+            }
+
+            return PartialView("_AddEquipment");
+        }
+
     }
 }

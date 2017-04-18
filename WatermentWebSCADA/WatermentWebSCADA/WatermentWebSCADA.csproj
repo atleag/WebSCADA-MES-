@@ -354,7 +354,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Equipment\Create.cshtml" />
     <Content Include="Views\Equipments\Delete.cshtml" />
     <Content Include="Views\Equipments\Details.cshtml" />
     <Content Include="Views\Equipments\Edit.cshtml" />
@@ -398,6 +397,7 @@
     <Content Include="Views\Facility\EditFacilities.cshtml" />
     <Content Include="Views\Facility\DeleteFacility.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
+    <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -407,6 +407,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AddEquipment\" />
     <Folder Include="Views\AddFacilities\" />
   </ItemGroup>
   <ItemGroup>
