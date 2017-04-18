@@ -279,7 +279,7 @@ namespace WatermentWebSCADA.Controllers
         }
 
         // POST: facilities2/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("DeleteFacility")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
