@@ -33,7 +33,7 @@
                 @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
               
             </div>
-            <div class="navbar-collapse collapse">
+            <div>
                 <ul class="nav navbar-nav">
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -44,7 +44,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer style="position:relative">
+        <footer class="modal-footer">
             <p style="color:white">&copy; @DateTime.Now.Year - Waterment Web SCADA by awsome people. </p>
         </footer>
     </div>
