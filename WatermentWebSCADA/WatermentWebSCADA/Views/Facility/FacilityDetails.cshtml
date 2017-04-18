@@ -211,38 +211,37 @@
                     </dd>
 
                     <dt>
-                       
-                      
+
+
                         @foreach (var item in Model.Facilites)
                         {
-                        <dt class="form-group">                          
-                                <button class="btn btn-default" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>                            
+                        <dt class="form-group">
+                            <button class="btn btn-success" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
                         </dt>
                         }
 
 
-                      
+                       
 
-                  
-                    <dt>
-                      
-                    </dt>
+                                <dt>
 
-                    <dd>
-                      
-                    </dd>
-                    <dt>
-                      
-                        
-                    </dt>
+                                </dt>
 
-                    <dd>
-                        
+                                <dd>
 
-                    </dd>
+                                </dd>
+                                <dt>
 
 
-                </dl>
+                                </dt>
+
+                                <dd>
+
+
+                                </dd>
+
+
+                    </dl>
 
             </div>
 
