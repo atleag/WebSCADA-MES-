@@ -34,28 +34,28 @@
     margin: 20px 0 20px 0;
     padding: 20px;
 }
- .frame {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
-  /*width: auto;*/
-  height: 350px;
-  opacity: 1;
-  border-radius: 6px;
-  background-color:rgb(229, 217, 148);
-  box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;
-  padding:20px;
-  margin-top:25px;
-  margin-bottom:25px;
-  margin-right:25px;
-  margin-left:25px;
-  overflow-y:scroll;
-  position:relative;
-}
-.frame {
-	background-size:100% 100px;
-	background-repeat:no-repeat;
-}
+        .frame {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+            /*width: auto;*/
+            height: 350px;
+            opacity: 1;
+            border-radius: 5px;
+            background-color: rgb(229, 217, 148);
+            box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;
+            padding: 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            margin-right: 25px;
+            margin-left: 25px;
+            overflow-y: scroll;
+            position: relative;
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            
+        }
+
 .r1 {
     width: 25%;
     float: left    
@@ -82,8 +82,10 @@ h1{
 </style>
     
 </head>
-
-    <h1 align ="center">Overview</h1>
+<div>
+    <h1 align="center">Overview</h1>
+</div>
+    
    
 <div class="container">
        <div class="col-lg-6">
@@ -116,7 +118,7 @@ h1{
 
        
             <div class="frame">
-            <h3 align ="center">Facilities with active alarms</h3>
+            <h3 align ="center">Anlegg med høy alarm</h3>
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -148,7 +150,7 @@ h1{
 
        <div class="col-lg-6">
             <div class="frame">
-            <h3 align =" center">Maintenance</h3>
+            <h3 align =" center">Dato vedlikeholdt</h3>
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -169,18 +171,18 @@ h1{
 
                 </div>
     <div class="frame">
-        <h3 align ="center">General info</h3>
+        <h3 align ="center">Info</h3>
         <dl class="dl-horizontal" style="align-self">
             
-                <dt>Nr. of facilities:</dt>
+                <dt>Antall anlegg</dt>
 
                  <dd>@Model.antallFacilities</dd>
 
-                <dt>Nr. of facilities online:</dt>
+                <dt>Antal anlegg online</dt>
 
                     <dd>@Model.antallOnline</dd>
 
-                <dt>Nr. of facilities offline:</dt>
+                <dt>Antall anlegg offline</dt>
             
             <dd>@Model.antallOffline</dd>
             
