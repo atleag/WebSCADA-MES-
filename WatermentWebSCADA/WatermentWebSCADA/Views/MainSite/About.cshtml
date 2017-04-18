@@ -5,14 +5,16 @@
 }
 
 <h2>About</h2>
+<div>This webpage was created as part of the answer to the bachelor thesis "ettellerannet biogass shit" by student group IA8-10-17</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Developed by</h4>
+        <h3>Developed by</h3>
     </div>
-        <div class="frame" style="width:910px; height:200px; margin:0 auto; margin-top:50px;">
+
+        <div class="frame" style="width:910px; height:230px; margin:0 auto; margin-top:50px;">
             <div class="contenttxt" style="width:200px; height:150px; float:left;">
                 <b>Graphical designorama</b><br />
                 Magnus "Gapern" Gaupset<br />
@@ -37,22 +39,18 @@
                 482 69 846<br />
                 kim@omsland.no
             </div>
-            <div class="contenttxt" style="width:200px; height:150px; float:left;">
+            <div class="contenttxt" style="width:200px; height:100px; float:left;">
                 <b>Innkvotert medlem 2</b><br />
                 Jon Arne Karlsen<br />
                 482 69 846<br />
                 arne@jon.no
             </div>
+            </div>
 
-
+            <div>
+                <h3>lett</h3>
             </div>
 }
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 
 
 

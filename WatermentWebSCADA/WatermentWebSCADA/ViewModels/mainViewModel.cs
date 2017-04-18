@@ -10,8 +10,10 @@ namespace WatermentWebSCADA.ViewModels
 {
     public class MainViewModel
     {
-       //public FacilityViewModel facilitiess { get; set; }
-       public int ID { get; set; }
+      
+
+        //public FacilityViewModel facilitiess { get; set; }
+        public int ID { get; set; }
     
 
       
@@ -37,6 +39,7 @@ namespace WatermentWebSCADA.ViewModels
         public int antallFacilities { get; internal set; }
         public int antallOnline { get; internal set; }
         public int antallOffline { get; internal set; }
+        public int noAlarms { get; internal set; }
     }
 
     public class FacilitesAlarmModel

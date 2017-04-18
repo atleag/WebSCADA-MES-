@@ -87,6 +87,7 @@ namespace WatermentWebSCADA.Controllers
                         antallFacilities = db.facilities.Count(),
                         antallOnline = db.facilities.Where(x => x.FacilityStatus_Id == 2).Count(),
                         antallOffline = db.facilities.Where(x => x.FacilityStatus_Id == 1).Count(),
+                        noAlarms = db.alarms.Where(x=> x.Status == "Active").Count(),
                     };
 
 

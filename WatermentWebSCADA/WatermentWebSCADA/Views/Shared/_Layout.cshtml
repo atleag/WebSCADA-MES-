@@ -28,8 +28,8 @@
                     
                 </button>
                 @Html.ActionLink("Waterment SCADA", "", "", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Owerview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Facilites", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Overview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Facilities", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
                 @Html.ActionLink("About", "About", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
             </div>
@@ -44,7 +44,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="modal-footer">
+        <footer style="background-color:rgb(94,110,60);height: 40px; width:100%">
             <p style="color:white">&copy; @DateTime.Now.Year - Waterment Web SCADA by awsome people. </p>
         </footer>
     </div>
