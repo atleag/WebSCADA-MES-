@@ -6,394 +6,105 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<html>
-<head>
-    <style>
-        .intro {
-            background-color: lightgreen;
-            color: black;
-            margin: 20px 0 20px 0;
-            padding: 20px;
-            border-radius: 25px;
-            height: 370px;
+<!-- Styles -->
+<style>
+    body { background-color: #3f3e3b; color: #fff; }
+    #chartdiv {
+        width: 100%;
+        height: 500px;
+    }
+</style>
 
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+var chartData = generateChartData();
+var chart = AmCharts.makeChart("chartdiv", {
+    "type": "serial",
+    "theme": "chalk",
+    "marginRight": 80,
+    "autoMarginOffset": 20,
+    "marginTop": 7,
+    "dataProvider": chartData,
+    "valueAxes": [{
+        "axisAlpha": 0.2,
+        "dashLength": 1,
+        "position": "left"
+    }],
+    "mouseWheelZoomEnabled": true,
+    "graphs": [{
+        "id": "g1",
+        "balloonText": "[[value]]",
+        "bullet": "round",
+        "bulletBorderAlpha": 1,
+        "bulletColor": "#FFFFFF",
+        "hideBulletsCount": 50,
+        "title": "red line",
+        "valueField": "visits",
+        "useLineColorForBulletBorder": true,
+        "balloon":{
+            "drop":true
         }
-    </style>
-</head>
-</html>
-
-@*<div style='display: block; height: 500px'>left</div>*@
-
-@*<p>Min ip er @Model.IP[1]</p>
-
-    <p>Og min adresse er @Model.Address</p>
-
-    @foreach (var item in Model.Name)
-    {
-        <p>@item</p>
-    }*@
-
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-</head>
-
-@*@{ int x = 0; }*@
-
-<div>
-    @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
-
-
-    <div class="container">
-
-        <div class="col-sm-4">
-            <div class="intro">
-                <h3>Aktive Facilites</h3>
-
-                <dl class="dl-horizontal">
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Facilites)
-
-                    </dt>
-
-
-
-                    <dd>
-                        @foreach (var skill in Model.Facilites)
-                        {
-                            @skill.Name
-                        }
-                    </dd>
-
-
-
-
-                    <dt>
-
-                        "Land"
-                    </dt>
-
-                    <dd>
-
-                        @foreach (var item in Model.Countries)
-                        {
-                            @item.Name
-                        }
-
-                    </dd>
-
-
-                    <dt>
-                        "Fylke"
-
-                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
-                    </dt>
-
-                    <dd>
-
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.County
-                        }
-                    </dd>
-                    <dt>
-                        "Postnr"
-                    </dt>
-                    <dd>
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.Postcode
-                        }
-                    </dd>
-                    <dt>
-                        "Adresse"
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.StreetAddress
-                        }
-                    </dd>
-                    <dt>
-                        "Bruker"
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            <p> @item.FirstName  @item.LastName</p>
-                        }
-                    </dd>
-                    <dt>
-                        "Telefon"
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            @item.PhoneNumber
-                        }
-                    </dd>
-                    <dt>
-                        "E-post"
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            @item.Email
-                        }
-                    </dd>
-                    <dt>
-                        "Domene"
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.Domain
-                        }
-                    </dd>
-                    <dt>
-                        "IP"
-                    </dt>
-
-                    <dd>
-                        @foreach (var skill in Model.Facilites)
-                        {
-                            @skill.IP
-                        }
-                    </dd>
-
-                    <dt>
-                        @*"Domene"*@
-
-                    </dt>
-
-                    <dd>
-                        @*@Html.DisplayFor(model => model.Email[x])*@
-                    </dd>
-                    <dt>
-                        @foreach (var skill in Model.Facilites)
-                        {
-                            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-info">Remote Connect &raquo;</a>
-                        }
-
-                    </dt>
-
-                    <dd>
-
-
-                    </dd>
-
-
-                </dl>
-
-            </div>
-
-
-        </div>
-
-
-
-
-        <div class="col-sm-8">
-            <div class="intro">
-
-                <h4>
-                    <b>Alarms</b>
-                </h4>
-
-                @{int alarmnr = 0;}
-                @foreach (var skill in Model.Alarmer)
-                {
-                    alarmnr++;
-                    //Teller opp alle i alarmer i tabellen
-                }
-
-                @foreach (var skill in Model.Alarmer)
-                {
-
-
-
-                    //if (alarmnr == 9) break;
-                    if (alarmnr < 10)
-                    {
-                        <p>@skill.Description @skill.AlarmOccured @skill.ProcessValue @skill.Status @skill.equipments.Tag</p>
-
-                        //Skriver ut her hvis det er mindre ennn 10 alarmer
-                    }
-                    if (alarmnr >= 10)
-                    {
-
-
-
-                        if (skill == Model.Alarmer.Last())
-                        {
-
-                            //Skriver ut her hvis det er mer enn ti alarmer, for å få de ti siste.
-
-                            <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 2].AlarmOccured @Model.AlarmList[alarmnr - 2].Description @Model.AlarmList[alarmnr - 2].Status @Model.AlarmList[alarmnr - 2].equipments.Tag @Model.AlarmList[alarmnr - 2].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 1].AlarmOccured@Model.AlarmList[alarmnr - 1].Description@Model.AlarmList[alarmnr - 1].Status@Model.AlarmList[alarmnr - 1].equipments.Tag@Model.AlarmList[alarmnr - 1].equipments.Description</p>
-
-
-                        }
-                    }
-
-
-                }
-
-
-                @*>*@
-
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    </th>
-    <th>
-
-
-
-
-
-</div>
-
-
-<div id="chartContainer"></div>
-
-<script type="text/javascript">
-  
-
-
-    @*var result = @Html.Raw(ViewBag.DataPoints);
-    var dataPoints =[];
-    for(var i = 0; i < result.length; i++){
-        dataPoints.push({label:result[i].x, y:result[i].y});
-    }*@
- 
-  
-   
-
-    $(function () {
-
-
-
-        //$.getJSON("/Dashboard/GetData/", function (data) {
-        //    for (var i = 0; i <= data.length -1; i++) {
-        //        dataPoints.push({ label: data[i].Recorded, y: parseInt(data[i].ProcessValue) });
-        //    }
-
-        var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "theme2",
-            zoomEnabled: true,
-            animationEnabled: true,
-            toolTip:{
-            backgroundColor: "#f4d5a6",
-            },
-
-            title: {
-                text: "Line Chart with Data-Points from DataBase  @Model.Verdier[1].Recorded"
-            },
-
-            //axisX:{
-            //    intervalType: "hour",
-            //    interval: 1,
-            //    valueFormatString: "hh:mm:ss tt",
-            //},
-
-            data: [
-            {
-                type: "line",
-                //xValueFormatString: "Year ##/##/#### ##:##:##",
-                //xValueType:"dateTime",
-
-                @*@Model.Verdier[1].Recorded}*@
-                dataPoints: @Html.Raw(ViewBag.DataPoints),
-
-
-
-
-     @*{label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue}*@
-
-
-                      @*{label:"@Model.Verdie.Recorded", y:@Model.Verdier[2].ProcessValue}
-
-
-                @for (int i = 0; i < 20; i++)
-                {
-
-                    { label: "@Model.Verdier[1].Recorded", y: @Model.Verdier[2].ProcessValue}
-
-                }*@
-
-
-
-
-
-                    @*{label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
-            {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[1].Recorded", y:@Model.Verdier[2].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[3].ProcessValue},
-      {label: "@Model.Verdier[1].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[8].Recorded", y:@Model.Verdier[2].ProcessValue},
-      {label: "@Model.Verdier[9].Recorded", y:@Model.Verdier[3].ProcessValue},
-      {label: "@Model.Verdier[10].Recorded", y:@Model.Verdier[1].ProcessValue},
-      {label:"@Model.Verdier[11].Recorded", y:@Model.Verdier[2].ProcessValue},
-            {label: "@Model.Verdier[12].Recorded", y:@Model.Verdier[12].ProcessValue},
-      {label:"@Model.Verdier[13].Recorded", y:@Model.Verdier[13].ProcessValue},
-      {label: "@Model.Verdier[14].Recorded", y:@Model.Verdier[14].ProcessValue},
-      {label: "@Model.Verdier[15].Recorded", y:@Model.Verdier[15].ProcessValue},
-      {label:"@Model.Verdier[16].Recorded", y:@Model.Verdier[16].ProcessValue},
-      {label: "@Model.Verdier[17].Recorded", y:@Model.Verdier[17].ProcessValue},
-      {label: "@Model.Verdier[18].Recorded", y:@Model.Verdier[18].ProcessValue},
-      {label:"@Model.Verdier[19].Recorded", y:@Model.Verdier[19].ProcessValue},
-      {label: "@Model.Verdier[20].Recorded", y:@Model.Verdier[20].ProcessValue}*@
-
-
-            //
-
-                
-            }
-            ]
-
-
-            @*{x:1, y:@Model.Verdier[1].ProcessValue, //dataPoint
-                {x:2, y:@Model.Verdier[2].ProcessValue}, //dataPoint
-    {x:3, y:@Model.Verdier[3].ProcessValue} //dataPoint*@
-
-
-
+    }],
+    "chartScrollbar": {
+        "autoGridCount": true,
+        "graph": "g1",
+        "scrollbarHeight": 40
+    },
+    "chartCursor": {
+       "limitToGraph":"g1"
+    },
+    "categoryField": "date",
+    "categoryAxis": {
+        "parseDates": true,
+        "axisColor": "#DADADA",
+        "dashLength": 1,
+        "minorGridEnabled": true
+    },
+    "export": {
+        "enabled": true
+    }
+});
+
+chart.addListener("rendered", zoomChart);
+zoomChart();
+
+// this method is called when chart is first inited as we listen for "rendered" event
+function zoomChart() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
+}
+
+
+// generate some random data, quite different range
+function generateChartData() {
+    var chartData = [];
+    var firstDate = new Date();
+    firstDate.setDate(firstDate.getDate() - 5);
+
+    for (var i = 0; i < 1000; i++) {
+        // we create date objects here. In your data, you can have date strings
+        // and then set format of your dates using chart.dataDateFormat property,
+        // however when possible, use date objects, as this will speed up chart rendering.
+        var newDate = new Date(firstDate);
+        newDate.setDate(newDate.getDate() + i);
+
+        var visits = Math.round(Math.random() * (40 + i / 5)) + 20 + i;
+       
+        chartData.push({
+            date: newDate,
+            visits: visits
         });
-        chart.render();
-    });
+    }
+    return chartData;
+}
 </script>
 
-<h3>Hey på deg @Model.Verdier[1].Recorded</h3>
-
-</body>
-</html>
+<!-- HTML -->
+<div id="chartdiv"></div>		
