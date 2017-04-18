@@ -395,6 +395,8 @@
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
+    <Content Include="Views\Facility\EditFacilities.cshtml" />
+    <Content Include="Views\Facility\DeleteFacility.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
