@@ -101,13 +101,15 @@
 }
              .button2	 {
         background-color: rgb(171,194,122);
-        color: #4ba75b;
+        color: black;
         padding: 10px;
         border-radius: 10px;
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
         margin:10px
+        
     }
+             .button2:hover{background-color: rgb(180,210,130);}
     
     .large-btn {
         width:  650px;
@@ -179,17 +181,16 @@
                 @foreach (var item in Model.Facilites)
             {
 
-                    @*<div class="vv"><p align="center">@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</p> </div>*@
+            
                
 
                 <a href='@Url.Action("FacilityDetails", "Facility", new { id = item.Id })' class="btn button2 large-btn">@item.Name</a>
 
-                @*<a href='@Url.Action("Action", "Controller")' class="btn btn-primary">Click Me</a> item.Name,*@ 
+              
 
                 }
 
-                @*<a href="http://webvisu/webvisu.htm" target="_blank" class="btn button small-btn">Remote Connect &raquo;</a>
-                <p>   <button onclick="@Url.Action("www.sol.no")">@item.Name</button></p>*@
+         
 
 
                 </div>
