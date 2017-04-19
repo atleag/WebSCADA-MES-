@@ -126,7 +126,7 @@ h1{
                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
                               <td>@item.locations.City</td>
                                 <td>@item.FacilityStatus.Name</td> 
-                             @item.m
+                            
                            </tr> 
 
                        }
@@ -181,7 +181,7 @@ h1{
                     {
 
                         <tr>
-                            <td>@Html.ActionLink(item.facilities, "FacilityDetails", "Facility", new { id = item.facilities_Id }, null)</td>
+                            <td>@item.facilities.Name</td>
                             <td>@item.facilities.locations.City</td>
                             <td>@item.lastMaintenance</td>
                         </tr>
