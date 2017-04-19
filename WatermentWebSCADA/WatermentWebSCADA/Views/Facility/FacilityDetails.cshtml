@@ -15,7 +15,7 @@
             margin: 20px 0 20px 0;
             padding: 20px;
             border-radius: 5px;
-            height: 370px;
+            height: 410px;
         }
     </style>
     <style>
@@ -228,16 +228,22 @@
                         @foreach (var item in Model.Facilites)
                         {
                         <dt class="form-group">
-                            <button class="btn btn-warning" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
+                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
+                           
                         </dt>
                         }
 
 
-                       
+                       @foreach (var item in Model.Facilites)
+                       {
+                          <dt>
+           
 
-                                <dt>
+                              <button class="btn btn-warning" style="width:150px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
+                                                           </dt>
+                       }
 
-                                </dt>
+                                
 
                                 <dd>
 
