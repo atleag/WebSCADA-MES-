@@ -54,16 +54,9 @@ namespace WatermentWebSCADA.Controllers
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
         
-        public ActionResult Create()
+        public ActionResult ViewCreate()
         {
-            if (Request.IsAjaxRequest())
-            {
-                ViewBag.IsUpdate = false;
-                return View("_CreateEquipment");
-            }
-            else
-
-                return View();
+            return PartialView("_CreateEquipment");
         }
         //[ChildActionOnly]
         //public ActionResult Create(FacilityAddEquipmentVM model, int id)
@@ -86,7 +79,7 @@ namespace WatermentWebSCADA.Controllers
         //    return View(model);
         //}
         [HttpPost]
-        public ActionResult CreateEquipment(FacilityAddEquipmentVM model, string Command)
+        public ActionResult CreateEquipment(FacilityAddEquipmentVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -106,11 +99,10 @@ namespace WatermentWebSCADA.Controllers
                 });
                 //Need to create some error handling here.
                 db.SaveChanges();
-                TempData["OperStatus"] = "Equipment added succeessfully";
                 ModelState.Clear();
             }
 
-            return PartialView("_AddEquipment");
+            return PartialView("_CreateEquipment");
         }
 
     }
