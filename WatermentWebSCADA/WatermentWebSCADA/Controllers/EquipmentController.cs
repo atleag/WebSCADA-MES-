@@ -55,16 +55,16 @@ namespace WatermentWebSCADA.Controllers
         }
         
         //This action result is used to open the partial view input box for adding equipment.
-        public ActionResult ViewCreate()
+        public ActionResult ViewCreate(EquipmentAddVM model)
         {
-            return PartialView("_CreateEquipment");
+            return PartialView("_CreateEquipment", model);
         }
 
 
 
         //This action result takes the input in the partial view and stores it to the DB before returning to the list of equipments.
         [HttpPost]
-        public ActionResult CreateEquipment(FacilityAddEquipmentVM model, int id)
+        public ActionResult CreateEquipment(EquipmentAddVM model)
         {
             if (!ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace WatermentWebSCADA.Controllers
                     SIUnits = model.SIUnits,
                     Description = model.Description,
                     LastCalibrated = model.LastCalibrated,
-                    facilities_Id = id
+                    facilities_Id = model.facilities_Id
 
                 });
                 //Need to create some error handling here.
@@ -88,7 +88,7 @@ namespace WatermentWebSCADA.Controllers
                 ModelState.Clear();
             }
 
-            return View("Index");
+            return RedirectToAction("Index", new { id = model.facilities_Id });
         }
 
     }
