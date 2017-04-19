@@ -4,23 +4,24 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div>
+    <h2>All Equipments for the site</h2>
 
-<h2>All Equipments for the site</h2>
+    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, new { @class = "modal-link btn btn-success"})
+    <style>
+        .modal-content {
+            width: 600px !important;
+            margin: 30px auto !important;
+            
+        }
+    </style>
+    <div id="modal-container" class="modal fade"
+         tabindex="-1" role="dialog">
+        <div class="modal-content">
 
-@Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, new { @class = "modal-link btn btn-success" })
-<style>
-    .modal-content {
-        width: 600px !important;
-        margin: 30px auto !important;
-    }
-</style>
-<div id="modal-container" class="modal fade"
-     tabindex="-1" role="dialog">
-    <div class="modal-content">
-       
+        </div>
     </div>
-</div>
-<script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
             // Initialize numeric spinner input boxes
             //$(".numeric-spinner").spinedit();
@@ -44,51 +45,53 @@
                 return false;
             });
         });
-</script>
+    </script>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Tag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SIUnits)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastCalibrated)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SIUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastCalibrated)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SIUnits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastCalibrated)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SIUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastCalibrated)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
 
 
-<div id="dialog-edit" style="display: none">
-</div>
-<div id="dialog-view" style="display: none">
+    <div id="dialog-edit" style="display: none">
+    </div>
+    <div id="dialog-view" style="display: none">
+    </div>
 </div>
