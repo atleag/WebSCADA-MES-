@@ -24,19 +24,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                   
-                    
                 </button>
-                @Html.ActionLink("Waterment SCADA", "", "", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Overview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Waterment SCADA", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Overview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Facilities", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
-                @Html.ActionLink("About", "About", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("About", "About", "MainSite", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div>
-                <ul class="nav navbar-nav">
-                </ul>
-                @Html.Partial("_LoginPartial")
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Overview", "Index", "MainSite")</li>
+                        <li>@Html.ActionLink("Facilities", "FacilityOverview", "Facility")</li>
+                        <li>@Html.ActionLink("User management", "FacilityOverview", "Facility")</li>
+                        <li>@Html.ActionLink("About", "About", "MainSite")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
         </div>
     </div>
