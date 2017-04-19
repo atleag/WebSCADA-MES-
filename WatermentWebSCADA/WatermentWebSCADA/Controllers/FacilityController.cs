@@ -123,7 +123,7 @@ namespace WatermentWebSCADA.Controllers
                     Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
                     BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
                     AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-
+                    TempMeasModel = db.measurements.Where(x => x.equipments_facilities_Id == id).ToList(),
 
 
 

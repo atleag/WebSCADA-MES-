@@ -108,3 +108,40 @@ function generateChartData() {
 
 <!-- HTML -->
 <div id="chartdiv"></div>		
+
+
+<div>
+
+    @foreach (var item in Model.TempMeasModel)
+    { }
+        float?[] array;
+        <script>
+            function generateChartData() {
+            var chartData = [];
+            var firstDate = new Date();
+            firstDate.setDate(firstDate.getDate() - 5);
+
+            for (var i = 0; i < 1000; i++)
+            {
+                // we create date objects here. In your data, you can have date strings
+                // and then set format of your dates using chart.dataDateFormat property,
+                // however when possible, use date objects, as this will speed up chart rendering.
+                var newDate = new Date(firstDate);
+                newDate.setDate(newDate.getDate() + i);
+
+                var visits = Math.round(Math.random() * (40 + i / 5)) + 20 + i;
+                var userobj = '@Html.Raw(Json.Encode(Model.TempMeasModel))'
+                var userObj2 = @Html.Raw(Json.Encode(Model.TempMeasModel.));
+        chartData.push({
+            date: userObj2.,
+            visits: visits
+                        });
+    }
+        return chartData;
+    }
+        </script>
+
+        <p>@item.ProcessValue</p>
+        <p>@item.Recorded</p>
+    
+</div>
