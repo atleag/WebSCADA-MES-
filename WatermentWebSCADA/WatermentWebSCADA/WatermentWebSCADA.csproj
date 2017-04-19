@@ -398,6 +398,7 @@
     <Content Include="Views\Facility\DeleteFacility.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
+    <Content Include="Views\Facility\Maintenance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
