@@ -54,32 +54,17 @@ namespace WatermentWebSCADA.Controllers
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
         
+        //This action result is used to open the partial view input box for adding equipment.
         public ActionResult ViewCreate()
         {
             return PartialView("_CreateEquipment");
         }
-        //[ChildActionOnly]
-        //public ActionResult Create(FacilityAddEquipmentVM model, int id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var db = new watermentdbEntities(); 
-        //                    db.equipments.Add(new equipments
-        //                     {
-        //                    Tag = model.Tag,
-        //                    SIUnits = model.SIUnits,
-        //                    Description = model.Description,
-        //                    facilities_Id = id
 
-        //                });
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
 
-        //    return View(model);
-        //}
+
+        //This action result takes the input in the partial view and stores it to the DB before returning to the list of equipments.
         [HttpPost]
-        public ActionResult CreateEquipment(FacilityAddEquipmentVM model)
+        public ActionResult CreateEquipment(FacilityAddEquipmentVM model, int id)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +79,8 @@ namespace WatermentWebSCADA.Controllers
                     Tag = model.Tag,
                     SIUnits = model.SIUnits,
                     Description = model.Description,
-                    facilities_Id = model.facilities_Id
+                    LastCalibrated = model.LastCalibrated,
+                    facilities_Id = id
 
                 });
                 //Need to create some error handling here.
@@ -102,7 +88,7 @@ namespace WatermentWebSCADA.Controllers
                 ModelState.Clear();
             }
 
-            return PartialView("_CreateEquipment");
+            return View("Index");
         }
 
     }

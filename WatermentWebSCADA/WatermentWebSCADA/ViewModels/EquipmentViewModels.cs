@@ -31,6 +31,10 @@ namespace WatermentWebSCADA.ViewModels
         [Required]
         [Display(Name = "Description")]
         public string Description { get; set; }//Equipment
+
+        [Display(Name ="Date of last calibration")]
+        public Nullable<System.DateTime> LastCalibrated { get; set; }
+
         [Required]
         public int facilities_Id { get; set; }
 
