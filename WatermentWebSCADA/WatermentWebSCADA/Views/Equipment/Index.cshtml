@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <h2>All Equipments for the site</h2>
+    <h2>All Equipments for the facility</h2>
 
-    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, new { @class = "modal-link btn btn-success"})
+    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null,"","", Model, new { @class = "modal-link btn btn-success" })
     <style>
         .modal-content {
             width: 600px !important;
             margin: 30px auto !important;
-            
+            background-color: rgb(171,194,122);
         }
     </style>
     <div id="modal-container" class="modal fade"
@@ -63,7 +63,7 @@
             </th>
             <th></th>
         </tr>
-
+        
         @foreach (var item in Model)
         {
             <tr>

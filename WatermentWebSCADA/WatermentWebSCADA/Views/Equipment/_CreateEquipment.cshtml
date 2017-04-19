@@ -1,4 +1,4 @@
-﻿@model WatermentWebSCADA.ViewModels.FacilityAddEquipmentVM
+﻿@model WatermentWebSCADA.ViewModels.EquipmentAddVM
 
 <div class="modal-body">
             @using (Html.BeginForm("CreateEquipment", "Equipment", FormMethod.Post))
@@ -6,6 +6,7 @@
                 @Html.ValidationSummary(true)
                     <legend>Equipment</legend>
                     <table width="100%">
+                        
                         <tr>
                             <td>@Html.LabelFor(model => model.Tag)</td>
                             <td>
@@ -36,6 +37,8 @@
                             <td>
                                 @Html.EditorFor(model => model.LastCalibrated)
                                 @Html.ValidationMessageFor(model => model.LastCalibrated)
+                                
+                                @Html.HiddenFor(model => model.facilities_Id)
                             </td>
 
                         </tr>
