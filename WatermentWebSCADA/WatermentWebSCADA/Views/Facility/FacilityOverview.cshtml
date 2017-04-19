@@ -64,10 +64,33 @@
             margin-right: 2px;
             margin-left: 2px;
             overflow-y: scroll;
+            overflow-y: auto; /*Uses scroll only when needed88*/
             position: relative;
             background-size: 100% 100px;
             background-repeat: no-repeat;
+
         }
+  
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: rgb(171,194,122);
+
+}
              .frame1 {
             box-sizing: border-box;
             -moz-box-sizing: border-box;
@@ -148,6 +171,12 @@
         h1 {
             font-weight: bolder;
         }
+   
+			a.my-class { color: Yellow }
+			a.my-class:active { color: Yellow }
+			a.my-class:link { color: Yellow }
+			a.my-class:visited { color: Yellow }
+	
     </style>
 </head>
 
@@ -156,7 +185,7 @@
 <div class="container">
     <div class="col-lg-4">
       
-            <div class="frame">
+            <div class="frame" id="style-1">
             <h4 align="center" style="border-bottom:solid">Countries with facilities</h4>
 
             <div class="row">
@@ -164,17 +193,17 @@
                     @foreach (var item in Model.countries)
                       {
               <ul>
-                <li style="font-size:large">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id })</li>
+                <li style="font-size:large" color="red">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id}, new { @style = "color:black;" })</li>
                </ul>
 
-
-                        }
+        
+                    }
 
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
-            <div class="frame">
+            <div class="frame" id="style-1">
 
                 <h4 align="center"style="border-bottom:solid">Facilities</h4>
 
@@ -199,11 +228,11 @@
 
 <div align="left">
 
-<div style="margin-left: 30px; margin-top:10px;">
-    <button class="btn btn-default" style="width:175px" onclick="location.href='@Url.Action("AddLocation")';return false;">Add new facility</button>
+<div style="margin: 30px">
+    <button class="btn btn-success" style="width:175px" onclick="location.href='@Url.Action("AddLocation")';return false;">Add new facility</button>
 </div>
-<div style="margin-left: 30px; margin-top:10px;">
-    <button class="btn btn-default" style="width:175px" onclick="location.href='@Url.Action("Maintenance")';return false;">Maintenance</button>
+<div style="margin: 30px">
+    <button class="btn btn-success" style="width:175px" onclick="location.href='@Url.Action("Maintenance")';return false;">Maintenance</button>
 </div>
 </div>
 
