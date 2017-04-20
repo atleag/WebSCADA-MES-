@@ -128,7 +128,14 @@ namespace WatermentWebSCADA.Controllers
 
 
                 };
-
+                //measurements measurement = new measurements()
+                //{
+                //    Name = "Raj",
+                //    IsAuthenticated = true,
+                //    LoginDateTime = DateTime.Now,
+                //    Age = 26,
+                //    UserIconHTML = "<i class='fa fa-users'></i>"
+                //};
                 //arr = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor".ToArray();
 
 
