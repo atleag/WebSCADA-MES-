@@ -61,7 +61,7 @@ table {
 }
 
 th, td {
-    padding: 20px;
+    padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -349,13 +349,17 @@ th, td {
                 <div class="dropdown-content">
                     @foreach (var item in Model.Facilites)
             {
-                        <b>  @Html.ActionLink("Export Measurements to Excel", "ExportClientsListToExcel", "Export", new { id = item.Id }, null)</b>
+                        <b>  @Html.ActionLink("Export Temp Measurements to Excel", "ExportTempMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     @foreach (var item in Model.Facilites)
             {
                         <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
-
+                    @foreach (var item in Model.Facilites)
+            {
+                        <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
+                    }
+                    
                 </div>
             </div>
 
