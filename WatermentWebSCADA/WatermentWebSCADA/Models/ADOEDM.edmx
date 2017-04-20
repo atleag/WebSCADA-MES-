@@ -96,7 +96,7 @@
           <Property Name="OrderId" Type="mediumint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person" Type="varchar" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="50" />
-          <Property Name="LastMaintenance" Type="varchar" MaxLength="50" />
+          <Property Name="LastMaintenance" Type="date" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="measurements">
@@ -713,7 +713,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastMaintenance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastMaintenance" Type="DateTime" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
         </EntityType>
