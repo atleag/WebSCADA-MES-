@@ -55,6 +55,16 @@
     position: relative;
     display: inline-block;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
 .dropdown-content {
     display: none;
@@ -287,13 +297,12 @@
 
         <div class="col-sm-8">
             <div class="intro2">
-
                 <h4><b>Alarms</b></h4>
-                <div class="row">
-                <table>
+             
+                   <div class="row">
+                         <table>
                     <tr>
                         <th>Description</th>
-                   
                         <th>Date</th>
                         <th>Value</th>
                         <th>Status</th>
