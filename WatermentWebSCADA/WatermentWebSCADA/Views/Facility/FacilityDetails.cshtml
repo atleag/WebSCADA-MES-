@@ -12,20 +12,34 @@
         .intro {
             background-color: rgb(229, 217, 148);
             color: black;
-            margin: 20px 0 20px 0;
+            /*margin: 20px 0 20px 0;*/
+            margin-right:20px;
+            margin-bottom:10px;
             padding: 20px;
             border-radius: 5px;
-            height: 410px;
+            height: 390px;
+            margin-top:10px;
+            width:380px;
+            /*overflow-y:scroll;
+             overflow-x:hidden;*/
         }
     </style>
     <style>
         .intro2 {
-            background-color: rgb(229, 217, 148);
+                background-color: rgb(229, 217, 148);
             color: black;
-            margin: 20px 0 20px 0;
+            /*margin: 20px 0 20px 0;*/
+            margin-right:20px;
+             margin-top:10px;
+             margin-bottom:10px;
+            margin-left:30px;
             padding: 20px;
-            border-radius: 25px;
-            height: 40px;
+            border-radius: 5px;
+            height: 390px;
+            width:700px;
+            overflow-y:scroll;
+             overflow-x:hidden;
+              overflow-y: auto;
         }
         .dropbtn {
     background-color: #4CAF50;
@@ -264,71 +278,44 @@
             </div>
 
 
+
         </div>
 
 
 
 
         <div class="col-sm-8">
-            <div class="intro">
+            <div class="intro2">
 
                 <h4><b>Alarms</b></h4>
 
-                @{int alarmnr = 0;}
-                @foreach (var skill in Model.Alarmer)
-                {
-                    alarmnr++;
-                    //Teller opp alle i alarmer i tabellen
-                }
+             
 
-                @foreach (var skill in Model.Alarmer)
+                @foreach (var skill in Model.Alarmer.Take(10))
                 {
 
 
 
                     //if (alarmnr == 9) break;
-                    if (alarmnr < 10)
-                    {
+
+
                         <p>@skill.Description @skill.AlarmOccured @skill.ProcessValue @skill.Status @skill.equipments.Tag</p>
 
-                        //Skriver ut her hvis det er mindre ennn 10 alarmer
-                    }
-                    if (alarmnr >= 10)
-                    {
-
-
-
-                        if (skill == Model.Alarmer.Last())
-                        {
-
-                            //Skriver ut her hvis det er mer enn ti alarmer, for å få de ti siste.
-
-                            <p>@Model.AlarmList[alarmnr - 10].AlarmOccured @Model.AlarmList[alarmnr - 10].Description @Model.AlarmList[alarmnr - 10].Status @Model.AlarmList[alarmnr - 10].equipments.Tag @Model.AlarmList[alarmnr - 10].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 9].AlarmOccured @Model.AlarmList[alarmnr - 9].Description @Model.AlarmList[alarmnr - 9].Status @Model.AlarmList[alarmnr - 9].equipments.Tag @Model.AlarmList[alarmnr - 9].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 8].AlarmOccured @Model.AlarmList[alarmnr - 8].Description @Model.AlarmList[alarmnr - 8].Status @Model.AlarmList[alarmnr - 8].equipments.Tag @Model.AlarmList[alarmnr - 8].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 7].AlarmOccured @Model.AlarmList[alarmnr - 7].Description @Model.AlarmList[alarmnr - 7].Status @Model.AlarmList[alarmnr - 7].equipments.Tag @Model.AlarmList[alarmnr - 7].equipments.Description </p>
-                            <p>@Model.AlarmList[alarmnr - 6].AlarmOccured @Model.AlarmList[alarmnr - 6].Description @Model.AlarmList[alarmnr - 6].Status @Model.AlarmList[alarmnr - 6].equipments.Tag @Model.AlarmList[alarmnr - 6].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 5].AlarmOccured @Model.AlarmList[alarmnr - 5].Description @Model.AlarmList[alarmnr - 5].Status @Model.AlarmList[alarmnr - 5].equipments.Tag @Model.AlarmList[alarmnr - 5].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 4].AlarmOccured @Model.AlarmList[alarmnr - 4].Description @Model.AlarmList[alarmnr - 4].Status @Model.AlarmList[alarmnr - 4].equipments.Tag @Model.AlarmList[alarmnr - 4].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 3].AlarmOccured @Model.AlarmList[alarmnr - 3].Description @Model.AlarmList[alarmnr - 3].Status @Model.AlarmList[alarmnr - 3].equipments.Tag @Model.AlarmList[alarmnr - 3].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 2].AlarmOccured @Model.AlarmList[alarmnr - 2].Description @Model.AlarmList[alarmnr - 2].Status @Model.AlarmList[alarmnr - 2].equipments.Tag @Model.AlarmList[alarmnr - 2].equipments.Description </p>
-                                                    <p>@Model.AlarmList[alarmnr - 1].AlarmOccured @Model.AlarmList[alarmnr - 1].Description @Model.AlarmList[alarmnr - 1].Status @Model.AlarmList[alarmnr - 1].equipments.Tag @Model.AlarmList[alarmnr - 1].equipments.Description</p>
-
-
-                        }
-                    }
+                    //Skriver ut her hvis det er mindre ennn 10 alarmer
+              
 
 
                 }
 
 
-                @*>*@
+                
 
 
 
             </div>
 
         </div>
+        <p></p>
         &emsp;
         @foreach (var skill in Model.Facilites)
         {
