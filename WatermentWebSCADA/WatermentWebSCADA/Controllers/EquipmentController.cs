@@ -55,9 +55,10 @@ namespace WatermentWebSCADA.Controllers
         }
         
         //This action result is used to open the partial view input box for adding equipment.
-        public ActionResult ViewCreate(EquipmentAddVM model)
+        public ActionResult ViewCreate()
         {
-            return PartialView("_CreateEquipment", model);
+           // return PartialView("_CreateEquipment", model);
+            return PartialView("_CreateEquipment");
         }
 
 
