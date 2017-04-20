@@ -16,11 +16,11 @@
             margin-bottom:10px;
             padding: 20px;
             border-radius: 5px;
-            height: 390px;
+            height: 395px;
             margin-top:10px;
             width:380px;
-            /*overflow-y:scroll;
-             overflow-x:hidden;*/
+            /*overflow-y:scroll;*/
+             overflow-x:auto;
         }
     </style>
     <style>
@@ -34,7 +34,7 @@
             margin-left:30px;
             padding: 20px;
             border-radius: 5px;
-            height: 390px;
+            height: 395px;
             width:700px;
             overflow-y:scroll;
              overflow-x:hidden;
@@ -117,7 +117,7 @@ th, td {
 
         <div class="col-sm-4">
             <div class="intro">
-                <h3>Biogas Facility</h3>
+                <h4>Biogas Facility</h4>
 
                 <dl class="dl-horizontal">
 
@@ -228,27 +228,48 @@ th, td {
                             @item.IP
 
                         }
-                   
-
-
+                   </dd>
+                    <dt>
+                        Serial No.
+                    </dt>
+                    <dd>
                         @foreach (var item in Model.Facilites)
                         {
-                        <dt class="form-group">
-                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
-                           
-                        </dt>
+                            @item.SerialNumber
+
                         }
+                    </dd>
+                    <dt>
+                        Program Version
+                    </dt>
+                    <dd>
+                        @foreach (var item in Model.Facilites)
+                        {
+                            @item.ProgramVersion
+
+                        }
+                    </dd>
+
+                    <dt>
+                        @foreach (var item in Model.Facilites)
+                        {
+
+                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
 
 
-                       @foreach (var item in Model.Facilites)
-                       {
-                          <dt>
-           
+                        }
+                    </dt>
 
-                              <button class="btn btn-warning" style="width:150px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
-                                                           </dt>
-                       }
+                    <dd>
+                        @foreach (var item in Model.Facilites)
+                        {
 
+
+
+                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
+
+                        }
+                    </dd>
                     </dl>
             </div>
         </div>
