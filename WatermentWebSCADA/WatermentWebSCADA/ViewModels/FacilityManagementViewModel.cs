@@ -10,24 +10,6 @@ using System.ComponentModel.DataAnnotations;
 namespace WatermentWebSCADA.ViewModels
 {
 
-    /*public class AddFacilityViewModel
-    {
-
-    }
-
-    public class ContinentsViewModel
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-    }
-    public class CountriesViewModel
-    {
-        public int Id { get; set; }
-        public string CountryCode { get; set; }
-        public string Name { get; set; }
-        public int continents_Id { get; set; }
-    }*/
     public class MaintenanceViewModel
     {
         public int OrderId { get; set; }
@@ -42,7 +24,7 @@ namespace WatermentWebSCADA.ViewModels
         public virtual facilities facilities { get; set; }
     }
 
-    public class FacilityViewModel
+    public class AddFacilityViewModel
     {
         [Key]
         public int id { get; set; }
