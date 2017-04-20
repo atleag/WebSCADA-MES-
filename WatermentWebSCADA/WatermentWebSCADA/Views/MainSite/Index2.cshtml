@@ -101,6 +101,11 @@
         h1 {
             font-weight: bolder;
         }
+        #header-fixed {
+    position: fixed;
+    top: 0px; display:block;
+    background-color:transparent;
+}
         
     </style>
 
@@ -112,12 +117,13 @@
     </div>*@
 
 
-    <div class="container">
+    <div class="container" style="margin:0px">
         <div class="col-lg-4">
             <h3 align="center">Status</h3>
             <div class="frame" id="style-1">
                 <div class="row">
-                    <table>
+                   
+                     <table id="header-fixed">
                         <tr>
                             <th>Facility</th>
                             <th>Location</th>
