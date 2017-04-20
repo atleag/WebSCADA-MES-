@@ -286,7 +286,7 @@ namespace WatermentWebSCADA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Maintenance([Bind(Include = "OrderId,Person,facilities_Id,lastMaintenance")] maintenance maintenance)
+        public ActionResult Maintenance([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
         {
             if (ModelState.IsValid)
             {

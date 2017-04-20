@@ -62,23 +62,7 @@
                         <input type="reset" value="Reset">
                     </form>
             </div>
-            <div>
-                <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/clubs/191916/latest-rides/7bb549c2babcbe4e8e182dfa20226102ed935325?show_rides=true'></iframe>
-            </div>
 
-
-            <div>
-                @{
-                    var myChart = new Chart(width: 600, height: 400, theme: ChartTheme.Green)
-                        .AddTitle("Chart Title")
-                        .AddSeries(
-                            name: "Employee",
-                            chartType:"Line",
-                            xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
-                            yValues: new[] { "2", "6", "4", "5", "3" })
-                        .Write();
-                }
-            </div>
 }
 
 
