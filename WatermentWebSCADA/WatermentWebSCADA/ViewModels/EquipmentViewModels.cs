@@ -28,14 +28,17 @@ namespace WatermentWebSCADA.ViewModels
         [Required]
         [Display(Name = "SI unit")]
         public string SIUnits { get; set; }//Equipment
+
         [Required]
         [Display(Name = "Description")]
         public string Description { get; set; }//Equipment
 
         [Display(Name ="Date of last calibration")]
-        public Nullable<System.DateTime> LastCalibrated { get; set; }
+        [DataType(DataType.Date)]
+        public Nullable<DateTime> LastCalibrated { get; set; }
 
         [Required]
+        [Display(Name ="Facilities in which the equipment is added")]
         public int facilities_Id { get; set; }
     }
 }

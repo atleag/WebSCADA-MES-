@@ -79,6 +79,7 @@ namespace WatermentWebSCADA.Controllers
 
         #region methods
 
+
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(long userId, string code)
         {
@@ -448,7 +449,7 @@ namespace WatermentWebSCADA.Controllers
                     result = UserManager.AddToRole(user.Id, "User");
 
                     //REMEMBER TO REPLACE THIS CODE WITH SOMETHING ELSE. 
-                    await SignInAsync(user, false);
+                    //await SignInAsync(user, false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

@@ -37,8 +37,14 @@
                             <td>
                                 @Html.EditorFor(model => model.LastCalibrated)
                                 @Html.ValidationMessageFor(model => model.LastCalibrated)
-                                
-                                @Html.HiddenFor(model => model.facilities_Id)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.facilities_Id)</td>
+                            <td>
+                                @Html.EditorFor(model => model.facilities_Id)
+                                @Html.ValidationMessageFor(model => model.facilities_Id)
                             </td>
 
                         </tr>

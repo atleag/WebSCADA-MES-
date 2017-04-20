@@ -4,5 +4,6 @@
 
     public class MyRole : IdentityRole<long, MyUserRole>
     {
+
     }
 }

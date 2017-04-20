@@ -43,6 +43,7 @@
                 {
                     MessageFormat = "Your security code is: {0}"
                 });
+            
             manager.RegisterTwoFactorProvider(
                 "EmailCode",
                 new EmailTokenProvider<MyUser, long>
