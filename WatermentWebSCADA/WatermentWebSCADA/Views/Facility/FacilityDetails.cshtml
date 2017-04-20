@@ -40,6 +40,7 @@
             overflow-y:scroll;
              overflow-x:hidden;
               overflow-y: auto;
+               position: relative;
         }
         .dropbtn {
     background-color: #4CAF50;
@@ -288,25 +289,36 @@
             <div class="intro2">
 
                 <h4><b>Alarms</b></h4>
+                <div class="row">
+                <table>
+                    <tr>
+                        <th>Description</th>
+                   
+                        <th>Date</th>
+                        <th>Value</th>
+                        <th>Status</th>
+                        <th>Tag</th>
+                    </tr>
+                  
+                    @foreach (var item in Model.Alarmer)
+                    {
 
-             
+                      
+                            <tr>
+                                <td>@item.Description</td>
+                                <td>@item.AlarmOccured</td>
+                                <td>@item.ProcessValue</td>
+                                <td>@item.Status</td>
+                                <td>@item.equipments.Tag</td>
+                               
+                            </tr>
 
-                @foreach (var skill in Model.Alarmer.Take(10))
-                {
+                        
+                      }
+                        
+                </table>
 
-
-
-                    //if (alarmnr == 9) break;
-
-
-                        <p>@skill.Description @skill.AlarmOccured @skill.ProcessValue @skill.Status @skill.equipments.Tag</p>
-
-                    //Skriver ut her hvis det er mindre ennn 10 alarmer
-              
-
-
-                }
-
+                </div>
 
                 
 
