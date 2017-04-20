@@ -27,16 +27,20 @@ namespace WatermentWebSCADA.ViewModels
         public string CountryCode { get; set; }
         public string Name { get; set; }
         public int continents_Id { get; set; }
-    }
-    public class LocationViewModel
-    {
-        public string StreetAddress { get; set; }
-        public Nullable<int> Postcode { get; set; }
-        public string County { get; set; }
-        public string City { get; set; }
-        public int countries_Id { get; set; }
-        public int countries_continents_Id { get; set; }
     }*/
+    public class MaintenanceViewModel
+    {
+        public int OrderId { get; set; }
+        public string Person { get; set; }
+        public string Description { get; set; }
+
+        [Display(Name = "Date of last Maintenance")]
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> LastMaintenance { get; set; }
+        public int facilities_Id { get; set; }
+
+        public virtual facilities facilities { get; set; }
+    }
 
     public class FacilityViewModel
     {
