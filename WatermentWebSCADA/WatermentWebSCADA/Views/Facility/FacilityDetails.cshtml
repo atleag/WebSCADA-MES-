@@ -6,7 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<html>
 <head>
     <style>
         .intro {
@@ -100,12 +99,10 @@ th, td {
     height:50px;
 }
 
-/*.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}*/
+
     </style>
 </head>
-</html>
+
 
 
 
@@ -114,11 +111,6 @@ th, td {
     <script type="text/javascript" src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 </head>
-
-@*@{ int x = 0; }*@
-
-<div>
-    @*<h4>@Html.DisplayFor(model => model.Name[x])</h4>*@
 
 
     <div class="container">
@@ -130,13 +122,10 @@ th, td {
                 <dl class="dl-horizontal">
 
                     <dt>
-                        @*@Html.DisplayNameFor(model => model.Facilites)*@
+                      
                         Facility
 
                     </dt>
-
-
-
                     <dd>
                         @foreach (var item in Model.Facilites)
                         {
@@ -145,14 +134,10 @@ th, td {
                         }
                     </dd>
 
-
-
-
                     <dt>
 
                         Country
                     </dt>
-
                     <dd>
 
                         @foreach (var item in Model.Countries)
@@ -164,9 +149,7 @@ th, td {
 
 
                     <dt>
-                        County
-
-                        @*@Html.DisplayNameFor(model => model.Lokasjoner)*@
+                        County                
                     </dt>
 
                     <dd>
@@ -245,9 +228,7 @@ th, td {
                             @item.IP
 
                         }
-                    </dd>
-
-                    <dt>
+                   
 
 
                         @foreach (var item in Model.Facilites)
@@ -268,28 +249,8 @@ th, td {
                                                            </dt>
                        }
 
-                                
-
-                                <dd>
-
-                                </dd>
-                                <dt>
-
-
-                                </dt>
-
-                                <dd>
-
-
-                                </dd>
-
-
                     </dl>
-
             </div>
-
-
-
         </div>
 
 
@@ -321,9 +282,7 @@ th, td {
                                 <td>@item.equipments.Tag</td>
                                
                             </tr>
-
-                        
-                      }
+                          }
                         
                 </table>
 
@@ -362,11 +321,7 @@ th, td {
                     
                 </div>
             </div>
-
-</div>
-
-            </th>
-            <th>
+        </div>
 
 
                 @{ int ErrorHandling = 0;}
@@ -382,21 +337,7 @@ th, td {
                 @if (ErrorHandling > 20)
                 {
 
-
-
-
-
-
-
                     <script type="text/javascript">
-
-
-
-
-
-
-
-
 
                         window.onload = function () {
 
@@ -431,10 +372,6 @@ th, td {
 
         }
    "Time",
-
-
-
-
 
                           "@Model.Verdier[Idinte2-19].Recorded",
                     "@Model.Verdier[Idinte2-18].Recorded",
@@ -739,7 +676,7 @@ th, td {
                     </script>
 
     }
-            </th>
+          
 
 
 
@@ -750,17 +687,3 @@ th, td {
 
 
 
-        </div>
-        @*<div class="jumbotron text-center img-responsive" id="jumbotron">
-                <div id="jumbotron-header">
-                    <h4><b>Alarms</b></h4>
-
-
-                    @foreach (var skill in Model.Alarmer)
-                    {
-                        <p>@skill.Description @skill.AlarmOccured @skill.Status @skill.equipments.Tag</p>
-                    }
-
-                </div>
-
-            </div>*@
