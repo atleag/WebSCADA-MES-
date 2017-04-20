@@ -12,20 +12,31 @@
         .intro {
             background-color: rgb(229, 217, 148);
             color: black;
-            margin: 20px 0 20px 0;
+            /*margin: 20px 0 20px 0;*/
+            margin-right:20px;
+            margin-bottom:10px;
             padding: 20px;
             border-radius: 5px;
-            height: 410px;
+            height: 390px;
+            width:380px;
+            /*overflow-y:scroll;
+             overflow-x:hidden;*/
         }
     </style>
     <style>
         .intro2 {
-            background-color: rgb(229, 217, 148);
+                background-color: rgb(229, 217, 148);
             color: black;
-            margin: 20px 0 20px 0;
+            /*margin: 20px 0 20px 0;*/
+            margin-right:20px;
+             margin-bottom:10px;
+            margin-left:30px;
             padding: 20px;
-            border-radius: 25px;
-            height: 40px;
+            border-radius: 5px;
+            height: 390px;
+            width:700px;
+            overflow-y:scroll;
+             overflow-x:hidden;
         }
         .dropbtn {
     background-color: #4CAF50;
@@ -264,13 +275,14 @@
             </div>
 
 
+
         </div>
 
 
 
 
         <div class="col-sm-8">
-            <div class="intro">
+            <div class="intro2">
 
                 <h4><b>Alarms</b></h4>
 
@@ -329,6 +341,7 @@
             </div>
 
         </div>
+        <p></p>
         &emsp;
         @foreach (var skill in Model.Facilites)
         {
