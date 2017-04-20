@@ -55,16 +55,7 @@ namespace WatermentWebSCADA.Controllers
             // Saves the changes to the DB
             db.SaveChanges();
 
-            //foreach (var item in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor"))
-            //{
-            //    for (int i = 0; i < db.measurements.Select(x => x.ProcessValue).Max(); i++)
-            //    {
-            //        arr[i] = db.measurements.Select(x => x.ProcessValue).ToArray[i]
-            //    }
-            //}
-
-
-
+        
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
@@ -72,7 +63,7 @@ namespace WatermentWebSCADA.Controllers
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Kontinenter = db.continents.ToList(),
-                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
+                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), 
                     Utstyr = db.equipments.ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
                     Vedlikehold = db.maintenance.ToList(),
@@ -128,15 +119,14 @@ namespace WatermentWebSCADA.Controllers
 
 
                 };
-
-                //arr = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor".ToArray();
+              
 
 
                 JsonSerializerSettings jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
                 ViewBag.DataPoints = JsonConvert.SerializeObject(DataService.GetRandomDataForNumericAxis(10000), jsonSetting);
 
-                //Select(u => u.ProcessValue).
+            
 
                 return View(model);
             }

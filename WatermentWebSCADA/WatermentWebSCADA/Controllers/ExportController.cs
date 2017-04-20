@@ -20,24 +20,16 @@ namespace WatermentWebSCADA.Controllers
 
 
 
-        public ActionResult ExportClientsListToExcel(int? id)
+        public ActionResult ExportTempMeasurementsToExcel(int? id)
         {
 
             using (var db = new Models.watermentdbEntities())
             {
-                var model = new MainViewModel
-                {
-
-                    AlarmList = db.alarms.Where(o => o.Status == "Active").ToList(),
-
-
-
-
-                };
+           
                 var grid = new System.Web.UI.WebControls.GridView();
 
                 grid.DataSource =
-                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).ToList()
+                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Degrees").ToList()
                                   select new
                                   {
                                       ID = d.Id,
@@ -52,7 +44,7 @@ namespace WatermentWebSCADA.Controllers
                 grid.DataBind();
 
                 Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment; filename=MeasurementList.xls");
+                Response.AddHeader("content-disposition", "attachment; filename=TempMeasurementList.xls");
                 Response.ContentType = "application/excel";
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
@@ -66,7 +58,44 @@ namespace WatermentWebSCADA.Controllers
                 return null;
             }
         }
+        public ActionResult ExportBarMeasurementsToExcel(int? id)
+        {
 
+            using (var db = new Models.watermentdbEntities())
+            {
+
+                var grid = new System.Web.UI.WebControls.GridView();
+
+                grid.DataSource =
+                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").ToList()
+                                  select new
+                                  {
+                                      ID = d.Id,
+                                      ProcessValue = d.ProcessValue,
+                                      Recorded = d.Recorded,
+                                      Equipment = d.equipments_Id,
+                                      EqupmentName = d.equipments.Tag
+
+
+                                  };
+
+                grid.DataBind();
+
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=BarMeasurementList.xls");
+                Response.ContentType = "application/excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+                grid.RenderControl(htw);
+
+                Response.Write(sw.ToString());
+
+                Response.End();
+
+                return null;
+            }
+        }
 
         public ActionResult ExportAlarmsToExcel(int? id)
         {
