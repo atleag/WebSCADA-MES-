@@ -1,4 +1,6 @@
 ﻿
+@*@model IEnumerable<WatermentWebSCADA.Models.measurements>*@
+
 @model WatermentWebSCADA.ViewModels.MainViewModel
 
 @{
@@ -96,7 +98,9 @@ function generateChartData() {
         newDate.setDate(newDate.getDate() + i);
 
         var visits = Math.round(Math.random() * (40 + i / 5)) + 20 + i;
-       
+        @*var model = @Html.Raw(Json.Encode(Model));*@
+   @*var name=@Model.In*@
+
         chartData.push({
             date: newDate,
             visits: visits
@@ -111,7 +115,7 @@ function generateChartData() {
 
 
 <div>
-
+   
     @foreach (var item in Model.TempMeasModel)
     {
           <p>@item.ProcessValue</p>
