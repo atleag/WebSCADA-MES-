@@ -92,5 +92,7 @@ namespace WatermentWebSCADA.Controllers
             return RedirectToAction("Index", new { id = model.facilities_Id });
         }
 
+        
     }
+ 
 }

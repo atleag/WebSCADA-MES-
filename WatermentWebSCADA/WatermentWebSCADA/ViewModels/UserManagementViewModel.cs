@@ -7,14 +7,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WatermentWebSCADA.ViewModels
 {
-    [Table("User")]
-    public class ListAllUsers
+   
+    public class RoleVM
     {
-        [Key]
-        public int Id { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Email { get; }        
+        public string Name{ get; }
+        public string Description { get; }
+       
 
 
         }

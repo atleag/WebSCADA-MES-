@@ -9,6 +9,9 @@ using WatermentWebSCADA.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.Linq;
+
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -19,12 +22,14 @@ namespace WatermentWebSCADA.Controllers
         #region constants
 
         private const string XsrfKey = "XsrfId";
+        const string roleNameAdmin = "Admin";
 
         #endregion
 
         #region member vars
 
         private MyUserManager _userManager;
+  
 
         #endregion
 
@@ -37,6 +42,8 @@ namespace WatermentWebSCADA.Controllers
         public AccountController(MyUserManager userManager)
         {
             UserManager = userManager;
+
+            
         }
 
         #endregion
@@ -577,6 +584,252 @@ namespace WatermentWebSCADA.Controllers
         }
 
         #endregion
+
+        #region
+        //public async Task<ActionResult> Create(RoleVM roleViewModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Initialize ApplicationRole instead of IdentityRole:
+        //        var role = new MyRole(roleViewModel.Name);
+        //        var roleresult = await MyRoleManager.CreateAsync(role);
+        //        if (!roleresult.Succeeded)
+        //        {
+        //            ModelState.AddModelError("", roleresult.Errors.First());
+        //            return View();
+        //        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View();
+        //}
+        ////RoleManagement
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult RoleCreate()
+        //{
+        //    return View();
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult RoleCreate(string roleName)
+        //{
+        //    var roleManager = HttpContext.GetOwinContext().Get<MyRoleManager>();
+
+            
+
+        //    //Create Role Admin if it does not exist
+        //    var role = roleManager.FindByName(roleName);
+        //    if (role == null)
+        //    {
+        //        role = new MyRole();
+        //        role.Name = roleName;
+
+        //        var roleresult = roleManager.Create(role);
+        //    }
+
+
+        //    using (var rolesManager = HttpContext.GetOwinContext().Get<MyRoleManager>())
+        //    {
+        //        var roleStore = new RoleStore<MyRole>(context);
+        //        var _userManager = new RoleManager<MyRole>(roleStore);
+
+        //        rolesManager.Create(new MyRole, long(roleName));
+        //    }
+
+        //    ViewBag.ResultMessage = "Role created successfully !";
+        //    return RedirectToAction("RoleIndex", "Account");
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult RoleIndex()
+        //{
+        //    List<string> roles;
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var roleStore = new RoleStore<MyRole, long>(context);
+        //        var roleManager = new RoleManager<MyRole, long >(roleStore);
+
+        //        roles = (from r in roleManager.Roles select r.Name).ToList();
+        //    }
+
+        //    return View(roles.ToList());
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult RoleDelete(string roleName)
+        //{
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var roleStore = new RoleStore<MyRole>(context);
+        //        var roleManager = new RoleManager<MyRole>(roleStore);
+        //        var role = roleManager.FindByName(roleName);
+
+        //        roleManager.Delete(role);
+        //        context.SaveChanges();
+        //    }
+
+        //    ViewBag.ResultMessage = "Role deleted succesfully !";
+        //    return RedirectToAction("RoleIndex", "Account");
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult RoleAddToUser()
+        //{
+        //    List<string> roles;
+        //    List<string> users;
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var roleStore = new RoleStore<MyRole>(context);
+        //        var roleManager = new RoleManager<MyRole>(roleStore);
+
+        //        var userStore = new UserStore<MyUser>(context);
+        //        var userManager = new UserManager<MyUser>(userStore);
+
+        //        users = (from u in userManager.Users select u.UserName).ToList();
+        //        roles = (from r in roleManager.Roles select r.Name).ToList();
+        //    }
+
+        //    ViewBag.Roles = new SelectList(roles);
+        //    ViewBag.Users = new SelectList(users);
+        //    return View();
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult RoleAddToUser(string roleName, string userName)
+        //{
+        //    List<string> roles;
+        //    List<string> users;
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var roleStore = new RoleStore<MyRole>(context);
+        //        var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+        //        var userStore = new UserStore<MyUser>(context);
+        //        var userManager = new UserManager<MyUser>(userStore);
+
+        //        users = (from u in userManager.Users select u.UserName).ToList();
+
+        //        var user = userManager.FindByName(userName);
+        //        if (user == null)
+        //            throw new Exception("User not found!");
+
+        //        var role = roleManager.FindByName(roleName);
+        //        if (role == null)
+        //            throw new Exception("Role not found!");
+
+        //        if (userManager.IsInRole(user.Id, role.Name))
+        //        {
+        //            ViewBag.ResultMessage = "This user already has the role specified !";
+        //        }
+        //        else
+        //        {
+        //            userManager.AddToRole(user.Id, role.Name);
+        //            context.SaveChanges();
+
+        //            ViewBag.ResultMessage = "Username added to the role succesfully !";
+        //        }
+
+        //        roles = (from r in roleManager.Roles select r.Name).ToList();
+        //    }
+
+        //    ViewBag.Roles = new SelectList(roles);
+        //    ViewBag.Users = new SelectList(users);
+        //    return View();
+        //}
+
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult GetRoles(string userName)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(userName))
+        //    {
+        //        List<string> userRoles;
+        //        List<string> roles;
+        //        List<string> users;
+        //        using (var context = new ApplicationDbContext())
+        //        {
+        //            var roleStore = new RoleStore<MyRole>(context);
+        //            var roleManager = new RoleManager<MyRole>(roleStore);
+
+        //            roles = (from r in roleManager.Roles select r.Name).ToList();
+
+        //            var userStore = new UserStore<MyUser>(context);
+        //            var userManager = new UserManager<MyUser>(userStore);
+
+        //            users = (from u in userManager.Users select u.UserName).ToList();
+
+        //            var user = userManager.FindByName(userName);
+        //            if (user == null)
+        //                throw new Exception("User not found!");
+
+        //            var userRoleIds = (from r in user.Roles select r.RoleId);
+        //            userRoles = (from id in userRoleIds
+        //                         let r = roleManager.FindById(id)
+        //                         select r.Name).ToList();
+        //        }
+
+        //        ViewBag.Roles = new SelectList(roles);
+        //        ViewBag.Users = new SelectList(users);
+        //        ViewBag.RolesForThisUser = userRoles;
+        //    }
+
+        //    return View("RoleAddToUser");
+        //}
+
+        //[HttpPost]
+        //[Authorize(Roles = "Admin")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteRoleForUser(string userName, string roleName)
+        //{
+        //    List<string> userRoles;
+        //    List<string> roles;
+        //    List<string> users;
+        //    using (var context = new ApplicationDbContext())
+        //    {
+        //        var roleStore = new RoleStore<MyRole>(context);
+        //        var roleManager = new RoleManager<MyRole>(roleStore);
+
+        //        roles = (from r in roleManager.Roles select r.Name).ToList();
+
+        //        var userStore = new UserStore<MyUser>(context);
+        //        var userManager = new UserManager<MyUser>(userStore);
+
+        //        users = (from u in userManager.Users select u.UserName).ToList();
+
+        //        var user = userManager.FindByName(userName);
+        //        if (user == null)
+        //            throw new Exception("User not found!");
+
+        //        if (userManager.IsInRole(user.Id, roleName))
+        //        {
+        //            userManager.RemoveFromRole(user.Id, roleName);
+        //            context.SaveChanges();
+
+        //            ViewBag.ResultMessage = "Role removed from this user successfully !";
+        //        }
+        //        else
+        //        {
+        //            ViewBag.ResultMessage = "This user doesn't belong to selected role.";
+        //        }
+
+        //        var userRoleIds = (from r in user.Roles select r.RoleId);
+        //        userRoles = (from id in userRoleIds
+        //                     let r = roleManager.FindById(id)
+        //                     select r.Name).ToList();
+        //    }
+
+        //    ViewBag.RolesForThisUser = userRoles;
+        //    ViewBag.Roles = new SelectList(roles);
+        //    ViewBag.Users = new SelectList(users);
+        //    return View("RoleAddToUser");
+        //}
+
+        #endregion
+
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
