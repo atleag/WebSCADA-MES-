@@ -442,6 +442,7 @@
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
     <Content Include="Views\Facility\Maintenance.cshtml" />
+    <Content Include="Views\MainSite\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
