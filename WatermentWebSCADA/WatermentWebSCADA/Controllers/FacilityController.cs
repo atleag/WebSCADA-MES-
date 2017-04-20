@@ -299,7 +299,29 @@ namespace WatermentWebSCADA.Controllers
             return View(maintenance);
         }
 
+        public ActionResult EfficiencyChart(int? id)
+        {
 
+
+            float?[] t2 = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] t1 = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.Recorded).ToArray();
+
+            //Where(i => i.equipments_facilities_Id == id).
+
+            var myChart = new Chart(width: 1000, height: 600)
+              
+            
+            .AddTitle("Employee's Efficiency")
+            .AddSeries(
+                chartType:"column",
+                name: "Employee",
+                xValue: t1,
+                yValues: t2)
+
+            .Write();
+
+            return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
+        }
 
     }
               
