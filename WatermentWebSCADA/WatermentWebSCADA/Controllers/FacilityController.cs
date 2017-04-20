@@ -15,7 +15,7 @@ using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-
+using System.Web.UI;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 
@@ -286,7 +286,7 @@ namespace WatermentWebSCADA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Maintenance([Bind(Include = "OrderId,Person,facilities_Id,lastMaintenance")] maintenance maintenance)
+        public ActionResult Maintenance([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
         {
             if (ModelState.IsValid)
             {
