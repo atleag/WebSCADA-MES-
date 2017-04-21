@@ -56,12 +56,29 @@
             background-size: 100% 100px;
             background-repeat: no-repeat;
             /*border-top: 5px solid rgb(94,110,60);*/
-            
-            
         }
-     
-
-
+                .frameTitle {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+            /*width: auto;*/
+            height: 60px;
+            opacity: 1;
+            border-radius: 5px;
+            background-color: #f4efc0;
+            /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
+            padding: 0px;
+            margin-top: 25px;
+            margin-bottom: -30px;
+            margin-right: 25px;
+            margin-left: 0px;
+            overflow-y: hidden;
+            overflow-y: hidden;
+            position: relative;
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            /*border-top: 5px solid rgb(94,110,60);*/
+        }
         .maniFrame{
             overflow-y:scroll
         }
@@ -81,6 +98,10 @@
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: rgb(171,194,122);
+        }
+        #style-2::-webkit-scrollbar {
+            width: 12px;
+            background-color: #D8C9A6;
         }
 
         .r1 {
@@ -125,60 +146,58 @@
 
     <div class="container">
           <div class="col-lg-4">
-            <div class="frame" id="style-1">
-                <h3 align="center">General info</h3>
-          
-                <div class="row">
-            
-             
+              <div class="frameTitle" id="style-1">
+                  <h3 align="center">General info</h3>
+                  </div>
+                  <div class="frame" id="style-1">
+                      <div class="row">
+                          <table>
+                              <tr>
+                                  <td class="title" style=""><b>No. of facilities</b> </td>
+                                  <td class="text">@Model.antallFacilities</td>
+                              </tr>
+                              <tr>
+                                  <td class="title"><b>No. of facilities online</b> </td>
+                                  <td class="text">@Model.antallOnline</td>
+                              </tr>
+                              <tr>
+                                  <td class="title"><b>No. of facilities offline</b> </td>
+                                  <td class="text">@Model.antallOffline</td>
+                              </tr>
+                              <tr>
+                                  <td class="title"><b>No. of active alarms</b></td>
+                                  <td class="text">@Model.noAlarms</td>
+                              </tr>
+                          </table>
+                      </div>
 
-                    <table>
-                        <tr>
-                            <td class="title"><b>No. of facilities</b> </td>
-                            <td class="text">@Model.antallFacilities</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of facilities online</b> </td>
-                            <td class="text">@Model.antallOnline</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of facilities offline</b> </td>
-                            <td class="text">@Model.antallOffline</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of active alarms</b></td>
-                            <td class="text">@Model.noAlarms</td>
-                        </tr>
-                    </table>
-                </div>
+                  </div>
+              <div class="frameTitle" id="style-1">
+                  <h3 align="center">Status</h3>
+                  </div>
+                  <div class="frame" id="style-1" style="height:430px;">
+                      <table>
+                          <tr>
+                              <th>Facility</th>
+                              <th>Location</th>
+                              <th>Status</th>
+                          </tr>
+                          @foreach (var item in Model.Facilites)
+                          {
 
-            </div>
+                              <tr>
+                                  <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                                  <td>@item.locations.City</td>
+                                  <td>@item.FacilityStatus.Name</td>
 
-           
-            <div class="frame" id="style-1" style="height:430px;">
-                <h3 align="center">Status</h3>  
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (var item in Model.Facilites)
-                    {
+                              </tr>
 
-                        <tr>
-                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                            <td>@item.locations.City</td>
-                            <td>@item.FacilityStatus.Name</td>
+                          }
+                      </table>
 
-                        </tr>
+                  </div>
 
-                    }
-                </table>
-
-            </div>
-
-        </div>
+              </div>
 
       
             
@@ -187,10 +206,10 @@
             <h1>Waterment Webscada application</h1>
 <p> Her skal det stå litt info om hva faen du vil </p>
           </div>
-              
-
-            <div class="frame" id="style-1">
+            <div class="frameTitle" id="style-1">
                 <h3 align="center">Maintenance</h3>
+            </div>
+            <div class="frame" id="style-1">
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -210,9 +229,10 @@
                 </table>
 
             </div>
-          
-            <div class="frame" id="style-1">
+            <div class="frameTitle" id="style-1">
                 <h3 align="center">Active alarms</h3>
+            </div>
+            <div class="frame" id="style-1">
                 
                
                 <table>
