@@ -43,12 +43,13 @@
             <PropertyRef Name="facilities_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="SIUnits" Type="varchar" MaxLength="45" />
-          <Property Name="Description" Type="varchar" MaxLength="100" />
-          <Property Name="TypeSpecification" Type="varchar" MaxLength="50" />
+          <Property Name="Tag" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SIUnits" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="300" />
+          <Property Name="TypeSpecification" Type="varchar" MaxLength="100" />
           <Property Name="LastCalibrated" Type="date" />
-          <Property Name="InstallDate" Type="varchar" MaxLength="50" />
+          <Property Name="InstallDate" Type="date" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="100" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="facilities">
@@ -648,12 +649,13 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <PropertyRef Name="facilities_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tag" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="SIUnits" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TypeSpecification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SIUnits" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="TypeSpecification" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastCalibrated" Type="DateTime" />
-          <Property Name="InstallDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InstallDate" Type="DateTime" />
+          <Property Name="Manufacturer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="alarms" Relationship="watermentdbModel.fk_alarms_equipments1" FromRole="equipments" ToRole="alarms" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="equipments" ToRole="facilities" />
@@ -1039,6 +1041,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <EntityTypeMapping TypeName="watermentdbModel.equipments">
               <MappingFragment StoreEntitySet="equipments">
                 <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
                 <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
                 <ScalarProperty Name="LastCalibrated" ColumnName="LastCalibrated" />
                 <ScalarProperty Name="TypeSpecification" ColumnName="TypeSpecification" />
