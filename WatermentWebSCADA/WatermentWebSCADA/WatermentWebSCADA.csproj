@@ -260,6 +260,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Waterment - Web Deploy.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
@@ -442,7 +443,6 @@
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
     <Content Include="Views\Facility\Maintenance.cshtml" />
-    <Content Include="Views\MainSite\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
