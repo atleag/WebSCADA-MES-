@@ -82,7 +82,7 @@ table {
 }
 
 th, td {
-    padding: 10px;
+    padding: 1px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -141,138 +141,123 @@ th, td {
             <div class="intro" id="style-1">
                 <h4><b>Biogas Facility</b></h4>
 
-                <dl class="dl-horizontal">
+                <table>
+                    <tr>
+                        <td class="title"><b>Facility</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Facilites)
+                            {
+                                @item.Name
 
-                    <dt>
-                      
-                        Facility
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Country</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Countries)
+                            {
+                                @item.Name
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>County </b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Lokasjoner)
+                            {
+                                @item.County
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b> Postcode</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Lokasjoner)
+                            {
+                                @item.Postcode
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Address</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Lokasjoner)
+                            {
+                                @item.StreetAddress
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>User</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Brukere)
+                            {
+                                @item.FirstName  @item.LastName
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Phone number</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Brukere)
+                            {
+                                @item.PhoneNumber
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b> E-mail</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Brukere)
+                            {
+                                @item.Email
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Domain</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Facilites)
+                            {
+                                @item.Domain
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>IP</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Facilites)
+                            {
+                                @item.IP
 
-                    </dt>
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.Name
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Serial No.</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Facilites)
+                            {
+                                @item.SerialNumber
 
-                        }
-                    </dd>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title"><b>Software Version</b> </td>
+                        <td class="text">
+                            @foreach (var item in Model.Facilites)
+                            {
+                                @item.ProgramVersion
 
-                    <dt>
-
-                        Country
-                    </dt>
-                    <dd>
-
-                        @foreach (var item in Model.Countries)
-                        {
-                            @item.Name
-                        }
-
-                    </dd>
+                            }
+                        </td>
+                    </tr>
 
 
-                    <dt>
-                        County                
-                    </dt>
-
-                    <dd>
-
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.County
-                        }
-                    </dd>
-                    <dt>
-                        Postcode
-                    </dt>
-                    <dd>
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.Postcode
-                        }
-                    </dd>
-                    <dt>
-                        Address
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Lokasjoner)
-                        {
-                            @item.StreetAddress
-                        }
-                    </dd>
-                    <dt>
-                        User
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            <p> @item.FirstName  @item.LastName</p>
-                        }
-                    </dd>
-                    <dt>
-                        Phone number
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            @item.PhoneNumber
-                        }
-                    </dd>
-                    <dt>
-                        E-mail
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Brukere)
-                        {
-                            @item.Email
-                        }
-                    </dd>
-                    <dt>
-                        Domain
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.Domain
-                        }
-                    </dd>
-                    <dt>
-                        IP
-                    </dt>
-
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.IP
-
-                        }
-                   </dd>
-                    <dt>
-                        Serial No.
-                    </dt>
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.SerialNumber
-
-                        }
-                    </dd>
-                    <dt>
-                        Software Version
-                    </dt>
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
-                            @item.ProgramVersion
-
-                        }
-                    </dd>
-
-                    <dt>
+                    <tr>
+                        <td>
                         @foreach (var item in Model.Facilites)
                         {
 
@@ -280,19 +265,20 @@ th, td {
 
 
                         }
-                    </dt>
 
-                    <dd>
-                        @foreach (var item in Model.Facilites)
-                        {
+</td>
+                        <td>
+                            @foreach (var item in Model.Facilites)
+                            {
 
 
 
-                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
+                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
 
-                        }
-                    </dd>
-                    </dl>
+                            }
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
