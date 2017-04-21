@@ -55,7 +55,12 @@
             position: relative;
             background-size: 100% 100px;
             background-repeat: no-repeat;
+            border-top: 35px solid rgb(94,110,60);
+            
+            
         }
+
+
         .maniFrame{
             overflow-y:scroll
         }
@@ -117,36 +122,93 @@
     </div>*@
 
 
-    <div class="container" style="margin:0px">
+    <div class="container">
         <div class="col-lg-4">
-            <h3 align="center">Status</h3>
-            <div class="frame" id="style-1">
+            <div class="frame" id="style-1" style="margin-bottom:3px">
+                <h3 align="center">General info</h3>
                 <div class="row">
-                   
-                     <table id="header-fixed">
+            
+             
+
+                    <table>
                         <tr>
-                            <th>Facility</th>
-                            <th>Location</th>
-                            <th>Status</th>
+                            <td class="title" style=""><b>No. of facilities</b> </td>
+                            <td class="text">@Model.antallFacilities</td>
                         </tr>
-                        @foreach (var item in Model.Facilites)
-                        {
-
-                            <tr>
-                                <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                                <td>@item.locations.City</td>
-                                <td>@item.FacilityStatus.Name</td>
-
-                            </tr>
-
-                        }
+                        <tr>
+                            <td class="title"><b>No. of facilities online</b> </td>
+                            <td class="text">@Model.antallOnline</td>
+                        </tr>
+                        <tr>
+                            <td class="title"><b>No. of facilities offline</b> </td>
+                            <td class="text">@Model.antallOffline</td>
+                        </tr>
+                        <tr>
+                            <td class="title"><b>No. of active alarms</b></td>
+                            <td class="text">@Model.noAlarms</td>
+                        </tr>
                     </table>
                 </div>
 
             </div>
 
-            <h3 align="center">Facilities with active alarms</h3>
+           
+            <div class="frame" id="style-1" style="height:430px;margin-top:0px">
+                <h3 align="center">Status</h3>  
+                <table>
+                    <tr>
+                        <th>Facility</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (var item in Model.Facilites)
+                    {
+
+                        <tr>
+                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                            <td>@item.locations.City</td>
+                            <td>@item.FacilityStatus.Name</td>
+
+                        </tr>
+
+                    }
+                </table>
+
+            </div>
+
+        </div>
+
+      
+            
+        <div class="col-lg-8">
+            <h1>Waterment Webscada application</h1>
             <div class="frame" id="style-1">
+                <h3 align=" center">Maintenance</h3>
+                <table>
+                    <tr>
+                        <th>Facility</th>
+                        <th>Location</th>
+                        <th>Last maintenance</th>
+                    </tr>
+                    @foreach (var item in Model.Vedlikehold)
+                    {
+
+                        <tr>
+                            <td>@item.facilities.Name</td>
+                            <td>@item.facilities.locations.City</td>
+                            <td>@item.LastMaintenance</td>
+                        </tr>
+
+                    }
+                </table>
+
+            </div>
+          
+            <div class="frame" id="style-1">
+                <h3 align="center">General info</h3>
+                
+                        <p> Her skal det stå litt info om hva faen du vil </p>
+               
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -172,55 +234,6 @@
 
                 </table>
 
-            </div>
-
-        </div>
-        <div class="mainFrame">
-        <div class="col-lg-8">
-            <h3 align=" center">Maintenance</h3>
-            <div class="frame" id="style-1">
-
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Location</th>
-                        <th>Last maintenance</th>
-                    </tr>
-                    @foreach (var item in Model.Vedlikehold)
-                    {
-
-                        <tr>
-                            <td>@item.facilities.Name</td>
-                            <td>@item.facilities.locations.City</td>
-                            <td>@item.LastMaintenance</td>
-                        </tr>
-
-                    }
-                </table>
-
-            </div>
-            <h3 align="center">General info</h3>
-            <div class="frame" id="style-1">
-                <table>
-                    <tr>
-                        <td class="title" style=""><b>No. of facilities</b> </td>
-                        <td class="text">@Model.antallFacilities</td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>No. of facilities online</b> </td>
-                        <td class="text">@Model.antallOnline</td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>No. of facilities offline</b> </td>
-                        <td class="text">@Model.antallOffline</td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>No. of active alarms</b></td>
-                        <td class="text">@Model.noAlarms</td>
-                    </tr>
-                </table>
-
-
 
 
 
@@ -229,7 +242,7 @@
             </div>
         </div>
             </div>
-    </div>
+
 </body>
 
 
