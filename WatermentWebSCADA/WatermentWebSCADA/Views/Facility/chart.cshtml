@@ -6,10 +6,9 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
+
    @foreach (var item in Model.Facilites)
    {
-    <img src="@Url.Action("EfficiencyChart",new { id = item.Id})" />
+    <img src="@Url.Action("EfficiencyChart",new { id = item.Id})" />    
    }
    
-</div>
