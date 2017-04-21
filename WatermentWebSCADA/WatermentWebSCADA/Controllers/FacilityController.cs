@@ -303,14 +303,15 @@ namespace WatermentWebSCADA.Controllers
         {
 
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.Recorded).ToArray();
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
 
             //Where(i => i.equipments_facilities_Id == id).
 
             var myChart = new Chart(width: 1000, height: 600)
               
-            
+            .SetYAxis("Temp", 0, 50)
+           
             .AddTitle("Temperature Chart")
             .AddSeries(
                 chartType: "Line",
