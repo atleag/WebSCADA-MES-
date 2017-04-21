@@ -14,6 +14,8 @@ namespace WatermentWebSCADA.ViewModels
     {
         public int OrderId { get; set; }
         public string Person { get; set; }
+
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [Display(Name = "Date of last Maintenance")]
@@ -24,16 +26,28 @@ namespace WatermentWebSCADA.ViewModels
         public virtual facilities facilities { get; set; }
     }
 
-    public class AddFacilityViewModel
+    public class FacilityViewModel
     {
-        [Key]
-        public int id { get; set; }
+
+        public int Id { get; set; }
         public string Name { get; set; }
         public string IP { get; set; }
         public string Domain { get; set; }
+        public string SerialNumber { get; set; }
+        public string ProgramVersion { get; set; }
         public Nullable<int> locations_Id { get; set; }
         public Nullable<int> locations_countries_Id { get; set; }
         public Nullable<int> locations_countries_continents_Id { get; set; }
+        public Nullable<int> FacilityStatus_Id { get; set; }
+
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<equipments> equipments { get; set; }
+        //public virtual FacilityStatus FacilityStatus { get; set; }
+        //public virtual locations locations { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<maintenance> maintenance { get; set; }
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        //public virtual ICollection<User> User { get; set; }
 
     }
 

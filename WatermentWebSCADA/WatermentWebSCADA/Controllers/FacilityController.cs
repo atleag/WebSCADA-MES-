@@ -182,7 +182,7 @@ namespace WatermentWebSCADA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,SerialNumber, ProgramVersion,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -232,14 +232,12 @@ namespace WatermentWebSCADA.Controllers
                 return HttpNotFound();
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
-            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
-            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View(facilities);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -248,36 +246,10 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("FacilityOverview");
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
-            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
-            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);
             return View(facilities);
         }
 
-        // GET: facilities2/Delete/5
-        public ActionResult DeleteFacility(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            facilities facilities = db.facilities.Find(id);
-            if (facilities == null)
-            {
-                return HttpNotFound();
-            }
-            return View(facilities);
-        }
 
-        // POST: facilities2/Delete/5
-        [HttpPost, ActionName("DeleteFacility")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            facilities facilities = db.facilities.Find(id);
-            db.facilities.Remove(facilities);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         public ActionResult Maintenance()
         {
@@ -298,19 +270,24 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name", maintenance.facilities_Id);
             return View(maintenance);
         }
-
+        public static class Theme
+        { 
+        public const string BLue2 = "<Chart BackColor=\"#D3DFF0\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"26, 59, 105\" BorderlineDashStyle=\"Solid\" BorderWidth=\"2\" Palette=\"BrightPastel\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"64, 165, 191, 228\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"Transparent\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"Transparent\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n    <BorderSkin SkinStyle=\"Emboss\" /> \r\n  </Chart>";
+        }
         public ActionResult EfficiencyChart(int? id)
         {
 
-
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Select(x => x.Recorded).ToArray();
+             //public const string Blue = "<Chart BackColor=\"#D3DFF0\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"26, 59, 105\" BorderlineDashStyle=\"Solid\" BorderWidth=\"2\" Palette=\"BrightPastel\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"64, 165, 191, 228\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"Transparent\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"Transparent\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n    <BorderSkin SkinStyle=\"Emboss\" /> \r\n  </Chart>";
+        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
 
             //Where(i => i.equipments_facilities_Id == id).
 
-            var myChart = new Chart(width: 1000, height: 600)
+            var myChart = new Chart(width: 920, height: 350,theme:Theme.BLue2)
+                
               
-            
+            .SetYAxis("Temp", 0, 50)
+           
             .AddTitle("Temperature Chart")
             .AddSeries(
                 chartType: "Line",
