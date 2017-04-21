@@ -368,7 +368,7 @@ td {
 <div class="frame2">
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("EfficiencyChart",new { id = item.Id})" /></p>
+        <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
        
     }
 
@@ -378,7 +378,7 @@ td {
 <div class="frame2">
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("EfficiencyChart",new { id = item.Id})" /></p>
+        <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
 
     }
 

@@ -295,7 +295,6 @@
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\facilities2Controller.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
-    <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -333,8 +332,6 @@
     <Compile Include="Models\countries_with_facilites_view.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\DataPoint.cs" />
-    <Compile Include="ViewModels\DataService.cs" />
     <Compile Include="Models\equipments.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
