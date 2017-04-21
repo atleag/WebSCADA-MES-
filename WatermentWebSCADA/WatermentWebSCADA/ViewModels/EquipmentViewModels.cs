@@ -45,7 +45,7 @@ namespace WatermentWebSCADA.ViewModels
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> InstallDate { get; set; }
 
-
+        [Display(Name = "Manufacturer")]
         public string Manufacturer { get; set; }
 
         [Required]
