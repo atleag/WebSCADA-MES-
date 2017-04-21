@@ -88,6 +88,7 @@
     <Compile Include="MyClaim.cs" />
     <Compile Include="MyLogin.cs" />
     <Compile Include="MyRole.cs" />
+    <Compile Include="MyRoleManager.cs" />
     <Compile Include="MyUserManager.cs" />
     <Compile Include="MyUserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
