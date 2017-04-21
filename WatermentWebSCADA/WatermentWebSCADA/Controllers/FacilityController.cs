@@ -281,6 +281,7 @@ namespace WatermentWebSCADA.Controllers
             //Where(i => i.equipments_facilities_Id == id).
 
             var myChart = new Chart(width: 920, height: 350,theme:ChartTheme.Blue)
+                
               
             .SetYAxis("Temp", 0, 50)
            
