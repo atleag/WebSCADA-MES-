@@ -439,7 +439,6 @@
     <Content Include="Views\Facility\AddLocation.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Facility\EditFacilities.cshtml" />
-    <Content Include="Views\Facility\DeleteFacility.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
     <Content Include="Views\Facility\Maintenance.cshtml" />
