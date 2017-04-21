@@ -46,7 +46,9 @@
           <Property Name="Tag" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="SIUnits" Type="varchar" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="TypeSpecification" Type="varchar" MaxLength="50" />
           <Property Name="LastCalibrated" Type="date" />
+          <Property Name="InstallDate" Type="varchar" MaxLength="50" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="facilities">
@@ -57,6 +59,8 @@
           <Property Name="Name" Type="varchar" MaxLength="45" />
           <Property Name="IP" Type="varchar" MaxLength="45" />
           <Property Name="Domain" Type="varchar" MaxLength="80" />
+          <Property Name="SerialNumber" Type="varchar" MaxLength="30" />
+          <Property Name="ProgramVersion" Type="varchar" MaxLength="50" />
           <Property Name="locations_Id" Type="int" />
           <Property Name="locations_countries_Id" Type="int" />
           <Property Name="locations_countries_continents_Id" Type="int" />
@@ -76,7 +80,7 @@
             <PropertyRef Name="countries_Id" />
             <PropertyRef Name="countries_continents_Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StreetAddress" Type="varchar" MaxLength="100" />
           <Property Name="Postcode" Type="mediumint" />
           <Property Name="County" Type="varchar" MaxLength="45" />
@@ -89,10 +93,11 @@
             <PropertyRef Name="OrderId" />
             <PropertyRef Name="facilities_Id" />
           </Key>
-          <Property Name="OrderId" Type="mediumint" Nullable="false" />
+          <Property Name="OrderId" Type="mediumint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person" Type="varchar" MaxLength="45" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="LastMaintenance" Type="date" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
-          <Property Name="lastMaintenance" Type="date" />
         </EntityType>
         <EntityType Name="measurements">
           <Key>
@@ -646,7 +651,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="Tag" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="SIUnits" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TypeSpecification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastCalibrated" Type="DateTime" />
+          <Property Name="InstallDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="alarms" Relationship="watermentdbModel.fk_alarms_equipments1" FromRole="equipments" ToRole="alarms" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="equipments" ToRole="facilities" />
@@ -660,6 +667,8 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="IP" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Domain" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SerialNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ProgramVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="locations_Id" Type="Int32" />
           <Property Name="locations_countries_Id" Type="Int32" />
           <Property Name="locations_countries_continents_Id" Type="Int32" />
@@ -685,7 +694,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <PropertyRef Name="countries_Id" />
             <PropertyRef Name="countries_continents_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StreetAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Postcode" Type="Int32" />
           <Property Name="County" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -701,10 +710,11 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <PropertyRef Name="OrderId" />
             <PropertyRef Name="facilities_Id" />
           </Key>
-          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastMaintenance" Type="DateTime" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
-          <Property Name="lastMaintenance" Type="DateTime" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
         </EntityType>
         <EntityType Name="measurements">
@@ -1029,7 +1039,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <EntityTypeMapping TypeName="watermentdbModel.equipments">
               <MappingFragment StoreEntitySet="equipments">
                 <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
+                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
                 <ScalarProperty Name="LastCalibrated" ColumnName="LastCalibrated" />
+                <ScalarProperty Name="TypeSpecification" ColumnName="TypeSpecification" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="SIUnits" ColumnName="SIUnits" />
                 <ScalarProperty Name="Tag" ColumnName="Tag" />
@@ -1044,6 +1056,8 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
                 <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
                 <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
                 <ScalarProperty Name="locations_Id" ColumnName="locations_Id" />
+                <ScalarProperty Name="ProgramVersion" ColumnName="ProgramVersion" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="Domain" ColumnName="Domain" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1076,8 +1090,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="maintenance">
             <EntityTypeMapping TypeName="watermentdbModel.maintenance">
               <MappingFragment StoreEntitySet="maintenance">
-                <ScalarProperty Name="lastMaintenance" ColumnName="lastMaintenance" />
                 <ScalarProperty Name="facilities_Id" ColumnName="facilities_Id" />
+                <ScalarProperty Name="LastMaintenance" ColumnName="LastMaintenance" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Person" ColumnName="Person" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>

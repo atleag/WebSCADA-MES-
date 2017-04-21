@@ -25,7 +25,9 @@ namespace WatermentWebSCADA.Models
         public string Tag { get; set; }
         public string SIUnits { get; set; }
         public string Description { get; set; }
+        public string TypeSpecification { get; set; }
         public Nullable<System.DateTime> LastCalibrated { get; set; }
+        public string InstallDate { get; set; }
         public int facilities_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WatermentWebSCADA.BundleConfig" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.FilterConfig" Collapsed="true">
+    <Position X="11.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.RouteConfig" Collapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Startup" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\Startup.Auth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.MvcApplication" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.AccountController" Collapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAChQCAAAgABAAEAEgEABgABIKIAAEEVAAQkAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.ChartController" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ChartController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.EquipmentController" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAgAABAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\EquipmentController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.ExportController" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAIAAAAACAAA=</HashCode>
+      <FileName>Controllers\ExportController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.facilities2Controller" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\facilities2Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.FacilityController" Collapsed="true">
+    <Position X="1.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAACAEABQAAhgAAACAAAAAAEAAACAAAACAAAEQAA=</HashCode>
+      <FileName>Controllers\FacilityController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.FeatureController" Collapsed="true">
+    <Position X="10" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAIAAIAAAAAAABAAAAAAAYAgQAAAAAAAAAQAA=</HashCode>
+      <FileName>Controllers\FeatureController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.MainSiteController" Collapsed="true">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAQAAEAAAAAAAAAAAAAAAAAAAEAAAAACAA=</HashCode>
+      <FileName>Controllers\MainSiteController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Controllers.UserManagementController" Collapsed="true">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserManagementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.watermentdbEntities" Collapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAADAAAAAAAAIAUAEAAACABCECEAgFIAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\ADOEDM.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.alarms" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAoAAAAAAAAAAAAAgAAAAAAAAAAQBAAAAA=</HashCode>
+      <FileName>Models\alarms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.Client_Conection" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAQA=</HashCode>
+      <FileName>Models\Client_Conection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.continents" Collapsed="true">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\continents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.countries" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACAAAAAABAAAAAAAAACAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\countries.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.countries_with_facilites_view" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\countries_with_facilites_view.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.equipments" Collapsed="true">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAgABAAAAJAAAAQAFAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\equipments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.facilities" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAIAAAAQAAAAgAQQCIgEAAgIAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\facilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.FacilityStatus" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAAAAAAARAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FacilityStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.locations" Collapsed="true">
+    <Position X="4.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAIAAAAggRBAAEAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\locations.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.maintenance" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAACAAAAgAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\maintenance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.measurements" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAQBAAIAA=</HashCode>
+      <FileName>Models\measurements.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.Role" Collapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.sessions" Collapsed="true">
+    <Position X="1.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAIAAAAABAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\sessions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.User" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECCCCEAAAKAAIEAAEAAgQABDAAAQggAIAQQAABQAAQg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.UserClaim" Collapsed="true">
+    <Position X="8.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\UserClaim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.UserLogin" Collapsed="true">
+    <Position X="10" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAAAAEAAAABAAAAAAAAA=</HashCode>
+      <FileName>Models\UserLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.Models.UserRegistrationToken" Collapsed="true">
+    <Position X="1.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\UserRegistrationToken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ExternalLoginConfirmationViewModel" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ExternalLoginListViewModel" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAQ=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ManageUserViewModel" Collapsed="true">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAg=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ResetPasswordViewModel" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ForgotPasswordViewModel" Collapsed="true">
+    <Position X="13.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.UserManagementModel" Collapsed="true">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\AccountViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.DateTimeXAxisChartData" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAANAAAABAgAAAAAAAAAAACQAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>ViewModels\ChartModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.DataPoint" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAIAAAAAAAAAAAAAAAAAAIAAAAAAAYAE=</HashCode>
+      <FileName>ViewModels\DataPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.DataService" Collapsed="true">
+    <Position X="8.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAIAAAgAIAAAAAAAAIAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>ViewModels\DataService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.EquipmentViewModels" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EquipmentViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.FacilityEquipmentVM" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAgAAAAAAAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EquipmentViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.EquipmentAddVM" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAgAAAAAAIAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EquipmentViewModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.MaintenanceViewModel" Collapsed="true">
+    <Position X="11.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAACAAAAgAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\FacilityManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.FacilityViewModel" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAIAAAAAAAAAgAQQAIgEAAgAAAAAAAIAAAAA=</HashCode>
+      <FileName>ViewModels\FacilityManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.MainViewModel" Collapsed="true">
+    <Position X="13.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQCUQAYAAAAgQAAAAAAAUYAAAUAAAQAAAAAKABIAAE=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.FacilitesAlarmModel" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.IndexViewModel" Collapsed="true">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAQAAAAAAAAAAAAAAQAAAEAEA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ManageLoginsViewModel" Collapsed="true">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.FactorViewModel" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.SetPasswordViewModel" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ChangePasswordViewModel" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.AddPhoneNumberViewModel" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.VerifyPhoneNumberViewModel" Collapsed="true">
+    <Position X="3" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ConfigureTwoFactorViewModel" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ManageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WatermentWebSCADA.ViewModels.ListAllUsers" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>ViewModels\UserManagementViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

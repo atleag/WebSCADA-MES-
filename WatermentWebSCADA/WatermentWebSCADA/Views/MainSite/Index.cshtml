@@ -1,8 +1,8 @@
-﻿ @model WatermentWebSCADA.ViewModels.MainViewModel
+﻿@model WatermentWebSCADA.ViewModels.MainViewModel
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index2";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,29 +11,30 @@
 <head>
     <style>
         .intro {
-                background-color: lightgreen;
-    color: black;
-    margin: 20px 0 20px 0;
-    padding: 20px;
-     border-radius: 25px;
-     
+            background-color: lightgreen;
+            color: black;
+            margin: 20px 0 20px 0;
+            padding: 20px;
+            border-radius: 25px;
         }
-        
+
 
         .headerDivider {
-     border-left:5px solid #38546d; 
-     border-right:5px solid #16222c; 
-     height:80px;
-     position:absolute;
-     right:249px;
-     top:10px; 
-}
-.main{
-     background-color: black;
-    color: red;
-    margin: 20px 0 20px 0;
-    padding: 20px;
-}
+            border-left: 5px solid #38546d;
+            border-right: 5px solid #16222c;
+            height: 80px;
+            position: absolute;
+            right: 249px;
+            top: 10px;
+        }
+
+        .main {
+            background-color: black;
+            color: red;
+            margin: 20px 0 20px 0;
+            padding: 20px;
+        }
+
         .frame {
             box-sizing: border-box;
             -moz-box-sizing: border-box;
@@ -43,32 +44,57 @@
             opacity: 1;
             border-radius: 5px;
             background-color: rgb(229, 217, 148);
-            box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;
+            /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
             padding: 20px;
             margin-top: 25px;
             margin-bottom: 25px;
             margin-right: 25px;
-            margin-left: 25px;
+            margin-left: 0px;
             overflow-y: scroll;
-            overflow-y:auto;
+            overflow-y: auto;
             position: relative;
             background-size: 100% 100px;
             background-repeat: no-repeat;
-            
+            /*border-top: 5px solid rgb(94,110,60);*/
         }
-          
-#style-1::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
 
-#style-1::-webkit-scrollbar
-{
-	width: 12px;
-	background-color: #F5F5F5;
-}
+        .frameTitle {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+            /*width: auto;*/
+            height: 60px;
+            opacity: 1;
+            border-radius: 5px;
+            background-color: #f4efc0;
+            /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
+            padding: 0px;
+            margin-top: 25px;
+            margin-bottom: -30px;
+            margin-right: 25px;
+            margin-left: 0px;
+            overflow-y: hidden;
+            overflow-y: hidden;
+            position: relative;
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            /*border-top: 5px solid rgb(94,110,60);*/
+        }
+
+        .maniFrame {
+            overflow-y: scroll;
+        }
+
+        #style-1::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        #style-1::-webkit-scrollbar {
+            width: 12px;
+            background-color: #F5F5F5;
+        }
 
         #style-1::-webkit-scrollbar-thumb {
             border-radius: 10px;
@@ -76,69 +102,143 @@
             background-color: rgb(171,194,122);
         }
 
-.r1 {
-    width: 25%;
-    float: left    
-}
-.r2{
-    width: 25%;
-    float: right;
+        #style-2::-webkit-scrollbar {
+            width: 12px;
+            background-color: #D8C9A6;
+        }
 
-}
-       
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+        .r1 {
+            width: 25%;
+            float: left;
+        }
 
-th, td {
-    padding: 20px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-h1{
-    font-weight:bolder;
-}
-</style>
-    
+        .r2 {
+            width: 25%;
+            float: right;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 {
+            font-weight: bolder;
+        }
+
+        #header-fixed {
+            position: fixed;
+            top: 0px;
+            display: block;
+            background-color: transparent;
+        }
+    </style>
+
 </head>
-<div>
-    <h1 align="center">Overview</h1>
-</div>
-    
-   
-<div class="container">
-       <div class="col-lg-6">
-           <div class="frame" id="style-1">
-             <h3 align ="center" >Status</h3>
-      
-               <div class="row">
-                   <table>
-                       <tr>
-                           <th>Facility</th>
-                           <th>Location</th>
-                           <th>Status</th>
-                       </tr>
-                       @foreach (var item in Model.Facilites)
-                       {
+<body style="margin:1px">
 
-                           <tr>
-                               <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
-                              <td>@item.locations.City</td>
-                                <td>@item.FacilityStatus.Name</td> 
-                            
-                           </tr> 
+    @*<div>
+            <h1 align="center">Overview</h1>
+        </div>*@
 
-                       }
-                   </table>
-           </div>
-               
-               </div>
-      
 
-       
+    <div class="container">
+        <div class="col-lg-4">
+            <div class="frameTitle" id="style-1">
+                <h3 align="center">General info</h3>
+            </div>
             <div class="frame" id="style-1">
-            <h3 align ="center">Facilities with active alarms</h3>
+                <div class="row">
+                    <table>
+                        <tr>
+                            <td class="title" style=""><b>No. of facilities</b> </td>
+                            <td class="text">@Model.antallFacilities</td>
+                        </tr>
+                        <tr>
+                            <td class="title"><b>No. of facilities online</b> </td>
+                            <td class="text">@Model.antallOnline</td>
+                        </tr>
+                        <tr>
+                            <td class="title"><b>No. of facilities offline</b> </td>
+                            <td class="text">@Model.antallOffline</td>
+                        </tr>
+                        <tr>
+                            <td class="title"><b>No. of active alarms</b></td>
+                            <td class="text">@Model.noAlarms</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="frameTitle" id="style-1">
+                <h3 align="center">Status</h3>
+            </div>
+            <div class="frame" id="style-1" style="height:430px;">
+                <table>
+                    <tr>
+                        <th>Facility</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (var item in Model.Facilites)
+                    {
+
+                        <tr>
+                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+                            <td>@item.locations.City</td>
+                            <td>@item.FacilityStatus.Name</td>
+
+                        </tr>
+
+                    }
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="col-lg-8">
+            <div style="margin-left:0px">
+                <h1>Waterment Webscada application</h1>
+                <p> Her skal det stå litt info om hva faen du vil </p>
+            </div>
+            <div class="frameTitle" id="style-1">
+                <h3 align="center">Maintenance</h3>
+            </div>
+            <div class="frame" id="style-1">
+                <table>
+                    <tr>
+                        <th>Facility</th>
+                        <th>Location</th>
+                        <th>Last maintenance</th>
+                    </tr>
+                    @foreach (var item in Model.Vedlikehold)
+                    {
+
+                        <tr>
+                            <td>@item.facilities.Name</td>
+                            <td>@item.facilities.locations.City</td>
+                            <td>@item.LastMaintenance</td>
+                        </tr>
+
+                    }
+                </table>
+
+            </div>
+            <div class="frameTitle" id="style-1">
+                <h3 align="center">Active alarms</h3>
+            </div>
+            <div class="frame" id="style-1">
+
+
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -146,7 +246,7 @@ h1{
                         <th>Value</th>
                         <th>Description</th>
                     </tr>
-                  
+
                     @foreach (var item in Model.AlarmList)
                     {
 
@@ -160,69 +260,19 @@ h1{
                             </tr>
 
                         }
-                      }
-                        
-                </table>
-
-                </div>
-       
-    </div>
-
-       <div class="col-lg-6">
-            <div class="frame" id="style-1">
-            <h3 align =" center">Maintenance</h3>
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Location</th>
-                        <th>Last maintenance</th>
-                    </tr>
-                    @foreach (var item in Model.Vedlikehold)
-                    {
-
-                        <tr>
-                            <td>@item.facilities.Name</td>
-                            <td>@item.facilities.locations.City</td>
-                            <td>@item.lastMaintenance</td>
-                        </tr>
-
                     }
+
                 </table>
 
-                </div>
-    <div class="frame" id="style-1">
 
-        <h3 align ="center">General info</h3>
 
-            <table>
-                <tr>
-                    <td class="title" style=""><b>Nr. of facilities</b> </td>
-                    <td class="text">@Model.antallFacilities</td>
-                </tr>
-                <tr>
-                    <td class="title"><b>Nr. of facilities online</b> </td>
-                    <td class="text">@Model.antallOnline</td>
-                </tr>
-                <tr>
-                    <td class="title"><b>Nr. of facilities offline</b> </td>
-                    <td class="text">@Model.antallOffline</td>
-                </tr>
-                <tr>
-                    <td class="title"><b>Nr. of active alarms</b></td>
-                    <td class="text">@Model.noAlarms</td>
-                </tr>
-            </table> 
-                
-              
-                
 
-                
-</dl>
 
-</div>
-    </div>
-     
+
+            </div>
+        </div>
     </div>
 
+</body>
 
 
