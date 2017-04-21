@@ -182,7 +182,7 @@ namespace WatermentWebSCADA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,SerialNumber, ProgramVersion,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -239,7 +239,7 @@ namespace WatermentWebSCADA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -253,31 +253,7 @@ namespace WatermentWebSCADA.Controllers
             return View(facilities);
         }
 
-        // GET: facilities2/Delete/5
-        public ActionResult DeleteFacility(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            facilities facilities = db.facilities.Find(id);
-            if (facilities == null)
-            {
-                return HttpNotFound();
-            }
-            return View(facilities);
-        }
 
-        // POST: facilities2/Delete/5
-        [HttpPost, ActionName("DeleteFacility")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            facilities facilities = db.facilities.Find(id);
-            db.facilities.Remove(facilities);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         public ActionResult Maintenance()
         {
