@@ -190,7 +190,8 @@
                     {
 
                         <tr>
-                            <td>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, null)</td>
+
+                            <td><b>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, new { @style = "color:rgb(140,150,80);" })</b></td>
                             <td>@item.locations.City</td>
                             <td>@item.FacilityStatus.Name</td>
 
