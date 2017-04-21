@@ -1,5 +1,8 @@
 ﻿body {
-     .intro2 {
+   
+
+}
+        .intro2 {
                 background-color: rgb(229, 217, 148);
             color: black;
             /*margin: 20px 0 20px 0;*/
@@ -122,6 +125,3 @@ td {
     padding: 10px;
     border-radius: 5px;
 }
-
-}
-      
