@@ -23,6 +23,13 @@
              /*overflow-y:scroll;
              overflow-y:auto;*/
         }
+        .frame2{
+                 margin-right:20px;
+            margin-bottom:10px;
+            margin-left:20px;
+              padding: 10px;
+            border-radius: 5px;
+        }
     </style>
     <style>
         .intro2 {
@@ -366,11 +373,17 @@ th, td {
             </div>
         </div>
 
+<div class="frame2">
+    @foreach (var item in Model.Facilites)
+    {
+        <img src="@Url.Action("EfficiencyChart",new { id = item.Id})" />
+    }
 
-          @foreach (var item in Model.Facilites)
-          {
-            <img src="@Url.Action("EfficiencyChart",new { id = item.Id})" />
-          }
+</div>
+
+
+
+
 
 
 
