@@ -60,7 +60,6 @@
             }
             return manager;
         }
-        
 
         #endregion
     }

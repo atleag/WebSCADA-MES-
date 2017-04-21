@@ -4,10 +4,6 @@
 
     public class MyRole : IdentityRole<long, MyUserRole>
     {
-        public MyRole() : base() { }
 
-        //public MyRole(string name) : base(name) { }
-
-        public string Description { get; set; }
     }
 }
