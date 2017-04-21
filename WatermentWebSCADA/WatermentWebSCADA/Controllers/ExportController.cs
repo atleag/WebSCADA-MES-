@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-using WatermentWebSCADA.Models;
 using System.IO;
 using System.Web.UI;
-
 using WatermentWebSCADA.ViewModels;
 
 namespace WatermentWebSCADA.Controllers
@@ -44,12 +40,12 @@ namespace WatermentWebSCADA.Controllers
                 Response.ClearContent();
                 Response.AddHeader("content-disposition", "attachment; filename=TempMeasurementList.xls");
                 Response.ContentType = "application/excel";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                StringWriter swriter = new StringWriter();
+                HtmlTextWriter hwriter = new HtmlTextWriter(swriter);
 
-                grid.RenderControl(htw);
+                grid.RenderControl(hwriter);
 
-                Response.Write(sw.ToString());
+                Response.Write(swriter.ToString());
 
                 Response.End();
 
@@ -83,12 +79,12 @@ namespace WatermentWebSCADA.Controllers
                 Response.ClearContent();
                 Response.AddHeader("content-disposition", "attachment; filename=BarMeasurementList.xls");
                 Response.ContentType = "application/excel";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                StringWriter swriter = new StringWriter();
+                HtmlTextWriter hwriter = new HtmlTextWriter(swriter);
 
-                grid.RenderControl(htw);
+                grid.RenderControl(hwriter);
 
-                Response.Write(sw.ToString());
+                Response.Write(swriter.ToString());
 
                 Response.End();
 
@@ -124,12 +120,12 @@ namespace WatermentWebSCADA.Controllers
                 Response.ClearContent();
                 Response.AddHeader("content-disposition", "attachment; filename=AlarmList.xls");
                 Response.ContentType = "application/excel";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
+                StringWriter swriter = new StringWriter();
+                HtmlTextWriter hwriter = new HtmlTextWriter(swriter);
 
-                grid.RenderControl(htw);
+                grid.RenderControl(hwriter);
 
-                Response.Write(sw.ToString());
+                Response.Write(swriter.ToString());
 
                 Response.End();
 

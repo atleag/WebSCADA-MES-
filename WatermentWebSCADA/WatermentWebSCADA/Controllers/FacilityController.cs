@@ -33,7 +33,7 @@ namespace WatermentWebSCADA.Controllers
         // GET: Facility
         public ActionResult FacilityDetails(int? id)
         {
-            if (id == null) //int id = 0 handling. 
+            if (id == null) //Error handling if "int? id" is missing from the link. 
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -62,18 +62,10 @@ namespace WatermentWebSCADA.Controllers
                 {
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
-                    Kontinenter = db.continents.ToList(),
-                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), 
-                    Utstyr = db.equipments.ToList(),
+                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(),
                     Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
-                    Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.Role.ToList(),
                     Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
-                    Sesjoner = db.sessions.ToList(),
-
-                    Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
-                    AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
+                    Utstyr = db.equipments.ToList(),
 
                 };
 
@@ -81,7 +73,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
         public ActionResult chart(int? id)
-        {
+        {//chart er kun for testing
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
                 LandId1 = item.locations_countries_Id.GetValueOrDefault();
