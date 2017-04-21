@@ -38,6 +38,17 @@ namespace WatermentWebSCADA.ViewModels
         public Nullable<DateTime> LastCalibrated { get; set; }
 
         [Required]
+        [Display(Name = "Type Spesification")]
+        public string TypeSpecification { get; set; }
+
+        [Display(Name = "Date of installation")]
+        [DataType(DataType.Date)]
+        public Nullable<System.DateTime> InstallDate { get; set; }
+
+
+        public string Manufacturer { get; set; }
+
+        [Required]
         [Display(Name ="Facilities in which the equipment is added")]
         public int facilities_Id { get; set; }
     }
