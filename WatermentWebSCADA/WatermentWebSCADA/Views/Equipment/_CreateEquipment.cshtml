@@ -41,6 +41,30 @@
 
                         </tr>
                         <tr>
+                            <td>@Html.LabelFor(model => model.InstallDate)</td>
+                            <td>
+                                @Html.EditorFor(model => model.InstallDate)
+                                @Html.ValidationMessageFor(model => model.InstallDate)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.TypeSpecification)</td>
+                            <td>
+                                @Html.EditorFor(model => model.TypeSpecification)
+                                @Html.ValidationMessageFor(model => model.TypeSpecification)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Manufacturer)</td>
+                            <td>
+                                @Html.EditorFor(model => model.Manufacturer)
+                                @Html.ValidationMessageFor(model => model.Manufacturer)
+                            </td>
+
+                        </tr>
+                        <tr>
                             <td>@Html.LabelFor(model => model.facilities_Id)</td>
                             <td>
                                 @Html.EditorFor(model => model.facilities_Id)
