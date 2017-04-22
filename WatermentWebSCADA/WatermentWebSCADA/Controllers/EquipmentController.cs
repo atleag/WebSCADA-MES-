@@ -17,49 +17,52 @@ namespace WatermentWebSCADA.Controllers
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
             List<FacilityEquipmentVM> facilityEquipmentVM = new List<FacilityEquipmentVM>(); // to hold list of Customer and order details
             var equipmentlist = (from Eq in db.equipments.Where(x => x.facilities_Id == id)
-                                select new { Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated}).ToList();
+                                select new { Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification}).ToList();
             //query getting data from database from joining two tables and storing data in customerlist
             foreach (var item in equipmentlist)
             {
-                FacilityEquipmentVM objevm = new FacilityEquipmentVM(); // ViewModel
-                objevm.Tag = item.Tag;
-                objevm.SIUnits = item.SIUnits;
-                objevm.Description = item.Description;
-                objevm.LastCalibrated = item.LastCalibrated;
-                facilityEquipmentVM.Add(objevm);
+                FacilityEquipmentVM fevm = new FacilityEquipmentVM(); // ViewModel
+                fevm.Tag = item.Tag;
+                fevm.SIUnits = item.SIUnits;
+                fevm.Description = item.Description;
+                fevm.LastCalibrated = item.LastCalibrated;
+                fevm.InstallDate = item.InstallDate;
+                fevm.Manufacturer = item.Manufacturer;
+                fevm.TypeSpecification = item.TypeSpecification;
+                facilityEquipmentVM.Add(fevm);
             }
             //Using foreach loop fill data from custmerlist to List<CustomerVM>.
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
         // GET: Equipment. Not used
-        public ActionResult IndexBACKUP()
-        {
-            watermentdbEntities db = new watermentdbEntities(); //dbcontect class
-            List<FacilityEquipmentVM> facilityEquipmentVM = new List<FacilityEquipmentVM>(); // to hold list of Customer and order details
-            var customerlist = (from Eq in db.equipments
-                                join Me in db.measurements on Eq.Id equals Me.equipments_Id
-                                select new { Eq.Tag, Eq.SIUnits, Eq.Description, Me.ProcessValue, Me.Recorded }).ToList();
-            //query getting data from database from joining two tables and storing data in customerlist
-            foreach (var item in customerlist)
-            {
-                FacilityEquipmentVM objevm = new FacilityEquipmentVM(); // ViewModel
-                objevm.Tag = item.Tag;
-                objevm.SIUnits = item.SIUnits;
-                objevm.Description = item.Description;
-                //objevm.ProcessValue = item.ProcessValue;
-                //objevm.Recorded = item.Recorded;
-                facilityEquipmentVM.Add(objevm);
-            }
-            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
-            return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
-        }
+        //public ActionResult IndexBACKUP()
+        //{
+        //    watermentdbEntities db = new watermentdbEntities(); //dbcontect class
+        //    List<FacilityEquipmentVM> facilityEquipmentVM = new List<FacilityEquipmentVM>(); // to hold list of Customer and order details
+        //    var customerlist = (from Eq in db.equipments
+        //                        join Me in db.measurements on Eq.Id equals Me.equipments_Id
+        //                        select new { Eq.Tag, Eq.SIUnits, Eq.Description, Me.ProcessValue, Me.Recorded }).ToList();
+        //    //query getting data from database from joining two tables and storing data in customerlist
+        //    foreach (var item in customerlist)
+        //    {
+        //        FacilityEquipmentVM objevm = new FacilityEquipmentVM(); // ViewModel
+        //        objevm.Tag = item.Tag;
+        //        objevm.SIUnits = item.SIUnits;
+        //        objevm.Description = item.Description;
+        //        //objevm.ProcessValue = item.ProcessValue;
+        //        //objevm.Recorded = item.Recorded;
+        //        facilityEquipmentVM.Add(objevm);
+        //    }
+        //    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+        //    return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
+        //}
         
-        //This action result is used to open the partial view input box for adding equipment.
-        public ActionResult ViewCreate()
-        {
-           // return PartialView("_CreateEquipment", model);
-            return PartialView("_CreateEquipment");
-        }
+        ////This action result is used to open the partial view input box for adding equipment.
+        //public ActionResult ViewCreate()
+        //{
+        //   // return PartialView("_CreateEquipment", model);
+        //    return PartialView("_CreateEquipment");
+        //}
 
 
 

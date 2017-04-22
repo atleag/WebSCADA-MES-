@@ -8,6 +8,14 @@
     <h2>All Equipments for the facility</h2>
 
     @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null,"","", Model, new { @class = "modal-link btn btn-success" })
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        //the following are search options
+        <b> Search Option: </b>@Html.RadioButton("option", "Name") <text>Name</text> @Html.RadioButton("option", "Gender")<text> Gender </text>
+        @Html.RadioButton("option", "Subjects")<text>Subject</text> @Html.TextBox("search") <input type = "submit"
+        name = "submit"
+        value = "Search"/>
+        }
     <style>
         .modal-content {
             width: 600px !important;
@@ -61,6 +69,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastCalibrated)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InstallDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeSpecification)
+            </th>
             <th></th>
         </tr>
         
@@ -80,8 +97,16 @@
                     @Html.DisplayFor(modelItem => item.LastCalibrated)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.InstallDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeSpecification)
+                </td>
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
