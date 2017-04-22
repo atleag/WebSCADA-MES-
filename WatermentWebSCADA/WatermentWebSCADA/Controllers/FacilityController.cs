@@ -262,8 +262,11 @@ namespace WatermentWebSCADA.Controllers
         public static class Theme
         {
 
-            public const string Blue2 = "<Chart BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"#ABC27A\" BorderlineDashStyle=\"Solid\" BorderWidth=\"5\" Palette=\"BrightPastel\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"171,194,122\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"229, 217, 148\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n   <BorderSkin SkinStyle=\"none\" /> \r\n   </Chart>";
+            public const string Blue2 = "<Chart BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"#ABC27A\" BorderlineDashStyle=\"Solid\" BorderWidth=\"5\" Palette=\"Chocolate\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"171,194,122\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"229, 217, 148\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n   <BorderSkin SkinStyle=\"none\" /> \r\n   </Chart>";
+            public const string Test = "<Chart BackColor=\"#ABC27A\" ForeColor=\"Navy\">ChartAreas><ChartArea Name=\"Default`\" BackColor=\"Aqua\" ></ChartArea></ChartAreas>";
         }
+
+
         public ActionResult TempChart(int? id)
         {
 
@@ -292,17 +295,39 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult BarChart(int? id)
         {
 
-            //public const string Blue = "<Chart BackColor=\"#D3DFF0\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"26, 59, 105\" BorderlineDashStyle=\"Solid\" BorderWidth=\"2\" Palette=\"BrightPastel\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"64, 165, 191, 228\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"White\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"Transparent\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"Transparent\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n    <BorderSkin SkinStyle=\"Emboss\" /> \r\n  </Chart>";
+            string myTheme =
+              @"<Chart BackColor=""#ABC27A"" ForeColor=""#E5D9F8"" Palette=""Chocolate"">
+                      <ChartAreas>
+                             <ChartArea Name=""Default"" BackColor=""#E5D994"" ></ChartArea>
+                       </ChartAreas>
+             </Chart>";
+
+            //            string myTheme = @"<Chart BackColor=""#ff0000"" BackGradientStyle=""TopBottom"" BackSecondaryColor=""White"" 
+            //BorderColor=""26, 59, 105"" BorderlineDashStyle=""Solid"" BorderWidth=""2"" Palette=""BrightPastel"">
+            //    <ChartAreas>
+            //        <ChartArea Name=""Default"" _Template_=""All"" BackColor=""64, 165, 191, 228"" BackGradientStyle=""TopBottom"" 
+            //BackSecondaryColor=""White"" BorderColor=""64, 64, 64, 64"" BorderDashStyle=""Solid"" ShadowColor=""Transparent"" /> 
+            //    </ChartAreas>
+            //    <Legends>
+            //        <Legend _Template_=""All"" BackColor=""Transparent"" Font=""Trebuchet MS, 8.25pt, style=Bold"" IsTextAutoFit=""False"" /> 
+            //    </Legends>
+            //    <BorderSkin SkinStyle=""Emboss"" /> 
+            //  </Chart>";
+
+            // < ChartAreas >\r\n < ChartArea Name =\"Default\" _Template_=\"All\" BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" 
+            //BackSecondaryColor =\"229, 217, 148\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"171,194,122\" /> \r\n    
+            // </ ChartAreas >\r\n < Legends >\r\n < Legend _Template_ =\"All\" BackColor=\"229, 217, 148\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" 
+            //IsTextAutoFit =\"False\" /> \r\n    </Legends>\r\n   <BorderSkin SkinStyle=\"none\" /> \r\n   </Chart>";
+
             float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Select(x => x.ProcessValue).ToArray();
             DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Select(x => x.Recorded).ToArray();
 
-            //Where(i => i.equipments_facilities_Id == id).
+          
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Blue2)
-            //var myChart = new Chart(width: 1100, height: 350, theme: ChartTheme.Green)
-
+     
+            
             .SetYAxis("Temp", 0, 50)
-
             .AddTitle("Pressure Chart")
             .AddSeries(
                 chartType: "Line",

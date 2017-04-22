@@ -359,6 +359,7 @@
         </div>
 
 <div class="frame2">
+    @*Shows temperature graf*@
     @foreach (var item in Model.Facilites)
     {
         <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
@@ -369,6 +370,7 @@
 
 
 <div class="frame2">
+    @*Shows pressure graf*@
     @foreach (var item in Model.Facilites)
     {
         <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
