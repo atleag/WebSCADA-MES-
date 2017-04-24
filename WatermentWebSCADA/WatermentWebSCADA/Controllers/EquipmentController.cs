@@ -15,13 +15,13 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult Index(int? id)
         {
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
-            List<FacilityEquipmentVM> facilityEquipmentVM = new List<FacilityEquipmentVM>(); // to hold list of Customer and order details
+            List<EquipmentVM> facilityEquipmentVM = new List<EquipmentVM>(); // to hold list of Customer and order details
             var equipmentlist = (from Eq in db.equipments.Where(x => x.facilities_Id == id)
                                 select new { Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification}).ToList();
             //query getting data from database from joining two tables and storing data in customerlist
             foreach (var item in equipmentlist)
             {
-                FacilityEquipmentVM fevm = new FacilityEquipmentVM(); // ViewModel
+                EquipmentVM fevm = new EquipmentVM(); // ViewModel
                 fevm.Tag = item.Tag;
                 fevm.SIUnits = item.SIUnits;
                 fevm.Description = item.Description;
