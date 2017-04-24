@@ -60,6 +60,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 var model = new MainViewModel
                 {
+                    //Getting desired data from the database, and returning it to the view.
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Countries = db.countries.Where(x => x.Id == LandId1).ToList(),
@@ -72,54 +73,7 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
-        public ActionResult chart(int? id)
-        {//chart er kun for testing
-            foreach (var item in db.facilities.Where(c => c.Id == id))
-            {
-                LandId1 = item.locations_countries_Id.GetValueOrDefault();
-                LokasjonsID = item.locations_Id.GetValueOrDefault();
-
-            }
-
-
-
-            using (var db = new Models.watermentdbEntities())
-            {
-                var model = new MainViewModel
-                {
-                    Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                    Facilites = db.facilities.Where(c => c.Id == id).ToList(),
-
-                    //Anlegg2=db.facilities.Where(x=>x.locations_countries_Id=landid),
-
-                    Kontinenter = db.continents.ToList(),
-
-                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(), /*Se her mer 167 som lokal variabel fra koden før*/
-
-                    Utstyr = db.equipments.ToList(),
-                    Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
-                    Vedlikehold = db.maintenance.ToList(),
-                    Roller = db.Role.ToList(),
-                    Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
-                    Sesjoner = db.sessions.ToList(),
-
-                    Verdier = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Temperature Reactor").ToList(),
-                    BarValues = db.measurements.Where(x => x.equipments_facilities_Id == id).Where(i => i.equipments.Description == "Pressure Reactor").ToList(),
-                    AlarmList = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").ToList(),
-                    TempMeasModel = db.measurements.Where(x => x.equipments_facilities_Id == id).ToList(),
-
-
-
-                };
-              
-
-
-
-            
-
-                return View(model);
-            }
-        }
+  
         public ContentResult GetData()
         {
             using (var db = new watermentdbEntities())
@@ -269,15 +223,15 @@ namespace WatermentWebSCADA.Controllers
 
         public ActionResult TempChart(int? id)
         {
-
+            //Code to fill the Temperature Chart with values from the database.
             
         float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
             DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
 
-            //Where(i => i.equipments_facilities_Id == id).
+           
 
             var myChart = new Chart(width: 1100, height: 350,theme:Theme.Green)
-                   //var myChart = new Chart(width: 1100, height: 350, theme: ChartTheme.Green)
+              
                    
             .SetYAxis("Temp", 0, 50)
            
@@ -294,6 +248,7 @@ namespace WatermentWebSCADA.Controllers
         }
         public ActionResult BarChart(int? id)
         {
+            //Code to fill the Bar Chart with values from the database.
             DateTime from = new DateTime (2015,04,04);
             DateTime to = new DateTime(2017, 04, 04);
 

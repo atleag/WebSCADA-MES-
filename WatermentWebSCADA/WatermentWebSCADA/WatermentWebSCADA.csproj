@@ -426,7 +426,6 @@
     <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
-    <Content Include="Views\Facility\chart.cshtml" />
     <Content Include="Views\Chart\AxisZooming.cshtml" />
     <Content Include="Views\Feature\ZoomingPanning.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
