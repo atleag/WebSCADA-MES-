@@ -295,13 +295,13 @@
          var x = document.getElementById("myDate").value;
          var y = document.getElementById("myDateTo").value;
 
-         @foreach (var item in Model.Utstyr)
+         @*@foreach (var item in Model.Utstyr)
     {
            <b>  @Html.ActionLink(, "BarChart", "FacilityController", new { id = item.Id, from2 = document.getElementById("demo").innerHTML }, null)</b>
-    }
+    }*@
 
 
-         var link = '@Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = Model..Id, from2 = document.getElementById("demo").innerHTML }, null)</b>
+         @*var link = '@Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = Model..Id, from2 = document.getElementById("demo").innerHTML }, null)</b>*@
          document.getElementById("demo").innerHTML = x;
          document.getElementById("demo2").innerHTML = y;
 
@@ -309,7 +309,7 @@
 
     </script>
 
-@d
+
 
     <label for="meeting">To : </label><input id="ToDate" type="date" value="2017-01-01" />
 
