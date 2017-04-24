@@ -78,7 +78,7 @@ namespace WatermentWebSCADA.Controllers
                     {
 
                         Countries = db.countries.Where(c => c.continents.Id == id).ToList(),
-                        AlarmList = db.alarms.Where(o => o.Status == "Active").ToList(),
+                        Alarmer = db.alarms.Where(o => o.Status == "Active").ToList(),
                         Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
                         Lokasjoner = db.locations.ToList(),
                         Vedlikehold = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).ToList(),

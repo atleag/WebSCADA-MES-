@@ -18,11 +18,10 @@ namespace WatermentWebSCADA.ViewModels
 
       
 
-    public IEnumerable<facilities> Facilites { get; set; }
-    public IEnumerable<alarms> Alarmer { get; set; }
-        public IEnumerable<continents> Kontinenter { get; set; }
+        public IEnumerable<facilities> Facilites { get; set; }
+        public IEnumerable<alarms> Alarmer { get; set; }
         public IEnumerable<countries> Countries { get; set; }
-        public IEnumerable<measurements> TempMeasModel { get; set; }
+ 
         public IEnumerable<equipments> Utstyr { get; set; }
         public IEnumerable<locations> Lokasjoner { get; set; }
         public IEnumerable<maintenance> Vedlikehold { get; set; }
@@ -34,9 +33,7 @@ namespace WatermentWebSCADA.ViewModels
 
         public List<equipments> Equipment { get; set; }
 
-        public List<measurements> Verdier { get; set; }
-        public List<measurements> BarValues { get; set; }
-        public List<alarms> AlarmList { get; set; }
+       
         public int antallFacilities { get; internal set; }
         public int antallOnline { get; internal set; }
         public int antallOffline { get; internal set; }

@@ -35,36 +35,36 @@
                     <tr>
                         <td class="title"><b>Country</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Countries)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.Name
+                                @item.locations.countries.Name
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b>County </b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.County
+                                @item.locations.County
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b> Postcode</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.Postcode
+                                @item.locations.Postcode
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b>Address</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.StreetAddress
+                                @item.locations.StreetAddress
                             }
                         </td>
                     </tr>
