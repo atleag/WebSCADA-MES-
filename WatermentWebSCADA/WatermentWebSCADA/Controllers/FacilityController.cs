@@ -294,18 +294,19 @@ namespace WatermentWebSCADA.Controllers
         }
         public ActionResult BarChart(int? id)
         {
+            DateTime from = new DateTime (2015,04,04);
+            DateTime to = new DateTime(2017, 04, 04);
 
-       
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Select(x => x.Recorded).ToArray();
+
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > from || x.Recorded < to).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>from||x.Recorded<to).Select(x => x.Recorded).ToArray();
 
           
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
-     
             
-            .SetYAxis("Temp", 0, 50)
+            .SetYAxis("Pressure", 0, 50)
             .AddTitle("Pressure Chart")
             .AddSeries(
                 chartType: "Line",
