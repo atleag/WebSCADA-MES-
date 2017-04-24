@@ -324,7 +324,7 @@ namespace WatermentWebSCADA.Controllers
 
           
 
-            var myChart = new Chart(width: 1100, height: 350, theme: Theme.Blue2)
+            var myChart = new Chart(width: 1100, height: 350, theme: myTheme)
      
             
             .SetYAxis("Temp", 0, 50)

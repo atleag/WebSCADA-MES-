@@ -266,6 +266,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\BiogassGaupset - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Waterment - Web Deploy.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
