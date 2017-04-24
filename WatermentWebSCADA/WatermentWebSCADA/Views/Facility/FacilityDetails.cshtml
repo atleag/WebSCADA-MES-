@@ -11,14 +11,13 @@
     <link href="~/Content/DivBootstrap.css" rel="stylesheet" />
 </head>
 
-
-
-
-
     <div class="container">
 
         <div class="col-sm-4">
             <div class="frameTitleBiogasFacility">
+
+                @*General info for the specific biogas facility is shown in this div.*@ 
+
                 <h3 align="center">Biogas facility</h3>
             </div>
             <div class="intro" id="style-1">
@@ -208,6 +207,9 @@
         </div>
         <p></p>
         &emsp;
+
+        @*The "Remote Connect " and "Export to Excel" buttons are called in the code below.*@ 
+
         @foreach (var skill in Model.Facilites)
         {
             <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
@@ -233,6 +235,9 @@
                 </div>
             </div>
         </div>
+
+
+@*Charts with information from the database are shown below.*@
 
 <div class="frame3">
     @*Shows temperature graf*@
