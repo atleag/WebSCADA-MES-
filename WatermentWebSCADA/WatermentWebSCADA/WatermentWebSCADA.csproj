@@ -418,12 +418,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Equipment\Delete.cshtml" />
-    <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
-    <Content Include="Views\UserManagement\Create.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
     <Content Include="Views\Chart\AxisZooming.cshtml" />
@@ -461,6 +458,8 @@
     <Content Include="Views\Facility\Maintenance.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Equipment\Delete.cshtml" />
+    <Content Include="Views\Equipment\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -471,6 +470,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AddFacilities\" />
+    <Folder Include="Views\UserManagement\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
