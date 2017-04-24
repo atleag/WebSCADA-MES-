@@ -60,6 +60,7 @@ namespace WatermentWebSCADA.Controllers
             {
                 var model = new MainViewModel
                 {
+                    //Getting desired data from the database, and returning it to the view.
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Countries = db.countries.Where(x => x.Id == LandId1).ToList(),
@@ -222,15 +223,15 @@ namespace WatermentWebSCADA.Controllers
 
         public ActionResult TempChart(int? id)
         {
-
+            //Code to fill the Temperature Chart with values from the database.
             
         float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
             DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
 
-            //Where(i => i.equipments_facilities_Id == id).
+           
 
             var myChart = new Chart(width: 1100, height: 350,theme:Theme.Green)
-                   //var myChart = new Chart(width: 1100, height: 350, theme: ChartTheme.Green)
+              
                    
             .SetYAxis("Temp", 0, 50)
            
@@ -247,6 +248,7 @@ namespace WatermentWebSCADA.Controllers
         }
         public ActionResult BarChart(int? id)
         {
+            //Code to fill the Bar Chart with values from the database.
             DateTime from = new DateTime (2015,04,04);
             DateTime to = new DateTime(2017, 04, 04);
 
