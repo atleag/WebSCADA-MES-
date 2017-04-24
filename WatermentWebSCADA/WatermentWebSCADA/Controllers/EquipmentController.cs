@@ -57,13 +57,13 @@ namespace WatermentWebSCADA.Controllers
         //    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
         //    return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         //}
-        
-        ////This action result is used to open the partial view input box for adding equipment.
-        //public ActionResult ViewCreate()
-        //{
-        //   // return PartialView("_CreateEquipment", model);
-        //    return PartialView("_CreateEquipment");
-        //}
+
+        //This action result is used to open the partial view input box for adding equipment.
+        public ActionResult ViewCreate()
+        {
+            // return PartialView("_CreateEquipment", model);
+            return PartialView("_CreateEquipment");
+        }
 
 
 
