@@ -65,7 +65,7 @@ namespace WatermentWebSCADA.Controllers
                     Countries = db.countries.ToList(),
                     Lokasjoner = db.locations.ToList(),
                     Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
-                    Utstyr = db.equipments.ToList(),
+                    Utstyr = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
 
                 };
 
@@ -245,7 +245,7 @@ namespace WatermentWebSCADA.Controllers
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
-        public ActionResult BarChart(int? id)
+        public ActionResult BarChart(int? id, DateTime? from2, DateTime? to2)
         {
             //Code to fill the Bar Chart with values from the database.
             DateTime from = new DateTime (2015,04,04);
@@ -253,8 +253,8 @@ namespace WatermentWebSCADA.Controllers
 
 
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > from || x.Recorded < to).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>from||x.Recorded<to).Select(x => x.Recorded).ToArray();
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > from2 && x.Recorded < to2).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>from2 && x.Recorded<to2).Select(x => x.Recorded).ToArray();
 
           
 
