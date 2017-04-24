@@ -9,10 +9,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WatermentWebSCADA.ViewModels
 {
-    public class EquipmentViewModels
-    {
-    }
-    public class FacilityEquipmentVM
+
+    public class EquipmentVM
     {
         [Display(Name = "Tag")]
         public string Tag { get; set; } //Equipment
