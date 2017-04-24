@@ -24,7 +24,7 @@ namespace WatermentWebSCADA.ViewModels
         public int equipments_Id { get; set; }
         public string Tag { get; set; }
         public virtual equipments equipments { get; set; }
-    
+     
         public IEnumerable<User> Brukere { get; set; }
         public List<countries_with_facilites_view>  countries { get; set; }  
         public List<equipments> Equipment { get; set; }
@@ -40,6 +40,17 @@ namespace WatermentWebSCADA.ViewModels
     {
         public string Name { get; set; }
     }
+
+    public class ChartView
+    {
+        [Display(Name = "Tag id")]
+        public string Tag { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+    }
+
+
 
 }
 
