@@ -47,7 +47,6 @@ namespace WatermentWebSCADA.Controllers
             // the Client IP.
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
-                LandId1 = item.locations_countries_Id.GetValueOrDefault();
                 LokasjonsID = item.locations_Id.GetValueOrDefault();
                 item.IP = IpClient;
             }
@@ -63,8 +62,8 @@ namespace WatermentWebSCADA.Controllers
                     //Getting desired data from the database, and returning it to the view.
                     Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
-                    Countries = db.countries.Where(x => x.Id == LandId1).ToList(),
-                    Lokasjoner = db.locations.Where(x => x.Id == LokasjonsID).ToList(),
+                    Countries = db.countries.ToList(),
+                    Lokasjoner = db.locations.ToList(),
                     Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
                     Utstyr = db.equipments.ToList(),
 
