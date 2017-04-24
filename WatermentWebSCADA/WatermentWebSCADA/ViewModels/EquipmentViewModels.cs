@@ -12,6 +12,7 @@ namespace WatermentWebSCADA.ViewModels
 
     public class EquipmentVM
     {
+        public string Id { get; set; }
         [Display(Name = "Tag")]
         public string Tag { get; set; } //Equipment
 

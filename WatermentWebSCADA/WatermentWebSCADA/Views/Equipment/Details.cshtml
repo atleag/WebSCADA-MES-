@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WatermentWebSCADA.ViewModels.EquipmentVM>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Equipment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
@@ -99,8 +99,8 @@
                     @Html.DisplayFor(modelItem => item.TypeSpecification)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { /*id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
                 </td>
             </tr>
         }

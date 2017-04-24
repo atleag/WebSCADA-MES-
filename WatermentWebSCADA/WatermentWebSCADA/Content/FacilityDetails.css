@@ -3,22 +3,20 @@
 
 }
         .intro2 {
-                background-color: rgb(229, 217, 148);
+            background-color: rgb(229, 217, 148);
             color: black;
             /*margin: 20px 0 20px 0;*/
             margin-right:20px;
-             margin-top:10px;
-             margin-bottom:10px;
+            margin-top:15px;
+            margin-bottom:10px;
             margin-left:30px;
             padding: 20px;
             border-radius: 5px;
-            height: 375px;
+            height: 340px;
             width:700px;
             overflow-y:scroll;
             overflow-y:auto;
-            
-            
-               position: relative;
+            position: relative;
         }
 
         .dropbtn {
@@ -111,9 +109,10 @@ td {
             margin-bottom:10px;
             padding: 20px;
             border-radius: 5px;
-            height: 375px;
-            margin-top:10px;
+            height: 340px;
+            margin-top:15px;
             width:383px;
+            position: relative;
             /*overflow-y:scroll;*/
              /*overflow-y:scroll;
              overflow-y:auto;*/

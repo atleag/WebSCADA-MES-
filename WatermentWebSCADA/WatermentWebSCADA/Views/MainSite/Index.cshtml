@@ -219,7 +219,7 @@
                         <tr>
                             <td>@item.facilities.Name</td>
                             <td>@item.facilities.locations.City</td>
-                            <td>@item.LastMaintenance.</td>
+                            <td>@item.LastMaintenance.Value.ToShortDateString()</td>
                         </tr>
 
                     }
@@ -240,7 +240,7 @@
                         <th>Description</th>
                     </tr>
 
-                    @foreach (var item in Model.AlarmList)
+                    @foreach (var item in Model.Alarmer)
                     {
 
                         foreach (var item2 in Model.Facilites.Where(c => c.Id == item.equipments_facilities_Id))

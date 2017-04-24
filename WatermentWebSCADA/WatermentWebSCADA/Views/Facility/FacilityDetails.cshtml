@@ -8,19 +8,19 @@
 
 <head>
     <link href="~/Content/FacilityDetails.css" rel="stylesheet" />
+    <link href="~/Content/DivBootstrap.css" rel="stylesheet" />
 </head>
-
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
     <div class="container">
 
         <div class="col-sm-4">
-            <div class="intro" id="style-1">
-                <h4><b>Biogas Facility</b></h4>
+            <div class="frameTitleBiogasFacility">
 
+                @*General info for the specific biogas facility is shown in this div.*@ 
+
+                <h3 align="center">Biogas facility</h3>
+            </div>
+            <div class="intro" id="style-1">
                 <table>
                     <tr>
                         <td class="title"><b>Facility</b> </td>
@@ -35,36 +35,36 @@
                     <tr>
                         <td class="title"><b>Country</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Countries)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.Name
+                                @item.locations.countries.Name
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b>County </b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.County
+                                @item.locations.County
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b> Postcode</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.Postcode
+                                @item.locations.Postcode
                             }
                         </td>
                     </tr>
                     <tr>
                         <td class="title"><b>Address</b> </td>
                         <td class="text">
-                            @foreach (var item in Model.Lokasjoner)
+                            @foreach (var item in Model.Facilites)
                             {
-                                @item.StreetAddress
+                                @item.locations.StreetAddress
                             }
                         </td>
                     </tr>
@@ -153,7 +153,7 @@
 
 
 
-                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
+                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
 
                             }
                         </td>
@@ -166,10 +166,11 @@
 
 
         <div class="col-sm-8">
+            <div class="frameTitleFacilityAlarms">
+                <h3 align="center">Alarms</h3>
+            </div>
             <div class="intro2"id="style-1">
-                <h4><b>Alarms</b></h4>
-             
-                   <div class="row">
+                <div class="row">
                          <table>
                     <tr>
                         <th>Description</th>
@@ -182,7 +183,7 @@
                     @foreach (var item in Model.Alarmer)
                     {
 
-
+                      
                             <tr>
                                 <td>@item.Description</td>
                                 <td>@item.AlarmOccured</td>
@@ -191,7 +192,7 @@
                                 <td>@item.equipments.Tag</td>
                                
                             </tr>
-                    }
+                          }
                         
                 </table>
 
@@ -206,6 +207,9 @@
         </div>
         <p></p>
         &emsp;
+
+        @*The "Remote Connect " and "Export to Excel" buttons are called in the code below.*@ 
+
         @foreach (var skill in Model.Facilites)
         {
             <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
@@ -216,15 +220,15 @@
                 <button class="btn btn-success">Export to Excel</button>
                 <div class="dropdown-content">
                     @foreach (var item in Model.Facilites)
-                    {
+            {
                         <b>  @Html.ActionLink("Export Temp Measurements to Excel", "ExportTempMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     @foreach (var item in Model.Facilites)
-                    {
+            {
                         <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     @foreach (var item in Model.Facilites)
-                    {
+            {
                         <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     
@@ -232,35 +236,30 @@
             </div>
         </div>
 
+
+@*Charts with information from the database are shown below.*@
+
 <div class="frame3">
     @*Shows temperature graf*@
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("TempChart", new { id = item.Id })" /></p>
-
+        <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
+       
     }
 
 </div>
 
-<div class="form-group">
-    @Html.LabelFor(model => model.equipments_Id, "tag", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownList("equipments_Id", null, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.equipments_Id, "", new { @class = "text-danger" })
-    </div>
-</div>
 
 <div class="frame3">
     @*Shows pressure graf*@
-
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("BarChart", new { id = item.Id })" /></p>
+        <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
 
     }
 
 </div>
-}
+
 
 
 

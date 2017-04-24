@@ -2,7 +2,7 @@
 body {
     
 }
-                .frameTitleFacilities {
+            .frameTitleFacilities {
             box-sizing: border-box;
             -moz-box-sizing: border-box;
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
@@ -17,6 +17,50 @@ body {
             margin-bottom: -30px;
             margin-right: 2px;
             margin-left: 2px;
+            overflow-y: hidden;
+            overflow-y: hidden;
+            position: relative;
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            /*border-top: 5px solid rgb(94,110,60);*/
+        }
+            .frameTitleBiogasFacility {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+            width: 383px;
+            height: 60px;
+            opacity: 1;
+            border-radius: 5px;
+            background-color: #f4efc0;
+            /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
+            padding: 0px;
+            margin-top: 25px;
+            margin-bottom: -20px;
+            margin-right: 20px;
+            margin-left: 0px;
+            overflow-y: hidden;
+            overflow-y: hidden;
+            position: relative;
+            background-size: 100% 100px;
+            background-repeat: no-repeat;
+            /*border-top: 5px solid rgb(94,110,60);*/
+        }
+            .frameTitleFacilityAlarms {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+            width: 700px;
+            height: 60px;
+            opacity: 1;
+            border-radius: 5px;
+            background-color: #f4efc0;
+            /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
+            padding: 0px;
+            margin-top: 25px;
+            margin-bottom: -20px;
+            margin-right: 20px;
+            margin-left: 30px;
             overflow-y: hidden;
             overflow-y: hidden;
             position: relative;
