@@ -242,7 +242,7 @@ namespace WatermentWebSCADA.Controllers
 
         public ActionResult Maintenance()
         {
-            ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
+            ViewBag.facilities_Id = new SelectList(db.facilities,"Id", "Name");
             return View();
         }
         [HttpPost]
@@ -292,17 +292,17 @@ namespace WatermentWebSCADA.Controllers
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
-        public ActionResult BarChart(int? id)
+        public ActionResult BarChart(int? id,DateTime? from, DateTime? to, int? tag)
         {
-            DateTime from = new DateTime (2015,04,04);
-            DateTime to = new DateTime(2017, 04, 04);
+           
+            ViewBag.equipments_Id = new SelectList(db.equipments.ToList(),"Id", "Tag");
+
+
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Id == tag).Where(x => x.Recorded >= from && x.Recorded <= to).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Id == tag).Where(x=>x.Recorded>=from && x.Recorded<=to).Select(x => x.Recorded).ToArray();
 
 
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > from || x.Recorded < to).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>from||x.Recorded<to).Select(x => x.Recorded).ToArray();
-
-          
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
             

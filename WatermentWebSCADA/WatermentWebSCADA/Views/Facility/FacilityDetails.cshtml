@@ -11,8 +11,9 @@
 </head>
 
 
-
-
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
     <div class="container">
 
@@ -152,7 +153,7 @@
 
 
 
-                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
+                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
 
                             }
                         </td>
@@ -181,7 +182,7 @@
                     @foreach (var item in Model.Alarmer)
                     {
 
-                      
+
                             <tr>
                                 <td>@item.Description</td>
                                 <td>@item.AlarmOccured</td>
@@ -190,7 +191,7 @@
                                 <td>@item.equipments.Tag</td>
                                
                             </tr>
-                          }
+                    }
                         
                 </table>
 
@@ -215,15 +216,15 @@
                 <button class="btn btn-success">Export to Excel</button>
                 <div class="dropdown-content">
                     @foreach (var item in Model.Facilites)
-            {
+                    {
                         <b>  @Html.ActionLink("Export Temp Measurements to Excel", "ExportTempMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     @foreach (var item in Model.Facilites)
-            {
+                    {
                         <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     @foreach (var item in Model.Facilites)
-            {
+                    {
                         <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     
@@ -235,23 +236,31 @@
     @*Shows temperature graf*@
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
-       
+        <p><img src="@Url.Action("TempChart", new { id = item.Id })" /></p>
+
     }
 
 </div>
 
+<div class="form-group">
+    @Html.LabelFor(model => model.equipments_Id, "tag", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("equipments_Id", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.equipments_Id, "", new { @class = "text-danger" })
+    </div>
+</div>
 
 <div class="frame3">
     @*Shows pressure graf*@
+
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
+        <p><img src="@Url.Action("BarChart", new { id = item.Id })" /></p>
 
     }
 
 </div>
-
+}
 
 
 
