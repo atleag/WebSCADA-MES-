@@ -49,5 +49,15 @@ namespace WatermentWebSCADA.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int roleId)
+        {
+            ApplicationDbContext AppDb = new ApplicationDbContext();
+            var role = AppDb.Roles.Where(d => d.Name == "my role name").FirstOrDefault();
+            AppDb.Roles.Remove(role);
+            AppDb.SaveChanges();
+            return null;
+        }
+
     }
 }

@@ -6,18 +6,19 @@ using System.Web.Mvc;
 using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace WatermentWebSCADA.Controllers
 {
     public class EquipmentController : Controller
     {
         // GET: Equipment with their measurred values.
-        public ActionResult Index(int? id)
+        public ActionResult Details(int? id)
         {
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
             List<EquipmentVM> facilityEquipmentVM = new List<EquipmentVM>(); // to hold list of Customer and order details
             var equipmentlist = (from Eq in db.equipments.Where(x => x.facilities_Id == id)
-                                select new { Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification}).ToList();
+                                select new {Eq.Id, Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification}).ToList();
             //query getting data from database from joining two tables and storing data in customerlist
             foreach (var item in equipmentlist)
             {
@@ -92,8 +93,37 @@ namespace WatermentWebSCADA.Controllers
                 ModelState.Clear();
             }
 
-            return RedirectToAction("Index", new { id = model.facilities_Id });
+            return RedirectToAction("Details", new { id = model.facilities_Id });
         }
+
+        // GET: /Equipment/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            watermentdbEntities db = new watermentdbEntities();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            equipments eq = db.equipments.Find(id);
+            if (eq == null)
+            {
+                return HttpNotFound();
+            }
+            return View(eq);
+        }
+
+        // POST: /Equipment/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            watermentdbEntities wdbe = new watermentdbEntities();
+            equipments evm = wdbe.equipments.Find(id);
+            wdbe.equipments.Remove(evm);
+            wdbe.SaveChanges();
+            return RedirectToAction("Details");
+        }
+
 
     }
 }
