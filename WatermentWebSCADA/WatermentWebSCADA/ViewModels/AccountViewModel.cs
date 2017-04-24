@@ -77,6 +77,9 @@ namespace WatermentWebSCADA.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Display(Name = "Role")]
+        public string Name { get; set; }
+
 
 
     }
