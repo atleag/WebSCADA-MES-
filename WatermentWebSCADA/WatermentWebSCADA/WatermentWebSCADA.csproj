@@ -470,7 +470,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AddEquipment\" />
     <Folder Include="Views\AddFacilities\" />
   </ItemGroup>
   <ItemGroup>
