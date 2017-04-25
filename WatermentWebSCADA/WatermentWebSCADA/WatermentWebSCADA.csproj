@@ -323,6 +323,9 @@
     <Compile Include="Models\UserRegistrationToken.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>ADOEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
@@ -446,6 +449,7 @@
     <Content Include="Views\Equipment\Delete.cshtml" />
     <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\UserManagement\View.cshtml" />
+    <Content Include="Views\UserManagement\GetRolesForUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

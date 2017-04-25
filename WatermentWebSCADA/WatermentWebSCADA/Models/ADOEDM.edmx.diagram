@@ -5,21 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c241d3508f6842f7ab2f7e122d4323e6" Name="Diagram1" ZoomLevel="101">
-        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="7" />
-        <EntityTypeShape EntityType="watermentdbModel.continents" Width="1.5" PointX="0.75" PointY="10.375" />
-        <EntityTypeShape EntityType="watermentdbModel.countries" Width="1.5" PointX="3" PointY="10.125" />
-        <EntityTypeShape EntityType="watermentdbModel.equipments" Width="1.5" PointX="9.75" PointY="8.125" />
-        <EntityTypeShape EntityType="watermentdbModel.facilities" Width="1.5" PointX="7.5" PointY="9.25" />
-        <EntityTypeShape EntityType="watermentdbModel.FacilityStatus" Width="1.5" PointX="5.25" PointY="6.375" />
-        <EntityTypeShape EntityType="watermentdbModel.locations" Width="1.5" PointX="5.25" PointY="9.75" />
-        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="9.75" PointY="23.75" />
-        <EntityTypeShape EntityType="watermentdbModel.measurements" Width="1.5" PointX="12" PointY="10.375" />
-        <EntityTypeShape EntityType="watermentdbModel.Role" Width="1.5" PointX="12" PointY="16.125" />
-        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="13.375" />
-        <EntityTypeShape EntityType="watermentdbModel.User" Width="1.5" PointX="9.75" PointY="13.125" />
-        <EntityTypeShape EntityType="watermentdbModel.UserClaim" Width="1.5" PointX="12" PointY="21.125" />
-        <EntityTypeShape EntityType="watermentdbModel.UserLogin" Width="1.5" PointX="12" PointY="18.625" />
+        <EntityTypeShape EntityType="watermentdbModel.alarms" Width="1.5" PointX="12" PointY="18.125" />
+        <EntityTypeShape EntityType="watermentdbModel.continents" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="watermentdbModel.countries" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="watermentdbModel.equipments" Width="1.5" PointX="9.75" PointY="19.125" />
+        <EntityTypeShape EntityType="watermentdbModel.facilities" Width="1.5" PointX="7.5" PointY="9.375" />
+        <EntityTypeShape EntityType="watermentdbModel.FacilityStatus" Width="1.5" PointX="5.25" PointY="6.5" />
+        <EntityTypeShape EntityType="watermentdbModel.locations" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="watermentdbModel.maintenance" Width="1.5" PointX="9.75" PointY="7.125" />
+        <EntityTypeShape EntityType="watermentdbModel.measurements" Width="1.5" PointX="12" PointY="21.375" />
+        <EntityTypeShape EntityType="watermentdbModel.Role" Width="1.5" PointX="12.75" PointY="12.5" />
+        <EntityTypeShape EntityType="watermentdbModel.sessions" Width="1.5" PointX="12" PointY="15.125" />
+        <EntityTypeShape EntityType="watermentdbModel.User" Width="1.5" PointX="9.75" PointY="10.25" />
+        <EntityTypeShape EntityType="watermentdbModel.UserClaim" Width="1.5" PointX="12" PointY="9.75" />
+        <EntityTypeShape EntityType="watermentdbModel.UserLogin" Width="1.5" PointX="12" PointY="24.875" />
         <EntityTypeShape EntityType="watermentdbModel.UserRegistrationToken" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="watermentdbModel.UserRole" Width="1.5" PointX="15" PointY="12.375" />
         <EntityTypeShape EntityType="watermentdbModel.Client_Conection" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="watermentdbModel.countries_with_facilites_view" Width="1.5" PointX="0.75" PointY="3.75" />
         <AssociationConnector Association="watermentdbModel.fk_alarms_equipments1" />
@@ -31,10 +32,11 @@
         <AssociationConnector Association="watermentdbModel.fk_facilities_locations1" />
         <AssociationConnector Association="watermentdbModel.fk_maintenance_facilities1" />
         <AssociationConnector Association="watermentdbModel.fk_users_locations1" />
+        <AssociationConnector Association="watermentdbModel.IdentityRoles_Users" />
         <AssociationConnector Association="watermentdbModel.fk_sessions_users1" />
         <AssociationConnector Association="watermentdbModel.ApplicationUser_Claims" />
         <AssociationConnector Association="watermentdbModel.ApplicationUser_Logins" />
-        <AssociationConnector Association="watermentdbModel.UserRole" />
+        <AssociationConnector Association="watermentdbModel.ApplicationUser_Roles" />
         <AssociationConnector Association="watermentdbModel.users_has_facilities" />
       </Diagram>
     </edmx:Diagrams>

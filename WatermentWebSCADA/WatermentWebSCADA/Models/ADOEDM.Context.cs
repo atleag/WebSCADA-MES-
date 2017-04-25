@@ -40,6 +40,7 @@ namespace WatermentWebSCADA.Models
         public virtual DbSet<UserClaim> UserClaim { get; set; }
         public virtual DbSet<UserLogin> UserLogin { get; set; }
         public virtual DbSet<UserRegistrationToken> UserRegistrationToken { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<Client_Conection> Client_Conection { get; set; }
         public virtual DbSet<countries_with_facilites_view> countries_with_facilites_view { get; set; }
     }
