@@ -382,6 +382,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModels.cs" />
+    <Compile Include="ViewModels\UserManagementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -444,6 +445,7 @@
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Equipment\Delete.cshtml" />
     <Content Include="Views\Equipment\Edit.cshtml" />
+    <Content Include="Views\UserManagement\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -454,7 +456,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AddFacilities\" />
-    <Folder Include="Views\UserManagement\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
