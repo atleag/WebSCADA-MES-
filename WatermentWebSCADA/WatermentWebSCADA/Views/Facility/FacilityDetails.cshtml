@@ -248,7 +248,7 @@
     @*Shows pressure graf*@
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
+        <p><img src="@Url.Action("BarChart",new { id = item.Id, from2 = "02.02.2010", to2 = "04.21.2017" } )" /></p>
 
     }
 
@@ -304,14 +304,25 @@
          @*var link = '@Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = Model..Id, from2 = document.getElementById("demo").innerHTML }, null)</b>*@
          document.getElementById("demo").innerHTML = x;
          document.getElementById("demo2").innerHTML = y;
-
+       var link = '@Html.ActionLink("Detail", "BarChart", new { id = 1, from2 = "02.02.2010", to2 = "04.21.2017" })'
      }
 
     </script>
 
 
+@foreach (var item in Model.Facilites)
+{
 
-    <label for="meeting">To : </label><input id="ToDate" type="date" value="2017-01-01" />
+@Ajax.ActionLink("Customer from Mexico", // <-- Text to display
+                 "BarChart", new { id = item.Id, from2 = "02.02.2010", to2 = "04.21.2017" }, // <-- Action Method Name
+                     new AjaxOptions
+                     {
+                         UpdateTargetId = "CustomerList", // <-- DOM element ID to update
+                         InsertionMode = InsertionMode.Replace, // <-- Replace the content of DOM element
+                         HttpMethod = "GET" // <-- HTTP method
+
+
+                     })}
 
 
 
