@@ -215,6 +215,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DivBootstrap.css" />
+    <Content Include="Content\MainSiteIndex.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\FacilityDetails.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -281,24 +282,11 @@
     <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\BiogassGaupset - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Waterment - Web Deploy.pubxml" />
-    <None Include="scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="scripts\ai.1.0.8-build01310.js" />
     <Content Include="scripts\ai.1.0.8-build01310.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <Content Include="scripts\JQChart.js" />
     <Content Include="Content\jquery-3.1.1.js" />
-    <Content Include="scripts\jquery-3.1.1.js" />
-    <Content Include="scripts\jquery-3.1.1.min.js" />
-    <Content Include="scripts\jquery-3.1.1.slim.js" />
-    <Content Include="scripts\jquery-3.1.1.slim.min.js" />
-    <None Include="scripts\jquery.validate-vsdoc.js" />
-    <Content Include="scripts\jquery.validate.js" />
-    <Content Include="scripts\jquery.validate.min.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -309,7 +297,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\facilities2Controller.cs" />
@@ -338,7 +325,6 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\ChartModel.cs" />
     <Compile Include="Models\Client_Conection.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
@@ -417,8 +403,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />

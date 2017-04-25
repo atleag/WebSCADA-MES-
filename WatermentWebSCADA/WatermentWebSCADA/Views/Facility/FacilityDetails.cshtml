@@ -222,14 +222,8 @@
                     @foreach (var item in Model.Facilites)
             {
                         <b>  @Html.ActionLink("Export Temp Measurements to Excel", "ExportTempMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
-                    }
-                    @foreach (var item in Model.Facilites)
-            {
-                        <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
-                    }
-                    @foreach (var item in Model.Facilites)
-            {
-                        <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
+                       <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
+                         <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
                     }
                     
                 </div>
@@ -258,7 +252,78 @@
 
     }
 
+
 </div>
+
+    <div class="dropdown">
+        <button class="btn btn-success">Info to graph</button>
+        <div class="dropdown-content">
+            @foreach (var item in Model.Utstyr)
+            {
+                @*<p> @item.Tag</p>*@
+                <b>  @Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = item.Id, from2 = "21.2.2017" }, null)</b>
+ 
+            }
+
+
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.equipments.Tag, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Alarmer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.equipments.LastCalibrated, "", new { @class = "text-danger" })
+        </div>*@
+  
+       
+    
+     From: <input type="date" id="myDate" name="date" required>
+       
+  
+
+
+    <button onclick="myFunction()">PrintDateButton</button>
+
+
+    <p id="demo"></p>
+
+ To: <input type="date" id="myDateTo" name="dateto" required>
+   
+<p id="demo2"></p>
+ <script>
+     function myFunction() {
+         var x = document.getElementById("myDate").value;
+         var y = document.getElementById("myDateTo").value;
+
+         @*@foreach (var item in Model.Utstyr)
+    {
+           <b>  @Html.ActionLink(, "BarChart", "FacilityController", new { id = item.Id, from2 = document.getElementById("demo").innerHTML }, null)</b>
+    }*@
+
+
+         @*var link = '@Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = Model..Id, from2 = document.getElementById("demo").innerHTML }, null)</b>*@
+         document.getElementById("demo").innerHTML = x;
+         document.getElementById("demo2").innerHTML = y;
+
+     }
+
+    </script>
+
+
+
+    <label for="meeting">To : </label><input id="ToDate" type="date" value="2017-01-01" />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
