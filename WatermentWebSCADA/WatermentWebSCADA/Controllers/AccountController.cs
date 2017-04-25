@@ -576,6 +576,8 @@ namespace WatermentWebSCADA.Controllers
                 await user.GenerateUserIdentityAsync(UserManager));
         }
 
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && UserManager != null)

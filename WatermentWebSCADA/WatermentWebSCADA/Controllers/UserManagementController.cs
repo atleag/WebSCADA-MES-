@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WatermentWebSCADA.ViewModels;
+using WatermentWebSCADA.Models;
+using System.Threading.Tasks;
+using System.Net;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -85,5 +91,32 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
         }
+      //  public async Task<ActionResult> GetRolesForUser()
+      //  {
+      //      watermentdbEntities context = new watermentdbEntities();
+      //      Role r = new Role();
+      //      User u = new User();
+            
+      //      var query = from d in context.User
+      //                  join c in Company on d.CompanyId equals c.id
+      //                  join s in context.Role on c.SewagePlantId equals s.Id
+      //                    .Select(m => new
+      //                    {
+      //                        duty = s.Duty.Duty,
+      //                        CatId = s.Company.CompanyName,
+      //                        SewagePlantName = s.SewagePlant.SewagePlantName
+      //// other assignments
+      //                          });
+
+
+      //      //SELECT User.UserName, Role.Name 
+      //      //FROM User
+      //      //LEFT JOIN UserRole ON  UserRole.UserId = User.Id
+      //      //LEFT JOIN Role ON Role.Id = UserRole.RoleId
+
+
+      //      return View(userRoleVM);
+      //  }
+    
     }
 }
