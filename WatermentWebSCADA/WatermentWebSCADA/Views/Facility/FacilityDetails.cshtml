@@ -335,8 +335,23 @@
 <a href="http://webvisu/webvisu.htm" target="_blank" id="mybtn"class="btn btn-success">Remote Connect &raquo;</a>
 
 
+<div>
+    @foreach (var item in Model.Facilites)
+    {
 
+ 
+    using (Html.BeginForm("BarChart", "Facility", new { id = item.Id }))
+    {
+        <b>From</b>
+        @Html.TextBox("txtFrom", "",new { type="date"})
+        <br />
+        <b>To</b>
+        @Html.TextBox("txtTo", "", new { type = "date" })
 
+        <input type="submit" value="BarChart" />
+    }
+    }
+</div>
 
 
 
