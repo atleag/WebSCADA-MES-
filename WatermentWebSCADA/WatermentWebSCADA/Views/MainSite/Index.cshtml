@@ -87,6 +87,7 @@
                         <th>Facility</th>
                         <th>Location</th>
                         <th>Last maintenance</th>
+                        <th>Description</th>
                     </tr>
                     @foreach (var item in Model.Vedlikehold)
                     {
@@ -95,6 +96,7 @@
                             <td>@item.facilities.Name</td>
                             <td>@item.facilities.locations.City</td>
                             <td>@item.LastMaintenance.Value.ToShortDateString()</td>
+                            <td>@item.Description</td>
                         </tr>
 
                     }
@@ -113,6 +115,7 @@
                         <th>Alarm</th>
                         <th>Value</th>
                         <th>Description</th>
+                        <th>Tag</th>
                     </tr>
 
                     @foreach (var item in Model.Alarmer)
@@ -122,9 +125,10 @@
                         {
                             <tr>
                                 <td>@item2.Name</td>
-                                <td>@item.Status</td>
+                                <td>@item.AlarmOccured</td>
                                 <td>@item.ProcessValue</td>
                                 <td>@item.Description</td>
+                                <td>@item.equipments.Description</td>
                             </tr>
 
                         }

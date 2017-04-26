@@ -196,6 +196,7 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult Maintenance()
         {
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
+           
             return View();
         }
         [HttpPost]
