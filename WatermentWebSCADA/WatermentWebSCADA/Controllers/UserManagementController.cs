@@ -17,7 +17,27 @@ namespace WatermentWebSCADA.Controllers
         // GET: UsersManagement
         public ActionResult Index()
         {
-            return View();
+            watermentdbEntities context = new watermentdbEntities();
+            List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
+
+
+            var userrolelist = (from u in context.User
+                                join ur in context.UserRole on u.Id equals ur.UserId
+                                join r in context.Role on ur.RoleId equals r.Id
+                                orderby u.Id
+                                select new { u.Id, u.UserName, r.Name }).ToList();
+
+            foreach (var item in userrolelist)
+            {
+                UsersAndRolesVM fevm = new UsersAndRolesVM(); // ViewModel
+                fevm.UserId = item.Id;
+                fevm.UserName = item.UserName;
+                fevm.RoleName = item.Name;
+
+                fevmReturn.Add(fevm);
+            }
+            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+            return View(fevmReturn);
         }
 
         // GET: UsersManagement/Details/5
@@ -91,30 +111,35 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
         }
-        public async Task<ActionResult> GetRolesForUser()
-        {
-            watermentdbEntities context = new watermentdbEntities();
-            List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
+        /// <summary>
+        /// Shows the users and their role. 
+        /// </summary>
+        /// <returns></returns>
+        /// ¨Based on http://stackoverflow.com/questions/41933985/how-to-join-3-tables-with-linq
+        //public async Task<ActionResult> GetRolesForUser()
+        //{
+        //    //watermentdbEntities context = new watermentdbEntities();
+        //    //List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
             
 
-            var userrolelist = (from u in context.User
-                                join ur in context.UserRole on u.Id  equals ur.UserId
-                                join r in context.Role on ur.RoleId equals r.Id
-                                orderby u.Id
-                                select new { u.Id, u.UserName, r.Name }).ToList();
+        //    //var userrolelist = (from u in context.User
+        //    //                    join ur in context.UserRole on u.Id  equals ur.UserId
+        //    //                    join r in context.Role on ur.RoleId equals r.Id
+        //    //                    orderby u.Id
+        //    //                    select new { u.Id, u.UserName, r.Name }).ToList();
 
-            foreach (var item in userrolelist)
-            {
-                UsersAndRolesVM fevm = new UsersAndRolesVM(); // ViewModel
-                fevm.UserId = item.Id;
-                fevm.UserName = item.UserName;
-                fevm.RoleName = item.Name;
+        //    //foreach (var item in userrolelist)
+        //    //{
+        //    //    UsersAndRolesVM fevm = new UsersAndRolesVM(); // ViewModel
+        //    //    fevm.UserId = item.Id;
+        //    //    fevm.UserName = item.UserName;
+        //    //    fevm.RoleName = item.Name;
                 
-                fevmReturn.Add(fevm);
-            }
-            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
-            return View(fevmReturn);
-        }
+        //    //    fevmReturn.Add(fevm);
+        //    //}
+        //    ////Using foreach loop fill data from custmerlist to List<CustomerVM>.
+        //    //return View(fevmReturn);
+        //}
 
     }
 }

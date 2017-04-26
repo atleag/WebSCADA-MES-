@@ -411,7 +411,6 @@
     <Content Include="Views\MainSite\Index.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
-    <Content Include="Views\Chart\AxisZooming.cshtml" />
     <Content Include="Views\Feature\ZoomingPanning.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
@@ -448,8 +447,9 @@
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Equipment\Delete.cshtml" />
     <Content Include="Views\Equipment\Edit.cshtml" />
-    <Content Include="Views\UserManagement\View.cshtml" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\UserManagement\GetRolesForUser.cshtml" />
+    <Content Include="Views\UserManagement\_ListRoles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
