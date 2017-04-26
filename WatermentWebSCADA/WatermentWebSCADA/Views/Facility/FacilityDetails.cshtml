@@ -277,46 +277,22 @@
   
        
     
-     From: <input type="date" id="myDate" name="date" required>
-       
-  
-
-
-    <button onclick="myFunction()">PrintDateButton</button>
-
-
-    <p id="demo"></p>
-
- To: <input type="date" id="myDateTo" name="dateto" required>
-   
-<p id="demo2"></p>
- <script>
-     function myFunction() {
-         var x = document.getElementById("myDate").value;
-         var y = document.getElementById("myDateTo").value;
-
-         @*@foreach (var item in Model.Utstyr)
-    {
-           <b>  @Html.ActionLink(, "BarChart", "FacilityController", new { id = item.Id, from2 = document.getElementById("demo").innerHTML }, null)</b>
-    }*@
-
-
-         @*var link = '@Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = Model..Id, from2 = document.getElementById("demo").innerHTML }, null)</b>*@
-         document.getElementById("demo").innerHTML = x;
-         document.getElementById("demo2").innerHTML = y;
-
-     }
-
-    </script>
-
-
-
-    <label for="meeting">To : </label><input id="ToDate" type="date" value="2017-01-01" />
+     
 
 
 
 
+<div class="form-group">
+    @Html.EditorFor(model => model.RecordedFrom, new { htmlAttributes = new { @class = "form-control" } })
 
+    <div class="form-group">
+        @Html.EditorFor(model => model.RecordedTo, new { htmlAttributes = new { @class = "form-control" } })
+ 
+        <div class="col-md-10">
+       @Html.ValidationMessageFor(model => model.RecordedTo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
 
 
 
