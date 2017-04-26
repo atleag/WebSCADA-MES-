@@ -260,13 +260,12 @@
                    <option value="@tag.Tag">@tag.Tag@tag.Description</option>
           
             }
+  </select>
 
-        </select>
-
-        <b>From</b>
+        <b>From:</b>
         @Html.TextBox("txtFrom", "",new { type="date", required = "required" })
         @*<br />*@
-        <b>To</b>
+        <b>To:</b>
         @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
 
         <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height=60px; />
