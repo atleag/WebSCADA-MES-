@@ -247,33 +247,29 @@
 
 
 
-<div>
+<div class="frame3">
     @foreach (var item in Model.Facilites)
     {
 
-
-        using (Html.BeginForm("BarChart", "Facility", new { id = item.Id }))
+      using (Html.BeginForm("BarChart", "Facility", new { id = item.Id }))
         {
           
  <select name="txtTags">
     @foreach (var tag in Model.Utstyr)
     {
-       
-            <option value="@tag.Tag">@tag.Tag@tag.Description</option>
+                   <option value="@tag.Tag">@tag.Tag@tag.Description</option>
           
-
-     
             }
 
         </select>
 
         <b>From</b>
         @Html.TextBox("txtFrom", "",new { type="date"})
-        <br />
+        @*<br />*@
         <b>To</b>
         @Html.TextBox("txtTo", "", new { type = "date" })
 
-        <input type="submit" value="BarChart" />
+        <input type="submit" value="Draw Graph" />
     }
     }
 </div>
