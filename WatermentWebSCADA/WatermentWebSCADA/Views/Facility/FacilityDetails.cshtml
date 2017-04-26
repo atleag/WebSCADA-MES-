@@ -244,104 +244,29 @@
 </div>
 
 
-<div class="frame3">
-    @*Shows pressure graf*@
-    @foreach (var item in Model.Facilites)
-    {
-        <p><img src="@Url.Action("BarChart",new { id = item.Id, from2= "02.02.2010", to2="02.04.2017"})" /></p>
 
-       
-
-    }
-
-
-</div>
-
-    <div class="dropdown">
-        <button class="btn btn-success">Info to graph</button>
-        <div class="dropdown-content">
-            @foreach (var item in Model.Utstyr)
-            {
-                @*<p> @item.Tag</p>*@
-                <b>  @Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = item.Id, from2 = "21.2.2017" }, null)</b>
- 
-            }
-
-
-        </div>
-    </div>
-  
-  
-       
-    
-     
-
-
-
-
-
-
-    <form id="myForm">
-       From: <input type="date" id="myDate">
-      
-    </form>
-    <button onclick="myFunction()">Try it</button>
-<p id="demo"></p>
- 
-
- To: <input type="date" id="myDate2">
-<p id="demo2"></p>
-    <script>
-        function myFunction() {
-            var test = document.getElementById("myDiv");
-            var btn = document.getElementById("mybtn");
-            var x = document.getElementById("myDate").value;
-            var y = document.getElementById("myDate2").value;
-
-            document.getElementById("demo").innerHTML = x;
-            document.getElementById("demo2").innerHTML = y;
-            test.style.marginLeft = '20px';
-
-            mybtn.href = "@Url.Action("BarChart",new { id = 1, from2 = "02.02.2010", to2 = "04.21.2017" }  )";
-            window.open("@Url.Action("BarChart",new { id = 1, from2 = "02.02.2010", to2 = "04.21.2017" } )");
-
-            @*mybtn.href="@Url.Action("BarChart",new { id = 1, from2 = "02.02.2010", to2 = "04.21.2017" } )";*@
-
-            @foreach (var item in Model.Facilites)
-    {
-
-
-
-       }
-}
-    </script>
-@*<script>
-  $(function () {
-    $('#talklink').click(function () {
-        document.location.href = $(this).attr("href") + "?id=" + FindSerial();
-    }
-});
-</script>*@
-<div id="myDiv">
-    @foreach (var item in Model.Facilites)
-    {
-        <p> @Html.ActionLink("Trykk", "BarChart", new { id = item.Id, from2 = "02.02.2010", to2 = "04.21.2017" }),</p>
-        @Url.Action("Trykk1337","BarChart",new { id = item.Id, from2 = "02.02.2010", to2 = "04.21.2017" } )
-    }
-
-</div>
-
-
-<a href="http://webvisu/webvisu.htm" target="_blank" id="mybtn"class="btn btn-success">Remote Connect &raquo;</a>
 
 
 <div>
     @foreach (var item in Model.Facilites)
     {
 
- 
-    using (Html.BeginForm("BarChart", "Facility", new { id = item.Id }))
+
+        using (Html.BeginForm("BarChart", "Facility", new { id = item.Id }))
+        {
+          
+ <select name="txtTags">
+    @foreach (var tag in Model.Utstyr)
     {
+       
+            <option value="@tag.Tag">@tag.Tag@tag.Description</option>
+          
+
+     
+            }
+
+        </select>
+
         <b>From</b>
         @Html.TextBox("txtFrom", "",new { type="date"})
         <br />

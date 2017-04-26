@@ -256,16 +256,17 @@ namespace WatermentWebSCADA.Controllers
 
             DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
             DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
+            string Tag = Convert.ToString(Request.Form["txtTags"].ToString());
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
 
         
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
             
-            .SetYAxis("Pressure", 0, 50)
-            .AddTitle("Pressure Chart")
+            .SetYAxis("Value", 0, 50)
+            .AddTitle(Tag)
             .AddSeries(
                 chartType: "Line",
                 name: "Measurements",
