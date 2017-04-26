@@ -180,35 +180,26 @@
 	
     </style>
 </head>
-
-
-
 <div class="container">
     <div class="col-lg-4">
         <div class="frameTitleFacilities">
             <h3 align="center">Countries with facilities</h3>
         </div>
-            <div class="frame" id="style-1">
-            
-
+        <div class="frame" id="style-1">
             <div class="row">
-
                     @foreach (var item in Model.countries)
                       {
-              <ul>
-                <li style="font-size:large" color="red">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id}, new { @style = "color:black;" })</li>
-               </ul>
-
-        
+                        <ul>
+                            <li style="font-size:large" color="red">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id}, new { @style = "color:black;" })</li>
+                        </ul>
                     }
-
-                </div>
             </div>
         </div>
-        <div class="col-lg-8">
-            <div class="frameTitleFacilities">
-                <h3 align="center">Facilities</h3>
-            </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="frameTitleFacilities">
+            <h3 align="center">Facilities</h3>
+        </div>
             <div class="frame" id="style-1">
                 @foreach (var item in Model.Facilites)
             {

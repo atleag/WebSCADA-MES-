@@ -91,32 +91,30 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
         }
-      //  public async Task<ActionResult> GetRolesForUser()
-      //  {
-      //      watermentdbEntities context = new watermentdbEntities();
-      //      Role r = new Role();
-      //      User u = new User();
+        public async Task<ActionResult> GetRolesForUser()
+        {
+            watermentdbEntities context = new watermentdbEntities();
+            List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
             
-      //      var query = from d in context.User
-      //                  join c in Company on d.CompanyId equals c.id
-      //                  join s in context.Role on c.SewagePlantId equals s.Id
-      //                    .Select(m => new
-      //                    {
-      //                        duty = s.Duty.Duty,
-      //                        CatId = s.Company.CompanyName,
-      //                        SewagePlantName = s.SewagePlant.SewagePlantName
-      //// other assignments
-      //                          });
 
+            var userrolelist = (from u in context.User
+                                join ur in context.UserRole on u.Id  equals ur.UserId
+                                join r in context.Role on ur.RoleId equals r.Id
+                                orderby u.Id
+                                select new { u.Id, u.UserName, r.Name }).ToList();
 
-      //      //SELECT User.UserName, Role.Name 
-      //      //FROM User
-      //      //LEFT JOIN UserRole ON  UserRole.UserId = User.Id
-      //      //LEFT JOIN Role ON Role.Id = UserRole.RoleId
+            foreach (var item in userrolelist)
+            {
+                UsersAndRolesVM fevm = new UsersAndRolesVM(); // ViewModel
+                fevm.UserId = item.Id;
+                fevm.UserName = item.UserName;
+                fevm.RoleName = item.Name;
+                
+                fevmReturn.Add(fevm);
+            }
+            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+            return View(fevmReturn);
+        }
 
-
-      //      return View(userRoleVM);
-      //  }
-    
     }
 }
