@@ -226,8 +226,8 @@ namespace WatermentWebSCADA.Controllers
         {
             //Code to fill the Temperature Chart with values from the database.
             
-        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
+        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.Recorded).ToArray();
 
            
 
@@ -248,7 +248,7 @@ namespace WatermentWebSCADA.Controllers
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
         [HttpPost]
-        public ActionResult BarChart(int? id)
+        public ActionResult ValueChart(int? id)
         {
             //Code to fill the Bar Chart with values from the database.
             DateTime from = new DateTime (2015,04,04);
