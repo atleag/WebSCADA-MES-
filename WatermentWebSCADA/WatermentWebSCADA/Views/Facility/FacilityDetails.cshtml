@@ -22,149 +22,35 @@
             </div>
             <div class="intro" id="style-1">
                 <table>
-                    <tr>
-                        <td class="title"><b>Facility</b> </td>
-                        <td class="text">
+                  
+                    @foreach (var item in Model.Brukere)
+                    {
+                        <tr> <td><b>User</b></td> <td> @item.FirstName @item.LastName</td> </tr>
+                        <tr> <td><b>Phone number</b></td> <td> @item.PhoneNumber</td> </tr>
+                        <tr> <td><b>E-mail</b></td> <td>@item.Email</td> </tr>
+                    }
+
                             @foreach (var item in Model.Facilites)
                             {
-                                @item.Name
+                              <tr> <td><b>Facility</b></td> <td> @item.Name</td> </tr>
+                            <tr> <td><b>Country</b></td> <td> @item.locations.countries.Name</td> </tr>
+                            <tr> <td><b>County</b></td> <td> @item.locations.County</td> </tr>
+                            <tr> <td><b>Postcode</b></td> <td> @item.locations.Postcode</td> </tr>
+                            <tr> <td><b>Adress</b></td> <td> @item.locations.StreetAddress</td> </tr>
+                            <tr> <td><b>Domain</b></td> <td> @item.Domain</td> </tr>
+                            <tr> <td><b>IP</b></td> <td> @item.IP</td> </tr>
+                            <tr> <td><b>Serial No.</b></td> <td>@item.SerialNumber</td> </tr>
+                            <tr> <td><b>Software Version</b></td> <td>@item.ProgramVersion</td> </tr>
+
+<tr> <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td> 
+<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
+
 
                             }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Country</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.locations.countries.Name
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>County </b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.locations.County
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b> Postcode</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.locations.Postcode
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Address</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.locations.StreetAddress
-                            
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>User</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Brukere)
-                            {
-                                @item.FirstName  @item.LastName
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Phone number</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Brukere)
-                            {
-                                @item.PhoneNumber
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b> E-mail</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Brukere)
-                            {
-                                @item.Email
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Domain</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.Domain
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>IP</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.IP
-
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Serial No.</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.SerialNumber
-
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title"><b>Software Version</b> </td>
-                        <td class="text">
-                            @foreach (var item in Model.Facilites)
-                            {
-                                @item.ProgramVersion
-
-                            }
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td>
-                        @foreach (var item in Model.Facilites)
-                        {
-
-                            <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button>
-
-
-                        }
-
-</td>
-                        <td>
-                            @foreach (var item in Model.Facilites)
-                            {
-
-
-
-                                <button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button>
-
-                            }
-                        </td>
-                    </tr>
+                     
                 </table>
             </div>
         </div>
-
-
-
 
         <div class="col-sm-8">
             <div class="frameTitleFacilityAlarms">
@@ -183,8 +69,6 @@
                   
                     @foreach (var item in Model.Alarmer)
                     {
-
-                      
                             <tr>
                                 <td>@item.Description</td>
                                 <td>@item.AlarmOccured</td>
@@ -198,11 +82,6 @@
                 </table>
 
                 </div>
-
-                
-
-
-
             </div>
 
         </div>
@@ -243,10 +122,6 @@
     }
 
 </div>
-
-
-
-
 
 <div class="frame3">
     @foreach (var item in Model.Facilites)
