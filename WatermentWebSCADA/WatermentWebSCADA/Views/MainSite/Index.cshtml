@@ -79,31 +79,6 @@
         <div class="col-lg-8">
 
             <div class="frameTitle" id="style-1">
-                <h3 align="center">Maintenance</h3>
-            </div>
-            <div class="frame" id="style-1">
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Location</th>
-                        <th>Last maintenance</th>
-                        <th>Description</th>
-                    </tr>
-                    @foreach (var item in Model.Vedlikehold)
-                    {
-
-                        <tr>
-                            <td>@item.facilities.Name</td>
-                            <td>@item.facilities.locations.City</td>
-                            <td>@item.LastMaintenance.Value.ToShortDateString()</td>
-                            <td>@item.Description</td>
-                        </tr>
-
-                    }
-                </table>
-
-            </div>
-            <div class="frameTitle" id="style-1">
                 <h3 align="center">Active alarms</h3>
             </div>
             <div class="frame" id="style-1">

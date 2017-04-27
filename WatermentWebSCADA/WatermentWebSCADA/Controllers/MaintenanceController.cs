@@ -29,7 +29,7 @@ namespace WatermentWebSCADA.Controllers
 
             using (var db = new Models.watermentdbEntities())
             {
-                var model = new MainViewModel
+                var model = new MaintenanceViewModel
                 {
                     //Getting desired data from the database, and returning it to the view.
          
@@ -44,7 +44,7 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
-        public ActionResult Maintenance()
+        public ActionResult MaintenanceEdit()
         {
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
 
