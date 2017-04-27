@@ -251,9 +251,9 @@
     @foreach (var item in Model.Facilites)
     {
 
-      using (Html.BeginForm("ValueChart", "Facility", new { id = item.Id }))
+        using (Html.BeginForm("ValueChart","Facility", new { id = item.Id }, FormMethod.Post))
         {
-          
+
  <select name="txtTags">
     @foreach (var tag in Model.Utstyr)
     {
@@ -263,15 +263,30 @@
   </select>
 
         <b>From:</b>
-        @Html.TextBox("txtFrom", "",new { type="date", required = "required" })
-        @*<br />*@
+        @Html.TextBox("txtFrom", "2010-02-02",new { type="date", required = "required" })
+      
         <b>To:</b>
-        @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
+        @Html.TextBox("txtTo", "2017-04-21", new { type = "date",required = "required" })
 
-        <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height=60px; />
+        <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height= 60 />
     }
     }
 </div>
+
+<div class="frame3">
+    Shows temperature graf
+    @foreach (var item in Model.Facilites)
+    {
+        <p><img src="@Url.Action("ValueChart",new { id = item.Id})" /></p>
+
+    }
+
+</div>
+
+
+
+
+
 
 
 
