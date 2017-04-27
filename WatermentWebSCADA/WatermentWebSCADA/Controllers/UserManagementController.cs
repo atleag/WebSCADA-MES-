@@ -111,6 +111,58 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
         }
+
+        public ActionResult UserFacility()
+        {
+            watermentdbEntities context = new watermentdbEntities();
+            List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
+
+
+            var userFacility = (from f in context.facilities
+                                from u in f.User
+                                orderby u.Id
+                                select new
+                                {
+                                     u.UserName, f.Name, f.SerialNumber
+                                }).ToList();
+
+            foreach (var item in userFacility)
+            {
+                UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
+                uafvm.UserName = item.UserName;
+                uafvm.FacilityName = item.Name;
+                uafvm.SerialNumber = item.SerialNumber;
+
+                uafvmReturn.Add(uafvm);
+            }
+            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+            return View(uafvmReturn);
+        }
+
+        [AcceptVerbs("POST")]
+        public ActionResult LinkUserFacility(User newUser)
+        {
+            watermentdbEntities db = new watermentdbEntities();
+            if (ModelState.IsValid)
+            {
+                var facilityId = Request["FacilityID"];
+                var facIds = facilityId.Split(',');
+                foreach (var catId in facIds)
+                {
+                    int id = int.Parse(catId);
+
+                    facilities facilitiess = db.facilities.SingleOrDefault(d => d.Id == id);
+                    newUser.facilities = new List<facilities>();
+                    newUser.facilities.Add(facilitiess);
+                }
+                db.User.Add(newUser);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
         /// <summary>
         /// Shows the users and their role. 
         /// </summary>
@@ -120,7 +172,7 @@ namespace WatermentWebSCADA.Controllers
         //{
         //    //watermentdbEntities context = new watermentdbEntities();
         //    //List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
-            
+
 
         //    //var userrolelist = (from u in context.User
         //    //                    join ur in context.UserRole on u.Id  equals ur.UserId
@@ -134,7 +186,7 @@ namespace WatermentWebSCADA.Controllers
         //    //    fevm.UserId = item.Id;
         //    //    fevm.UserName = item.UserName;
         //    //    fevm.RoleName = item.Name;
-                
+
         //    //    fevmReturn.Add(fevm);
         //    //}
         //    ////Using foreach loop fill data from custmerlist to List<CustomerVM>.
