@@ -10,9 +10,20 @@
     <link href="~/Content/FacilityDetails.css" rel="stylesheet" />
     <link href="~/Content/DivBootstrap.css" rel="stylesheet" />
 </head>
-
+<style>
+    .buttonTest {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0x 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    width :100px;
+    height:25px;
+}</style>
     <div class="container">
-
         <div class="col-sm-4">
             <div class="frameTitleBiogasFacility">
 
@@ -144,10 +155,13 @@
         <b>To:</b>
         @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
 
-        <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height= 60 />
-    }
+        <input type="submit" value="Draw Graph" name="buttontrial" id="buttontrial"; />
+
+        }
     }
 </div>
+
+
 
 
 
