@@ -128,8 +128,19 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
+  -webkit-appearance: media-mute-button;
   cursor: pointer;
+   color: #900;
+  background: #FF0;
+  font-weight: bold;
+  border: 1px solid #900;
+   color: #fff;
+ font-size: 0;
+ width: 135px;
+ height: 60px;
+ border: none;
+ margin: 22px;
+ padding: 0;
 }
 button[disabled],
 html input[disabled] {
@@ -3479,6 +3490,10 @@ input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
+   color: #900;
+  background: #FF0;
+  font-weight: bold;
+  border: 1px solid #900;
 }
 .fade {
   opacity: 0;

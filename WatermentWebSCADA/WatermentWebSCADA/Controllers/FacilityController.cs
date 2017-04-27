@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Web.UI;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Net.Http;
 
 
 namespace WatermentWebSCADA.Controllers
@@ -225,8 +226,8 @@ namespace WatermentWebSCADA.Controllers
         {
             //Code to fill the Temperature Chart with values from the database.
             
-        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.SIUnits=="Degrees").Select(x => x.Recorded).ToArray();
+        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.Recorded).ToArray();
 
            
 
@@ -246,23 +247,26 @@ namespace WatermentWebSCADA.Controllers
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
-        public ActionResult BarChart(int? id, DateTime? from2, DateTime? to2)
+        [HttpPost]
+        public ActionResult ValueChart(int? id)
         {
             //Code to fill the Bar Chart with values from the database.
             DateTime from = new DateTime (2015,04,04);
-            DateTime to = new DateTime(2017, 04, 04);
+            DateTime to = new DateTime(2017, 04, 20);
 
+            DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
+            DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
+            string Tag = Convert.ToString(Request.Form["txtTags"].ToString());
 
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
 
-            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x => x.Recorded > from2 && x.Recorded < to2).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").Where(x=>x.Recorded>from2 && x.Recorded<to2).Select(x => x.Recorded).ToArray();
-
-          
+        
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
             
-            .SetYAxis("Pressure", 0, 50)
-            .AddTitle("Pressure Chart")
+            .SetYAxis("Value", 0, 50)
+            .AddTitle(Tag)
             .AddSeries(
                 chartType: "Line",
                 name: "Measurements",
@@ -272,6 +276,7 @@ namespace WatermentWebSCADA.Controllers
             .Write();
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
+
         }
     }
               

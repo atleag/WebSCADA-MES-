@@ -244,69 +244,34 @@
 </div>
 
 
+
+
+
 <div class="frame3">
-    @*Shows pressure graf*@
     @foreach (var item in Model.Facilites)
     {
-        <p><img src="@Url.Action("BarChart",new { id = item.Id})" /></p>
 
-    }
-
-
-</div>
-
-    <div class="dropdown">
-        <button class="btn btn-success">Info to graph</button>
-        <div class="dropdown-content">
-            @foreach (var item in Model.Utstyr)
-            {
-                @*<p> @item.Tag</p>*@
-                <b>  @Html.ActionLink(item.Tag, "BarChart", "FacilityController", new { id = item.Id, from2 = "21.2.2017" }, null)</b>
- 
+      using (Html.BeginForm("ValueChart", "Facility", new { id = item.Id }))
+        {
+          
+ <select name="txtTags">
+    @foreach (var tag in Model.Utstyr)
+    {
+                   <option value="@tag.Tag">@tag.Tag@tag.Description</option>
+          
             }
+  </select>
 
+        <b>From:</b>
+        @Html.TextBox("txtFrom", "",new { type="date", required = "required" })
+        @*<br />*@
+        <b>To:</b>
+        @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
 
-        </div>
-    </div>
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.equipments.Tag, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Alarmer, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.equipments.LastCalibrated, "", new { @class = "text-danger" })
-        </div>*@
-  
-       
-    
-     
-
-
-
-
-<div class="form-group">
-    @Html.EditorFor(model => model.RecordedFrom, new { htmlAttributes = new { @class = "form-control" } })
-
-    <div class="form-group">
-        @Html.EditorFor(model => model.RecordedTo, new { htmlAttributes = new { @class = "form-control" } })
- 
-        <div class="col-md-10">
-       @Html.ValidationMessageFor(model => model.RecordedTo, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height=60px; />
+    }
+    }
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
