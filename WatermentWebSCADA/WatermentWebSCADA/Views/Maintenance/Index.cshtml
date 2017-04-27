@@ -1,4 +1,4 @@
-﻿@model WatermentWebSCADA.ViewModels.MainViewModel
+﻿@model WatermentWebSCADA.ViewModels.MaintenanceViewModel
 
 
 @{
@@ -8,75 +8,25 @@
 
 
 
+
 <head>
     <link href="~/Content/MainSiteIndex.css" rel="stylesheet" />
     <style>
-
     </style>
 
 </head>
 <body style="margin:1px">
     <div class="container">
-        <div style="margin-left:15px">
-            <font color="#5E6E3C"><h1>Waterment Webscada application</h1></font>
-            <p> Her skal det stå litt info om hva faen du vil </p>
-        </div>
-        <div class="col-lg-4">
-            <div class="frameTitle" id="style-1">
-                <h3 align="center">General info</h3>
-            </div>
-            <div class="frame" id="style-1">
-                <div class="row">
-                    <table>
-                        <tr>
-                            <td class="title" style=""><b>No. of facilities</b> </td>
-                            <td class="text">@Model.antallFacilities</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of facilities online</b> </td>
-                            <td class="text">@Model.antallOnline</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of facilities offline</b> </td>
-                            <td class="text">@Model.antallOffline</td>
-                        </tr>
-                        <tr>
-                            <td class="title"><b>No. of active alarms</b></td>
-                            <td class="text">@Model.noAlarms</td>
-                        </tr>
-                    </table>
-                </div>
+        
 
-            </div>
-            <div class="frameTitle" id="style-1">
-                <h3 align="center">Status</h3>
-            </div>
-            <div class="frame" id="style-1">
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Location</th>
-                        <th>Status</th>
-                    </tr>
-                    @foreach (var item in Model.Facilites)
-                    {
 
-                        <tr>
+       
 
-                            <td><b>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, new { @style = "color:rgb(140,150,80);" })</b></td>
-                            <td>@item.locations.City</td>
-                            <td>@item.FacilityStatus.Name</td>
-
-                        </tr>
-
-                    }
-                </table>
-            </div>
-        </div>
+    
 
 
 
-        <div class="col-lg-8">
+        <div class="col-lg-12">
 
             <div class="frameTitle" id="style-1">
                 <h3 align="center">Maintenance</h3>
@@ -103,48 +53,12 @@
                 </table>
 
             </div>
-            <div class="frameTitle" id="style-1">
-                <h3 align="center">Active alarms</h3>
-            </div>
-            <div class="frame" id="style-1">
 
-
-                <table>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Alarm</th>
-                        <th>Value</th>
-                        <th>Description</th>
-                        <th>Tag</th>
-                    </tr>
-
-                    @foreach (var item in Model.Alarmer)
-                    {
-
-                        foreach (var item2 in Model.Facilites.Where(c => c.Id == item.equipments_facilities_Id))
-                        {
-                            <tr>
-                                <td>@item2.Name</td>
-                                <td>@item.AlarmOccured</td>
-                                <td>@item.ProcessValue</td>
-                                <td>@item.Description</td>
-                                <td>@item.equipments.Description</td>
-                            </tr>
-
-                        }
-                    }
-
-                </table>
-
-
-
-
-
-
-            </div>
         </div>
     </div>
-
+    <div style="margin-top:15px">
+        <button class="btn btn-success" style="width:175px; margin-left:20px" onclick="location.href='@Url.Action("MaintenanceEdit")';return false;">Maintenance</button>
+    </div>
 </body>
 
 
