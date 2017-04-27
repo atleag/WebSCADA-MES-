@@ -252,23 +252,11 @@ namespace WatermentWebSCADA.Controllers
         {
             //Code to fill the Bar Chart with values from the database.
 
-            DateTime? From;
-            DateTime? To;
-            string Tag;
-
-
-            if (Request.Form["txtFrom"] != null || Request.Form["txtTo"] != null || Request.Form["txtTags"] != null)
-            {
-             From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
-             To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
-             Tag = Convert.ToString(Request.Form["txtTags"].ToString());
-            }
-            else
-            {
-                From = new DateTime(2010, 02,02);
-                To = new DateTime(2017, 04, 21);
-                Tag = "TT10";
-            }
+           
+             DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
+            DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
+             String Tag = Convert.ToString(Request.Form["txtTags"].ToString());
+        
             
 
             float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
