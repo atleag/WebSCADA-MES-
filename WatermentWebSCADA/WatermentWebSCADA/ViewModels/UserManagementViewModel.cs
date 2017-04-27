@@ -21,7 +21,7 @@ namespace WatermentWebSCADA.ViewModels
         [Display(Name = "Assigned Role")]
         public string RoleName { get; set; }
     }
-    public class UserFacilityLinkVM
+    public class UserAndFacilityVM
     {
         [Display(Name = "User Id")]
         public int UserId { get; set; }
@@ -38,4 +38,14 @@ namespace WatermentWebSCADA.ViewModels
         [Display(Name = "Facility Serial Number")]
         public string SerialNumber { get; set; }
     }
+    public class UserAndFacilityLinkVM
+    {
+        [Display(Name = "User Id")]
+        public int UserId { get; set; }
+
+        [Display(Name = "Facility Id")]
+        public int FacilityId { get; set; }
+
+    }
+
 }
