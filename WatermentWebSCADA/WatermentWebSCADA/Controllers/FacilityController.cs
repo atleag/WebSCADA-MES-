@@ -194,26 +194,7 @@ namespace WatermentWebSCADA.Controllers
 
 
 
-        public ActionResult Maintenance()
-        {
-            ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
-           
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Maintenance([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
-        {
-            if (ModelState.IsValid)
-            {
-                db.maintenance.Add(maintenance);
-                db.SaveChanges();
-                return RedirectToAction("FacilityOverview");
-            }
-
-            ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name", maintenance.facilities_Id);
-            return View(maintenance);
-        }
+       
         public static class Theme
         {
 

@@ -12,7 +12,7 @@ namespace WatermentWebSCADA.ViewModels
     public class MainViewModel
     {
       
-        //public FacilityViewModel facilitiess { get; set; }
+        
         public int ID { get; set; }
         public IEnumerable<facilities> Facilites { get; set; }
         public IEnumerable<alarms> Alarmer { get; set; }
@@ -28,14 +28,7 @@ namespace WatermentWebSCADA.ViewModels
         public IEnumerable<User> Brukere { get; set; }
         public List<countries_with_facilites_view>  countries { get; set; }  
         public List<equipments> Equipment { get; set; }
-
-        [Display(Name = "Date of recorded")]
-        [DataType(DataType.Date)]
-        public Nullable<System.DateTime> RecordedFrom { get; set; }
-
-        [Display(Name = "Date of recorded")]
-        [DataType(DataType.Date)]
-        public Nullable<System.DateTime> RecordedTo { get; set; }
+        
 
         public int antallFacilities { get; internal set; }
         public int antallOnline { get; internal set; }
