@@ -15,7 +15,7 @@
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 0x 10px;
+  
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -139,7 +139,7 @@
 </div>
 
 <div class="frame3">
-    @foreach (var item in Model.Facilites)
+      @foreach (var item in Model.Facilites)
     {
 
         using (Html.BeginForm("ValueChart","Facility", new { id = item.Id }, FormMethod.Post))

@@ -25,8 +25,6 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-
-        int LandId1;
         int LokasjonsID;
         string IpClient;
 
@@ -217,7 +215,7 @@ namespace WatermentWebSCADA.Controllers
                    
             .SetYAxis("Temp", 0, 50)
            
-            .AddTitle("Temperature Chart")
+            .AddTitle("Reactor Core Temperature Chart")
             .AddSeries(
                 chartType: "Line",
                 name: "Measurements",
@@ -231,7 +229,7 @@ namespace WatermentWebSCADA.Controllers
         
         public ActionResult ValueChart(int? id)
         {
-            //Code to fill the Bar Chart with values from the database.
+            //Code to fill the optional Chart with values from the database.
 
            
              DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
