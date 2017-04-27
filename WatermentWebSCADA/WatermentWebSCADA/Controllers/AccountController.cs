@@ -565,6 +565,7 @@ namespace WatermentWebSCADA.Controllers
             // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
         }
 
+        //Claims http://stackoverflow.com/questions/32880269/how-to-do-session-management-in-aspnet-identity
         private async Task SignInAsync(MyUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);

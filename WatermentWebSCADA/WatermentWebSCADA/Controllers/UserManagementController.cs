@@ -111,6 +111,36 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
         }
+        
+        //public ActionResult LinkUserFacility()
+        //{
+        //    watermentdbEntities context = new watermentdbEntities();
+        //    List<UserFacilityLinkVM> uflvmReturn = new List<UserFacilityLinkVM>();
+
+
+        //    var userrolelist = (from m in context.facilities
+        //                        from b in m.User
+        //                        where b.Name.Contains(search)
+        //                        select new
+        //                        {
+        //                            BandName = b.Name,
+        //                            m.ID,
+        //                            m.Name,
+        //                            m.Description
+        //                        });
+
+        //    foreach (var item in userrolelist)
+        //    {
+        //        UserFacilityLinkVM uflvm = new UserFacilityLinkVM(); // ViewModel
+        //        uflvm.UserId = item.Id;
+        //        uflvm.UserName = item.UserName;
+        //        uflvm.FacilityId = item;
+
+        //        uflvmReturn.Add(uflvm);
+        //    }
+        //    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+        //    return View(uflvmReturn);
+        //}
         /// <summary>
         /// Shows the users and their role. 
         /// </summary>
