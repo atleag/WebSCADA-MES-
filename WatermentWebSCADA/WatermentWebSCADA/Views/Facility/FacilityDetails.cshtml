@@ -10,9 +10,20 @@
     <link href="~/Content/FacilityDetails.css" rel="stylesheet" />
     <link href="~/Content/DivBootstrap.css" rel="stylesheet" />
 </head>
-
+<style>
+    .buttonDrawGraph {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0x 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    width :100px;
+    height:25px;
+}</style>
     <div class="container">
-
         <div class="col-sm-4">
             <div class="frameTitleBiogasFacility">
 
@@ -95,19 +106,23 @@
             <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
         }
 
-       
-            <div class="dropdown">
-                <button class="btn btn-success">Export to Excel</button>
-                <div class="dropdown-content">
-                    @foreach (var item in Model.Facilites)
+        <div class="dropdown">
+            <button class="btn btn-success">Export to Excel</button>
+            <div class="dropdown-content">
+                @foreach (var item in Model.Facilites)
             {
-                        <b>  @Html.ActionLink("Export Temp Measurements to Excel", "ExportTempMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
-                       <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
-                         <b>  @Html.ActionLink("Export Bar Measurements to Excel", "ExportBarMeasurementsToExcel", "Export", new { id = item.Id }, null)</b>
+
+                    <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
+
+                    foreach (var eq in Model.Utstyr)
+                    {
+                        <b>  @Html.ActionLink(eq.Tag + " "+ eq.Description + " to Excel", "ExportMeasurementsToExcel", "Export", new { id = item.Id, TagID = eq.Tag }, null)</b>
                     }
-                    
-                </div>
+
+                }
+
             </div>
+        </div>
         </div>
 
 
@@ -144,10 +159,19 @@
         <b>To:</b>
         @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
 
-        <input type="submit" value="Draw Graph" padding="5px" cursor=pointer width=135 px height= 60 />
-    }
+        <input type="submit" value="Draw Graph" class="buttonDrawGraph" />
+
+        }
     }
 </div>
+
+
+
+
+
+
+
+
 
 
 
