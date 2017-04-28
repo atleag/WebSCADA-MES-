@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 using System.Net;
 using MySql.Data.MySqlClient;
 using MySql.Data;
+using WatermentWebSCADA.CustomFilters;
+
 
 namespace WatermentWebSCADA.Controllers
 {
     public class UserManagementController : Controller
     {
+        
         // GET: UsersManagement
+        [AuthLog(Roles = "Admin")]
         public ActionResult Index()
         {
             watermentdbEntities context = new watermentdbEntities();
