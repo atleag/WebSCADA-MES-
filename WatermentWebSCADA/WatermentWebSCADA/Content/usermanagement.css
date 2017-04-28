@@ -29,7 +29,7 @@
     /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
     padding: 0px;
     margin-top: 25px;
-    margin-bottom: -5px;
+    margin-bottom: -20px;
     margin-right: 0px;
     margin-left: 0px;
     overflow-y: hidden;
@@ -43,13 +43,31 @@
             background-color: rgb(229, 217, 148);
             color: black;
             /*margin: 20px 0 20px 0;*/
-            margin-right:20px;
+            margin-top: 0px;
+            margin-right:0px;
             margin-bottom:10px;
+            margin-left: 0px;
             padding: 20px;
             border-radius: 5px;
             height: 340px;
             margin-top:15px;
-            width:383px;
+            position: relative;
+            /*overflow-y:scroll;*/
+             /*overflow-y:scroll;
+             overflow-y:auto;*/
+        }
+.introsmaller {
+            background-color: rgb(229, 217, 148);
+            color: black;
+            /*margin: 20px 0 20px 0;*/
+            margin-top: 0px;
+            margin-right:0px;
+            margin-bottom:10px;
+            margin-left: 0px;
+            padding: 20px;
+            border-radius: 5px;
+            height: 200px;
+            margin-top:15px;
             position: relative;
             /*overflow-y:scroll;*/
              /*overflow-y:scroll;
