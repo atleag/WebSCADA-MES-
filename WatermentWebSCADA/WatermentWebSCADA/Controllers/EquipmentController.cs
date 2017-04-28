@@ -61,6 +61,8 @@ namespace WatermentWebSCADA.Controllers
         //}
 
         //This action result is used to open the partial view input box for adding equipment.
+
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult ViewCreate()
         {
             // return PartialView("_CreateEquipment", model);
