@@ -89,17 +89,16 @@ td {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.buttontrial {
+.buttonDrawGraph {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 0x 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    width :100px;
-    height:25px;
+    width: 100px;
+    height: 25px;
 }
      .intro {
             background-color: rgb(229, 217, 148);
