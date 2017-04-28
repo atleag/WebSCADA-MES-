@@ -118,13 +118,11 @@ namespace WatermentWebSCADA.Controllers
             List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
 
 
-            var userFacility = (from f in context.facilities
-                                from u in f.User
+            var userFacility = (from u in context.User
+                                join uf in context.users_has_facilities on u.Id equals uf.users_Id 
+                                join f in context.facilities on uf.facilities_Id equals f.Id
                                 orderby u.Id
-                                select new
-                                {
-                                     u.UserName, f.Name, f.SerialNumber
-                                }).ToList();
+                                select new {u.Id, u.UserName, f.Name, f.SerialNumber }).ToList();
 
             foreach (var item in userFacility)
             {
@@ -139,30 +137,30 @@ namespace WatermentWebSCADA.Controllers
             return View(uafvmReturn);
         }
 
-        [AcceptVerbs("POST")]
-        public ActionResult LinkUserFacility(User newUser)
-        {
-            watermentdbEntities db = new watermentdbEntities();
-            if (ModelState.IsValid)
-            {
-                var facilityId = Request["FacilityID"];
-                var facIds = facilityId.Split(',');
-                foreach (var catId in facIds)
-                {
-                    int id = int.Parse(catId);
+        //[AcceptVerbs("POST")]
+        //public ActionResult LinkUserFacility(User newUser)
+        //{
+        //    watermentdbEntities db = new watermentdbEntities();
+        //    if (ModelState.IsValid)
+        //    {
+        //        var facilityId = Request["FacilityID"];
+        //        var facIds = facilityId.Split(',');
+        //        foreach (var catId in facIds)
+        //        {
+        //            int id = int.Parse(catId);
 
-                    facilities facilitiess = db.facilities.SingleOrDefault(d => d.Id == id);
-                    newUser.facilities = new List<facilities>();
-                    newUser.facilities.Add(facilitiess);
-                }
-                db.User.Add(newUser);
-                db.SaveChanges();
+        //            facilities facilitiess = db.facilities.SingleOrDefault(d => d.Id == id);
+        //            newUser.facilities = new List<facilities>();
+        //            newUser.facilities.Add(facilitiess);
+        //        }
+        //        db.User.Add(newUser);
+        //        db.SaveChanges();
 
-                return RedirectToAction("Index");
-            }
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View();
-        }
+        //    return View();
+        //}
         /// <summary>
         /// Shows the users and their role. 
         /// </summary>
