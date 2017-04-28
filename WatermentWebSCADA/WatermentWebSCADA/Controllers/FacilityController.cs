@@ -173,12 +173,14 @@ namespace WatermentWebSCADA.Controllers
                 return HttpNotFound();
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View(facilities);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id")] facilities facilities)
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id, countries_Id,countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -187,6 +189,9 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("FacilityOverview");
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);
+
             return View(facilities);
         }
 
