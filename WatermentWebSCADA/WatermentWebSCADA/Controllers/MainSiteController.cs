@@ -28,7 +28,7 @@ namespace WatermentWebSCADA.Controllers
             Ping pinger = new Ping();
             try
             {
-                PingReply reply = pinger.Send(nameOrAddress);
+                PingReply reply = pinger.Send(nameOrAddress,200);
                 pingable = reply.Status == IPStatus.Success;
             }
             catch (PingException)
