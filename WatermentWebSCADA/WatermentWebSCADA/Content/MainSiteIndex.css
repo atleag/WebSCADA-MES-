@@ -2,8 +2,9 @@
    
 
 }
-.margintext{
-    margin: 0px 15px 10px 15px
+.p2{
+    font-size: 25px;
+    margin: 100px 150px 100px 150px
 }
     .intro {
             background-color: lightgreen;
@@ -56,13 +57,13 @@
             -moz-box-sizing: border-box;
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
             /*width: auto;*/
-            height: 60px;
+            height: 600px;
             opacity: 1;
             border-radius: 5px;
             background-color: #f4efc0;
             /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
             padding: 0px;
-            margin-top: 25px;
+            margin-top: 250px;
             margin-bottom: -30px;
             margin-right: 25px;
             margin-left: 0px;
@@ -119,6 +120,7 @@
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            line-height: 1.428571;
         }
 
         h1 {
