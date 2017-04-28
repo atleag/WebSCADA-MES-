@@ -47,7 +47,7 @@ namespace WatermentWebSCADA.CustomFilters
                 vr.ViewName = View;
 
                 ViewDataDictionary dict = new ViewDataDictionary();
-                dict.Add("Message", "You do not have sufficient privilages to view this page. /r/n If you are in need of accessing this page please contact the system administratior");
+                dict.Add("Message", "You do not have sufficient privilages to view this page. If you are in need of accessing this page please contact the system administratior");
 
                 vr.ViewData = dict;
 
