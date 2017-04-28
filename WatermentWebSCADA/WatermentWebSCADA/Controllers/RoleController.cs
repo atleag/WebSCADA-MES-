@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using codingfreaks.samples.Identity.Models;
+using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -42,6 +43,7 @@ namespace WatermentWebSCADA.Controllers
         /// </summary>
         /// <param name="Role"></param>
         /// <returns></returns>
+        [AuthLog(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(MyRole Role)
         {
@@ -49,7 +51,7 @@ namespace WatermentWebSCADA.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [AuthLog(Roles = "Admin")]
         public ActionResult Delete(int roleId)
         {
             ApplicationDbContext AppDb = new ApplicationDbContext();

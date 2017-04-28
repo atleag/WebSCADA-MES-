@@ -18,7 +18,7 @@ namespace WatermentWebSCADA.Controllers
     {
         
         // GET: UsersManagement
-        [AuthLog(Roles = "Admin")]
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult Index()
         {
             watermentdbEntities context = new watermentdbEntities();
@@ -116,6 +116,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
+        [AuthLog(Roles = "Admin, SuperUser, Maintenance")]
         public ActionResult UserFacility()
         {
             watermentdbEntities context = new watermentdbEntities();
