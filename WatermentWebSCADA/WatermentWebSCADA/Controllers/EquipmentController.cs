@@ -7,11 +7,13 @@ using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
 using System.Threading.Tasks;
 using System.Net;
+using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
     public class EquipmentController : Controller
     {
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         // GET: Equipment with their measurred values.
         public ActionResult Details(int? id)
         {
@@ -68,6 +70,7 @@ namespace WatermentWebSCADA.Controllers
 
 
         //This action result takes the input in the partial view and stores it to the DB before returning to the list of equipments.
+        [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         public ActionResult CreateEquipment(EquipmentAddVM model)
         {
@@ -96,6 +99,7 @@ namespace WatermentWebSCADA.Controllers
             return RedirectToAction("Details", new { id = model.facilities_Id });
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         // GET: /Equipment/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -112,6 +116,7 @@ namespace WatermentWebSCADA.Controllers
             return View(eq);
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         // POST: /Equipment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

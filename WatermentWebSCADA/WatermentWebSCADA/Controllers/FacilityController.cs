@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Web.UI;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Net.Http;
+using WatermentWebSCADA.CustomFilters;
 
 
 namespace WatermentWebSCADA.Controllers
@@ -30,6 +31,7 @@ namespace WatermentWebSCADA.Controllers
 
 
         // GET: Facility
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         public ActionResult FacilityDetails(int? id)
         {
             if (id == null) //Error handling if "int? id" is missing from the link. 
@@ -83,6 +85,7 @@ namespace WatermentWebSCADA.Controllers
                 return Content(JsonConvert.SerializeObject(result), "application/json");
             }
         }
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         public ActionResult FacilityOverview(int? id)
         {
 
@@ -113,7 +116,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         public ActionResult AddFacility2()
         {
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
@@ -121,6 +124,8 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
+
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,SerialNumber, ProgramVersion,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
@@ -139,12 +144,15 @@ namespace WatermentWebSCADA.Controllers
             return View(facilities);
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult AddLocation()
         {
             ViewBag.countries_Id = new SelectList(db.countries, "Id", "Name");
             ViewBag.countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
+
+        [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddLocation([Bind(Include = "Id,StreetAddress,Postcode,County,City,countries_Id,countries_continents_Id")] locations locations)
@@ -160,7 +168,7 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.locations_continents_id = new SelectList(db.continents, "Id", "Name", locations.countries_continents_Id);
             return View(locations);
         }
-
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult EditFacilities(int? id)
         {
             if (id == null)
@@ -177,7 +185,7 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View(facilities);
         }
-
+        [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id, countries_Id,countries_continents_Id")] facilities facilities)
