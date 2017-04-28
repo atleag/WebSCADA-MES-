@@ -52,13 +52,13 @@ namespace WatermentWebSCADA.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Maintenance([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
+        public ActionResult MaintenanceEdit([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
         {
             if (ModelState.IsValid)
             {
                 db.maintenance.Add(maintenance);
                 db.SaveChanges();
-                return RedirectToAction("FacilityOverview");
+                return RedirectToAction("Index");
             }
 
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name", maintenance.facilities_Id);
