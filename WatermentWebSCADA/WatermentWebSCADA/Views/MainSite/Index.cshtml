@@ -17,9 +17,11 @@
 </head>
 <body style="margin:1px">
     <div class="container">
-        <div style="margin-left:15px">
+        <div style="margin-left:15px" margin-right: 15px>
             <font color="#5E6E3C"><h1>Waterment Webscada application</h1></font>
-            <p> Her skal det stå litt info om hva faen du vil </p>
+            <p class="margintext"> Welcome to the Waterment overview! This page gives general info of the biogas facilities,
+             status of the facilities and all active alarms. There is also a hyperlink to each facility
+             in the status table.</p>
         </div>
         <div class="col-lg-4">
             <div class="frameTitle" id="style-1">
@@ -48,6 +50,10 @@
                 </div>
 
             </div>
+            
+            
+        </div>
+        <div class="col-lg-8">
             <div class="frameTitle" id="style-1">
                 <h3 align="center">Status</h3>
             </div>
@@ -68,22 +74,15 @@
                             <td>@item.FacilityStatus.Name</td>
 
                         </tr>
-
                     }
                 </table>
             </div>
         </div>
-
-
-
-        <div class="col-lg-8">
-
+        <div class="col-lg-12">
             <div class="frameTitle" id="style-1">
                 <h3 align="center">Active alarms</h3>
             </div>
             <div class="frame" id="style-1">
-
-
                 <table>
                     <tr>
                         <th>Facility</th>
@@ -105,21 +104,13 @@
                                 <td>@item.Description</td>
                                 <td>@item.equipments.Description</td>
                             </tr>
-
                         }
                     }
-
                 </table>
-
-
-
-
-
-
             </div>
         </div>
-    </div>
 
+    </div>
 </body>
 
 
