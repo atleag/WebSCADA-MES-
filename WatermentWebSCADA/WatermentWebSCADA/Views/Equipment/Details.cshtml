@@ -4,6 +4,14 @@
     ViewBag.Title = "Equipment";
     Layout = "~/Views/Shared/_Layout_scripts.cshtml";
 }
+
+<head>
+    <link href="~/Content/MainSiteIndex.css" rel="stylesheet" />
+    <style>
+    </style>
+
+</head>
+
 <div>
     <h2>All Equipments for the facility</h2>
 
@@ -48,64 +56,70 @@
         });
     </script>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tag)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SIUnits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastCalibrated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InstallDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manufacturer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeSpecification)
-            </th>
-            <th></th>
-        </tr>
-        
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tag)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SIUnits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastCalibrated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InstallDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Manufacturer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TypeSpecification)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /*id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+    <div class="col-lg-12">
 
-    </table>
+        <div class="frame" id="style-1">
+            <table>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tag)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SIUnits)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LastCalibrated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InstallDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Manufacturer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TypeSpecification)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SIUnits)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastCalibrated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InstallDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Manufacturer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeSpecification)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /*id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+
+    </div>
 
 
     <div id="dialog-edit" style="display: none">
