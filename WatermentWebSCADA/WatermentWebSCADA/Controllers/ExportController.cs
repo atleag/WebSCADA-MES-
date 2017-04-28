@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.IO;
 using System.Web.UI;
 using WatermentWebSCADA.ViewModels;
+using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -12,7 +13,7 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
-
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         public ActionResult ExportMeasurementsToExcel(int? id, string TagID)
         {
             //Code to export Temperature measurements to Excel file
@@ -52,7 +53,8 @@ namespace WatermentWebSCADA.Controllers
                 return null;
             }
         }
-      
+
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         public ActionResult ExportAlarmsToExcel(int? id)
         {
             //Code to export Alarm list to Excel file

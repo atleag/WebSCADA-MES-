@@ -14,6 +14,7 @@ using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using System.Net.NetworkInformation;
+using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -44,6 +45,7 @@ namespace WatermentWebSCADA.Controllers
 
         string IpFacility;
 
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
 
@@ -97,6 +99,7 @@ namespace WatermentWebSCADA.Controllers
 
                 }
             }
+        [AllowAnonymous]
         public ActionResult About()
         {
             return View();           

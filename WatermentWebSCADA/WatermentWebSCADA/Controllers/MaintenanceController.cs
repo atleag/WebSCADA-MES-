@@ -13,6 +13,7 @@ using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using System.Net.NetworkInformation;
+using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -21,7 +22,7 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
      
-
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
         // GET: Maintanance
         public ActionResult Index(int? id)
         {
@@ -44,12 +45,15 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
         public ActionResult MaintenanceEdit()
         {
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
 
             return View();
         }
+
+        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult MaintenanceEdit([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
