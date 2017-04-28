@@ -569,6 +569,7 @@
     <Content Include="Views\UserManagement\_ListRoles.cshtml" />
     <Content Include="Views\UserManagement\UserFacility.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_scripts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

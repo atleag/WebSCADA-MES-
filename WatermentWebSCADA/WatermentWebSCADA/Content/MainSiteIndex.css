@@ -2,9 +2,13 @@
    
 
 }
-.p2{
-    font-size: 25px;
-    margin: 100px 150px 100px 150px
+.pText{
+
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: black;
+    margin: 20px 39px 20px 0px
 }
     .intro {
             background-color: lightgreen;
@@ -57,13 +61,13 @@
             -moz-box-sizing: border-box;
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
             /*width: auto;*/
-            height: 600px;
+            height: 60px;
             opacity: 1;
             border-radius: 5px;
             background-color: #f4efc0;
             /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
             padding: 0px;
-            margin-top: 250px;
+            margin-top: 25px;
             margin-bottom: -30px;
             margin-right: 25px;
             margin-left: 0px;
@@ -120,10 +124,11 @@
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-            line-height: 1.428571;
+            line-height: 0.428571;
         }
 
         h1 {
+            margin-top: 25px;
             font-weight: bolder;
         }
 

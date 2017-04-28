@@ -37,18 +37,18 @@
                         <th>Facility</th>
                         <th>Location</th>
                         <th>Last maintenance</th>
+                        <th>Responsible person</th>
                         <th>Description</th>
                     </tr>
                     @foreach (var item in Model.Vedlikehold)
                     {
-
                         <tr>
                             <td>@item.facilities.Name</td>
                             <td>@item.facilities.locations.City</td>
                             <td>@item.LastMaintenance.Value.ToShortDateString()</td>
+                            <td>@item.Person</td>
                             <td>@item.Description</td>
                         </tr>
-
                     }
                 </table>
 
