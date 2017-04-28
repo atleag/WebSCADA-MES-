@@ -1,6 +1,78 @@
 ﻿body {
 }
-
+.buttonAction {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 165px;
+    height: 35px;
+    padding: 6px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-radius: 4px;
+}
+.frameTitle {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DDDDDD', endColorstr='#FFFFFF',GradientType=0 );
+    /*width: auto;*/
+    height: 60px;
+    opacity: 1;
+    border-radius: 5px;
+    background-color: #f4efc0;
+    /*box-shadow: 0px 2px 0px #FFFFFF inset, 0px -2px 0px #ffffff inset,0px 0px 1px 1px #DDD;*/
+    padding: 0px;
+    margin-top: 25px;
+    margin-bottom: -20px;
+    margin-right: 0px;
+    margin-left: 0px;
+    overflow-y: hidden;
+    overflow-y: hidden;
+    position: relative;
+    background-size: 100% 100px;
+    background-repeat: no-repeat;
+    /*border-top: 5px solid rgb(94,110,60);*/
+}
+.intro {
+            background-color: rgb(229, 217, 148);
+            color: black;
+            /*margin: 20px 0 20px 0;*/
+            margin-top: 0px;
+            margin-right:0px;
+            margin-bottom:10px;
+            margin-left: 0px;
+            padding: 20px;
+            border-radius: 5px;
+            height: 340px;
+            margin-top:15px;
+            position: relative;
+            /*overflow-y:scroll;*/
+             /*overflow-y:scroll;
+             overflow-y:auto;*/
+        }
+.introsmaller {
+            background-color: rgb(229, 217, 148);
+            color: black;
+            /*margin: 20px 0 20px 0;*/
+            margin-top: 0px;
+            margin-right:0px;
+            margin-bottom:10px;
+            margin-left: 0px;
+            padding: 20px;
+            border-radius: 5px;
+            height: 200px;
+            margin-top:15px;
+            position: relative;
+            /*overflow-y:scroll;*/
+             /*overflow-y:scroll;
+             overflow-y:auto;*/
+        }
 /* Define the hover highlight color for the table row */
 .hoverTable tr:hover {
           background-color: darkgray;
