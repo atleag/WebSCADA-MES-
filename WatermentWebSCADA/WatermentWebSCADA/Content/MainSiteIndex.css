@@ -2,6 +2,14 @@
    
 
 }
+.pText{
+
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: black;
+    margin: 20px 39px 20px 0px
+}
     .intro {
             background-color: lightgreen;
             color: black;
@@ -116,9 +124,11 @@
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            line-height: 0.428571;
         }
 
         h1 {
+            margin-top: 25px;
             font-weight: bolder;
         }
 

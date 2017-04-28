@@ -25,8 +25,6 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-
-        int LandId1;
         int LokasjonsID;
         string IpClient;
 
@@ -175,12 +173,14 @@ namespace WatermentWebSCADA.Controllers
                 return HttpNotFound();
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View(facilities);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id")] facilities facilities)
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id, countries_Id,countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
@@ -189,31 +189,15 @@ namespace WatermentWebSCADA.Controllers
                 return RedirectToAction("FacilityOverview");
             }
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
+            ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
+            ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);
+
             return View(facilities);
         }
 
 
 
-        public ActionResult Maintenance()
-        {
-            ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
-           
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Maintenance([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
-        {
-            if (ModelState.IsValid)
-            {
-                db.maintenance.Add(maintenance);
-                db.SaveChanges();
-                return RedirectToAction("FacilityOverview");
-            }
-
-            ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name", maintenance.facilities_Id);
-            return View(maintenance);
-        }
+       
         public static class Theme
         {
 
@@ -236,7 +220,7 @@ namespace WatermentWebSCADA.Controllers
                    
             .SetYAxis("Temp", 0, 50)
            
-            .AddTitle("Temperature Chart")
+            .AddTitle("Reactor Core Temperature Chart")
             .AddSeries(
                 chartType: "Line",
                 name: "Measurements",
@@ -247,16 +231,17 @@ namespace WatermentWebSCADA.Controllers
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
-        [HttpPost]
+        
         public ActionResult ValueChart(int? id)
         {
-            //Code to fill the Bar Chart with values from the database.
-            DateTime from = new DateTime (2015,04,04);
-            DateTime to = new DateTime(2017, 04, 20);
+            //Code to fill the optional Chart with values from the database.
 
-            DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
+           
+             DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
             DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
-            string Tag = Convert.ToString(Request.Form["txtTags"].ToString());
+             String Tag = Convert.ToString(Request.Form["txtTags"].ToString());
+        
+            
 
             float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
             DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
@@ -275,7 +260,9 @@ namespace WatermentWebSCADA.Controllers
 
             .Write();
 
+
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
+            
 
         }
     }

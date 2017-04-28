@@ -424,9 +424,9 @@
     <Compile Include="Controllers\facilities2Controller.cs" />
     <Compile Include="Controllers\FacilityController.cs" />
     <Compile Include="Controllers\MainSiteController.cs" />
+    <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Models\FacilityStatus.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
@@ -529,14 +529,11 @@
     <Content Include="Models\ADOEDM.edmx.diagram">
       <DependentUpon>ADOEDM.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\MainIndex.cshtml" />
     <Content Include="Views\MainSite\Index.cshtml" />
     <Content Include="Views\Facility\FacilityDetails.cshtml" />
     <Content Include="Views\Facility\FacilityOverview.cshtml" />
-    <Content Include="Views\Feature\ZoomingPanning.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -561,13 +558,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Facility\AddFacility2.cshtml" />
     <Content Include="Views\Export\Index.cshtml" />
-    <Content Include="Views\View.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
     <Content Include="Views\Equipment\Details.cshtml" />
     <Content Include="Views\Facility\EditFacilities.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
-    <Content Include="Views\Facility\Maintenance.cshtml" />
+    <Content Include="Views\Maintenance\MaintenanceEdit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Equipment\Delete.cshtml" />
@@ -576,6 +572,8 @@
     <Content Include="Views\UserManagement\GetRolesForUser.cshtml" />
     <Content Include="Views\UserManagement\_ListRoles.cshtml" />
     <Content Include="Views\UserManagement\UserFacility.cshtml" />
+    <Content Include="Views\Maintenance\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_scripts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -585,7 +583,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AddFacilities\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

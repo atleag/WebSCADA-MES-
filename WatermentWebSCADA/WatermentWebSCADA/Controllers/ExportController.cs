@@ -13,7 +13,7 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
 
-        public ActionResult ExportTempMeasurementsToExcel(int? id)
+        public ActionResult ExportMeasurementsToExcel(int? id, string TagID)
         {
             //Code to export Temperature measurements to Excel file
             using (var db = new Models.watermentdbEntities())
@@ -22,14 +22,14 @@ namespace WatermentWebSCADA.Controllers
                 var grid = new System.Web.UI.WebControls.GridView();
 
                 grid.DataSource =
-                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Degrees").ToList()
+                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(x => x.equipments.Tag == TagID).ToList()
                                   select new
                                   {
                                       //Getting information from database, and tell the excel file what to get.
                                       ID = d.Id,
                                       ProcessValue = d.ProcessValue,
                                       Recorded = d.Recorded,
-                                      Equipment = d.equipments_Id,
+                                      EquipmentID = d.equipments_Id,
                                       EqupmentName = d.equipments.Tag
 
 
@@ -38,7 +38,7 @@ namespace WatermentWebSCADA.Controllers
                 grid.DataBind();
 
                 Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment; filename=TempMeasurementList.xls");
+                Response.AddHeader("content-disposition", "attachment; filename=MeasurementList.xls");
                 Response.ContentType = "application/excel";
                 StringWriter swriter = new StringWriter();
                 HtmlTextWriter hwriter = new HtmlTextWriter(swriter);
@@ -52,46 +52,7 @@ namespace WatermentWebSCADA.Controllers
                 return null;
             }
         }
-        public ActionResult ExportBarMeasurementsToExcel(int? id)
-        {
-            //Code to export Bar measurements to Excel file
-            using (var db = new Models.watermentdbEntities())
-            {
-
-                var grid = new System.Web.UI.WebControls.GridView();
-
-                grid.DataSource =
-                                  from d in db.measurements.Where(x => x.equipments_facilities_Id == id).Where(x => x.equipments.SIUnits == "Bar").ToList()
-                                  select new
-                                  {
-                                      //Getting information from database, and tell the excel file what to get.
-                                      ID = d.Id,
-                                      ProcessValue = d.ProcessValue,
-                                      Recorded = d.Recorded,
-                                      Equipment = d.equipments_Id,
-                                      EqupmentName = d.equipments.Tag
-
-
-                                  };
-
-                grid.DataBind();
-
-                Response.ClearContent();
-                Response.AddHeader("content-disposition", "attachment; filename=BarMeasurementList.xls");
-                Response.ContentType = "application/excel";
-                StringWriter swriter = new StringWriter();
-                HtmlTextWriter hwriter = new HtmlTextWriter(swriter);
-
-                grid.RenderControl(hwriter);
-
-                Response.Write(swriter.ToString());
-
-                Response.End();
-
-                return null;
-            }
-        }
-
+      
         public ActionResult ExportAlarmsToExcel(int? id)
         {
             //Code to export Alarm list to Excel file

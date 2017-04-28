@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Maintenance";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_scripts.cshtml";
 }
 
 <h2>Maintenance</h2>
@@ -65,7 +65,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back", "FacilityOverview")
+    @Html.ActionLink("Back", "Index")
 </div>
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
