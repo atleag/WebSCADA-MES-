@@ -137,6 +137,7 @@ namespace WatermentWebSCADA.Controllers
             return View(uafvmReturn);
         }
 
+
         //[AcceptVerbs("POST")]
         //public ActionResult LinkUserFacility(User newUser)
         //{
