@@ -14,9 +14,13 @@ using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
+
+    //IMPORTANT!!!! READ THIS FOR MANY TO MANY: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
     public class UserManagementController : Controller
     {
-        
+
+        //Source for multiple entities with same name (u.Id, r.Id) 
+        // http://stackoverflow.com/questions/3454996/how-to-select-same-columns-name-from-different-table-in-linq
         // GET: UsersManagement
         [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult Index()
@@ -29,7 +33,7 @@ namespace WatermentWebSCADA.Controllers
                                 join ur in context.UserRole on u.Id equals ur.UserId
                                 join r in context.Role on ur.RoleId equals r.Id
                                 orderby u.Id
-                                select new { u.Id, u.UserName, r.Name }).ToList();
+                                select new { u.Id, u.UserName, rId = r.Id, r.Name }).ToList();
 
             foreach (var item in userrolelist)
             {
@@ -127,12 +131,14 @@ namespace WatermentWebSCADA.Controllers
                                 join uf in context.users_has_facilities on u.Id equals uf.users_Id 
                                 join f in context.facilities on uf.facilities_Id equals f.Id
                                 orderby u.Id
-                                select new {u.Id, u.UserName, f.Name, f.SerialNumber }).ToList();
+                                select new {uId = u.Id, u.UserName, fid = f.Id, f.Name, f.SerialNumber }).ToList();
 
             foreach (var item in userFacility)
             {
                 UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
+                uafvm.UserId = item.uId;
                 uafvm.UserName = item.UserName;
+                uafvm.FacilityId = item.fid;
                 uafvm.FacilityName = item.Name;
                 uafvm.SerialNumber = item.SerialNumber;
 
