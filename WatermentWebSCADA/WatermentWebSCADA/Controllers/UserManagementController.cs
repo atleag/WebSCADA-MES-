@@ -148,7 +148,12 @@ namespace WatermentWebSCADA.Controllers
             return View(uafvmReturn);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId">Id of the user which is to be assigned</param>
+        /// <param name="facilityId">Id of facility which is to be assigned.</param>
+        /// Source: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
         public void InsertWithData(int userId, int facilityId)
         {
             using (watermentdbEntities conn = new watermentdbEntities())
