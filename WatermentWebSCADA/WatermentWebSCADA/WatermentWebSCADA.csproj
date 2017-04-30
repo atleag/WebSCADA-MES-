@@ -449,9 +449,6 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>ADOEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\users_has_facilities.cs">
-      <DependentUpon>ADOEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="Models\Client_Conection.cs">

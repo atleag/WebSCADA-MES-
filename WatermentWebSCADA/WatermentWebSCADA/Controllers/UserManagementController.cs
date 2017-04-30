@@ -120,33 +120,33 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenance")]
-        public ActionResult UserFacility()
-        {
-            watermentdbEntities context = new watermentdbEntities();
-            List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
+        //[AuthLog(Roles = "Admin, SuperUser, Maintenance")]
+        //public ActionResult UserFacility()
+        //{
+        //    watermentdbEntities context = new watermentdbEntities();
+        //    List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
 
 
-            var userFacility = (from u in context.User
-                                join uf in context.users_has_facilities on u.Id equals uf.users_Id 
-                                join f in context.facilities on uf.facilities_Id equals f.Id
-                                orderby u.Id
-                                select new {uId = u.Id, u.UserName, fid = f.Id, f.Name, f.SerialNumber }).ToList();
+        //    var userFacility = (from u in context.User
+        //                        join uf in context.users_has_facilities on u.Id equals uf.users_Id 
+        //                        join f in context.facilities on uf.facilities_Id equals f.Id
+        //                        orderby u.Id
+        //                        select new {uId = u.Id, u.UserName, fid = f.Id, f.Name, f.SerialNumber }).ToList();
 
-            foreach (var item in userFacility)
-            {
-                UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
-                uafvm.UserId = item.uId;
-                uafvm.UserName = item.UserName;
-                uafvm.FacilityId = item.fid;
-                uafvm.FacilityName = item.Name;
-                uafvm.SerialNumber = item.SerialNumber;
+        //    foreach (var item in userFacility)
+        //    {
+        //        UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
+        //        uafvm.UserId = item.uId;
+        //        uafvm.UserName = item.UserName;
+        //        uafvm.FacilityId = item.fid;
+        //        uafvm.FacilityName = item.Name;
+        //        uafvm.SerialNumber = item.SerialNumber;
 
-                uafvmReturn.Add(uafvm);
-            }
-            //Using foreach loop fill data from custmerlist to List<CustomerVM>.
-            return View(uafvmReturn);
-        }
+        //        uafvmReturn.Add(uafvm);
+        //    }
+        //    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+        //    return View(uafvmReturn);
+        //}
 
         /// <summary>
         /// 
@@ -156,7 +156,7 @@ namespace WatermentWebSCADA.Controllers
         /// Source: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
         public void InsertWithData(int userId, int facilityId)
         {
-            using (watermentdbEntities conn = new watermentdbEntities())
+            using (watermentdbEntities db = new watermentdbEntities())
             {
 
                 /*
@@ -172,22 +172,39 @@ namespace WatermentWebSCADA.Controllers
                 // 1
                 User u = new User { Id = userId };
                 // 2
-                conn.User.Add(u);
+                db.User.Add(u);
                 // 3
-                conn.User.Attach(u);
+                db.User.Attach(u);
 
                 // 1
                 facilities f = new facilities { Id = facilityId };
                 // 2
-                conn.facilities.Add(f);
+                db.facilities.Add(f);
                 // 3
-                conn.facilities.Attach(f);
+                db.facilities.Attach(f);
 
                 // like previous method add instance to navigation property
-                u.users_has_facilities.Add(f);
+                u.facilities.Add(f);
 
                 // call SaveChanges
-                conn.SaveChanges();
+                db.SaveChanges();
+            }
+        }
+        public void DeleteRelationship(int productID, int supplierID)
+        {
+            using (watermentdbEntities db = new watermentdbEntities())
+            {
+                // return one instance each entity by primary key
+                var product = db.User.FirstOrDefault(u => u.Id == productID);
+                var supplier = db.facilities.FirstOrDefault(s => s.Id == supplierID);
+
+                // call Remove method from navigation property for any instance
+                // supplier.Product.Remove(product);
+                // also works
+                product.facilities.Remove(supplier);
+
+                // call SaveChanges from context
+                db.SaveChanges();
             }
         }
 

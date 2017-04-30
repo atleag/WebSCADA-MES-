@@ -21,7 +21,7 @@ namespace WatermentWebSCADA.Models
             this.UserClaim = new HashSet<UserClaim>();
             this.UserLogin = new HashSet<UserLogin>();
             this.UserRole = new HashSet<UserRole>();
-            this.users_has_facilities = new HashSet<users_has_facilities>();
+            this.facilities = new HashSet<facilities>();
         }
     
         public int Id { get; set; }
@@ -56,6 +56,6 @@ namespace WatermentWebSCADA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<users_has_facilities> users_has_facilities { get; set; }
+        public virtual ICollection<facilities> facilities { get; set; }
     }
 }
