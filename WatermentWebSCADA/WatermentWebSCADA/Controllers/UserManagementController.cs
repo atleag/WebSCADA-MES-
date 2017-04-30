@@ -149,59 +149,42 @@ namespace WatermentWebSCADA.Controllers
         }
 
 
-        //[AcceptVerbs("POST")]
-        //public ActionResult LinkUserFacility(User newUser)
-        //{
-        //    watermentdbEntities db = new watermentdbEntities();
-        //    if (ModelState.IsValid)
-        //    {
-        //        var facilityId = Request["FacilityID"];
-        //        var facIds = facilityId.Split(',');
-        //        foreach (var catId in facIds)
-        //        {
-        //            int id = int.Parse(catId);
+        public void InsertWithData(int userId, int facilityId)
+        {
+            using (watermentdbEntities conn = new watermentdbEntities())
+            {
 
-        //            facilities facilitiess = db.facilities.SingleOrDefault(d => d.Id == id);
-        //            newUser.facilities = new List<facilities>();
-        //            newUser.facilities.Add(facilitiess);
-        //        }
-        //        db.User.Add(newUser);
-        //        db.SaveChanges();
+                /*
+                    * this steps follow to both entities
+                    * 
+                    * 1 - create instance of entity with relative primary key
+                    * 
+                    * 2 - add instance to context
+                    * 
+                    * 3 - attach instance to context
+                    */
 
-        //        return RedirectToAction("Index");
-        //    }
+                // 1
+                User u = new User { Id = userId };
+                // 2
+                conn.User.Add(u);
+                // 3
+                conn.User.Attach(u);
 
-        //    return View();
-        //}
-        /// <summary>
-        /// Shows the users and their role. 
-        /// </summary>
-        /// <returns></returns>
-        /// ¨Based on http://stackoverflow.com/questions/41933985/how-to-join-3-tables-with-linq
-        //public async Task<ActionResult> GetRolesForUser()
-        //{
-        //    //watermentdbEntities context = new watermentdbEntities();
-        //    //List<UsersAndRolesVM> fevmReturn = new List<UsersAndRolesVM>();
+                // 1
+                facilities f = new facilities { Id = facilityId };
+                // 2
+                conn.facilities.Add(f);
+                // 3
+                conn.facilities.Attach(f);
 
+                // like previous method add instance to navigation property
+                u.users_has_facilities.Add(f);
 
-        //    //var userrolelist = (from u in context.User
-        //    //                    join ur in context.UserRole on u.Id  equals ur.UserId
-        //    //                    join r in context.Role on ur.RoleId equals r.Id
-        //    //                    orderby u.Id
-        //    //                    select new { u.Id, u.UserName, r.Name }).ToList();
-
-        //    //foreach (var item in userrolelist)
-        //    //{
-        //    //    UsersAndRolesVM fevm = new UsersAndRolesVM(); // ViewModel
-        //    //    fevm.UserId = item.Id;
-        //    //    fevm.UserName = item.UserName;
-        //    //    fevm.RoleName = item.Name;
-
-        //    //    fevmReturn.Add(fevm);
-        //    //}
-        //    ////Using foreach loop fill data from custmerlist to List<CustomerVM>.
-        //    //return View(fevmReturn);
-        //}
+                // call SaveChanges
+                conn.SaveChanges();
+            }
+        }
 
     }
 }
