@@ -22,8 +22,8 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
-        string IpClient;
-        int LokasjonsID;
+        //string IpClient;
+        //int LokasjonsID;
 
         public bool PingHost(string ip)
         {
@@ -55,10 +55,10 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
-            //{
+        {
             //foreach (var item2 in db.Client_Conection)
             //{
-               
+
 
             //    foreach (var item in db.facilities.Where(c => c.Id.ToString() == item2.user))
             //      {
@@ -69,7 +69,7 @@ namespace WatermentWebSCADA.Controllers
             //}
             // Fetches the current row id seleted in the table facilities and sets the facility IP to
             // the Client IP.
-          
+
 
             // Saves the changes to the DB
             //db.SaveChanges();
