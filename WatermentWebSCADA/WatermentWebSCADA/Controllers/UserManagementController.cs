@@ -166,7 +166,10 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-
+        public ActionResult LinkUserFacility()
+        {
+            return View();
+        }
         /// <summary>
         /// 
         /// </summary>
