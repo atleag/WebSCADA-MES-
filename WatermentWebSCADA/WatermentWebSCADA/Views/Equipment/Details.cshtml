@@ -14,6 +14,7 @@
                 width: 600px !important;
                 margin: 30px auto !important;
                 background-color: rgb(171,194,122);
+
             }
         </style>
    
@@ -21,8 +22,10 @@
 </head>
 <body>
     
-        <h2>All Equipments for the facility</h2>
-
+       
+    <div class="frameTitle" id="style-1" style="margin-left:15px;margin-right:40px;">
+        <h3 align="center">All Equipments for the facility</h3>
+    </div>
        
 
         <div id="modal-container" class="modal fade"
@@ -121,7 +124,8 @@
             </div>
 
         </div>
-    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, "", "", Model, new { @class = "modal-link btn btn-success" })
+    <div style="margin-left: 15px;">@Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, "", "", Model, new { @class = "modal-link btn btn-success" })</div>
+   
 </body>
 
     <div id="dialog-edit" style="display: none">
