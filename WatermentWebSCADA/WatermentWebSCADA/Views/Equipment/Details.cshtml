@@ -2,60 +2,61 @@
 
 @{
     ViewBag.Title = "Equipment";
-    Layout = "~/Views/Shared/_Layout_scripts.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <head>
     <link href="~/Content/MainSiteIndex.css" rel="stylesheet" />
-    <style>
-    </style>
+    
+        
+        <style>
+            .modal-content {
+                width: 600px !important;
+                margin: 30px auto !important;
+                background-color: rgb(171,194,122);
+            }
+        </style>
+   
 
 </head>
+<body>
+    
+        <h2>All Equipments for the facility</h2>
 
-<div>
-    <h2>All Equipments for the facility</h2>
+       
 
-    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null,"","", Model, new { @class = "modal-link btn btn-success" })
-   
-    <style>
-        .modal-content {
-            width: 600px !important;
-            margin: 30px auto !important;
-            background-color: rgb(171,194,122);
-        }
-    </style>
-    <div id="modal-container" class="modal fade"
-         tabindex="-1" role="dialog">
-        <div class="modal-content">
+        <div id="modal-container" class="modal fade"
+             tabindex="-1" role="dialog">
+            <div class="modal-content">
 
+            </div>
         </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            // Initialize numeric spinner input boxes
-            //$(".numeric-spinner").spinedit();
-            // Initialize modal dialog
-            // attach modal-container bootstrap attributes to links with .modal-link class.
-            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-            $('body').on('click', '.modal-link', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
+        <script type="text/javascript">
+            $(function () {
+                // Initialize numeric spinner input boxes
+                //$(".numeric-spinner").spinedit();
+                // Initialize modal dialog
+                // attach modal-container bootstrap attributes to links with .modal-link class.
+                // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+                $('body').on('click', '.modal-link', function (e) {
+                    e.preventDefault();
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+                // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+                $('body').on('click', '.modal-close-btn', function () {
+                    $('#modal-container').modal('hide');
+                });
+                //clear modal cache, so that new content can be loaded
+                $('#modal-container').on('hidden.bs.modal', function () {
+                    $(this).removeData('bs.modal');
+                });
+                $('#CancelModal').on('click', function () {
+                    return false;
+                });
             });
-            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-container').modal('hide');
-            });
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-            $('#CancelModal').on('click', function () {
-                return false;
-            });
-        });
-    </script>
-    <body>
+        </script>
+
         <div class="col-lg-12">
 
             <div class="frame" id="style-1">
@@ -120,13 +121,14 @@
             </div>
 
         </div>
-    </body>
+    @Html.ActionLink("Add Equipment", "ViewCreate", "Equipment", null, "", "", Model, new { @class = "modal-link btn btn-success" })
+</body>
 
     <div id="dialog-edit" style="display: none">
     </div>
     <div id="dialog-view" style="display: none">
     </div>
-</div>
+
 
 <script src="~/scripts/jquery-3.1.1.js"></script>
 <script src="~/scripts/modernizr-2.8.3.js"></script>
