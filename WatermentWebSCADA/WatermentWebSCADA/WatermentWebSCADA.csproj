@@ -573,6 +573,7 @@
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_scripts.cshtml" />
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
+    <Content Include="Views\UserManagement\LinkUserAndFacility.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -582,6 +583,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewComponent\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
