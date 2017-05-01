@@ -55,7 +55,7 @@
                 <h3 align="center">Status</h3>
             </div>
             <div class="frame" id="style-1">
-                <table>
+                <table class="table table-hover, hoverTable tr:hover">
                     <tr>
                         <th>Facility</th>
                         <th>Location</th>
@@ -64,7 +64,7 @@
                     @foreach (var item in Model.Facilites)
                     {
 
-                        <tr>
+                        <tr onclick="getElementById('edit-1').click()" style="cursor: pointer">
 
                             <td><b>@Html.ActionLink(item.Name, "FacilityDetails", "Facility", new { id = item.Id }, new { @style = "color:rgb(140,150,80);" })</b></td>
                             <td>@item.locations.City</td>
