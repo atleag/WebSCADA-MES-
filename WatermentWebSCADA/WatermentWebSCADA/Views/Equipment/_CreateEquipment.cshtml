@@ -1,6 +1,9 @@
 ﻿@model WatermentWebSCADA.ViewModels.EquipmentAddVM
 
-
+@{
+    
+    Layout = "~/Views/Shared/_Layout_scripts.cshtml";
+}
 
 <div class="modal-body">
             @using (Html.BeginForm("CreateEquipment", "Equipment", FormMethod.Post))

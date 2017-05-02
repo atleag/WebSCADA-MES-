@@ -21,22 +21,20 @@ namespace WatermentWebSCADA.Controllers
     public class MainSiteController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
+        Models.watermentdbEntities db2 = new Models.watermentdbEntities();
 
-        //string IpClient;
-        //int LokasjonsID;
+
+        
 
         public bool PingHost(string ip)
         {
-            string nameOrAddress = ip;
+            
             bool pingable = false;
             Ping pinger = new Ping();
 
-
-
-
             try
             {
-                PingReply reply = pinger.Send(nameOrAddress,200);
+                PingReply reply = pinger.Send(ip,200);
                 pingable = reply.Status == IPStatus.Success;
             }
             catch (PingException)
@@ -56,25 +54,16 @@ namespace WatermentWebSCADA.Controllers
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
         {
-            //foreach (var item2 in db.Client_Conection)
-            //{
-
-
-            //    foreach (var item in db.facilities.Where(c => c.Id.ToString() == item2.user))
-            //      {
-
-            //        item.IP = item2.ip;
-            //         }
-
-            //}
+            foreach (var item in db.facilities)
+            {
+                item.IP = "";
+                foreach (var item2 in db2.Client_Conection.Where(c => c.user == item.Id.ToString()))
+                {
+                    item.IP = item2.ip;
+                }
+            }
             // Fetches the current row id seleted in the table facilities and sets the facility IP to
             // the Client IP.
-
-
-            // Saves the changes to the DB
-            //db.SaveChanges();
-
-
             foreach (var item in db.facilities)
             {
                 IpFacility = item.IP;
@@ -99,7 +88,7 @@ namespace WatermentWebSCADA.Controllers
                 {
                     var model = new MainViewModel
                     {
-
+                        //Getting desired data from the database, and returning it to the view.
                         Countries = db.countries.Where(c => c.continents.Id == id).ToList(),
                         Alarmer = db.alarms.Where(o => o.Status == "Active").ToList(),
                         Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
