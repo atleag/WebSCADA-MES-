@@ -557,7 +557,7 @@
     <Content Include="Views\Facility\AddFacility2.cshtml" />
     <Content Include="Views\Export\Index.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
-    <Content Include="Views\Equipment\Details.cshtml" />
+    <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Facility\EditFacilities.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
     <Content Include="Views\Equipment\_CreateEquipment.cshtml" />

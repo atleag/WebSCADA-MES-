@@ -15,7 +15,7 @@ namespace WatermentWebSCADA.Controllers
     {
         [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         // GET: Equipment with their measurred values.
-        public ActionResult Details(int? id)
+        public ActionResult Index(int? id)
         {
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
             List<EquipmentVM> facilityEquipmentVM = new List<EquipmentVM>(); // to hold list of Customer and order details
