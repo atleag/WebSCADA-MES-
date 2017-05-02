@@ -16,6 +16,7 @@ namespace WatermentWebSCADA.ViewModels
         public string Person { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [MaxLength(250,ErrorMessage ="Max 250 characters")]
         public string Description { get; set; }
 
         [Display(Name = "Date of last Maintenance")]

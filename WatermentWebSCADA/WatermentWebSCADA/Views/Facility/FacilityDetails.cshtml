@@ -44,7 +44,7 @@
                             <tr> <td><b>Software Version</b></td> <td>@item.ProgramVersion</td> </tr>
 
 <tr> <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td> 
-<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("details","Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
+<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
 
 
                             }
