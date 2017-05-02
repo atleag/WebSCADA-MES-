@@ -21,6 +21,8 @@ namespace WatermentWebSCADA.Controllers
     public class MainSiteController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
+        Models.watermentdbEntities db2 = new Models.watermentdbEntities();
+
 
         //string IpClient;
         //int LokasjonsID;
@@ -56,40 +58,32 @@ namespace WatermentWebSCADA.Controllers
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
         {
-
-            //foreach (var item in db.facilities)
-            //{
-            //}
-
-            ////Fetches the current row id seleted in the table facilities and sets the facility IP to
-            ////the Client IP.
-
-
-            //// Saves the changes to the DB
-            //db.SaveChanges();
-
-
             foreach (var item in db.facilities)
             {
-                //foreach (var item2 in db.Client_Conection.Where(x => x.user == (string)item.Id.ToString()))
-                //{
-                //    item.IP = item2.ip;
-                //}
-
+                item.IP = "";
+                foreach (var item2 in db2.Client_Conection.Where(c => c.user == item.Id.ToString()))
+                {
+                    item.IP = item2.ip;
+                }
+            }
+            // Fetches the current row id seleted in the table facilities and sets the facility IP to
+            // the Client IP.
+            foreach (var item in db.facilities)
+            {
                 IpFacility = item.IP;
 
-                if (PingHost(IpFacility) == true)
+               if ( PingHost(IpFacility) == true)
                 {
                     item.FacilityStatus_Id = 2;
 
                 }
-                else
+               else
                 {
                     item.FacilityStatus_Id = 1;
                 }
 
-
-
+           
+              
             }
             db.SaveChanges();
 
