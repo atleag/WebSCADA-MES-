@@ -56,41 +56,40 @@ namespace WatermentWebSCADA.Controllers
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
         {
-            //foreach (var item2 in db.Client_Conection)
+
+            //foreach (var item in db.facilities)
             //{
-
-
-            //    foreach (var item in db.facilities.Where(c => c.Id.ToString() == item2.user))
-            //      {
-
-            //        item.IP = item2.ip;
-            //         }
-
             //}
-            // Fetches the current row id seleted in the table facilities and sets the facility IP to
-            // the Client IP.
+
+            ////Fetches the current row id seleted in the table facilities and sets the facility IP to
+            ////the Client IP.
 
 
-            // Saves the changes to the DB
+            //// Saves the changes to the DB
             //db.SaveChanges();
 
 
             foreach (var item in db.facilities)
             {
+                //foreach (var item2 in db.Client_Conection.Where(x => x.user == (string)item.Id.ToString()))
+                //{
+                //    item.IP = item2.ip;
+                //}
+
                 IpFacility = item.IP;
 
-               if ( PingHost(IpFacility) == true)
+                if (PingHost(IpFacility) == true)
                 {
                     item.FacilityStatus_Id = 2;
 
                 }
-               else
+                else
                 {
                     item.FacilityStatus_Id = 1;
                 }
 
-           
-              
+
+
             }
             db.SaveChanges();
 
