@@ -49,18 +49,22 @@ namespace WatermentWebSCADA.Controllers
         }
 
         // GET: UsersManagement/Details/5
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
+
         // GET: UsersManagement/Create
+        [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: UsersManagement/Create
+        [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -76,12 +80,14 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         // GET: UsersManagement/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         // POST: UsersManagement/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -98,6 +104,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
+        [AuthLog(Roles = "Admin, SuperUser")]
         // GET: UsersManagement/Delete/5
         public ActionResult Delete(int id)
         {
@@ -166,7 +173,8 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult LinkUserFacility()
+        [AuthLog(Roles = "Admin, SuperUser")]
+        public ActionResult LinkUserAndFacility()
         {
             return View();
         }
@@ -176,41 +184,56 @@ namespace WatermentWebSCADA.Controllers
         /// <param name="userId">Id of the user which is to be assigned</param>
         /// <param name="facilityId">Id of facility which is to be assigned.</param>
         /// Source: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
-        public void InsertWithData(int userId, int facilityId)
+        /// 
+
+        [AuthLog(Roles = "Admin, SuperUser")]
+        [HttpPost]
+        public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model, int userId, int facilityId)
         {
-            using (watermentdbEntities db = new watermentdbEntities())
+
+            if (!ModelState.IsValid)
+            {
+                return View("LinkUserAndFacility");
+            }
+            else
             {
 
-                /*
-                    * this steps follow to both entities
-                    * 
-                    * 1 - create instance of entity with relative primary key
-                    * 
-                    * 2 - add instance to context
-                    * 
-                    * 3 - attach instance to context
-                    */
+                using (watermentdbEntities db = new watermentdbEntities())
+                {
 
-                // 1
-                User u = new User { Id = userId };
-                // 2
-                db.User.Add(u);
-                // 3
-                db.User.Attach(u);
+                    /*
+                        * this steps follow to both entities
+                        * 
+                        * 1 - create instance of entity with relative primary key
+                        * 
+                        * 2 - add instance to context
+                        * 
+                        * 3 - attach instance to context
+                        */
 
-                // 1
-                facilities f = new facilities { Id = facilityId };
-                // 2
-                db.facilities.Add(f);
-                // 3
-                db.facilities.Attach(f);
+                    // 1
+                    User u = new User { Id = userId };
+                    // 2
+                    db.User.Add(u);
+                    // 3
+                    db.User.Attach(u);
 
-                // like previous method add instance to navigation property
-                u.facilities.Add(f);
+                    // 1
+                    facilities f = new facilities { Id = facilityId };
+                    // 2
+                    db.facilities.Add(f);
+                    // 3
+                    db.facilities.Attach(f);
 
-                // call SaveChanges
-                db.SaveChanges();
+                    // like previous method add instance to navigation property
+                    u.facilities.Add(f);
+
+                    // call SaveChanges
+                    db.SaveChanges();
+                }
+
             }
+            return RedirectToAction("LinkUserAndFacility");
         }
         public void DeleteRelationship(int productID, int supplierID)
         {
