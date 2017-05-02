@@ -176,6 +176,9 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult LinkUserAndFacility()
         {
+            watermentdbEntities context = new watermentdbEntities();
+            ViewBag.Facility = new SelectList(context.facilities.ToList(), "Name", "Name");
+            ViewBag.Users = new SelectList(context.User.ToList(), "UserName", "UserName");
             return View();
         }
         /// <summary>
