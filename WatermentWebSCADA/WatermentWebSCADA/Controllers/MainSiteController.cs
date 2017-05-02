@@ -24,21 +24,17 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db2 = new Models.watermentdbEntities();
 
 
-        //string IpClient;
-        //int LokasjonsID;
+        
 
         public bool PingHost(string ip)
         {
-            string nameOrAddress = ip;
+            
             bool pingable = false;
             Ping pinger = new Ping();
 
-
-
-
             try
             {
-                PingReply reply = pinger.Send(nameOrAddress,200);
+                PingReply reply = pinger.Send(ip,200);
                 pingable = reply.Status == IPStatus.Success;
             }
             catch (PingException)
@@ -92,7 +88,7 @@ namespace WatermentWebSCADA.Controllers
                 {
                     var model = new MainViewModel
                     {
-
+                        //Getting desired data from the database, and returning it to the view.
                         Countries = db.countries.Where(c => c.continents.Id == id).ToList(),
                         Alarmer = db.alarms.Where(o => o.Status == "Active").ToList(),
                         Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
