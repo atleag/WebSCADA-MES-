@@ -224,12 +224,12 @@ namespace WatermentWebSCADA.Controllers
                         facility.User_Id = userId;
                         // call SaveChanges
                         db.SaveChanges();
-                        return View("UserFacility");
+                        return RedirectToAction("UserFacility");
                     }
                 }
                 catch (Exception)
                 {
-                    return View("UserFacility");
+                    return RedirectToAction("UserFacility");
                     throw;
                 }
 

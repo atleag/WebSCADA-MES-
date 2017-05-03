@@ -66,7 +66,7 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult ViewCreate()
         {
             // return PartialView("_CreateEquipment", model);
-            return PartialView("_CreateEquipment");
+            return View("CreateEquipment");
         }
 
 
@@ -78,7 +78,7 @@ namespace WatermentWebSCADA.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("_CreateEquipment", model);
+                return View("CreateEquipment", model);
             }
             else
             {
