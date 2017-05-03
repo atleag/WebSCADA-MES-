@@ -184,7 +184,7 @@ namespace WatermentWebSCADA.Controllers
             //return View();
 
             SelectList UserList= new SelectList(context.User.ToList(), "Id", "UserName");
-            SelectList FacilityList = new SelectList(context.facilities.ToList(), "Id", "Name");
+            SelectList FacilityList = new SelectList(context.facilities.Where(x => x.User_Id == null).ToList(), "Id", "Name");
             ViewData["Users"] = UserList;
             ViewData["Facilities"] = FacilityList;
             ViewData.Model = new UserAndFacilityLinkVM();
