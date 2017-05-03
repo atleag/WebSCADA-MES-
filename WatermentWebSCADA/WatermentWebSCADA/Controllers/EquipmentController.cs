@@ -91,6 +91,8 @@ namespace WatermentWebSCADA.Controllers
                     Description = model.Description,
                     LastCalibrated = model.LastCalibrated,
                     facilities_Id = model.facilities_Id
+                    
+                    
 
                 });
                 //Need to create some error handling here.
@@ -98,7 +100,7 @@ namespace WatermentWebSCADA.Controllers
                 ModelState.Clear();
             }
 
-            return RedirectToAction("Details", new { id = model.facilities_Id });
+            return RedirectToAction("Index", new { id = model.facilities_Id });
         }
 
         [AuthLog(Roles = "Admin, SuperUser")]

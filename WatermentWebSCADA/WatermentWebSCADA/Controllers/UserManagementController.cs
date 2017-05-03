@@ -217,17 +217,6 @@ namespace WatermentWebSCADA.Controllers
 
                 using (watermentdbEntities db = new watermentdbEntities())
                 {
-
-
-                    /*
-                        * this steps follow to both entities
-                        * 
-                        * 1 - create instance of entity with relative primary key
-                        * 
-                        * 2 - add instance to context
-                        * 
-                        * 3 - attach instance to context
-                        */
                     var facility = (from x in db.facilities
                                     where x.Id == facilityId
                                     select x).First();
