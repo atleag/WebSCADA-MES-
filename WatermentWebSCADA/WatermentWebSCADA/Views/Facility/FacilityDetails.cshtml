@@ -23,16 +23,12 @@
             </div>
             <div class="intro" id="style-1">
                 <table>
-                  
-                    @foreach (var item in Model.Brukere)
-                    {
-                        <tr> <td><b>User</b></td> <td> @item.FirstName @item.LastName</td> </tr>
-                        <tr> <td><b>Phone number</b></td> <td> @item.PhoneNumber</td> </tr>
-                        <tr> <td><b>E-mail</b></td> <td>@item.Email</td> </tr>
-                    }
-
+             
                             @foreach (var item in Model.Facilites)
                             {
+                                <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
+                                <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
+                                <tr> <td><b>E-mail</b></td> <td> @item.User.Email</td> </tr>
                             <tr> <td><b>Facility</b></td> <td> @item.Name</td> </tr>
                             <tr> <td><b>Country</b></td> <td> @item.locations.countries.Name</td> </tr>
                             <tr> <td><b>County</b></td> <td> @item.locations.County</td> </tr>
