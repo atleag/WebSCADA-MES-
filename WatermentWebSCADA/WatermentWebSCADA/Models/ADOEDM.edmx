@@ -66,6 +66,7 @@
           <Property Name="locations_countries_Id" Type="int" />
           <Property Name="locations_countries_continents_Id" Type="int" />
           <Property Name="FacilityStatus_Id" Type="int" />
+          <Property Name="User_Id" Type="int" />
         </EntityType>
         <EntityType Name="FacilityStatus">
           <Key>
@@ -190,14 +191,6 @@
           <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="users_has_facilities">
-          <Key>
-            <PropertyRef Name="User_Id" />
-            <PropertyRef Name="facilities_Id" />
-          </Key>
-          <Property Name="User_Id" Type="int" Nullable="false" />
-          <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'def.watermentdb.Client_Conection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -325,6 +318,18 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_facilities_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="facilities" Type="Self.facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="facilities">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_locations_countries1">
           <End Role="countries" Type="Self.countries" Multiplicity="1" />
           <End Role="locations" Type="Self.locations" Multiplicity="*" />
@@ -377,30 +382,6 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_has_facilities_facilities1">
-          <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
-          <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="facilities">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="users_has_facilities">
-              <PropertyRef Name="facilities_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_users_has_facilities_User1">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="users_has_facilities">
-              <PropertyRef Name="User_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_users_locations1">
           <End Role="locations" Type="Self.locations" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -446,7 +427,6 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="UserRegistrationToken" EntityType="Self.UserRegistrationToken" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="users_has_facilities" EntityType="Self.users_has_facilities" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb">
             <DefiningQuery>SELECT
 `Client_Conection`.`user`, 
@@ -491,6 +471,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="locations" EntitySet="locations" />
             <End Role="facilities" EntitySet="facilities" />
           </AssociationSet>
+          <AssociationSet Name="fk_facilities_User1" Association="Self.fk_facilities_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="facilities" EntitySet="facilities" />
+          </AssociationSet>
           <AssociationSet Name="fk_locations_countries1" Association="Self.fk_locations_countries1">
             <End Role="countries" EntitySet="countries" />
             <End Role="locations" EntitySet="locations" />
@@ -506,14 +490,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <AssociationSet Name="fk_sessions_users1" Association="Self.fk_sessions_users1">
             <End Role="User" EntitySet="User" />
             <End Role="sessions" EntitySet="sessions" />
-          </AssociationSet>
-          <AssociationSet Name="fk_users_has_facilities_facilities1" Association="Self.fk_users_has_facilities_facilities1">
-            <End Role="facilities" EntitySet="facilities" />
-            <End Role="users_has_facilities" EntitySet="users_has_facilities" />
-          </AssociationSet>
-          <AssociationSet Name="fk_users_has_facilities_User1" Association="Self.fk_users_has_facilities_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
           <AssociationSet Name="fk_users_locations1" Association="Self.fk_users_locations1">
             <End Role="locations" EntitySet="locations" />
@@ -575,6 +551,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="locations" EntitySet="locations" />
             <End Role="facilities" EntitySet="facilities" />
           </AssociationSet>
+          <AssociationSet Name="fk_facilities_User1" Association="watermentdbModel.fk_facilities_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="facilities" EntitySet="facilities" />
+          </AssociationSet>
           <AssociationSet Name="fk_maintenance_facilities1" Association="watermentdbModel.fk_maintenance_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="maintenance" EntitySet="maintenance" />
@@ -602,10 +582,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <AssociationSet Name="ApplicationUser_Roles" Association="watermentdbModel.ApplicationUser_Roles">
             <End Role="User" EntitySet="User" />
             <End Role="UserRole" EntitySet="UserRole" />
-          </AssociationSet>
-          <AssociationSet Name="users_has_facilities" Association="watermentdbModel.users_has_facilities">
-            <End Role="facilities" EntitySet="facilities" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="alarms">
@@ -676,11 +652,12 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="locations_countries_Id" Type="Int32" />
           <Property Name="locations_countries_continents_Id" Type="Int32" />
           <Property Name="FacilityStatus_Id" Type="Int32" />
+          <Property Name="User_Id" Type="Int32" />
           <NavigationProperty Name="equipments" Relationship="watermentdbModel.fk_equipments_facilities1" FromRole="facilities" ToRole="equipments" />
           <NavigationProperty Name="FacilityStatus" Relationship="watermentdbModel.fk_facilities_FacilityStatus" FromRole="facilities" ToRole="FacilityStatus" />
           <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_facilities_locations1" FromRole="facilities" ToRole="locations" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.fk_facilities_User1" FromRole="facilities" ToRole="User" />
           <NavigationProperty Name="maintenance" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="facilities" ToRole="maintenance" />
-          <NavigationProperty Name="User" Relationship="watermentdbModel.users_has_facilities" FromRole="facilities" ToRole="User" />
         </EntityType>
         <EntityType Name="FacilityStatus">
           <Key>
@@ -778,12 +755,12 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="locations_Id" Type="Int32" />
           <Property Name="locations_countries_Id" Type="Int32" />
           <Property Name="locations_countries_continents_Id" Type="Int32" />
+          <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_User1" FromRole="User" ToRole="facilities" />
           <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_users_locations1" FromRole="User" ToRole="locations" />
           <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="User" ToRole="sessions" />
           <NavigationProperty Name="UserClaim" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogin" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="UserRole" Relationship="watermentdbModel.ApplicationUser_Roles" FromRole="User" ToRole="UserRole" />
-          <NavigationProperty Name="facilities" Relationship="watermentdbModel.users_has_facilities" FromRole="User" ToRole="facilities" />
         </EntityType>
         <EntityType Name="UserClaim">
           <Key>
@@ -934,6 +911,18 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_facilities_User1">
+          <End Type="watermentdbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="facilities">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_maintenance_facilities1">
           <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="1" />
           <End Type="watermentdbModel.maintenance" Role="maintenance" Multiplicity="*" />
@@ -1026,10 +1015,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="users_has_facilities">
-          <End Type="watermentdbModel.facilities" Role="facilities" Multiplicity="*" />
-          <End Type="watermentdbModel.User" Role="User" Multiplicity="*" />
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1086,6 +1071,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySetMapping Name="facilities">
             <EntityTypeMapping TypeName="watermentdbModel.facilities">
               <MappingFragment StoreEntitySet="facilities">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="FacilityStatus_Id" ColumnName="FacilityStatus_Id" />
                 <ScalarProperty Name="locations_countries_continents_Id" ColumnName="locations_countries_continents_Id" />
                 <ScalarProperty Name="locations_countries_Id" ColumnName="locations_countries_Id" />
@@ -1242,14 +1228,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="users_has_facilities" TypeName="watermentdbModel.users_has_facilities" StoreEntitySet="users_has_facilities">
-            <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="User_Id" />
-            </EndProperty>
-            <EndProperty Name="facilities">
-              <ScalarProperty Name="Id" ColumnName="facilities_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
