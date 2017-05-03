@@ -472,7 +472,9 @@ namespace WatermentWebSCADA.Controllers
 
                     return RedirectToAction("Index", "UserManagement");
                 }
+                return RedirectToAction("Login");
                 AddErrors(result);
+                
             }
 
             // If we got this far, something failed, redisplay form
