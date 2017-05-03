@@ -26,7 +26,7 @@ namespace WatermentWebSCADA.Controllers
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-        int LokasjonsID;
+       
         string IpClient;
 
 
@@ -48,7 +48,7 @@ namespace WatermentWebSCADA.Controllers
             // the Client IP.
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
-                LokasjonsID = item.locations_Id.GetValueOrDefault();
+                
                 item.IP = IpClient;
             }
 
@@ -65,7 +65,7 @@ namespace WatermentWebSCADA.Controllers
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Countries = db.countries.ToList(),
                     Lokasjoner = db.locations.ToList(),
-                    Brukere = db.User.Where(x => x.locations_Id == LokasjonsID).ToList(),
+                    Brukere = db.User.ToList(),
                     Utstyr = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
 
                 };
