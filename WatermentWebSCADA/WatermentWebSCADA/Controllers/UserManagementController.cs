@@ -177,8 +177,15 @@ namespace WatermentWebSCADA.Controllers
         public ActionResult LinkUserAndFacility()
         {
             watermentdbEntities context = new watermentdbEntities();
-            ViewBag.Facility = new SelectList(context.facilities.ToList(), "Name", "Name");
-            ViewBag.Users = new SelectList(context.User.ToList(), "UserName", "UserName");
+            //ViewBag.Facility = new SelectList(context.facilities.ToList(), "Name", "Name");
+            //ViewBag.Users = new SelectList(context.User.ToList(), "UserName", "UserName");
+            //return View();
+
+            SelectList UserList= new SelectList(context.User.ToList(), "Id", "UserName");
+            SelectList FacilityList = new SelectList(context.facilities.ToList(), "Id", "Name");
+            ViewData["Users"] = UserList;
+            ViewData["Facilities"] = FacilityList;
+            ViewData.Model = new UserAndFacilityLinkVM();
             return View();
         }
         /// <summary>
@@ -191,10 +198,12 @@ namespace WatermentWebSCADA.Controllers
 
         [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
-        public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model, int userId, int facilityId)
+        public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model)
         {
+            int userId = 0;
+            int facilityId = 0;
 
-            if (!ModelState.IsValid)
+            if (userId != 0 || facilityId != 0)
             {
                 return View("LinkUserAndFacility");
             }
@@ -203,6 +212,8 @@ namespace WatermentWebSCADA.Controllers
 
                 using (watermentdbEntities db = new watermentdbEntities())
                 {
+                    userId = model.SelectedUserNameId;
+                    facilityId = model.SelectedFacilityId;
 
                     /*
                         * this steps follow to both entities
@@ -234,6 +245,7 @@ namespace WatermentWebSCADA.Controllers
                     // call SaveChanges
                     db.SaveChanges();
                 }
+                return View("Index");
 
             }
             return RedirectToAction("LinkUserAndFacility");

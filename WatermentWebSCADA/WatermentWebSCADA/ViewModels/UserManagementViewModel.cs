@@ -44,13 +44,13 @@ namespace WatermentWebSCADA.ViewModels
     public class UserAndFacilityLinkVM
     {
         [Display(Name = "User Name")]
-        public int SelectedUserName { get; set; }
+        public int SelectedUserNameId { get; set; }
 
-        public List<SelectListItem> ddlUserNames { get; set; }
+        public List<SelectListItem> ddlUsers { get; set; }
 
 
         [Display(Name = "Facility Name")]
-        public int SelectedFacility { get; set; }
+        public int SelectedFacilityId { get; set; }
 
 
         public List<SelectListItem> ddlFacilities { get; set; }

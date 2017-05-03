@@ -1,4 +1,4 @@
-﻿@model WatermentWebSCADA.ViewModels.UserAndFacilityVM
+﻿@model WatermentWebSCADA.ViewModels.UserAndFacilityLinkVM
 
 @{
     ViewBag.Title = "LinkUserAndFacility";
@@ -18,20 +18,20 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.SelectedUserNameId, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownList("Users")
+                @Html.DropDownList("SelectedUsersId", ViewData["Users"] as SelectList, new { @class = "dropdown" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.FacilityName, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.SelectedFacilityId, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownList("Facility")
+                @Html.DropDownList("SelectedFacilityId", ViewData["Facilities"] as SelectList, new { @class = "dropdown" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Link" class="btn btn-default" />
+                <input type="submit" value="LinkUserAndFacility" class="btn btn-default" />
             </div>
         </div>
     </div>
