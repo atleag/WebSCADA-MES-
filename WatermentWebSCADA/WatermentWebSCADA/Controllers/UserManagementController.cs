@@ -139,9 +139,6 @@ namespace WatermentWebSCADA.Controllers
 
             using (watermentdbEntities context = new watermentdbEntities())
             {
-
-                              
-
                 List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
                 var result = (
                                 //// instance from context
@@ -238,7 +235,7 @@ namespace WatermentWebSCADA.Controllers
                     // call SaveChanges
                     db.SaveChanges();
                 }
-                return View("Index");
+                return View("UserAndFacility");
 
             }
             return RedirectToAction("LinkUserAndFacility");
