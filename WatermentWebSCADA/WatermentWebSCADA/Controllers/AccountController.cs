@@ -472,7 +472,7 @@ namespace WatermentWebSCADA.Controllers
 
                     return RedirectToAction("Index", "UserManagement");
                 }
-                return RedirectToAction("Register");
+                //return RedirectToAction("Register");
                 AddErrors(result);
                 
             }
