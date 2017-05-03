@@ -68,6 +68,7 @@ namespace WatermentWebSCADA.Controllers
                     Brukere = db.User.ToList(),
                     Utstyr = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
 
+
                 };
 
                 return View(model);

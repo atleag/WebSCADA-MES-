@@ -23,12 +23,24 @@
             </div>
             <div class="intro" id="style-1">
                 <table>
-             
                             @foreach (var item in Model.Facilites)
                             {
-                                <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
-                                <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
-                                <tr> <td><b>E-mail</b></td> <td> @item.User.Email</td> </tr>
+                                if (item.User_Id == null || item.User_Id == 0)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p> @item.Name / @item.SerialNumber does not currently have a user assigned to it (No owner)</p>
+                                            <p> </p>
+                                            <p>
+                                                Please assign a owner / user to this facility on the @Html.ActionLink("User management", "Index", "UserManagement") page
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    break;
+                                }
+                            <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
+                            <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
+                            <tr> <td><b>E-mail</b></td> <td> @item.User.Email</td> </tr>
                             <tr> <td><b>Facility</b></td> <td> @item.Name</td> </tr>
                             <tr> <td><b>Country</b></td> <td> @item.locations.countries.Name</td> </tr>
                             <tr> <td><b>County</b></td> <td> @item.locations.County</td> </tr>
@@ -40,11 +52,12 @@
                             <tr> <td><b>Software Version</b></td> <td>@item.ProgramVersion</td> </tr>
 
 <tr> <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td> 
-<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index","Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
+<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
 
 
+                                
                             }
-                     
+
                 </table>
             </div>
         </div>
