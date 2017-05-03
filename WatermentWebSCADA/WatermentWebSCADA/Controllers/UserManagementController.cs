@@ -223,11 +223,10 @@ namespace WatermentWebSCADA.Controllers
                     facility.User_Id = userId;
                     // call SaveChanges
                     db.SaveChanges();
+                    return View("UserFacility");
                 }
-                return View("UserFacility");
 
             }
-            return RedirectToAction("LinkUserAndFacility");
         }
         public void DeleteRelationship(int productID, int supplierID)
         {
