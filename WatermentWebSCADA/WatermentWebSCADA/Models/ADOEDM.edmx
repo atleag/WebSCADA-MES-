@@ -96,7 +96,7 @@
           </Key>
           <Property Name="OrderId" Type="mediumint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person" Type="varchar" MaxLength="45" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
           <Property Name="LastMaintenance" Type="date" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -193,10 +193,10 @@
         </EntityType>
         <EntityType Name="users_has_facilities">
           <Key>
-            <PropertyRef Name="users_Id" />
+            <PropertyRef Name="User_Id" />
             <PropertyRef Name="facilities_Id" />
           </Key>
-          <Property Name="users_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
           <Property Name="facilities_Id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -377,7 +377,7 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_has_facilities_facilities">
+        <Association Name="fk_users_has_facilities_facilities1">
           <End Role="facilities" Type="Self.facilities" Multiplicity="1" />
           <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,7 +389,7 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_users_has_facilities_users">
+        <Association Name="fk_users_has_facilities_User1">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="users_has_facilities" Type="Self.users_has_facilities" Multiplicity="*" />
           <ReferentialConstraint>
@@ -397,7 +397,7 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="users_has_facilities">
-              <PropertyRef Name="users_Id" />
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -507,11 +507,11 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="User" EntitySet="User" />
             <End Role="sessions" EntitySet="sessions" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_has_facilities_facilities" Association="Self.fk_users_has_facilities_facilities">
+          <AssociationSet Name="fk_users_has_facilities_facilities1" Association="Self.fk_users_has_facilities_facilities1">
             <End Role="facilities" EntitySet="facilities" />
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
-          <AssociationSet Name="fk_users_has_facilities_users" Association="Self.fk_users_has_facilities_users">
+          <AssociationSet Name="fk_users_has_facilities_User1" Association="Self.fk_users_has_facilities_User1">
             <End Role="User" EntitySet="User" />
             <End Role="users_has_facilities" EntitySet="users_has_facilities" />
           </AssociationSet>
@@ -715,7 +715,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           </Key>
           <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Person" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="LastMaintenance" Type="DateTime" />
           <Property Name="facilities_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_maintenance_facilities1" FromRole="maintenance" ToRole="facilities" />
@@ -1244,7 +1244,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           </EntitySetMapping>
           <AssociationSetMapping Name="users_has_facilities" TypeName="watermentdbModel.users_has_facilities" StoreEntitySet="users_has_facilities">
             <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="users_Id" />
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
             </EndProperty>
             <EndProperty Name="facilities">
               <ScalarProperty Name="Id" ColumnName="facilities_Id" />
