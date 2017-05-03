@@ -224,7 +224,7 @@ namespace WatermentWebSCADA.Controllers
                     // call SaveChanges
                     db.SaveChanges();
                 }
-                return View("UserAndFacility");
+                return View("UserFacility");
 
             }
             return RedirectToAction("LinkUserAndFacility");
