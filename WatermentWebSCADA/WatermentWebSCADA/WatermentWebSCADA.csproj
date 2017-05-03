@@ -555,7 +555,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Facility\AddFacility2.cshtml" />
-    <Content Include="Views\Export\Index.cshtml" />
     <Content Include="Views\Facility\AddLocation.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Facility\EditFacilities.cshtml" />
