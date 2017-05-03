@@ -559,7 +559,7 @@
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Facility\EditFacilities.cshtml" />
     <Content Include="Views\MainSite\About.cshtml" />
-    <Content Include="Views\Equipment\_CreateEquipment.cshtml" />
+    <Content Include="Views\Equipment\CreateEquipment.cshtml" />
     <Content Include="Views\Maintenance\MaintenanceEdit.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />

@@ -214,17 +214,26 @@ namespace WatermentWebSCADA.Controllers
             }
             else
             {
-
-                using (watermentdbEntities db = new watermentdbEntities())
+                try
                 {
-                    var facility = (from x in db.facilities
-                                    where x.Id == facilityId
-                                    select x).First();
-                    facility.User_Id = userId;
-                    // call SaveChanges
-                    db.SaveChanges();
-                    return View("UserFacility");
+                    using (watermentdbEntities db = new watermentdbEntities())
+                    {
+                        var facility = (from x in db.facilities
+                                        where x.Id == facilityId
+                                        select x).First();
+                        facility.User_Id = userId;
+                        // call SaveChanges
+                        db.SaveChanges();
+                        return RedirectToAction("UserFacility");
+                    }
                 }
+                catch (Exception)
+                {
+                    return RedirectToAction("UserFacility");
+                    throw;
+                }
+
+                
 
             }
         }
