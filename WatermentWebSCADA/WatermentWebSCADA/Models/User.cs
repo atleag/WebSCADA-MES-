@@ -17,11 +17,11 @@ namespace WatermentWebSCADA.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.facilities = new HashSet<facilities>();
             this.sessions = new HashSet<sessions>();
             this.UserClaim = new HashSet<UserClaim>();
             this.UserLogin = new HashSet<UserLogin>();
             this.UserRole = new HashSet<UserRole>();
-            this.facilities = new HashSet<facilities>();
         }
     
         public int Id { get; set; }
@@ -46,6 +46,8 @@ namespace WatermentWebSCADA.Models
         public Nullable<int> locations_countries_Id { get; set; }
         public Nullable<int> locations_countries_continents_Id { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<facilities> facilities { get; set; }
         public virtual locations locations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sessions> sessions { get; set; }
@@ -55,7 +57,5 @@ namespace WatermentWebSCADA.Models
         public virtual ICollection<UserLogin> UserLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRole { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<facilities> facilities { get; set; }
     }
 }

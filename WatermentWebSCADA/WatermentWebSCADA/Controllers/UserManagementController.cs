@@ -139,21 +139,26 @@ namespace WatermentWebSCADA.Controllers
 
             using (watermentdbEntities context = new watermentdbEntities())
             {
+
+                              
+
                 List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
                 var result = (
-                                // instance from context
-                                from a in context.User
-                                    // instance from navigation property
-                                from b in a.facilities
-                                    //join to bring useful data
-                                join c in context.facilities on b.Id equals c.Id
-                                select new
+                                //// instance from context
+                                //from a in context.User
+                                //    // instance from navigation property
+                                //from b in a.facilities
+                                //    //join to bring useful data
+                                //join c in context.facilities on b.Id equals c.User_Id
+                                 from a in context.User
+                                 join b in context.facilities on a.Id equals b.User_Id
+                                 select new
                                 {
                                     uId = a.Id,
                                     a.UserName,
-                                    c.Id,
-                                    c.Name,
-                                    c.SerialNumber
+                                    b.Id,
+                                    b.Name,
+                                    b.SerialNumber
                                 }).ToList();
 
                 foreach (var item in result)
@@ -200,10 +205,13 @@ namespace WatermentWebSCADA.Controllers
         [HttpPost]
         public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model)
         {
+
             int userId = 0;
             int facilityId = 0;
+            userId = model.SelectedUserNameId;
+            facilityId = model.SelectedFacilityId;
 
-            if (userId != 0 || facilityId != 0)
+            if (userId == 0 || facilityId == 0)
             {
                 return View("LinkUserAndFacility");
             }
@@ -212,8 +220,7 @@ namespace WatermentWebSCADA.Controllers
 
                 using (watermentdbEntities db = new watermentdbEntities())
                 {
-                    userId = model.SelectedUserNameId;
-                    facilityId = model.SelectedFacilityId;
+
 
                     /*
                         * this steps follow to both entities
@@ -224,24 +231,10 @@ namespace WatermentWebSCADA.Controllers
                         * 
                         * 3 - attach instance to context
                         */
-
-                    // 1
-                    User u = new User { Id = userId };
-                    // 2
-                    db.User.Add(u);
-                    // 3
-                    db.User.Attach(u);
-
-                    // 1
-                    facilities f = new facilities { Id = facilityId };
-                    // 2
-                    db.facilities.Add(f);
-                    // 3
-                    db.facilities.Attach(f);
-
-                    // like previous method add instance to navigation property
-                    u.facilities.Add(f);
-
+                    var facility = (from x in db.facilities
+                                    where x.Id == facilityId
+                                    select x).First();
+                    facility.User_Id = userId;
                     // call SaveChanges
                     db.SaveChanges();
                 }

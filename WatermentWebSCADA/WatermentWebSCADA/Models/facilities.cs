@@ -19,7 +19,6 @@ namespace WatermentWebSCADA.Models
         {
             this.equipments = new HashSet<equipments>();
             this.maintenance = new HashSet<maintenance>();
-            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
@@ -32,14 +31,14 @@ namespace WatermentWebSCADA.Models
         public Nullable<int> locations_countries_Id { get; set; }
         public Nullable<int> locations_countries_continents_Id { get; set; }
         public Nullable<int> FacilityStatus_Id { get; set; }
+        public Nullable<int> User_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<equipments> equipments { get; set; }
         public virtual FacilityStatus FacilityStatus { get; set; }
         public virtual locations locations { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<maintenance> maintenance { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
     }
 }
