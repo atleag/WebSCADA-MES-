@@ -76,6 +76,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
+
         private IAuthenticationManager AuthenticationManager
         {
             get

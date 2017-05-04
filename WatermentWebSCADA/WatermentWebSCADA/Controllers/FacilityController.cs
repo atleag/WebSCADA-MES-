@@ -19,6 +19,10 @@ using System.Web.UI;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Net.Http;
 using WatermentWebSCADA.CustomFilters;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using codingfreaks.samples.Identity.Models;
 
 
 namespace WatermentWebSCADA.Controllers
@@ -31,7 +35,7 @@ namespace WatermentWebSCADA.Controllers
 
 
         // GET: Facility
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult FacilityDetails(int? id)
         {
             if (id == null) //Error handling if "int? id" is missing from the link. 
