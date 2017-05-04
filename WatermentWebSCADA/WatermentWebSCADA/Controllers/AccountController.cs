@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using System;
 using codingfreaks.samples.Identity.Models;
 
 using WatermentWebSCADA.ViewModels;
@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.Linq;
+using WatermentWebSCADA.Models;
 
 
 namespace WatermentWebSCADA.Controllers
@@ -139,104 +140,104 @@ namespace WatermentWebSCADA.Controllers
 
         //
         // POST: /Account/ExternalLogin
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            // Request a redirect to the external login provider
-            return new ChallengeResult(
-                provider,
-                Url.Action(
-                    "ExternalLoginCallback",
-                    "Account",
-                    new
-                    {
-                        ReturnUrl = returnUrl
-                    }));
-        }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ExternalLogin(string provider, string returnUrl)
+        //{
+        //    // Request a redirect to the external login provider
+        //    return new ChallengeResult(
+        //        provider,
+        //        Url.Action(
+        //            "ExternalLoginCallback",
+        //            "Account",
+        //            new
+        //            {
+        //                ReturnUrl = returnUrl
+        //            }));
+        //}
 
         //
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
-            {
-                return RedirectToAction("Login");
-            }
+        //[AllowAnonymous]
+        //public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        //{
+        //    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+        //    if (loginInfo == null)
+        //    {
+        //        return RedirectToAction("Login");
+        //    }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var user = await UserManager.FindAsync(loginInfo.Login);
-            if (user != null)
-            {
-                await SignInAsync(user, false);
-                return RedirectToLocal(returnUrl);
-            }
-            // If the user does not have an account, then prompt the user to create an account
-            ViewBag.ReturnUrl = returnUrl;
-            ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-            return View(
-                "ExternalLoginConfirmation",
-                new ExternalLoginConfirmationViewModel
-                {
-                    Email = loginInfo.Email
-                });
-        }
+        //    // Sign in the user with this external login provider if the user already has a login
+        //    var user = await UserManager.FindAsync(loginInfo.Login);
+        //    if (user != null)
+        //    {
+        //        await SignInAsync(user, false);
+        //        return RedirectToLocal(returnUrl);
+        //    }
+        //    // If the user does not have an account, then prompt the user to create an account
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+        //    return View(
+        //        "ExternalLoginConfirmation",
+        //        new ExternalLoginConfirmationViewModel
+        //        {
+        //            Email = loginInfo.Email
+        //        });
+        //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Manage");
-            }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        return RedirectToAction("Manage");
+        //    }
 
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    return View("ExternalLoginFailure");
-                }
-                var user = new MyUser
-                {
-                    UserName = model.Email,
-                    Email = model.Email
-                };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
-                    {
-                        await SignInAsync(user, false);
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Get the information about the user from the external login provider
+        //        var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+        //        if (info == null)
+        //        {
+        //            return View("ExternalLoginFailure");
+        //        }
+        //        var user = new MyUser
+        //        {
+        //            UserName = model.Email,
+        //            Email = model.Email
+        //        };
+        //        var result = await UserManager.CreateAsync(user);
+        //        if (result.Succeeded)
+        //        {
+        //            result = await UserManager.AddLoginAsync(user.Id, info.Login);
+        //            if (result.Succeeded)
+        //            {
+        //                await SignInAsync(user, false);
 
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
+        //                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //                // Send an email with this link
+        //                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //                // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
 
-                        return RedirectToLocal(returnUrl);
-                    }
-                }
-                AddErrors(result);
-            }
+        //                return RedirectToLocal(returnUrl);
+        //            }
+        //        }
+        //        AddErrors(result);
+        //    }
 
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
-        }
+        //    ViewBag.ReturnUrl = returnUrl;
+        //    return View(model);
+        //}
 
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult ExternalLoginFailure()
+        //{
+        //    return View();
+        //}
 
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -349,8 +350,43 @@ namespace WatermentWebSCADA.Controllers
                 var user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    ///Checks to see if not normal user
+                    if (await UserManager.IsInRoleAsync(user.Id,"Admin"))
+                    {
+                        await SignInAsync(user, model.RememberMe);
+                        return RedirectToLocal(returnUrl);
+                    }
+                    //Checks to see if user
+                    if(await UserManager.IsInRoleAsync(user.Id,"User"))
+                    {
+                        using (watermentdbEntities context = new watermentdbEntities())
+                        {
+                            //Try to find the facility of user
+                            try
+                            {
+                                var facilityId = (from f in context.facilities
+                                                  where f.User_Id == (user.Id)
+                                                  select f).SingleOrDefault();
+
+                                int userDestination = facilityId.Id;
+                                await SignInAsync(user, model.RememberMe);
+                                return RedirectToAction("FacilityDetails","Facility", new { id = userDestination });
+                            }
+                            //If user does not belong to facility, redirect to site regarding not having access yet
+                            catch (System.Exception)
+                            {
+
+                                throw;
+                            }
+                        }
+                    }
+                    //Not registrated
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid username or password.");
+                    }
+                    
+                    
                 }
                 ModelState.AddModelError("", "Invalid username or password.");
             }
@@ -358,6 +394,10 @@ namespace WatermentWebSCADA.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        //Let admin change a user's password with identity
+        //Source: https://forums.asp.net/t/1948882.aspx?No+way+for+Administrator+to+Change+Password+
+
 
         public ActionResult Manage(ManageMessageId? message)
         {
