@@ -189,7 +189,7 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id, countries_Id,countries_continents_Id")] facilities facilities)
+        public ActionResult EditFacilities([Bind(Include = "Id,Name,IP,Domain,SerialNumber,ProgramVersion, locations_Id, locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
