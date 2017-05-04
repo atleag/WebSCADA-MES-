@@ -19,27 +19,31 @@ namespace WatermentWebSCADA.ViewModels
         [MaxLength(250,ErrorMessage ="Max 250 characters")]
         public string Description { get; set; }
 
-        [Display(Name = "Date of last Maintenance")]
+   
+        
+        [Required(ErrorMessage = "A date must be selected")]
         [DataType(DataType.Date)]
-        public Nullable<System.DateTime> LastMaintenance { get; set; }
+        [Display(Name = "Date of last Maintenance")]
+        public System.DateTime LastMaintenance { get; set; }
+
         public int facilities_Id { get; set; }
 
-        public virtual facilities facilities { get; set; }
+        //public virtual facilities facilities { get; set; }
         public IEnumerable<equipments> Utstyr { get; set; }
         public IEnumerable<locations> Lokasjoner { get; set; }
         public IEnumerable<maintenance> Vedlikehold { get; set; }
         public IEnumerable<facilities> Facilites { get; set; }
         public int ID { get; set; }
-        public IEnumerable<alarms> Alarmer { get; set; }
-        public IEnumerable<countries> Countries { get; set; }
+        //public IEnumerable<alarms> Alarmer { get; set; }
+        //public IEnumerable<countries> Countries { get; set; }
 
       
         public int equipments_Id { get; set; }
         public string Tag { get; set; }
         public virtual equipments equipments { get; set; }
 
-        public IEnumerable<User> Brukere { get; set; }
-        public List<countries_with_facilites_view> countries { get; set; }
+        //public IEnumerable<User> Brukere { get; set; }
+        //public List<countries_with_facilites_view> countries { get; set; }
         public List<equipments> Equipment { get; set; }
     }
 
