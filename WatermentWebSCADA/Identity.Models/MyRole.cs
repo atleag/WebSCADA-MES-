@@ -7,7 +7,7 @@
         public MyRole() : base() { }
 
         //public MyRole(string name) : base(name) { }
-
+        //nu
         public string Description { get; set; }
     }
 }
