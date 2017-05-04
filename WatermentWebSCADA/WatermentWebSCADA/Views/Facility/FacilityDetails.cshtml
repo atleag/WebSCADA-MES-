@@ -53,9 +53,7 @@
 
 <tr> <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td> 
 <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
-
-
-                                
+             
                             }
 
                 </table>
@@ -77,7 +75,7 @@
                         <th>Tag</th>
                     </tr>
                   
-                    @foreach (var item in Model.Alarmer)
+                    @foreach (var item in Model.Alarms)
                     {
                             <tr>
                                 <td>@item.Description</td>
@@ -113,7 +111,7 @@
 
                     <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
 
-                    foreach (var eq in Model.Utstyr)
+                    foreach (var eq in Model.Equipments)
                     {
                         <b>  @Html.ActionLink(eq.Tag + " "+ eq.Description + " to Excel", "ExportMeasurementsToExcel", "Export", new { id = item.Id, TagID = eq.Tag }, null)</b>
                     }
@@ -145,7 +143,7 @@
         {
 
  <select name="txtTags">
-    @foreach (var tag in Model.Utstyr)
+    @foreach (var tag in Model.Equipments)
     {
                    <option value="@tag.Tag">@tag.Tag @tag.Description</option>
           

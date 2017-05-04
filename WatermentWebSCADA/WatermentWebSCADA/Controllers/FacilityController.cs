@@ -65,12 +65,12 @@ namespace WatermentWebSCADA.Controllers
                 var model = new MainViewModel
                 {
                     //Getting desired data from the database, and returning it to the view.
-                    Alarmer = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
+                    Alarms = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Countries = db.countries.ToList(),
-                    Lokasjoner = db.locations.ToList(),
-                    Brukere = db.User.ToList(),
-                    Utstyr = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
+                    Locations = db.locations.ToList(),
+                    Users = db.User.ToList(),
+                    Equipments = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
 
 
                 };

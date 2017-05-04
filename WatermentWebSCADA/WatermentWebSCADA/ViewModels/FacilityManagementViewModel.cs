@@ -19,31 +19,22 @@ namespace WatermentWebSCADA.ViewModels
         [MaxLength(250,ErrorMessage ="Max 250 characters")]
         public string Description { get; set; }
 
-   
-        
         [Required(ErrorMessage = "A date must be selected")]
         [DataType(DataType.Date)]
         [Display(Name = "Date of last Maintenance")]
         public System.DateTime LastMaintenance { get; set; }
-
         public int facilities_Id { get; set; }
-
-        //public virtual facilities facilities { get; set; }
-        public IEnumerable<equipments> Utstyr { get; set; }
-        public IEnumerable<locations> Lokasjoner { get; set; }
-        public IEnumerable<maintenance> Vedlikehold { get; set; }
+        public IEnumerable<equipments> Equipments { get; set; }
+        public IEnumerable<locations> Location { get; set; }
+        public IEnumerable<maintenance> Maintenance { get; set; }
         public IEnumerable<facilities> Facilites { get; set; }
         public int ID { get; set; }
-        //public IEnumerable<alarms> Alarmer { get; set; }
-        //public IEnumerable<countries> Countries { get; set; }
 
-      
         public int equipments_Id { get; set; }
         public string Tag { get; set; }
         public virtual equipments equipments { get; set; }
 
-        //public IEnumerable<User> Brukere { get; set; }
-        //public List<countries_with_facilites_view> countries { get; set; }
+
         public List<equipments> Equipment { get; set; }
     }
 
@@ -62,14 +53,7 @@ namespace WatermentWebSCADA.ViewModels
         public Nullable<int> FacilityStatus_Id { get; set; }
         public Nullable<int> User_Id { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<equipments> equipments { get; set; }
-        //public virtual FacilityStatus FacilityStatus { get; set; }
-        //public virtual locations locations { get; set; }
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<maintenance> maintenance { get; set; }
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<User> User { get; set; }
+ 
 
     }
 

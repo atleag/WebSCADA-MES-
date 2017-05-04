@@ -34,11 +34,11 @@ namespace WatermentWebSCADA.Controllers
                 var model = new MaintenanceViewModel
                 {
                     //Getting desired data from the database, and returning it to the view.
-         
-                   
-                    Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
-                    Lokasjoner = db.locations.ToList(),
-                    Vedlikehold = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).DistinctBy(x=>x.facilities_Id).ToList(),
+
+
+                    Equipments = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
+                    Location = db.locations.ToList(),
+                    Maintenance = db.maintenance.DistinctBy(x => x.facilities_Id).OrderBy(x => x.LastMaintenance).Take(10).ToList(),
                     Facilites = db.facilities.ToList(),
 
                 };
