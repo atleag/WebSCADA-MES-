@@ -14,6 +14,7 @@ using System.Web.Helpers;
 using WatermentWebSCADA.Models;
 using System.Net.NetworkInformation;
 using WatermentWebSCADA.CustomFilters;
+using Microsoft.Ajax.Utilities;
 
 namespace WatermentWebSCADA.Controllers
 {
@@ -37,7 +38,7 @@ namespace WatermentWebSCADA.Controllers
                    
                     Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
                     Lokasjoner = db.locations.ToList(),
-                    Vedlikehold = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).ToList(),
+                    Vedlikehold = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).DistinctBy(x=>x.facilities_Id).ToList(),
                     Facilites = db.facilities.ToList(),
 
                 };
