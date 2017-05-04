@@ -50,7 +50,7 @@ namespace WatermentWebSCADA.Controllers
 
         string IpFacility;
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
         {

@@ -351,7 +351,7 @@ namespace WatermentWebSCADA.Controllers
                 if (user != null)
                 {
                     ///Checks to see if not normal user
-                    if (await UserManager.IsInRoleAsync(user.Id,"Admin"))
+                    if (await UserManager.IsInRoleAsync(user.Id,"Admin") || await UserManager.IsInRoleAsync(user.Id, "SuperUser") || await UserManager.IsInRoleAsync(user.Id, "Maintenance"))
                     {
                         await SignInAsync(user, model.RememberMe);
                         return RedirectToLocal(returnUrl);
