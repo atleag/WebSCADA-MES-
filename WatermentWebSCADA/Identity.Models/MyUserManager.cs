@@ -1,14 +1,28 @@
-﻿namespace codingfreaks.samples.Identity.Models
+﻿// Purpose: Enable ASP.NET Identity to support T4/DB-First and long / INT(11) as Primary Key.
+// All credits for this class goes to codingfreaks.de 
+// URL 1: http://www.codingfreaks.de/2014/01/11/microsoft-aspnet-identity-in-bestender-anwendung-einsetzen/
+// URL 2: http://www.codingfreaks.de/2014/06/16/microsoft-aspnet-identity-in-bestehender-anwendung-einsetzen-teil-2/
+// - Moskoskos
+
+namespace codingfreaks.samples.Identity.Models
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
 
+    /// <summary>
+    /// Custom implementation of the Identity UserManager.
+    /// </summary>
     public class MyUserManager : UserManager<MyUser, long>
     {
         #region constructors and destructors
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="store"></param>
         public MyUserManager(IUserStore<MyUser, long> store) : base(store)
         {
         }
