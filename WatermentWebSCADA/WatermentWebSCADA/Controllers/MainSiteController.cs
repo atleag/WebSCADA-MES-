@@ -22,10 +22,6 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
         Models.watermentdbEntities db2 = new Models.watermentdbEntities();
-
-
-        
-
         public bool PingHost(string ip)
         {
             
@@ -53,7 +49,7 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         // GET: Main
         public ActionResult Index(int? id, string sortOrder)
-        {
+          {
             foreach (var item in db.facilities)
             {
                 item.IP = "";
@@ -76,10 +72,7 @@ namespace WatermentWebSCADA.Controllers
                else
                 {
                     item.FacilityStatus_Id = 1;
-                }
-
-           
-              
+                }       
             }
             db.SaveChanges();
 
@@ -90,10 +83,10 @@ namespace WatermentWebSCADA.Controllers
                     {
                         //Getting desired data from the database, and returning it to the view.
                         Countries = db.countries.Where(c => c.continents.Id == id).ToList(),
-                        Alarmer = db.alarms.Where(o => o.Status == "Active").ToList(),
+                        Alarms = db.alarms.Where(o => o.Status == "Active").ToList(),
                         Equipment = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
-                        Lokasjoner = db.locations.ToList(),
-                        Vedlikehold = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).ToList(),
+                        Locations = db.locations.ToList(),
+                        Maintenance = db.maintenance.OrderBy(x => x.LastMaintenance).Take(10).ToList(),
                         Facilites = db.facilities.ToList(),
 
                         antallFacilities = db.facilities.Count(),
@@ -101,12 +94,7 @@ namespace WatermentWebSCADA.Controllers
                         antallOffline = db.facilities.Where(x => x.FacilityStatus_Id == 1).Count(),
                         noAlarms = db.alarms.Where(x=> x.Status == "Active").Count(),
                     };
-
-
-
-
                     return View(model);
-
                 }
             }
         [AllowAnonymous]

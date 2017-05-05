@@ -15,17 +15,17 @@ namespace WatermentWebSCADA.ViewModels
         
         public int ID { get; set; }
         public IEnumerable<facilities> Facilites { get; set; }
-        public IEnumerable<alarms> Alarmer { get; set; }
+        public IEnumerable<alarms> Alarms { get; set; }
         public IEnumerable<countries> Countries { get; set; }
  
-        public IEnumerable<equipments> Utstyr { get; set; }
-        public IEnumerable<locations> Lokasjoner { get; set; }
-        public IEnumerable<maintenance> Vedlikehold { get; set; }
+        public IEnumerable<equipments> Equipments { get; set; }
+        public IEnumerable<locations> Locations { get; set; }
+        public IEnumerable<maintenance> Maintenance { get; set; }
         public int equipments_Id { get; set; }
         public string Tag { get; set; }
         public virtual equipments equipments { get; set; }
      
-        public IEnumerable<User> Brukere { get; set; }
+        public IEnumerable<User> Users { get; set; }
         public List<countries_with_facilites_view>  countries { get; set; }  
         public List<equipments> Equipment { get; set; }
         
@@ -41,14 +41,14 @@ namespace WatermentWebSCADA.ViewModels
         public string Name { get; set; }
     }
 
-    public class ChartView
-    {
-        [Display(Name = "Tag id")]
-        public string Tag { get; set; }
+    //public class ChartView
+    //{
+    //    [Display(Name = "Tag id")]
+    //    public string Tag { get; set; }
 
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-    }
+    //    [Display(Name = "Last Name")]
+    //    public string LastName { get; set; }
+    //}
 
 
 

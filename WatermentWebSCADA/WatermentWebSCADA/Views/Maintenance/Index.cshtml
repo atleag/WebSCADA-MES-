@@ -17,15 +17,6 @@
 </head>
 <body style="margin:1px">
     <div class="container">
-        
-
-
-       
-
-    
-
-
-
         <div class="col-lg-12">
 
             <div class="frameTitle" id="style-1">
@@ -40,7 +31,7 @@
                         <th>Responsible person</th>
                         <th>Description</th>
                     </tr>
-                    @foreach (var item in Model.Vedlikehold)
+                    @foreach (var item in Model.Maintenance)
                     {
                         <tr>
                             <td>@item.facilities.Name</td>
@@ -53,12 +44,14 @@
                 </table>
 
             </div>
-
+           
         </div>
     </div>
     <div style="margin-top:15px">
         <button class="btn btn-success" style="width:175px; margin-left:30px" onclick="location.href='@Url.Action("MaintenanceEdit")';return false;">Maintenance</button>
     </div>
+    
+
 </body>
 
 
