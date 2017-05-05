@@ -1,5 +1,5 @@
-﻿//https://www.codeproject.com/Articles/730841/ASP-NET-MVC-Identity-Implementing-Group-Based
-//http://www.dotnetcurry.com/aspnet-mvc/1102/aspnet-mvc-role-based-security
+﻿// Credits and Source: https://www.codeproject.com/Articles/730841/ASP-NET-MVC-Identity-Implementing-Group-Based
+// Credits and Source: http://www.dotnetcurry.com/aspnet-mvc/1102/aspnet-mvc-role-based-security
 
 using System;
 using System.Collections.Generic;
