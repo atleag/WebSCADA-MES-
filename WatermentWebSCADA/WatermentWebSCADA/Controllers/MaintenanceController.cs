@@ -38,7 +38,10 @@ namespace WatermentWebSCADA.Controllers
 
                     Equipments = db.equipments.Include(c => c.alarms).Include(c => c.facilities).ToList(),
                     Location = db.locations.ToList(),
-                    Maintenance = db.maintenance.DistinctBy(x => x.facilities_Id).OrderBy(x => x.LastMaintenance).Take(10).ToList(),
+                    //Maintenance = db.maintenance.DistinctBy(x => x.facilities_Id).OrderByDescending(x => x.LastMaintenance).Take(10).ToList(),
+                    Maintenance = db.maintenance.OrderByDescending(x => x.LastMaintenance).DistinctBy
+                    (x => x.facilities_Id).OrderBy(x => x.LastMaintenance).Take(10).ToList(),
+                    
                     Facilites = db.facilities.ToList(),
 
                 };
