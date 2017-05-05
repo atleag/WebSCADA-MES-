@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-//using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
 using System.Data;
 using System.Data.Entity;
@@ -255,13 +254,9 @@ namespace WatermentWebSCADA.Controllers
              DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
             DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
              String Tag = Convert.ToString(Request.Form["txtTags"].ToString());
-        
-            
-
+   
             float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
             DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
-
-        
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
             

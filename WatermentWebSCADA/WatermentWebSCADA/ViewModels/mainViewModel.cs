@@ -40,17 +40,5 @@ namespace WatermentWebSCADA.ViewModels
     {
         public string Name { get; set; }
     }
-
-    //public class ChartView
-    //{
-    //    [Display(Name = "Tag id")]
-    //    public string Tag { get; set; }
-
-    //    [Display(Name = "Last Name")]
-    //    public string LastName { get; set; }
-    //}
-
-
-
 }
 
