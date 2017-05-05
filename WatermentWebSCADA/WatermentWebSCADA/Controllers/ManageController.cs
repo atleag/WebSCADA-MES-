@@ -1,4 +1,14 @@
-﻿//using System;
+﻿/* ----------------------------------------------- NOTICE -----------------------------------------------
+ *          THIS CONTROLLER IS MAINLY BASED ON THE DEFAULT MVC TEMPLATE PROVIDED BY MICROSOFT 
+ * 
+ * This controller is not used in the current state of the project, but may be uncommented for further 
+ * expansion of the application's functionality if needed by the developers or the company.
+ * 
+ * - Moskoskos
+*/
+
+
+//using System;
 //using System.Linq;
 //using System.Threading.Tasks;
 //using System.Web;

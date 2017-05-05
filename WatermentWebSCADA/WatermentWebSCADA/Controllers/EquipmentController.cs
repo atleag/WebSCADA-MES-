@@ -90,7 +90,11 @@ namespace WatermentWebSCADA.Controllers
                     SIUnits = model.SIUnits,
                     Description = model.Description,
                     LastCalibrated = model.LastCalibrated,
+                    InstallDate = model.InstallDate,
+                    TypeSpecification = model.TypeSpecification,
+                    Manufacturer = model.Manufacturer,
                     facilities_Id = model.facilities_Id
+                    
                     
                     
 

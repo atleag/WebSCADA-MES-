@@ -1,4 +1,7 @@
-﻿using System;
+﻿//https://www.codeproject.com/Articles/730841/ASP-NET-MVC-Identity-Implementing-Group-Based
+//http://www.dotnetcurry.com/aspnet-mvc/1102/aspnet-mvc-role-based-security
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +9,7 @@ using System.Web.Mvc;
 
 namespace WatermentWebSCADA.CustomFilters
 {
-    //https://www.codeproject.com/Articles/730841/ASP-NET-MVC-Identity-Implementing-Group-Based
-    //http://www.dotnetcurry.com/aspnet-mvc/1102/aspnet-mvc-role-based-security
+
     public class AuthLogAttribute : AuthorizeAttribute
     {
         public AuthLogAttribute()

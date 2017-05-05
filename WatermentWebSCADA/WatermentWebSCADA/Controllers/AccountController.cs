@@ -339,7 +339,13 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
+        /// <summary>
+        /// Called on user login attempt. Takes the model and the return URL and checks what to do with the login request.
+        /// 
+        /// </summary>
+        /// <param name="model">Model that contains the login credentials</param>
+        /// <param name="returnUrl">Url to redirect other roles than "user" to the main index.</param>
+        /// <returns></returns>
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -357,7 +363,6 @@ namespace WatermentWebSCADA.Controllers
                         await SignInAsync(user, model.RememberMe);
                         return RedirectToLocal(returnUrl);
                     }
-                    //Checks to see if user
                     if(await UserManager.IsInRoleAsync(user.Id,"User"))
                     {
                         using (watermentdbEntities context = new watermentdbEntities())
