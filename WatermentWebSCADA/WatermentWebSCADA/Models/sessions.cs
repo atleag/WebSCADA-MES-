@@ -12,12 +12,12 @@ namespace WatermentWebSCADA.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sessions
+    public partial class Sessions
     {
         public int Id { get; set; }
         public Nullable<System.DateTime> LoggedIn { get; set; }
         public Nullable<System.DateTime> LoggedOut { get; set; }
-        public int users_Id { get; set; }
+        public int User_Id { get; set; }
     
         public virtual User User { get; set; }
     }

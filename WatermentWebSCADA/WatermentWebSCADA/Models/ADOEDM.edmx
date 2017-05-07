@@ -121,15 +121,15 @@
           <Property Name="Name" Type="varchar" MaxLength="256" />
           <Property Name="Description" Type="varchar" MaxLength="400" />
         </EntityType>
-        <EntityType Name="sessions">
+        <EntityType Name="Sessions">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="users_Id" />
+            <PropertyRef Name="User_Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LoggedIn" Type="datetime" Precision="0" />
           <Property Name="LoggedOut" Type="datetime" Precision="0" />
-          <Property Name="users_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -175,14 +175,6 @@
           <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserRegistrationToken">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Token" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -370,15 +362,15 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_sessions_users1">
+        <Association Name="fk_sessions_User1">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="sessions" Type="Self.sessions" Multiplicity="*" />
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="sessions">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="Sessions">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -421,11 +413,10 @@ warning 6002: The table/view 'def.watermentdb.countries_with_facilites_view' doe
           <EntitySet Name="maintenance" EntityType="Self.maintenance" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="measurements" EntityType="Self.measurements" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="sessions" EntityType="Self.sessions" Schema="watermentdb" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="UserClaim" EntityType="Self.UserClaim" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="watermentdb" store:Type="Tables" />
-          <EntitySet Name="UserRegistrationToken" EntityType="Self.UserRegistrationToken" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="watermentdb" store:Type="Tables" />
           <EntitySet Name="Client_Conection" EntityType="Self.Client_Conection" store:Type="Views" store:Schema="watermentdb">
             <DefiningQuery>SELECT
@@ -487,9 +478,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="equipments" EntitySet="equipments" />
             <End Role="measurements" EntitySet="measurements" />
           </AssociationSet>
-          <AssociationSet Name="fk_sessions_users1" Association="Self.fk_sessions_users1">
+          <AssociationSet Name="fk_sessions_User1" Association="Self.fk_sessions_User1">
             <End Role="User" EntitySet="User" />
-            <End Role="sessions" EntitySet="sessions" />
+            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
           <AssociationSet Name="fk_users_locations1" Association="Self.fk_users_locations1">
             <End Role="locations" EntitySet="locations" />
@@ -515,11 +506,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <EntitySet Name="maintenance" EntityType="watermentdbModel.maintenance" />
           <EntitySet Name="measurements" EntityType="watermentdbModel.measurements" />
           <EntitySet Name="Role" EntityType="watermentdbModel.Role" />
-          <EntitySet Name="sessions" EntityType="watermentdbModel.sessions" />
+          <EntitySet Name="Sessions" EntityType="watermentdbModel.Sessions" />
           <EntitySet Name="User" EntityType="watermentdbModel.User" />
           <EntitySet Name="UserClaim" EntityType="watermentdbModel.UserClaim" />
           <EntitySet Name="UserLogin" EntityType="watermentdbModel.UserLogin" />
-          <EntitySet Name="UserRegistrationToken" EntityType="watermentdbModel.UserRegistrationToken" />
           <EntitySet Name="UserRole" EntityType="watermentdbModel.UserRole" />
           <EntitySet Name="Client_Conection" EntityType="watermentdbModel.Client_Conection" />
           <EntitySet Name="countries_with_facilites_view" EntityType="watermentdbModel.countries_with_facilites_view" />
@@ -567,9 +557,9 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             <End Role="Role" EntitySet="Role" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
-          <AssociationSet Name="fk_sessions_users1" Association="watermentdbModel.fk_sessions_users1">
+          <AssociationSet Name="fk_sessions_User1" Association="watermentdbModel.fk_sessions_User1">
             <End Role="User" EntitySet="User" />
-            <End Role="sessions" EntitySet="sessions" />
+            <End Role="Sessions" EntitySet="Sessions" />
           </AssociationSet>
           <AssociationSet Name="ApplicationUser_Claims" Association="watermentdbModel.ApplicationUser_Claims">
             <End Role="User" EntitySet="User" />
@@ -719,16 +709,16 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UserRole" Relationship="watermentdbModel.IdentityRoles_Users" FromRole="Role" ToRole="UserRole" />
         </EntityType>
-        <EntityType Name="sessions">
+        <EntityType Name="Sessions">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="users_Id" />
+            <PropertyRef Name="User_Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LoggedIn" Type="DateTime" />
           <Property Name="LoggedOut" Type="DateTime" />
-          <Property Name="users_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="watermentdbModel.fk_sessions_users1" FromRole="sessions" ToRole="User" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="watermentdbModel.fk_sessions_User1" FromRole="Sessions" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -757,7 +747,7 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="locations_countries_continents_Id" Type="Int32" />
           <NavigationProperty Name="facilities" Relationship="watermentdbModel.fk_facilities_User1" FromRole="User" ToRole="facilities" />
           <NavigationProperty Name="locations" Relationship="watermentdbModel.fk_users_locations1" FromRole="User" ToRole="locations" />
-          <NavigationProperty Name="sessions" Relationship="watermentdbModel.fk_sessions_users1" FromRole="User" ToRole="sessions" />
+          <NavigationProperty Name="Sessions" Relationship="watermentdbModel.fk_sessions_User1" FromRole="User" ToRole="Sessions" />
           <NavigationProperty Name="UserClaim" Relationship="watermentdbModel.ApplicationUser_Claims" FromRole="User" ToRole="UserClaim" />
           <NavigationProperty Name="UserLogin" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="User" ToRole="UserLogin" />
           <NavigationProperty Name="UserRole" Relationship="watermentdbModel.ApplicationUser_Roles" FromRole="User" ToRole="UserRole" />
@@ -782,14 +772,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
           <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="watermentdbModel.ApplicationUser_Logins" FromRole="UserLogin" ToRole="User" />
-        </EntityType>
-        <EntityType Name="UserRegistrationToken">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="Token" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -963,15 +945,15 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_sessions_users1">
+        <Association Name="fk_sessions_User1">
           <End Type="watermentdbModel.User" Role="User" Multiplicity="1" />
-          <End Type="watermentdbModel.sessions" Role="sessions" Multiplicity="*" />
+          <End Type="watermentdbModel.Sessions" Role="Sessions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="sessions">
-              <PropertyRef Name="users_Id" />
+            <Dependent Role="Sessions">
+              <PropertyRef Name="User_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1138,10 +1120,10 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sessions">
-            <EntityTypeMapping TypeName="watermentdbModel.sessions">
-              <MappingFragment StoreEntitySet="sessions">
-                <ScalarProperty Name="users_Id" ColumnName="users_Id" />
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="watermentdbModel.Sessions">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="LoggedOut" ColumnName="LoggedOut" />
                 <ScalarProperty Name="LoggedIn" ColumnName="LoggedIn" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1191,15 +1173,6 @@ FROM `countries_with_facilites_view` AS `countries_with_facilites_view`</Definin
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRegistrationToken">
-            <EntityTypeMapping TypeName="watermentdbModel.UserRegistrationToken">
-              <MappingFragment StoreEntitySet="UserRegistrationToken">
-                <ScalarProperty Name="Token" ColumnName="Token" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

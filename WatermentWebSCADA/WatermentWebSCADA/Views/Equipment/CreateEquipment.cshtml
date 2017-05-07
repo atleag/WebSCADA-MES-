@@ -4,89 +4,83 @@
     
     Layout = "~/Views/Shared/_Layout_scripts.cshtml";
 }
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SIUnits, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SIUnits, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SIUnits, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastCalibrated, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastCalibrated, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastCalibrated, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstallDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InstallDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InstallDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TypeSpecification, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TypeSpecification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TypeSpecification, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manufacturer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.facilities_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.facilities_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.facilities_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-success" value="Save" />
+                <a class="btn btn-success" href="~/Equipment/Index/">Back</a>
+            </div>
+        </div>
+    </div>
+        }
 
 
-            @using (Html.BeginForm("CreateEquipment", "Equipment", FormMethod.Post))
-            {
-                @Html.ValidationSummary(true)
-                    <legend>Equipment</legend>
-                    <table width="100%">
-                        
-                        <tr>
-                            <td>@Html.LabelFor(model => model.Tag)</td>
-                            <td>
-                                @Html.EditorFor(model => model.Tag)
-                                @Html.ValidationMessageFor(model => model.Tag)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(model => model.SIUnits)</td>
-                            <td>
-                                @Html.EditorFor(model => model.SIUnits)
-                                @Html.ValidationMessageFor(model => model.SIUnits)
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>@Html.LabelFor(model => model.Description)</td>
-                            <td>
-                                @Html.EditorFor(model => model.Description)
-                                @Html.ValidationMessageFor(model => model.Description)
-                            </td>
-
-                        </tr>
-
-                        <tr>
-                            <td>@Html.LabelFor(model => model.LastCalibrated)</td>
-                            <td>
-                                @Html.EditorFor(model => model.LastCalibrated)
-                                @Html.ValidationMessageFor(model => model.LastCalibrated)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(model => model.InstallDate)</td>
-                            <td>
-                                @Html.EditorFor(model => model.InstallDate)
-                                @Html.ValidationMessageFor(model => model.InstallDate)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(model => model.TypeSpecification)</td>
-                            <td>
-                                @Html.EditorFor(model => model.TypeSpecification)
-                                @Html.ValidationMessageFor(model => model.TypeSpecification)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(model => model.Manufacturer)</td>
-                            <td>
-                                @Html.EditorFor(model => model.Manufacturer)
-                                @Html.ValidationMessageFor(model => model.Manufacturer)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>@Html.LabelFor(model => model.facilities_Id)</td>
-                            <td>
-                                @Html.EditorFor(model => model.facilities_Id)
-                                @Html.ValidationMessageFor(model => model.facilities_Id)
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <button type="submit" id="btnSave" name="Command" value="Save" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
-                                    <span class="ui-button-text">Save</span>
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
-                    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 
 
