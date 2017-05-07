@@ -63,10 +63,10 @@ namespace WatermentWebSCADA.Controllers
         //This action result is used to open the partial view input box for adding equipment.
 
         [AuthLog(Roles = "Admin, SuperUser")]
-        public ActionResult ViewCreate()
+        public ActionResult CreateEquipment()
         {
             // return PartialView("_CreateEquipment", model);
-            return View("CreateEquipment");
+            return View();
         }
 
 
@@ -82,29 +82,36 @@ namespace WatermentWebSCADA.Controllers
             }
             else
             {
-
-                var db = new watermentdbEntities();
-                db.equipments.Add(new equipments
+                try
                 {
-                    Tag = model.Tag,
-                    SIUnits = model.SIUnits,
-                    Description = model.Description,
-                    LastCalibrated = model.LastCalibrated,
-                    InstallDate = model.InstallDate,
-                    TypeSpecification = model.TypeSpecification,
-                    Manufacturer = model.Manufacturer,
-                    facilities_Id = model.facilities_Id
-                    
-                    
-                    
+                    using (watermentdbEntities db = new watermentdbEntities())
+                    {
+                        db.equipments.Add(new equipments
+                        {
+                            Tag = model.Tag,
+                            SIUnits = model.SIUnits,
+                            Description = model.Description,
+                            LastCalibrated = model.LastCalibrated,
+                            InstallDate = model.InstallDate,
+                            TypeSpecification = model.TypeSpecification,
+                            Manufacturer = model.Manufacturer,
+                            facilities_Id = model.facilities_Id
+                        });
+                        db.SaveChanges();
+                        ModelState.Clear();
+                    }
+                    return RedirectToAction("Index", new { id = model.facilities_Id });
+                }
+                catch (Exception)
+                {
 
-                });
+                    throw;
+                }
+               // var db = new watermentdbEntities();
                 //Need to create some error handling here.
-                db.SaveChanges();
-                ModelState.Clear();
             }
 
-            return RedirectToAction("Index", new { id = model.facilities_Id });
+           
         }
 
         [AuthLog(Roles = "Admin, SuperUser")]
