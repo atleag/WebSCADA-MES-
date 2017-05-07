@@ -48,84 +48,84 @@ namespace WatermentWebSCADA.Controllers
             return View(fevmReturn);
         }
 
-        // GET: UsersManagement/Details/5
-        [AuthLog(Roles = "Admin, SuperUser")]
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        //// GET: UsersManagement/Details/5
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
 
-        // GET: UsersManagement/Create
-        [AuthLog(Roles = "Admin, SuperUser")]
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: UsersManagement/Create
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: UsersManagement/Create
-        [AuthLog(Roles = "Admin, SuperUser")]
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        //// POST: UsersManagement/Create
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        [AuthLog(Roles = "Admin, SuperUser")]
-        // GET: UsersManagement/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //// GET: UsersManagement/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        [AuthLog(Roles = "Admin, SuperUser")]
-        // POST: UsersManagement/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //// POST: UsersManagement/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        [AuthLog(Roles = "Admin, SuperUser")]
-        // GET: UsersManagement/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        //[AuthLog(Roles = "Admin, SuperUser")]
+        //// GET: UsersManagement/Delete/5
+        //public ActionResult Delete(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: UsersManagement/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+        //// POST: UsersManagement/Delete/5
+        //[HttpPost]
+        //public ActionResult Delete(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         [AuthLog(Roles = "Admin, SuperUser, Maintenance")]
         public ActionResult UserFacility()
@@ -178,17 +178,20 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, SuperUser")]
         public ActionResult LinkUserAndFacility()
         {
-            watermentdbEntities context = new watermentdbEntities();
+            using (watermentdbEntities context = new watermentdbEntities())
+            {
+                SelectList UserList = new SelectList(context.User.ToList(), "Id", "UserName");
+                SelectList FacilityList = new SelectList(context.facilities.Where(x => x.User_Id == null).ToList(), "Id", "Name");
+                ViewData["Users"] = UserList;
+                ViewData["Facilities"] = FacilityList;
+                ViewData.Model = new UserAndFacilityLinkVM();
+                return View();
+            }
             //ViewBag.Facility = new SelectList(context.facilities.ToList(), "Name", "Name");
             //ViewBag.Users = new SelectList(context.User.ToList(), "UserName", "UserName");
             //return View();
 
-            SelectList UserList= new SelectList(context.User.ToList(), "Id", "UserName");
-            SelectList FacilityList = new SelectList(context.facilities.Where(x => x.User_Id == null).ToList(), "Id", "Name");
-            ViewData["Users"] = UserList;
-            ViewData["Facilities"] = FacilityList;
-            ViewData.Model = new UserAndFacilityLinkVM();
-            return View();
+
         }
         /// <summary>
         /// 

@@ -10,7 +10,6 @@
 
 </head>
 <body> @*Shows the equipment for the respective facility in which the user is located*@
-    
        
     <div class="frameTitle" id="style-1" style="margin-left:15px;margin-right:40px;">
         <h3 align="center">All Equipments for the facility</h3>
@@ -78,13 +77,29 @@
                             </td>
                          
                         </tr>
+                        
+
                     }
+
+
                 </table>
+
 
             </div>
 
         </div>
-    <div style="margin-left: 15px;">@Html.ActionLink("Add Equipment", "CreateEquipment", "Equipment", null, "", "", Model, new { @class = "modal-link btn btn-success" })</div>
+    <div>
+        @foreach (var item in Model)
+        {
+            <tr><td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("CreateEquipment", "Equipment", new { id = item.facilities_Id })';return false;">Add Equipment</button></td> </tr>
+            @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-primary", @style = "color:white" })
+            break;
+        }
+        
+    </div>
+
+    @*<div style="margin-left: 15px;">@Html.ActionLink("Add Equipment", "CreateEquipment", "Equipment", null, "", "", Model, new { @class = "modal-link btn btn-success" })</div>*@
+
 </body>
 
     <div id="dialog-edit" style="display: none">

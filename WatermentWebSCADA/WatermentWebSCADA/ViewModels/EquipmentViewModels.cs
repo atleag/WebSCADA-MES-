@@ -6,6 +6,7 @@ using WatermentWebSCADA.Models;
 using WatermentWebSCADA.ViewModels;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace WatermentWebSCADA.ViewModels
 {
@@ -33,7 +34,6 @@ namespace WatermentWebSCADA.ViewModels
 
         [Display(Name = "Manufacturer")]
         public string Manufacturer { get; set; }
-
 
         public int facilities_Id { get; set; }
 
@@ -66,8 +66,12 @@ namespace WatermentWebSCADA.ViewModels
         [Display(Name = "Manufacturer")]
         public string Manufacturer { get; set; }
 
+
+        public List<SelectListItem> ddlfacilities { get; set; }
+
         [Required]
-        [Display(Name ="Facilities in which the equipment is added")]
+        [Display(Name ="Facility")]
         public int facilities_Id { get; set; }
+
     }
 }

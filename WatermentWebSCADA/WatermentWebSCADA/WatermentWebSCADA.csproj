@@ -563,7 +563,6 @@
     <Content Include="Views\Equipment\Edit.cshtml" />
     <Content Include="Views\UserManagement\Index.cshtml" />
     <Content Include="Views\UserManagement\GetRolesForUser.cshtml" />
-    <Content Include="Views\UserManagement\_ListRoles.cshtml" />
     <Content Include="Views\UserManagement\UserFacility.cshtml" />
     <Content Include="Views\Maintenance\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_scripts.cshtml" />
@@ -578,7 +577,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewComponent\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

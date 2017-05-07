@@ -20,7 +20,7 @@ namespace WatermentWebSCADA.Controllers
             watermentdbEntities db = new watermentdbEntities(); //dbcontect class
             List<EquipmentVM> facilityEquipmentVM = new List<EquipmentVM>(); // to hold list of Customer and order details
             var equipmentlist = (from Eq in db.equipments.Where(x => x.facilities_Id == id)
-                                select new {Eq.Id, Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification}).ToList();
+                                select new {Eq.Id, Eq.Tag, Eq.SIUnits, Eq.Description, Eq.LastCalibrated, Eq.InstallDate, Eq.Manufacturer, Eq.TypeSpecification, Eq.facilities_Id}).ToList();
             //query getting data from database from joining two tables and storing data in customerlist
             foreach (var item in equipmentlist)
             {
@@ -32,6 +32,7 @@ namespace WatermentWebSCADA.Controllers
                 fevm.InstallDate = item.InstallDate;
                 fevm.Manufacturer = item.Manufacturer;
                 fevm.TypeSpecification = item.TypeSpecification;
+                fevm.facilities_Id = item.facilities_Id;
                 facilityEquipmentVM.Add(fevm);
             }
             //Using foreach loop fill data from custmerlist to List<CustomerVM>.
@@ -60,13 +61,32 @@ namespace WatermentWebSCADA.Controllers
         //    return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         //}
 
-        //This action result is used to open the partial view input box for adding equipment.
-
+        
+        
+        /// <summary>
+        /// Used to create the equipment. The list, which is a bit hacky, makes sure that the equipment models is implcity assigned to the desierd facility
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AuthLog(Roles = "Admin, SuperUser")]
-        public ActionResult CreateEquipment()
+        public ActionResult CreateEquipment(int id)
         {
-            // return PartialView("_CreateEquipment", model);
-            return View();
+            try
+            {
+                using (watermentdbEntities context = new watermentdbEntities())
+                {
+                    SelectList FacilityList = new SelectList(context.facilities.Where(x => x.Id == id).ToList(), "Id", "Name");
+                    ViewData["Facilities"] = FacilityList;
+                    ViewData.Model = new EquipmentAddVM();
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
 
