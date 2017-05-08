@@ -92,6 +92,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
+               @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-success", @style = "color:white" })
             </div>
         </div>
     </div>

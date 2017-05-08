@@ -91,8 +91,8 @@
     <div>
         @foreach (var item in Model)
         {
-            <tr><td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("CreateEquipment", "Equipment", new { id = item.facilities_Id })';return false;">Add Equipment</button></td> </tr>
-            @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-primary", @style = "color:white" })
+            <tr><td><button class="btn btn-success" style="width:150px; margin-left:15px;" onclick="location.href='@Url.Action("CreateEquipment", "Equipment", new { id = item.facilities_Id })';return false;">Add Equipment</button></td> </tr>
+            @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-success", @style = "color:white" })
             break;
         }
         
