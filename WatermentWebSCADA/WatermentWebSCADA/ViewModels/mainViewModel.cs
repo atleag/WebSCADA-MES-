@@ -30,9 +30,9 @@ namespace WatermentWebSCADA.ViewModels
         public List<equipments> Equipment { get; set; }
         
 
-        public int antallFacilities { get; internal set; }
-        public int antallOnline { get; internal set; }
-        public int antallOffline { get; internal set; }
+        public int NumberOfFacilities { get; internal set; }
+        public int NumberOnline { get; internal set; }
+        public int NumberOffline { get; internal set; }
         public int noAlarms { get; internal set; }
     }
 
