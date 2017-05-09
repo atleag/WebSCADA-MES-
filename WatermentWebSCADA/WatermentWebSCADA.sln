@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatermentWebSCADA", "Waterm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Models", "Identity.Models\Identity.Models.csproj", "{509DF2BA-93F6-4DF9-B72D-B215EB609723}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject2", "ModelingProject2\ModelingProject2.modelproj", "{EE04274A-3FC5-4FC6-A343-E115443E1357}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{509DF2BA-93F6-4DF9-B72D-B215EB609723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{509DF2BA-93F6-4DF9-B72D-B215EB609723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{509DF2BA-93F6-4DF9-B72D-B215EB609723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE04274A-3FC5-4FC6-A343-E115443E1357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE04274A-3FC5-4FC6-A343-E115443E1357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE04274A-3FC5-4FC6-A343-E115443E1357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE04274A-3FC5-4FC6-A343-E115443E1357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

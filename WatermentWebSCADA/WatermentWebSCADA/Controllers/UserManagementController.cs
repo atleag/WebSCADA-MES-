@@ -130,49 +130,45 @@ namespace WatermentWebSCADA.Controllers
         [AuthLog(Roles = "Admin, SuperUser, Maintenance")]
         public ActionResult UserFacility()
         {
-            //THESE lines of codes works only if the many to many table is visible to EF. 
-            //var result = (from u in context.User
-            //                    join uf in context.users_has_facilities on u.Id equals uf.users_Id
-            //                    join f in context.facilities on uf.facilities_Id equals f.Id
-            //                    orderby u.Id
-            //                    select new { uId = u.Id, u.UserName, fid = f.Id, f.Name, f.SerialNumber }).ToList();
-
-            using (watermentdbEntities context = new watermentdbEntities())
+            try
             {
-                List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
-                var result = (
-                                //// instance from context
-                                //from a in context.User
-                                //    // instance from navigation property
-                                //from b in a.facilities
-                                //    //join to bring useful data
-                                //join c in context.facilities on b.Id equals c.User_Id
-                                 from a in context.User
-                                 join b in context.facilities on a.Id equals b.User_Id
-                                 select new
-                                {
-                                    uId = a.Id,
-                                    a.UserName,
-                                    b.Id,
-                                    b.Name,
-                                    b.SerialNumber
-                                }).ToList();
-
-                foreach (var item in result)
+                using (watermentdbEntities context = new watermentdbEntities())
                 {
-                    UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
-                    uafvm.UserId = item.uId;
-                    uafvm.UserName = item.UserName;
-                    uafvm.FacilityId = item.Id;
-                    uafvm.FacilityName = item.Name;
-                    uafvm.SerialNumber = item.SerialNumber;
+                    List<UserAndFacilityVM> uafvmReturn = new List<UserAndFacilityVM>();
+                    var result = (
+                                     from a in context.User
+                                     join b in context.facilities on a.Id equals b.User_Id
+                                     select new
+                                     {
+                                         uId = a.Id,
+                                         a.UserName,
+                                         b.Id,
+                                         b.Name,
+                                         b.SerialNumber
+                                     }).ToList();
 
-                    uafvmReturn.Add(uafvm);
+                    foreach (var item in result)
+                    {
+                        UserAndFacilityVM uafvm = new UserAndFacilityVM(); // ViewModel
+                        uafvm.UserId = item.uId;
+                        uafvm.UserName = item.UserName;
+                        uafvm.FacilityId = item.Id;
+                        uafvm.FacilityName = item.Name;
+                        uafvm.SerialNumber = item.SerialNumber;
 
+                        uafvmReturn.Add(uafvm);
+
+                    }
+                    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
+                    return View(uafvmReturn);
                 }
-                //Using foreach loop fill data from custmerlist to List<CustomerVM>.
-                return View(uafvmReturn);
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         [AuthLog(Roles = "Admin, SuperUser")]
