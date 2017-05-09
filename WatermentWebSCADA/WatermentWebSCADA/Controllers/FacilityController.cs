@@ -78,17 +78,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
   
-        public ContentResult GetData()
-        {
-            using (var db = new watermentdbEntities())
-            {
-                var result = (from tags in db.measurements
-                              orderby tags.Recorded ascending
-                              select new { tags.ProcessValue }).ToList();
-                //return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
-                return Content(JsonConvert.SerializeObject(result), "application/json");
-            }
-        }
+    
         [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
         public ActionResult FacilityOverview(int? id)
         {
@@ -108,17 +98,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult Get(int id)
-        {
-            using (var db = new Models.watermentdbEntities())
-            {
-                var model = new MainViewModel
-                {
-                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),                  
-                };
-                return View(model);
-            }
-        }
+     
 
         [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
         public ActionResult AddFacility2()
