@@ -13,7 +13,7 @@ namespace WatermentWebSCADA.Controllers
 {
     public class EquipmentController : Controller
     {
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         // GET: Equipment with their measurred values.
         public ActionResult Index(int? id)
         {
@@ -68,7 +68,7 @@ namespace WatermentWebSCADA.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult CreateEquipment(int id)
         {
             try
@@ -92,7 +92,7 @@ namespace WatermentWebSCADA.Controllers
 
 
         //This action result takes the input in the partial view and stores it to the DB before returning to the list of equipments.
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         [HttpPost]
         public ActionResult CreateEquipment(EquipmentAddVM model)
         {
@@ -134,7 +134,7 @@ namespace WatermentWebSCADA.Controllers
            
         }
 
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         // GET: /Equipment/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -151,7 +151,7 @@ namespace WatermentWebSCADA.Controllers
             return View(eq);
         }
 
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         // POST: /Equipment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

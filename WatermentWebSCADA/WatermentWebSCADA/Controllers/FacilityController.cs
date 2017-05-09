@@ -79,7 +79,7 @@ namespace WatermentWebSCADA.Controllers
         }
   
     
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult FacilityOverview(int? id)
         {
 
@@ -100,7 +100,7 @@ namespace WatermentWebSCADA.Controllers
 
      
 
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult AddFacility2()
         {
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
@@ -109,7 +109,7 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,SerialNumber, ProgramVersion,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
