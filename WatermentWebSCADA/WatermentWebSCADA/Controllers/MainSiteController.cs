@@ -21,7 +21,7 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
         Models.watermentdbEntities db2 = new Models.watermentdbEntities();
-        public bool PingHost(string ip)
+        public bool PingHost(string ip) 
         {
             
             bool pingable = false;

@@ -137,7 +137,16 @@ namespace WatermentWebSCADA.Controllers
             if (ModelState.IsValid)
             {
                 db.facilities.Add(facilities);
-                db.SaveChanges();
+                try
+                {
+                   db.SaveChanges();
+                }
+                catch (InvalidOperationException e)
+                {
+
+                    throw new InvalidOperationException("Data could not be saved", e);
+                }
+           
                 return RedirectToAction("FacilityOverview");
             }
 
