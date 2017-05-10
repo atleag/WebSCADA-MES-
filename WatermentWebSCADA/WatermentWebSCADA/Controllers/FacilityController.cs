@@ -1,35 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WatermentWebSCADA.ViewModels;
 using System.Data;
 using System.Data.Entity;
 using System.Net;
-using MySql.Data.MySqlClient;
-using MySql.Data.Entity;
-using System.Data.Common;
 using System.Web.Helpers;
 using WatermentWebSCADA.Models;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using System.Web.UI;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Net.Http;
 using WatermentWebSCADA.CustomFilters;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using codingfreaks.samples.Identity.Models;
 
+//Uses the model "MainViewModel"- Same as MainSiteController//
 
 namespace WatermentWebSCADA.Controllers
 {
     public class FacilityController : Controller
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
-       
+
         string IpClient;
 
 
@@ -51,25 +38,25 @@ namespace WatermentWebSCADA.Controllers
             // the Client IP.
             foreach (var item in db.facilities.Where(c => c.Id == id))
             {
-                
+
                 item.IP = IpClient;
             }
 
             // Saves the changes to the DB
             db.SaveChanges();
 
-        
+
             using (var db = new Models.watermentdbEntities())
             {
                 var model = new MainViewModel
                 {
                     //Getting desired data from the database, and returning it to the view.
-                    Alarms = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x=>x.AlarmOccured).ToList(),
+                    Alarms = db.alarms.Where(x => x.equipments_facilities_Id == id).Where(o => o.Status == "Active").OrderByDescending(x => x.AlarmOccured).ToList(),
                     Facilites = db.facilities.Where(c => c.Id == id).ToList(),
                     Countries = db.countries.ToList(),
                     Locations = db.locations.ToList(),
                     Users = db.User.ToList(),
-                    Equipments = db.equipments.Where(x=>x.facilities_Id==id).ToList(),
+                    Equipments = db.equipments.Where(x => x.facilities_Id == id).ToList(),
 
 
                 };
@@ -77,8 +64,8 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
-  
-    
+
+
         [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult FacilityOverview(int? id)
         {
@@ -98,7 +85,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-     
+
 
         [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult AddFacility2()
@@ -121,14 +108,14 @@ namespace WatermentWebSCADA.Controllers
                 db.facilities.Add(facilities);
                 try
                 {
-                   db.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch (InvalidOperationException e)
                 {
 
                     throw new InvalidOperationException("Data could not be saved", e);
                 }
-           //Returns Facility overview when data has been saved
+                //Returns Facility overview when data has been saved
                 return RedirectToAction("FacilityOverview");
             }
             //writes data from dropdown lists to facilities table(collects data from locations, countries and continents tables)
@@ -207,29 +194,29 @@ namespace WatermentWebSCADA.Controllers
 
 
 
-       
+
         public static class Theme
         {
 
             public const string Green = "<Chart BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"#ABC27A\" BorderlineDashStyle=\"Solid\" BorderWidth=\"5\" Palette=\"Chocolate\">\r\n    <ChartAreas>\r\n        <ChartArea Name=\"Default\" _Template_=\"All\" BackColor=\"#ABC27A\" BackGradientStyle=\"TopBottom\" BackSecondaryColor=\"229, 217, 148\" BorderColor=\"64, 64, 64, 64\" BorderDashStyle=\"Solid\" ShadowColor=\"171,194,122\" /> \r\n    </ChartAreas>\r\n    <Legends>\r\n        <Legend _Template_=\"All\" BackColor=\"229, 217, 148\" Font=\"Trebuchet MS, 8.25pt, style=Bold\" IsTextAutoFit=\"False\" /> \r\n    </Legends>\r\n   <BorderSkin SkinStyle=\"none\" /> \r\n   </Chart>";
-          
+
         }
 
 
         public ActionResult TempChart(int? id)
         {
             //Code to fill the Temperature Chart with values from the database.
-            
-        float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x=>x.equipments.Description== "Temperature Reactor").Select(x => x.Recorded).ToArray();
 
-           
+            float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Description == "Temperature Reactor").Select(x => x.ProcessValue).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Description == "Temperature Reactor").Select(x => x.Recorded).ToArray();
 
-            var myChart = new Chart(width: 1100, height: 350,theme:Theme.Green)
-              
-                   
+
+
+            var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
+
+
             .SetYAxis("Temp", 0, 50)
-           
+
             .AddTitle("Reactor Core Temperature Chart")
             .AddSeries(
                 chartType: "Line",
@@ -241,21 +228,21 @@ namespace WatermentWebSCADA.Controllers
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
         }
-        
+
         public ActionResult ValueChart(int? id)
         {
             //Code to fill the optional Chart with values from the database.
 
-           
-             DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
+
+            DateTime? From = Convert.ToDateTime(Request.Form["txtFrom"].ToString());
             DateTime? To = Convert.ToDateTime(Request.Form["txtTo"].ToString());
-             String Tag = Convert.ToString(Request.Form["txtTags"].ToString());
-   
+            String Tag = Convert.ToString(Request.Form["txtTags"].ToString());
+
             float?[] Measurement = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.ProcessValue).ToArray();
-            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x=>x.Recorded>From && x.Recorded<To).Select(x => x.Recorded).ToArray();
+            DateTime?[] Date = db.measurements.Where(i => i.equipments_facilities_Id == id).Where(x => x.equipments.Tag == Tag).Where(x => x.Recorded > From && x.Recorded < To).Select(x => x.Recorded).ToArray();
 
             var myChart = new Chart(width: 1100, height: 350, theme: Theme.Green)
-            
+
             .SetYAxis("Value", 0, 50)
             .AddTitle(Tag)
             .AddSeries(
@@ -268,10 +255,10 @@ namespace WatermentWebSCADA.Controllers
 
 
             return File(myChart.ToWebImage().GetBytes(), "image/jpeg");
-            
+
 
         }
     }
-              
-            
+
+
 }
