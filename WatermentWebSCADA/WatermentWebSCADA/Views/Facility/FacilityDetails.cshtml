@@ -11,34 +11,34 @@
     <link href="~/Content/DivBootstrap.css" rel="stylesheet" />
 </head>
 <style>
+    }
+</style>
+<div class="container">
+    <div class="col-sm-4">
+        <div class="frameTitleBiogasFacility">
 
-}</style>
-    <div class="container">
-        <div class="col-sm-4">
-            <div class="frameTitleBiogasFacility">
+            @*General info for the specific biogas facility is shown in this div.*@
 
-                @*General info for the specific biogas facility is shown in this div.*@ 
-
-                <h3 align="center">Facility Information</h3>
-            </div>
-            <div class="intro" id="style-1">
-                <table>
-                            @foreach (var item in Model.Facilites)
-                            {
-                                if (item.User_Id == null || item.User_Id == 0)
-                                {
-                                    <tr>
-                                        <td>
-                                            <p> @item.Name / @item.SerialNumber does not currently have a user assigned to it (No owner)</p>
-                                            <p> </p>
-                                            <p>
-                                                Please assign a owner / user to this facility on the @Html.ActionLink("User management", "Index", "UserManagement") page
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    break;
-                                }
-                            <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
+            <h3 align="center">Facility Information</h3>
+        </div>
+        <div class="intro" id="style-1">
+            <table>
+                @foreach (var item in Model.Facilites)
+                {
+                    if (item.User_Id == null || item.User_Id == 0)
+                    {
+                        <tr>
+                            <td>
+                                <p> @item.Name / @item.SerialNumber does not currently have a user assigned to it (No owner)</p>
+                                <p> </p>
+                                <p>
+                                    Please assign a owner / user to this facility on the @Html.ActionLink("User management", "Index", "UserManagement") page
+                                </p>
+                            </td>
+                        </tr>
+                        break;
+                    }
+                    <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
                             <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
                             <tr> <td><b>E-mail</b></td> <td> @item.User.Email</td> </tr>
                             <tr> <td><b>Facility</b></td> <td> @item.Name</td> </tr>
@@ -51,22 +51,24 @@
                             <tr> <td><b>Serial No.</b></td> <td>@item.SerialNumber</td> </tr>
                             <tr> <td><b>Software Version</b></td> <td>@item.ProgramVersion</td> </tr>
 
-<tr> <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td> 
-<td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td> </tr>
-             
-                            }
+                            <tr>
+                                <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("EditFacilities", new { id = item.Id })';return false;">Edit details</button></td>
+                                <td><button class="btn btn-warning" style="width:150px; margin-top:10px" onclick="location.href='@Url.Action("Index", "Equipment", new { id = item.Id })';return false;">Manage Equipment</button></td>
+                            </tr>
 
-                </table>
-            </div>
+                }
+
+            </table>
         </div>
+    </div>
 
-        <div class="col-sm-8">
-            <div class="frameTitleFacilityAlarms">
-                <h3 align="center">Active Alarms</h3>
-            </div>
-            <div class="intro2"id="style-1">
-                <div class="row">
-                         <table>
+    <div class="col-sm-8">
+        <div class="frameTitleFacilityAlarms">
+            <h3 align="center">Active Alarms</h3>
+        </div>
+        <div class="intro2" id="style-1">
+            <div class="row">
+                <table>
                     <tr>
                         <th>Description</th>
                         <th>Date</th>
@@ -74,53 +76,53 @@
                         <th>Status</th>
                         <th>Tag</th>
                     </tr>
-                  
+
                     @foreach (var item in Model.Alarms)
                     {
-                            <tr>
-                                <td>@item.Description</td>
-                                <td>@item.AlarmOccured</td>
-                                <td>@item.ProcessValue</td>
-                                <td>@item.Status</td>
-                                <td>@item.equipments.Tag</td>
-                               
-                            </tr>
-                          }
-                        
-                </table>
+                        <tr>
+                            <td>@item.Description</td>
+                            <td>@item.AlarmOccured</td>
+                            <td>@item.ProcessValue</td>
+                            <td>@item.Status</td>
+                            <td>@item.equipments.Tag</td>
 
-                </div>
-            </div>
-
-        </div>
-        <p></p>
-        &emsp;
-
-        @*The "Remote Connect " and "Export to Excel" buttons are called in the code below.*@ 
-
-        @foreach (var skill in Model.Facilites)
-        {
-            <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
-        }
-
-        <div class="dropdown">
-            <button class="btn btn-success">Export to Excel</button>
-            <div class="dropdown-content">
-                @foreach (var item in Model.Facilites)
-            {
-
-                    <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
-
-                    foreach (var eq in Model.Equipments)
-                    {
-                        <b>  @Html.ActionLink(eq.Tag + " "+ eq.Description + " to Excel", "ExportMeasurementsToExcel", "Export", new { id = item.Id, TagID = eq.Tag }, null)</b>
+                        </tr>
                     }
 
-                }
+                </table>
 
             </div>
         </div>
+
+    </div>
+    <p></p>
+    &emsp;
+
+    @*The "Remote Connect " and "Export to Excel" buttons are called in the code below.*@
+
+    @foreach (var skill in Model.Facilites)
+    {
+        <a href="http://@skill.IP/webvisu/webvisu.htm" target="_blank" class="btn btn-success">Remote Connect &raquo;</a>
+    }
+
+    <div class="dropdown">
+        <button class="btn btn-success">Export to Excel</button>
+        <div class="dropdown-content">
+            @foreach (var item in Model.Facilites)
+            {
+
+                <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
+
+                foreach (var eq in Model.Equipments)
+                {
+                    <b>  @Html.ActionLink(eq.Tag + " " + eq.Description + " to Excel", "ExportMeasurementsToExcel", "Export", new { id = item.Id, TagID = eq.Tag }, null)</b>
+                }
+
+            }
+
         </div>
+    </div>
+</div>
 
 
 @*Charts with information from the database are shown below.*@
@@ -130,39 +132,37 @@
     @foreach (var item in Model.Facilites)
     {
         <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
-       
+
     }
 
 </div>
 @*Shows the optional popup graph*@
 <div class="frame3">
-      @foreach (var item in Model.Facilites)
+    @foreach (var item in Model.Facilites)
     {
 
-        using (Html.BeginForm("ValueChart","Facility", new { id = item.Id }, FormMethod.Post))
+        using (Html.BeginForm("ValueChart", "Facility", new { id = item.Id }, FormMethod.Post))
         {
 
- <select name="txtTags">
-    @foreach (var tag in Model.Equipments)
-    {
-                   <option value="@tag.Tag">@tag.Tag @tag.Description</option>
-          
-            }
-  </select>
+            <select name="txtTags">
+                @foreach (var tag in Model.Equipments)
+                {
+                    <option value="@tag.Tag">@tag.Tag @tag.Description</option>
 
-        <b>From:</b>
-        @Html.TextBox("txtFrom", "",new { type="date", required = "required" })
-      
-        <b>To:</b>
-        @Html.TextBox("txtTo", "", new { type = "date",required = "required" })
+                }
+            </select>
 
-        <input type="submit" value="Draw Graph" class="buttonDrawGraph" />
+            <b>From:</b>
+            @Html.TextBox("txtFrom", "", new { type = "date", required = "required" })
+
+            <b>To:</b>
+            @Html.TextBox("txtTo", "", new { type = "date", required = "required" })
+
+            <input type="submit" value="Draw Graph" class="buttonDrawGraph" />
 
         }
     }
 </div>
-
-
 
 
 

@@ -11,13 +11,13 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>facilities</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
+        @* Input fields for facilities*@
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -80,19 +80,19 @@
                 @Html.DropDownList("locations_countries_continents_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.locations_countries_continents_Id, "", new { @class = "text-danger" })
             </div>
-        </div>   
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.User_Id, "Owner", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("User_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.User_Id, "", new { @class = "text-danger" })
             </div>
-        </div>   
-                  
+        </div>
+        @* Save changes to database *@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-success" />
-               @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-success", @style = "color:white" })
+                @Html.ActionLink("Back", "FacilityDetails", "Facility", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-success", @style = "color:white" })
             </div>
         </div>
     </div>

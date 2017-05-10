@@ -17,12 +17,12 @@
         </div>
         <div class="frame" id="style-1">
             <div class="row">
-                    @foreach (var item in Model.countries)
-                      {
-                        <ul>
-                            <li style="font-size:large" color="red">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id}, new { @style = "color:black;" })</li>
-                        </ul>
-                    }
+                @foreach (var item in Model.countries)
+                {
+                    <ul>
+                        <li style="font-size:large" color="red">@Html.ActionLink(item.Name, "FacilityOverview", new { id = item.Id }, new { @style = "color:black;" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
@@ -30,26 +30,26 @@
         <div class="frameTitleFacilities">
             <h3 align="center">Facilities</h3>
         </div>
-            <div class="frame" id="style-1">
-                @foreach (var item in Model.Facilites)
+        <div class="frame" id="style-1">
+            @foreach (var item in Model.Facilites)
             {
 
                 <a href='@Url.Action("FacilityDetails", "Facility", new { id = item.Id })' class="btn button2 large-btn">@item.Name</a>
 
-                }
-
-         
+            }
 
 
-                </div>
-            </div>
 
 
-<div align="left">
+        </div>
+    </div>
 
-<div style="margin-top:15px">
-    <button class="btn btn-success" style="width:175px; margin-left:20px" onclick="location.href='@Url.Action("AddLocation")';return false;">Add new facility</button>
-</div>
 
-</div>
+    <div align="left">
+
+        <div style="margin-top:15px">
+            <button class="btn btn-success" style="width:175px; margin-left:20px" onclick="location.href='@Url.Action("AddLocation")';return false;">Add new facility</button>
+        </div>
+
+    </div>
 

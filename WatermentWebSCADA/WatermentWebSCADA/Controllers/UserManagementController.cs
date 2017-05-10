@@ -15,13 +15,18 @@ using WatermentWebSCADA.CustomFilters;
 namespace WatermentWebSCADA.Controllers
 {
 
-    //IMPORTANT!!!! READ THIS FOR MANY TO MANY: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
+    // In the event of implementing a many-to-many relationship:
+    // https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
     public class UserManagementController : Controller
     {
 
         //Source for multiple entities with same name (u.Id, r.Id) 
         // http://stackoverflow.com/questions/3454996/how-to-select-same-columns-name-from-different-table-in-linq
-        // GET: UsersManagement
+        
+        /// <summary>
+        /// Return the users and their role.
+        /// </summary>
+        /// <returns></returns>
         [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult Index()
         {
@@ -127,6 +132,10 @@ namespace WatermentWebSCADA.Controllers
         //    }
         //}
 
+            /// <summary>
+            /// Return the users and their facilities.
+            /// </summary>
+            /// <returns></returns>
         [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         public ActionResult UserFacility()
         {
@@ -171,6 +180,11 @@ namespace WatermentWebSCADA.Controllers
 
         }
 
+        /// <summary>
+        /// Return the view to link a user with a role.
+        /// Returns a list of facilities and a list users.
+        /// </summary>
+        /// <returns></returns>
         [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult LinkUserAndFacility()
         {
@@ -189,14 +203,15 @@ namespace WatermentWebSCADA.Controllers
 
 
         }
+
         /// <summary>
-        /// 
+        /// Posts the input when a user is connected to a facility.
         /// </summary>
         /// <param name="userId">Id of the user which is to be assigned</param>
         /// <param name="facilityId">Id of facility which is to be assigned.</param>
         /// Source: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
         /// 
-
+        
         [AuthLog(Roles = "Admin, Superuser")]
         [HttpPost]
         public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model)
@@ -236,23 +251,5 @@ namespace WatermentWebSCADA.Controllers
 
             }
         }
-        public void DeleteRelationship(int productID, int supplierID)
-        {
-            using (watermentdbEntities db = new watermentdbEntities())
-            {
-                // return one instance each entity by primary key
-                var product = db.User.FirstOrDefault(u => u.Id == productID);
-                var supplier = db.facilities.FirstOrDefault(s => s.Id == supplierID);
-
-                // call Remove method from navigation property for any instance
-                // supplier.Product.Remove(product);
-                // also works
-                product.facilities.Remove(supplier);
-
-                // call SaveChanges from context
-                db.SaveChanges();
-            }
-        }
-
     }
 }
