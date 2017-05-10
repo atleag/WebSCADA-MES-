@@ -7,10 +7,6 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-
-
-  
-
 </head>
 <body style="background-color:rgb(171,194,122)">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(94,110,60)">
@@ -23,9 +19,9 @@
                 </button>
                 @Html.ActionLink("Waterment SCADA", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
                 @*@Html.ActionLink("Overview", "Index", "MainSite", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Facilities", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
-                @Html.ActionLink("About", "About", "MainSite", new { area = "" }, new { @class = "navbar-brand" })*@
+                    @Html.ActionLink("Facilities", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("User management", "FacilityOverview", "Facility", new { area = "" }, new { @class = "navbar-brand"})
+                    @Html.ActionLink("About", "About", "MainSite", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div>
                 <div class="navbar-collapse collapse">
@@ -50,9 +46,9 @@
         </footer>
     </div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
-   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
 </body>
 </html>

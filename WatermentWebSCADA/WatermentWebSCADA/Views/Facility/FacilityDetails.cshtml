@@ -39,7 +39,7 @@
                         break;
                     }
                     <tr> <td><b>User</b></td> <td> @item.User.FirstName @item.User.LastName</td> </tr>
-                            <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
+                    <tr> <td><b>Phone number</b></td> <td> @item.User.PhoneNumber</td> </tr>
                             <tr> <td><b>E-mail</b></td> <td> @item.User.Email</td> </tr>
                             <tr> <td><b>Facility</b></td> <td> @item.Name</td> </tr>
                             <tr> <td><b>Country</b></td> <td> @item.locations.countries.Name</td> </tr>
@@ -110,7 +110,7 @@
         <div class="dropdown-content">
             @foreach (var item in Model.Facilites)
             {
-
+                //Using the "ExportController" to export alarms and measurements to excel.
                 <b>  @Html.ActionLink("Export Alarms to Excel", "ExportAlarmsToExcel", "Export", new { id = item.Id }, null)</b>
 
                 foreach (var eq in Model.Equipments)

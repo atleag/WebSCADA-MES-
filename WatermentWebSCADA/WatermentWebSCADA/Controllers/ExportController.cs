@@ -1,10 +1,8 @@
 ﻿
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Web.UI;
-using WatermentWebSCADA.ViewModels;
 using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
@@ -19,7 +17,7 @@ namespace WatermentWebSCADA.Controllers
             //Code to export Temperature measurements to Excel file
             using (var db = new Models.watermentdbEntities())
             {
-           
+
                 var grid = new System.Web.UI.WebControls.GridView();
 
                 grid.DataSource =
