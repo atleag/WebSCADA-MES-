@@ -7,6 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+/// Used to display a custom error page when someone without
+/// the approriate role tries to access content.
+/// </summary>
+
 namespace WatermentWebSCADA.CustomFilters
 {
 

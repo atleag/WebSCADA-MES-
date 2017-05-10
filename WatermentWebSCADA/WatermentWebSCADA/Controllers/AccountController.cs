@@ -112,138 +112,6 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
-        // GET: /Account/ForgotPassword
-
-        //
-        // POST: /Account/Disassociate
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
-        //{
-        //    ManageMessageId? message = null;
-        //    var result = await UserManager.RemoveLoginAsync(long.Parse(User.Identity.GetUserId()), new UserLoginInfo(loginProvider, providerKey));
-        //    if (result.Succeeded)
-        //    {
-        //        var user = await UserManager.FindByIdAsync(long.Parse(User.Identity.GetUserId()));
-        //        await SignInAsync(user, false);
-        //        message = ManageMessageId.RemoveLoginSuccess;
-        //    }
-        //    else
-        //    {
-        //        message = ManageMessageId.Error;
-        //    }
-        //    return RedirectToAction(
-        //        "Manage",
-        //        new
-        //        {
-        //            Message = message
-        //        });
-        //}
-
-        //
-        // GET: /Account/Manage
-
-        //
-        // POST: /Account/ExternalLogin
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult ExternalLogin(string provider, string returnUrl)
-        //{
-        //    // Request a redirect to the external login provider
-        //    return new ChallengeResult(
-        //        provider,
-        //        Url.Action(
-        //            "ExternalLoginCallback",
-        //            "Account",
-        //            new
-        //            {
-        //                ReturnUrl = returnUrl
-        //            }));
-        //}
-
-        //
-        // GET: /Account/ExternalLoginCallback
-        //[AllowAnonymous]
-        //public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
-        //{
-        //    var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-        //    if (loginInfo == null)
-        //    {
-        //        return RedirectToAction("Login");
-        //    }
-
-        //    // Sign in the user with this external login provider if the user already has a login
-        //    var user = await UserManager.FindAsync(loginInfo.Login);
-        //    if (user != null)
-        //    {
-        //        await SignInAsync(user, false);
-        //        return RedirectToLocal(returnUrl);
-        //    }
-        //    // If the user does not have an account, then prompt the user to create an account
-        //    ViewBag.ReturnUrl = returnUrl;
-        //    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-        //    return View(
-        //        "ExternalLoginConfirmation",
-        //        new ExternalLoginConfirmationViewModel
-        //        {
-        //            Email = loginInfo.Email
-        //        });
-        //}
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        return RedirectToAction("Manage");
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        // Get the information about the user from the external login provider
-        //        var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-        //        if (info == null)
-        //        {
-        //            return View("ExternalLoginFailure");
-        //        }
-        //        var user = new MyUser
-        //        {
-        //            UserName = model.Email,
-        //            Email = model.Email
-        //        };
-        //        var result = await UserManager.CreateAsync(user);
-        //        if (result.Succeeded)
-        //        {
-        //            result = await UserManager.AddLoginAsync(user.Id, info.Login);
-        //            if (result.Succeeded)
-        //            {
-        //                await SignInAsync(user, false);
-
-        //                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        //                // Send an email with this link
-        //                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-        //                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-        //                // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
-
-        //                return RedirectToLocal(returnUrl);
-        //            }
-        //        }
-        //        AddErrors(result);
-        //    }
-
-        //    ViewBag.ReturnUrl = returnUrl;
-        //    return View(model);
-        //}
-
-        //[AllowAnonymous]
-        //public ActionResult ExternalLoginFailure()
-        //{
-        //    return View();
-        //}
 
 
         [AllowAnonymous]
@@ -288,15 +156,7 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        ////
-        //// POST: /Account/LinkLogin
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult LinkLogin(string provider)
-        //{
-        //    // Request a redirect to the external login provider to link a login for the current user
-        //    return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
-        //}
+
 
         //
         // GET: /Account/LinkLoginCallback
@@ -323,10 +183,6 @@ namespace WatermentWebSCADA.Controllers
                 {
                     Message = ManageMessageId.Error
                 });
-        }
-
-        //
-        // POST: /Account/ExternalLoginConfirmation
 
         //
         // POST: /Account/LogOff
@@ -423,8 +279,12 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Manage
+
+        /// <summary>
+        /// In the event of a change of password, the model is processed with the old and new password.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manage(ManageUserViewModel model)
@@ -479,7 +339,11 @@ namespace WatermentWebSCADA.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        
+        /// <summary>
+        /// Returns the register view with a list of available roles.
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -488,8 +352,11 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
+        /// <summary>
+        /// Processed when the "register" button in the view is activated.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -513,8 +380,7 @@ namespace WatermentWebSCADA.Controllers
                 {
                     await this.UserManager.AddToRoleAsync(user.Id, roleName);
 
-                    //REMEMBER TO REPLACE THIS CODE WITH SOMETHING ELSE. 
-                    //await SignInAsync(user, false);
+                    //Enable userregister email confirmation.
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -524,18 +390,18 @@ namespace WatermentWebSCADA.Controllers
 
                     return RedirectToAction("Index", "UserManagement");
                 }
-                //return RedirectToAction("Register");
                 AddErrors(result);
                 
             }
 
-            // If we got this far, something failed, redisplay form
+            // Something failed, redisplay form
             return View(model);
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-
+        /// <summary>
+        /// Not used
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         public ActionResult RemoveAccountList()
         {
@@ -544,6 +410,11 @@ namespace WatermentWebSCADA.Controllers
             return PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
+        /// <summary>
+        /// Returns the reset password view.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
@@ -554,8 +425,11 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/ResetPassword
+        /// <summary>
+        /// Process the input of the reset password request.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -578,7 +452,7 @@ namespace WatermentWebSCADA.Controllers
                 return View();
             }
 
-            // If we got this far, something failed, redisplay form
+            // Something failed, redisplay form
             return View(model);
         }
 
@@ -608,6 +482,11 @@ namespace WatermentWebSCADA.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Used for when admins, superusers and maintenace accounts login.
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -617,6 +496,7 @@ namespace WatermentWebSCADA.Controllers
             return RedirectToAction("Index", "MainSite");
         }
 
+        //Not implemented
         private void SendEmail(string email, string callbackUrl, string subject, string message)
         {
             // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
