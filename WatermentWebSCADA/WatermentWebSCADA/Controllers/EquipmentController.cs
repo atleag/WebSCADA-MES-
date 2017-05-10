@@ -11,8 +11,17 @@ using WatermentWebSCADA.CustomFilters;
 
 namespace WatermentWebSCADA.Controllers
 {
+    /// <summary>
+    /// The EquipmentController class is used to 
+    /// </summary>
     public class EquipmentController : Controller
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
         // GET: Equipment with their measurred values.
         public ActionResult Index(int? id)
@@ -38,30 +47,6 @@ namespace WatermentWebSCADA.Controllers
             //Using foreach loop fill data from custmerlist to List<CustomerVM>.
             return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
         }
-        // GET: Equipment. Not used
-        //public ActionResult IndexBACKUP()
-        //{
-        //    watermentdbEntities db = new watermentdbEntities(); //dbcontect class
-        //    List<FacilityEquipmentVM> facilityEquipmentVM = new List<FacilityEquipmentVM>(); // to hold list of Customer and order details
-        //    var customerlist = (from Eq in db.equipments
-        //                        join Me in db.measurements on Eq.Id equals Me.equipments_Id
-        //                        select new { Eq.Tag, Eq.SIUnits, Eq.Description, Me.ProcessValue, Me.Recorded }).ToList();
-        //    //query getting data from database from joining two tables and storing data in customerlist
-        //    foreach (var item in customerlist)
-        //    {
-        //        FacilityEquipmentVM objevm = new FacilityEquipmentVM(); // ViewModel
-        //        objevm.Tag = item.Tag;
-        //        objevm.SIUnits = item.SIUnits;
-        //        objevm.Description = item.Description;
-        //        //objevm.ProcessValue = item.ProcessValue;
-        //        //objevm.Recorded = item.Recorded;
-        //        facilityEquipmentVM.Add(objevm);
-        //    }
-        //    //Using foreach loop fill data from custmerlist to List<CustomerVM>.
-        //    return View(facilityEquipmentVM); //List of CustomerVM (ViewModel)
-        //}
-
-        
         
         /// <summary>
         /// Used to create the equipment. The list, which is a bit hacky, makes sure that the equipment models is implcity assigned to the desierd facility
@@ -83,15 +68,18 @@ namespace WatermentWebSCADA.Controllers
             }
             catch (Exception)
             {
-
+                ModelState.AddModelError("", "The creation was not sucessful.");
                 throw;
             }
 
         }
 
-
-
-        //This action result takes the input in the partial view and stores it to the DB before returning to the list of equipments.
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [AuthLog(Roles = "Admin, SuperUser")]
         [HttpPost]
         public ActionResult CreateEquipment(EquipmentAddVM model)

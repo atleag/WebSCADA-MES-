@@ -89,11 +89,16 @@ namespace WatermentWebSCADA.Controllers
 
         #region methods
 
-
+        /// <summary>
+        /// Method is currently not used. Used in the event when a user is registrated and it is disairable to confirm that the email is correct.
+        /// </summary>
+        /// <param name="userId">The Id of the user</param>
+        /// <param name="code">The confirmation code</param>
+        /// <returns></returns>
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(long userId, string code)
         {
-            if (userId == null || code == null)
+            if (userId == 0 || code == null)
             {
                 return View("Error");
             }
@@ -112,29 +117,29 @@ namespace WatermentWebSCADA.Controllers
 
         //
         // POST: /Account/Disassociate
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
-        {
-            ManageMessageId? message = null;
-            var result = await UserManager.RemoveLoginAsync(long.Parse(User.Identity.GetUserId()), new UserLoginInfo(loginProvider, providerKey));
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(long.Parse(User.Identity.GetUserId()));
-                await SignInAsync(user, false);
-                message = ManageMessageId.RemoveLoginSuccess;
-            }
-            else
-            {
-                message = ManageMessageId.Error;
-            }
-            return RedirectToAction(
-                "Manage",
-                new
-                {
-                    Message = message
-                });
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Disassociate(string loginProvider, string providerKey)
+        //{
+        //    ManageMessageId? message = null;
+        //    var result = await UserManager.RemoveLoginAsync(long.Parse(User.Identity.GetUserId()), new UserLoginInfo(loginProvider, providerKey));
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await UserManager.FindByIdAsync(long.Parse(User.Identity.GetUserId()));
+        //        await SignInAsync(user, false);
+        //        message = ManageMessageId.RemoveLoginSuccess;
+        //    }
+        //    else
+        //    {
+        //        message = ManageMessageId.Error;
+        //    }
+        //    return RedirectToAction(
+        //        "Manage",
+        //        new
+        //        {
+        //            Message = message
+        //        });
+        //}
 
         //
         // GET: /Account/Manage
@@ -240,6 +245,7 @@ namespace WatermentWebSCADA.Controllers
         //    return View();
         //}
 
+
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
@@ -282,15 +288,15 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/LinkLogin
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
-        {
-            // Request a redirect to the external login provider to link a login for the current user
-            return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
-        }
+        ////
+        //// POST: /Account/LinkLogin
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult LinkLogin(string provider)
+        //{
+        //    // Request a redirect to the external login provider to link a login for the current user
+        //    return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Account"), User.Identity.GetUserId());
+        //}
 
         //
         // GET: /Account/LinkLoginCallback
