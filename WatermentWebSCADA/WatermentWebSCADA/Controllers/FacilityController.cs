@@ -117,6 +117,7 @@ namespace WatermentWebSCADA.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 //Saves data from view to database
                 db.facilities.Add(facilities);
                 try
