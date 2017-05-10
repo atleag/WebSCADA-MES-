@@ -13,7 +13,7 @@ namespace WatermentWebSCADA.Controllers
     {
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult ExportMeasurementsToExcel(int? id, string TagID)
         {
             //Code to export Temperature measurements to Excel file
@@ -54,7 +54,7 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult ExportAlarmsToExcel(int? id)
         {
             //Code to export Alarm list to Excel file

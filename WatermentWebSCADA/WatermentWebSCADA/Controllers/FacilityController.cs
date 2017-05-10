@@ -78,18 +78,8 @@ namespace WatermentWebSCADA.Controllers
             }
         }
   
-        public ContentResult GetData()
-        {
-            using (var db = new watermentdbEntities())
-            {
-                var result = (from tags in db.measurements
-                              orderby tags.Recorded ascending
-                              select new { tags.ProcessValue }).ToList();
-                //return Json(JsonConvert.SerializeObject(result), JsonRequestBehavior.AllowGet);
-                return Content(JsonConvert.SerializeObject(result), "application/json");
-            }
-        }
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+    
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult FacilityOverview(int? id)
         {
 
@@ -108,34 +98,26 @@ namespace WatermentWebSCADA.Controllers
             }
         }
 
-        public ActionResult Get(int id)
-        {
-            using (var db = new Models.watermentdbEntities())
-            {
-                var model = new MainViewModel
-                {
-                    //Convention = db.Client_Conection.Select(x => x.user).FirstOrDefault(),                  
-                };
-                return View(model);
-            }
-        }
+     
 
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         public ActionResult AddFacility2()
         {
+            //creates dropdown lists for location, country and continents. Displays name, returns ID
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
             ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
             return View();
         }
 
-        [AuthLog(Roles = "Admin, Superuser, Maintenacnce, User")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance, User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddFacility2([Bind(Include = "Id,Name,IP,Domain,SerialNumber, ProgramVersion,locations_Id,locations_countries_Id,locations_countries_continents_Id")] facilities facilities)
         {
             if (ModelState.IsValid)
             {
+                //Saves data from view to database
                 db.facilities.Add(facilities);
                 try
                 {
@@ -146,23 +128,24 @@ namespace WatermentWebSCADA.Controllers
 
                     throw new InvalidOperationException("Data could not be saved", e);
                 }
-           
+           //Returns Facility overview when data has been saved
                 return RedirectToAction("FacilityOverview");
             }
-
+            //writes data from dropdown lists to facilities table(collects data from locations, countries and continents tables)
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
             ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);
 
-            return View(facilities);
+            return View(facilities);//opens facility overview
         }
 
         [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult AddLocation()
         {
+            //creates dropdown lists for country and continents. Displays name, returns ID
             ViewBag.countries_Id = new SelectList(db.countries, "Id", "Name");
             ViewBag.countries_continents_Id = new SelectList(db.continents, "Id", "Name");
-            return View();
+            return View(); //returns add location view
         }
 
         [AuthLog(Roles = "Admin, Superuser")]
@@ -172,14 +155,15 @@ namespace WatermentWebSCADA.Controllers
         {
             if (ModelState.IsValid)
             {
+                //writes input from view to database
                 db.locations.Add(locations);
                 db.SaveChanges();
-                return RedirectToAction("AddFacility2");
+                return RedirectToAction("AddFacility2");// redirect user to add facility view when data has been added to db
             }
-
+            //writes data from dropdown lists to location table(collects data from countries and continents tables)
             ViewBag.locations_Id = new SelectList(db.countries, "Id", "Name", locations.countries_Id);
             ViewBag.locations_continents_id = new SelectList(db.continents, "Id", "Name", locations.countries_continents_Id);
-            return View(locations);
+            return View(locations);//returns add facility
         }
         [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult EditFacilities(int? id)
@@ -188,11 +172,12 @@ namespace WatermentWebSCADA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            facilities facilities = db.facilities.Find(id);
+            facilities facilities = db.facilities.Find(id);//gets id from opened facility
             if (facilities == null)
             {
                 return HttpNotFound();
             }
+            //creates dropdown lists for location, country, continents and user. Displays name, returns ID
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress");
             ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name");
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name");
@@ -206,10 +191,12 @@ namespace WatermentWebSCADA.Controllers
         {
             if (ModelState.IsValid)
             {
+                //writes the user input data to database
                 db.Entry(facilities).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("FacilityOverview");
             }
+            //writes data from dropdown lists to facility table(collects data from locations, countries, continents and user tables)
             ViewBag.locations_Id = new SelectList(db.locations, "Id", "StreetAddress", facilities.locations_Id);
             ViewBag.locations_countries_Id = new SelectList(db.countries, "Id", "Name", facilities.locations_countries_Id);
             ViewBag.locations_countries_continents_Id = new SelectList(db.continents, "Id", "Name", facilities.locations_countries_continents_Id);

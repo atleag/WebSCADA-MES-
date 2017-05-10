@@ -23,7 +23,7 @@ namespace WatermentWebSCADA.Controllers
         Models.watermentdbEntities db = new Models.watermentdbEntities();
 
      
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         // GET: Maintanance
         public ActionResult Index(int? id)
         {
@@ -46,7 +46,7 @@ namespace WatermentWebSCADA.Controllers
                 return View(model);
             }
         }
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         public ActionResult MaintenanceEdit()
         {
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name");
@@ -54,7 +54,7 @@ namespace WatermentWebSCADA.Controllers
             return View();
         }
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenacnce")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult MaintenanceEdit([Bind(Include = "OrderId,Person, Description, facilities_Id, lastMaintenance")] maintenance maintenance)
@@ -69,7 +69,5 @@ namespace WatermentWebSCADA.Controllers
             ViewBag.facilities_Id = new SelectList(db.facilities, "Id", "Name", maintenance.facilities_Id);
             return View(maintenance);
         }
-
-
     }
 }

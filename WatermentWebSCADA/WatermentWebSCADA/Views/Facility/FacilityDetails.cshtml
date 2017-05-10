@@ -126,7 +126,7 @@
 @*Charts with information from the database are shown below.*@
 
 <div class="frame3">
-    @*Shows temperature graf*@
+    @*Shows temperature graph*@
     @foreach (var item in Model.Facilites)
     {
         <p><img src="@Url.Action("TempChart",new { id = item.Id})" /></p>
@@ -134,7 +134,7 @@
     }
 
 </div>
-
+@*Shows the optional popup graph*@
 <div class="frame3">
       @foreach (var item in Model.Facilites)
     {

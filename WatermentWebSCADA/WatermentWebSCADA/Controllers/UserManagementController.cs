@@ -22,7 +22,7 @@ namespace WatermentWebSCADA.Controllers
         //Source for multiple entities with same name (u.Id, r.Id) 
         // http://stackoverflow.com/questions/3454996/how-to-select-same-columns-name-from-different-table-in-linq
         // GET: UsersManagement
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult Index()
         {
             watermentdbEntities context = new watermentdbEntities();
@@ -127,7 +127,7 @@ namespace WatermentWebSCADA.Controllers
         //    }
         //}
 
-        [AuthLog(Roles = "Admin, SuperUser, Maintenance")]
+        [AuthLog(Roles = "Admin, Superuser, Maintenance")]
         public ActionResult UserFacility()
         {
             try
@@ -171,7 +171,7 @@ namespace WatermentWebSCADA.Controllers
 
         }
 
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         public ActionResult LinkUserAndFacility()
         {
             using (watermentdbEntities context = new watermentdbEntities())
@@ -197,7 +197,7 @@ namespace WatermentWebSCADA.Controllers
         /// Source: https://www.codeproject.com/tips/893609/crud-many-to-many-entity-framework
         /// 
 
-        [AuthLog(Roles = "Admin, SuperUser")]
+        [AuthLog(Roles = "Admin, Superuser")]
         [HttpPost]
         public ActionResult LinkUserAndFacility(UserAndFacilityLinkVM model)
         {
