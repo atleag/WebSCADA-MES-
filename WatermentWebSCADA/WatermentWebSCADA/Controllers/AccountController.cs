@@ -183,6 +183,7 @@ namespace WatermentWebSCADA.Controllers
                 {
                     Message = ManageMessageId.Error
                 });
+        }
 
         //
         // POST: /Account/LogOff
