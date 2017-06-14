@@ -2,15 +2,11 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System;
 using codingfreaks.samples.Identity.Models;
-
 using WatermentWebSCADA.ViewModels;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Collections.Generic;
 using System.Linq;
 using WatermentWebSCADA.Models;
 
@@ -221,12 +217,12 @@ namespace WatermentWebSCADA.Controllers
                 if (user != null)
                 {
                     ///Checks to see if not normal user
-                    if (await UserManager.IsInRoleAsync(user.Id,"Admin") || await UserManager.IsInRoleAsync(user.Id, "SuperUser") || await UserManager.IsInRoleAsync(user.Id, "Maintenance"))
+                    if (await UserManager.IsInRoleAsync(user.Id, "Admin") || await UserManager.IsInRoleAsync(user.Id, "SuperUser") || await UserManager.IsInRoleAsync(user.Id, "Maintenance"))
                     {
                         await SignInAsync(user, model.RememberMe);
                         return RedirectToLocal(returnUrl);
                     }
-                    if(await UserManager.IsInRoleAsync(user.Id,"User"))
+                    if (await UserManager.IsInRoleAsync(user.Id, "User"))
                     {
                         using (watermentdbEntities context = new watermentdbEntities())
                         {
@@ -239,7 +235,7 @@ namespace WatermentWebSCADA.Controllers
 
                                 int userDestination = facilityId.Id;
                                 await SignInAsync(user, model.RememberMe);
-                                return RedirectToAction("FacilityDetails","Facility", new { id = userDestination });
+                                return RedirectToAction("FacilityDetails", "Facility", new { id = userDestination });
                             }
                             //If user does not belong to facility, redirect to site regarding not having access yet
                             catch (System.Exception)
@@ -254,8 +250,8 @@ namespace WatermentWebSCADA.Controllers
                     {
                         ModelState.AddModelError("", "Invalid username or password.");
                     }
-                    
-                    
+
+
                 }
                 ModelState.AddModelError("", "Invalid username or password.");
             }
@@ -340,7 +336,7 @@ namespace WatermentWebSCADA.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        
+
         /// <summary>
         /// Returns the register view with a list of available roles.
         /// </summary>
@@ -373,7 +369,7 @@ namespace WatermentWebSCADA.Controllers
                     Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName
-                    
+
 
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -392,7 +388,7 @@ namespace WatermentWebSCADA.Controllers
                     return RedirectToAction("Index", "UserManagement");
                 }
                 AddErrors(result);
-                
+
             }
 
             // Something failed, redisplay form
