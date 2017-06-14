@@ -17,6 +17,7 @@ namespace WatermentWebSCADA
             ConfigureAuth(app);
         }
 
+
     }
 
 }

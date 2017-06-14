@@ -404,6 +404,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WatermentWebSCADA.dll.config" />
     <Content Include="ClassDiagram2.cd" />
+    <Content Include="ClassDiagram3.cd" />
     <None Include="Properties\PublishProfiles\BiogassGaupset - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Waterment - Web Deploy.pubxml" />
     <Content Include="scripts\ai.1.0.8-build01310.js" />
@@ -510,7 +511,9 @@
     <Compile Include="ViewModels\UserManagementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
