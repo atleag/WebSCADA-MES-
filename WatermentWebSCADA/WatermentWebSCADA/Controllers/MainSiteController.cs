@@ -21,7 +21,7 @@ namespace WatermentWebSCADA.Controllers
             //Method for checking if facilities are online
             try
             {
-                PingReply reply = pinger.Send(ip, 200);
+                PingReply reply = pinger.Send(ip, 2000);
                 pingable = reply.Status == IPStatus.Success;
             }
             catch (PingException)
