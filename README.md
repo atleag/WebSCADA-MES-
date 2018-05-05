@@ -8,5 +8,5 @@ Features not included:
 -WebSocket
 -RestAPI
 -Interfaces
--Pure MVC (Models as a whole used as ViewModels)
+-Pure MVC (Some models used as a whole instead of ViewModels)
 -Secure storing of DB credentials.
